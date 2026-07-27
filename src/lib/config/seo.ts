@@ -6,10 +6,10 @@ type SeoConfig = {
   url: string;
 };
 export let seo_config: SeoConfig = {
-  title: "Svelte Component",
+  title: "Svelte Datatables Examples",
   description:
-    "A SvelteKit template for building and documenting Svelte components.",
-  title_template: "%s | Svelte Component Setup",
-  site_name: "Svelte Component Setup",
-  url: "https://svelte-component-setup.vercel.app",
+    "Svelte Datatables Examples includes examples like filtering, sorting, pagination and more.",
+  title_template: "%s | Svelte Datatables Examples",
+  site_name: "Svelte Datatables Examples",
+  url: "https://sv-table.vercel.app",
 };

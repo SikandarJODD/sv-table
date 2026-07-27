@@ -11,9 +11,9 @@ type JsRepo = {
 
 export let github_repo: GitHubRepo = {
   owner: "SikandarJODD",
-  url: "https://github.com/SikandarJODD/animations",
-  name: "animations",
-  fallback_stars: 100,
+  url: "https://github.com/SikandarJODD/sv-table",
+  name: "sv-table",
+  fallback_stars: 5,
 };
 
 export let jsrepo: JsRepo = {

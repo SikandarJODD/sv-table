@@ -1,7 +1,7 @@
 {
   "$schema": "https://shadcn-svelte.com/schema/registry.json",
   "name": "sv-project",
-  "homepage": "https://sv-project.vercel.app",
+  "homepage": "https://sv-table.vercel.app",
   "items": [
     {
       "name": "hello-world",
