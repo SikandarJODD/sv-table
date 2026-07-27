@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
+  "name": "sv-project",
+  "homepage": "https://sv-project.vercel.app",
+  "items": [
+    {
+      "name": "hello-world",
+      "type": "registry:block",
+      "title": "Hello World",
+      "description": "A simple hello world component.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/lib/registry/blocks/hello-world/hello-world.svelte",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

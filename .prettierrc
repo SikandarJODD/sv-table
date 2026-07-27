@@ -1,0 +1,34 @@
+{
+  "useTabs": true,
+  "tabWidth": 4,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "printWidth": 80,
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript",
+        "endOfLine": "lf"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "tabWidth": 2,
+        "useTabs": false,
+        "printWidth": 80
+      }
+    }
+  ],
+  "tailwindStylesheet": "./src/routes/layout.css",
+  "tailwindFunctions": ["clsx", "classnames", "cva"]
+}

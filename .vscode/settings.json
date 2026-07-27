@@ -1,0 +1,18 @@
+{
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"recommendations": ["oxc.oxc-vscode"],
+	"oxc.fmt.configPath": ".oxfmtrc.json",
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"editor.formatOnSave": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[tailwindcss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}
