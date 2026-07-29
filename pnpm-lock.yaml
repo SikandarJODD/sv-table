@@ -24,8 +24,8 @@ importers:
         specifier: ^0.37.1
         version: 0.37.1(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.5)(vite@8.0.10(jiti@2.6.1)))(svelte@5.55.5)(typescript@6.0.3)(vite@8.0.10(jiti@2.6.1)))(svelte@5.55.5)
       sv-agentation:
-        specifier: ^0.2.6
-        version: 0.2.6(react@19.2.6)(svelte@5.55.5)
+        specifier: ^0.4.0
+        version: 0.4.0(react@19.2.6)(svelte@5.55.5)
       svelte-meta-tags:
         specifier: ^5.0.2
         version: 5.0.2(svelte@5.55.5)(typescript@6.0.3)
@@ -162,11 +162,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@lucide/svelte@1.14.0':
-    resolution: {integrity: sha512-MVuP5VRCBQa2OaIpaRbuEV4k5OV2dy9MyxA6Tf4Sz/IN0v3zzUU72ObHc9r2Zn/wSMXDg6lLrHrczqI7w7gCzQ==}
-    peerDependencies:
-      svelte: ^5
 
   '@lucide/svelte@1.27.0':
     resolution: {integrity: sha512-qzNBHdqy/MKp2qxuy/DcYELuep6h19fjo+4ech8fZsS4GtZeBtg5jgCTRQvLvwhppt0mhRN6qt8Nt8rPb/J4Ag==}
@@ -953,8 +948,8 @@ packages:
   style-to-object@1.0.14:
     resolution: {integrity: sha512-LIN7rULI0jBscWQYaSswptyderlarFkjQ+t79nzty8tcIAceVomEVlLzH5VP4Cmsv6MtKhs7qaAiwlcp+Mgaxw==}
 
-  sv-agentation@0.2.6:
-    resolution: {integrity: sha512-OR1eW6FnS2t9PokDHs+406ovH5zczBb/qrA3JBOUE5oOvCKnDizq9eiqg+I6L+L2HZNYVH/0xiIw2OwgAJVX7A==}
+  sv-agentation@0.4.0:
+    resolution: {integrity: sha512-Wy26LFdv37WBqrMcSb+kiOWH0uod0rXRx13oTkPewUYmHECWLcvFD40cjcWJlnqblIJRjk4rNqZmyVXvGPpOiQ==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -1172,10 +1167,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  '@lucide/svelte@1.14.0(svelte@5.55.5)':
-    dependencies:
-      svelte: 5.55.5
 
   '@lucide/svelte@1.27.0(svelte@5.55.5)':
     dependencies:
@@ -1820,9 +1811,9 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.7
 
-  sv-agentation@0.2.6(react@19.2.6)(svelte@5.55.5):
+  sv-agentation@0.4.0(react@19.2.6)(svelte@5.55.5):
     dependencies:
-      '@lucide/svelte': 1.14.0(svelte@5.55.5)
+      '@lucide/svelte': 1.27.0(svelte@5.55.5)
       element-source: 0.0.5(react@19.2.6)
       svelte: 5.55.5
     transitivePeerDependencies:
