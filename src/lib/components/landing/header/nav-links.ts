@@ -7,7 +7,7 @@ let navs: NavType[] = [
   },
   {
     name: "Components",
-    href: "/components",
+    href: "/docs/introduction",
   },
   {
     name: "Docs",

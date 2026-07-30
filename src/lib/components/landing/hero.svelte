@@ -53,9 +53,7 @@
 				Get Started
 				<ArrowRight class="size-4" />
 			</Button>
-			<Button href="/components/filters" variant="outline"
-				>View Filter Component</Button
-			>
+			<Button href="/docs/introduction" variant="outline">Read Introduction</Button>
 		</div>
 	</div>
 </section>
