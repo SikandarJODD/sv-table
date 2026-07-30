@@ -1,0 +1,23 @@
+[
+	{
+		"name": "filters",
+		"title": "Data Table Filters",
+		"type": "registry:block",
+		"dependencies": [
+			"@lucide/svelte",
+			"runed",
+			"date-fns",
+			"@internationalized/date"
+		],
+		"registryDependencies": [
+			"button",
+			"command",
+			"popover",
+			"separator",
+			"checkbox",
+			"range-calendar",
+			"slider"
+		],
+		"relativeUrl": "filters.json"
+	}
+]
