@@ -17,24 +17,10 @@ export interface DocPage {
 
 let components: Component[] = [
   {
-    id: "badge",
-    name: "Badge",
-    href: "/components/badge",
-    badge: "Updated",
-    desc: "TODO: Add a concise description for Badge.",
-  },
-  {
-    id: "backlight",
-    name: "Backlight",
-    href: "/components/backlight",
-    badge: "New",
-    desc: "An SVG filter wrapper that adds a soft, saturated backlight glow around the content it wraps.",
-  },
-  {
-    id: "input",
-    name: "Input",
-    href: "/components/input",
-    desc: "TODO: Add a concise description for Input.",
+    id: "filters",
+    name: "Filters",
+    href: "/components/filters",
+    desc: "Composable table filters with text, number, option, and date operators for Svelte apps.",
   },
 ];
 

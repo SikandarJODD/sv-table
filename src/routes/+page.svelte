@@ -40,5 +40,5 @@
 />
 
 <Hero />
-<Feature />
+<!-- <Feature /> -->
 <Footer />

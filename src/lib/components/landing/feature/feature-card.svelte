@@ -29,7 +29,7 @@
 
 	<div
 		class={cn(
-			"relative inline-flex size-12 items-center justify-center rounded-2xl border shadow-sm",
+			"relative inline-flex size-12 items-center justify-center rounded-full border shadow-sm",
 			feature.iconWrapClass
 		)}
 	>
