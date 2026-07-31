@@ -17,7 +17,7 @@
 	>
 		<a
 			class="group flex w-fit animate-in items-center gap-3 rounded-full border bg-card p-1 shadow-xs transition-all delay-500 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in"
-			href="/"
+			href="/components/filters"
 		>
 			<div class="rounded-full border bg-card px-2 py-0.5 shadow-sm">
 				<p class="font-mono text-xs">New</p>
@@ -42,8 +42,8 @@
 		<p
 			class="max-w-2xl animate-in text-sm leading-7 text-muted-foreground delay-200 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in sm:text-base md:text-lg"
 		>
-			Explore filter components, documentation, and practical examples built with TanStack
-			Table v9 for Svelte.
+			Explore filter components, documentation, and practical examples
+			built with TanStack Table v9 for Svelte.
 		</p>
 
 		<div
@@ -53,7 +53,7 @@
 				Get Started
 				<ArrowRight class="size-4" />
 			</Button>
-			<Button href="/docs/introduction" variant="outline">Read Introduction</Button>
+			<!-- <Button href="/docs/introduction" variant="outline">Read Introduction</Button> -->
 		</div>
 	</div>
 </section>

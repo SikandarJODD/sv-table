@@ -34,12 +34,12 @@ let docsPages: DocPage[] = [
     href: "/docs",
     desc: "Getting started with the setup.",
   },
-  {
-    id: "installation",
-    name: "Installation",
-    href: "/docs/installation",
-    desc: "Create the app and initialize shadcn-svelte.",
-  },
+  // {
+  //   id: "installation",
+  //   name: "Installation",
+  //   href: "/docs/installation",
+  //   desc: "Create the app and initialize shadcn-svelte.",
+  // },
 ];
 
 export { docsPages };

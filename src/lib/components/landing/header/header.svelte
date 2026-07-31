@@ -39,7 +39,7 @@
 	>
 		<div class="flex items-center gap-5">
 			<a
-				class="rounded-sm bg-muted/50 p-1.5 hover:bg-muted dark:hover:bg-muted/50"
+				class="rounded-sm bg-muted/20 p-1.5 hover:bg-muted dark:hover:bg-muted/50"
 				href="/"
 			>
 				<Logo />
