@@ -5,10 +5,9 @@
 	import { H1, Paragraph } from "$markdown";
 	import GuidesSection from "./guides-section.svelte";
 	import InstallationSection from "./installation-section.svelte";
-	import IntroductionSection from "./introduction-section.svelte";
-	import QuickStartSection from "./quick-start-section.svelte";
 	import ConceptsSection from "./concepts-section.svelte";
 	import { filterPackages } from "./filters-doc-content";
+	import PackageBadges from "../base/main/package-badges.svelte";
 
 	const getURLPath = (url: string) => url.split("?")[0].split("#")[0];
 
@@ -24,22 +23,27 @@
 
 <div class="space-y-8 md:space-y-10">
 	<section>
-		<div class="flex flex-col justify-between gap-3 md:flex-row md:items-center md:gap-4">
-			<H1 id="filters">Filters</H1>
+		<div
+			class="flex flex-col justify-between gap-3 md:flex-row md:items-center md:gap-4"
+		>
+			<H1 id="filters">Data Table Filters</H1>
 			<CopyPageDropdown componentName="Filters" {llmsTxtUrl} />
 		</div>
 
 		<div class="mt-3 max-w-2xl">
 			<Paragraph>
-				Composable table filters with a typed builder, a Svelte state controller, and a UI layer
-				that slots cleanly into <code class="rounded bg-muted px-1.5 py-0.5 text-xs">ui/table</code>.
+				A powerful data table filter component. Library-agnostic.
+				Supports client and server-side filtering. Inspired from <span
+					>Bazza UI</span
+				>
 			</Paragraph>
+		</div>
+		<div>
+			<PackageBadges packages={filterPackages} />
 		</div>
 	</section>
 
-	<IntroductionSection packages={filterPackages} />
 	<InstallationSection {componentURL} />
-	<QuickStartSection />
 	<ConceptsSection />
 	<GuidesSection />
 </div>

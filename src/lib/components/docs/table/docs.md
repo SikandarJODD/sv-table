@@ -1,0 +1,1023 @@
+---
+title: Data table filter
+section: Components
+summary: A powerful data table filter component. Library-agnostic. Supports client and server-side filtering.
+badge: alpha
+---
+
+<div className="rounded-lg border border-border bg-white px-16 py-8 dark:bg-black">
+	<IssuesTableWrapper />
+</div>
+
+## Introduction
+
+This library is an add-on to your existing data table for filtering your data, providing key building blocks for building a powerful filtering experience:
+
+- A React hook, `useDataTableFilters()`, which exposes your data table filters state.
+- A `<DataTableFilter />` component, built with [shadcn/ui](https://ui.shadcn.com) and inspired by [Linear](https://linear.app/homepage)'s design.
+- Integrations for key libraries, such as [TanStack Table](https://tanstack.com/table) and [nuqs](https://nuqs.47ng.com/).
+
+Some answers to the most common questions:
+
+- **Can I use this with X library?** In theory, yes!
+- **Can I use this with _client_-side filtering?** Yes!
+- **Can I use this with _server_-side filtering?** Yes!
+
+## Installation
+
+From the command line, install the component into your project:
+
+```bash
+npx shadcn@latest add https://ui.bazza.dev/r/filters
+```
+
+> [!WARNING] JavaScript projects should add JSON locales manually after installation.
+> There is a known issue with shadcn CLI that prevents the JSON locale files from being installed correctly in JavaScript projects.
+> The cause is unknown and being investigated.
+>
+> The temporary workaround is to run the installation command above _(it will throw an error)_, then:
+>
+> 1. Create the `locales` directory in the component root directory.
+> 2. Copy the [`locales/en.json`](https://github.com/kianbazza/ui/blob/main/apps/web/registry/data-table-filter/locales/en.json) file into the directory.
+
+## Quick Start
+
+{/_ > [!WARNING] This section is under development. _/}
+
+{/\* ### Blocks
+
+> [!WARNING] This section is under development. \*/}
+
+### Examples
+
+We have examples that you can use as a reference to build your own applications.
+
+We still recommend reading through the [Concepts](#concepts) and [Guides](#guides) sections to get a deep understanding of how to configure and use this component.
+
+#### Client-side filtering
+
+- TanStack Table, static _(i.e. no data fetching, mainly for demo purposes)_
+  - [Live demo](/demos/client/tst-static)
+  - [Source code](https://github.com/kianbazza/ui/tree/canary/apps/web/app/demos/client/tst-static)
+
+#### Server-side filtering
+
+- TanStack Table, TanStack Query, `nuqs`
+  - [Live demo](/demos/server/tst-query)
+  - [Source code](https://github.com/kianbazza/ui/tree/canary/apps/web/app/demos/server/tst-query)
+
+### Concepts
+
+Let's take a look at the most important concepts for using this component.
+
+#### Strategy
+
+The `FilterStrategy` decides where filtering happens: on the `client` or on the `server`.
+
+With the `client` strategy, the client receives all the table data and filters it locally in the browser.
+
+With the `server` strategy, the client sends filter requests to the server. The server applies the filters to the data and sends back only the filtered data. The client never sees the entire dataset.
+
+#### Column data types
+
+When you want to make a column filterable, you first need to define what type of data it contains.
+
+`ColumnDataType` identifies the types of data we currently support filtering for:
+
+```ts
+type ColumnDataType =
+  | 'text'         /* Text data */
+  | 'number'       /* Numerical data */
+  | 'date'         /* Dates */
+  | 'option'       /* Single-valued option (e.g. status) */
+  | 'multiOption'  /* Multi-valued option (e.g. labels) */
+```
+
+#### Filters
+
+The state of the applied filters on a table is represented as `FiltersState`, which is a `FilterModel[]`:
+
+```ts
+type FilterModel<TType extends ColumnDataType = any> = {
+  columnId: string
+  type: TType // option, multiOption, text, date, number
+  operator: FilterOperators[TType] // i.e. 'is', 'is not', 'is any of', etc.
+  values: FilterValues<TType>
+}
+```
+
+Each `FilterModel` represents a single filter for a specific column.
+
+#### Column options
+
+For `option` and `multiOption` columns _(we'll refer to these as **option-based columns**)_, there exists a set of possible **options** for each column - we call these **column options**.
+
+> For example, an issues table could have a `status` column with the options "Backlog", "To Do", "In Progress", and "Done".
+
+{/\* Option-based columns can get their options data from two sources:
+
+- The table data itself; we infer the options from the available data.
+- The column's `options` property. \*/}
+
+We represent each option as a `ColumnOption`:
+
+```ts
+interface ColumnOption {
+  /* The label to display for the option. */
+  label: string
+  /* The internal value of the option. */
+  value: string
+  /* An optional icon to display next to the label. */
+  icon?: React.ReactElement | React.ElementType
+}
+```
+
+#### Column configuration
+
+We describe each column in our data table as a `ColumnConfig`.
+
+We create a `ColumnConfig` using a builder instance:
+
+```ts
+/* Create the configuration builder instance. */
+const dtf = createColumnConfigHelper<Issue>()
+
+/* Create the column configurations. */
+export const columnsConfig = [
+  dtf
+    .text()
+    .id('title')
+    .accessor((row) => row.title)
+    .displayName('Title')
+    .icon(Heading1Icon)
+    .build(),
+  dtf
+    .option()
+    .accessor((row) => row.status.id)
+    .id('status')
+    .displayName('Status')
+    .icon(CircleDotDashedIcon)
+    .build(),
+  /* ... */
+] as const
+```
+
+#### Instance
+
+We use the `useDataTableFilters()` hook to create our data table filters instance.
+
+This hooks handles the logic for filtering the data (if using the `client` strategy) and updating the filters state.
+
+```tsx
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  strategy: 'client',
+  data: issues.data ?? [],
+  columnsConfig,
+})
+```
+
+Given those inputs, the hook creates your data table filters instance.
+
+The instance has the following properties:
+
+- `columns`: The `Column[]` for your data table filters. A `Column` is a superset of a `ColumnConfig`, with additional properties & methods.
+- `filters`: The filters state, represented as a `FilterState` object.
+- `actions`: A collection of mutators for the filters state.
+- `strategy`: The strategy used for filtering (`client` or `server` side filtering).
+
+#### Component
+
+The visual component for the data table filter is the `<DataTableFilter />` component.
+
+It takes the `columns`, `filters`, `actions` and `strategy` from the hook as input.
+
+```tsx {6-11}
+import { DataTableFilter } from '@/components/data-table-filter'
+
+export function IssuesTable() {
+  return (
+    <div>
+      <DataTableFilter
+        filters={filters}
+        columns={columns}
+        actions={actions}
+        strategy={strategy}
+      />
+      <DataTable />
+    </div>
+  )
+}
+```
+
+## Guides
+
+This section contains guides for using the data table filter component.
+
+These are much more detailed than the [Concepts](#concepts) section, and are recommended when you actually go to implement the component for your project.
+
+Before we dive in, let's take a look at a basic scenario — an issue tracker _(e.g. Linear)_ — that will be referenced throughout the guides.
+
+```ts title="types.ts"
+export type Issue = {
+  id: string
+  title: string
+  description?: string
+  status: IssueStatus
+  labels?: IssueLabel[]
+  assignee?: User
+  startDate?: Date
+  endDate?: Date
+  estimatedHours?: number
+}
+
+export type User = {
+  id: string
+  name: string
+  picture: string
+}
+
+export type IssueLabel = {
+  id: string
+  name: string
+  color: string
+}
+
+export type IssueStatus = {
+  id: 'backlog' | 'todo' | 'in-progress' | 'done'
+  name: string
+  order: number
+  icon: LucideIcon
+}
+```
+
+### Columns
+
+#### Why do I need a column configuration?
+
+For this component/library to work effectively, we need to describe each column in our data table.
+
+If you're using a table library, you may be thinking:
+
+> "I've already done this for **X** library. Why do I need to do it again?"
+
+This component requires it's own set of column configurations, which are tailored to the task at hand - column filtering.
+
+We need to know how to access the data for each column, how to display it, what shape the data comes in, what shape it should end up in, and much more.
+
+#### Column builders
+
+We need to describe each column in our data table. Ideally, in a type-safe way. This is done using our column configuration builder.
+
+It has a [fluent API](https://en.wikipedia.org/wiki/Fluent_interface) _(similar to Zod)_ that allows us to define a column's properties in a concise, readable, and type-safe manner.
+
+First, you use the `createColumnConfigHelper()` function to create a column configuration builder:
+
+```ts title="columns.ts"
+import { createColumnConfigHelper } from '@/components/data-table-filter/core/filters'
+import type { Issue } from './types'
+
+// dtf = down to... filter? (sorry, couldn't resist)
+const dtf = createColumnConfigHelper<Issue>()
+```
+
+Notice how we pass in our data model (`Issue`) as a generic parameter. This is required for the column configuration builder to be type safe.
+
+> [!TIP] We strongly advise using the column builder instead of directly creating a `ColumnConfig[]` - otherwise, you'll lose out on all the type-safety benefits we've baked in.
+
+From here, we can use our builder instance to create configurations for each column.
+
+#### Data types
+
+The first call to the column builder is `text()`, `number()`, `date()`, `option()`, or `multiOption()`.
+
+This defines the data type of the column.
+
+```ts {2}
+dtf
+  .text()
+```
+
+#### Column ID
+
+The second call should be to the `id()` method, to give our column a unique ID.
+
+> [!NOTE] If you're using our TanStack Table integration, this column ID should be the same one you used in your table column definitions.
+
+```ts {3}
+dtf
+  .text()
+  .id('title')
+```
+
+#### Accessor
+
+The `accessor()` method is used to define how we extract a column's value for each row in your data table.
+
+```ts {4}
+dtf
+  .text()
+  .id('title')
+  .accessor((row) => row.title)
+```
+
+- For `text` columns, your accessor should return a `string`.
+- For `number` columns, your accessor should return a `number`.
+- For `date` columns, your accessor should return a `Date`.
+- For `option` columns, if you're using...
+  - client-side filtering...
+    - with static `options`, your accessor should return a `string`.
+    - with inferred options, your accessor can return `any`, provided you have enough information later on to map it to a `ColumnOption` using `transformOptionFn`.
+  - server-side filtering, your accessor should return a `string`.
+- For `multiOption` columns, if you're using...
+  - client-side filtering...
+    - with static `options`, your accessor should return a `string[]`.
+    - with inferred options, your accessor can return `any[]`, provided you have enough information later on to map each value to a `ColumnOption` using `transformOptionFn`.
+  - server-side filtering, your accessor should return a `string[]`.
+
+#### Display Name
+
+We can use the `displayName()` method to set the display name for the column.
+
+```ts {5}
+dtf
+  .text()
+  .id('title')
+  .accessor((row) => row.title)
+  .displayName('Title')
+```
+
+#### Icon
+
+We can use the `icon()` method to set the icon for the column.
+
+```ts {6}
+dtf
+  .text()
+  .id('title')
+  .accessor((row) => row.title)
+  .displayName('Title')
+  .icon(Heading1Icon)
+```
+
+#### Options
+
+> [!TIP] This applies to `option` and `multiOption` columns.
+
+We can determine a column's options in two ways: **declared** and **inferred**.
+
+##### Declared options
+
+This is useful for columns that have a fixed set of options.
+
+We may pass these in...
+
+- at **build time** (i.e. _static_)
+- at **run time** by fetching them from a data source (i.e. _remote_).
+
+Regardless, they are directly known to the column.
+
+For declaring static options, we can use the `options()` method from the builder.
+
+```ts {14-20}
+const ISSUE_STATUSES: IssueStatus[] = [
+  { id: 'backlog', name: 'Backlog', icon: CircleDashedIcon },
+  { id: 'todo', name: 'Todo', icon: CircleIcon },
+  { id: 'in-progress', name: 'In Progress', icon: CircleDotIcon },
+  { id: 'done', name: 'Done', icon: CircleCheckIcon },
+] as const
+
+dtf
+  .option()
+  .accessor((row) => row.status.id)
+  .id('status')
+  .displayName('Status')
+  .icon(CircleDotDashedIcon)
+  .options(
+    ISSUE_STATUSES.map((s) => ({
+      value: s.id,
+      label: s.name,
+      icon: s.icon
+    }))
+  )
+```
+
+For declaring remote options, it is best to do this when we instantiate the table filters instance [(covered later on)](#passing-remote-options-to-the-instance).
+
+##### Inferred options
+
+> [!IMPORTANT] Inferred options are only available for **client-side filtering**.
+> If you're using server-side filtering, you must use the **declared options** approach.
+>
+> This is because the data available on the client is not representative of the full dataset, in the server-side filtering scenario.
+
+This is useful if you're:
+
+- using client-side filtering;
+- options can't be known at build time;
+- and you don't have a way to fetch them _(e.g., no dedicated endpoint)_.
+
+We **infer** the options from the available data at runtime, by looping through the data and extracting unique values.
+
+If the values are already in the `ColumnOption` shape, you're golden.
+
+If not, we can use the `transformOptionFn()` method from the builder, which transforms each unique column value to a `ColumnOption`.
+
+```tsx {28-32}
+export type User = {
+  id: string
+  name: string
+  picture: string
+}
+
+const UserAvatar = ({ user }: { user: User }) => {
+  return (
+    <Avatar key={user.id} className="size-4">
+      <AvatarImage src={user.picture} />
+      <AvatarFallback>
+        {user.name
+          .split('')
+          .map((x) => x[0])
+          .join('')
+          .toUpperCase()}
+      </AvatarFallback>
+    </Avatar>
+  )
+}
+
+dtf
+  .option()
+  .accessor((row) => row.assignee) // User | undefined
+  .id('assignee')
+  .displayName('Assignee')
+  .icon(UserCheckIcon)
+  .transformOptionFn((u) => ({
+    value: u.id,
+    label: u.name,
+    icon: <UserAvatar user={u} />
+  }))
+```
+
+#### Min/max values
+
+> [!TIP] This applies to `number` columns.
+
+We can use the `min()` and `max()` methods to set the faceted minimum and maximum values for a column.
+
+These aren't hard limits, but rather used to set the visual boundaries for the range slider.
+
+```ts {7-8}
+dtf
+  .number()
+  .accessor((row) => row.estimatedHours)
+  .id('estimatedHours')
+  .displayName('Estimated hours')
+  .icon(ClockIcon)
+  .min(0)
+  .max(100)
+```
+
+With the `client` strategy, **you could skip this step** - the min/max values can be computed from the data.
+
+> [!NOTE] You should specify the min/max values if you're using the `server` strategy.
+> With the `server` strategy, we can't compute these values for you, since we don't have access to the full dataset.
+>
+> For this case, we recommend setting the faceted `min` and `max` values when we create our instance [(covered later on)](#passing-faceted-values-to-the-instance).
+
+> [!IMPORTANT] If we cannot determine the min/max values _(i.e. if you use `server` strategy without specifying the values)_, filtering will still work as expected, but the slider will not be visible.
+
+#### Build
+
+Finally, we finish off our column configuration by calling the `build()` method.
+
+This returns a `ColumnConfig`, which we pass onto our table filters instance later on.
+
+```ts {9}
+dtf
+  .number()
+  .accessor((row) => row.estimatedHours)
+  .id('estimatedHours')
+  .displayName('Estimated hours')
+  .icon(ClockIcon)
+  .min(0)
+  .max(100)
+  .build()
+```
+
+#### Putting it all together
+
+> [!NOTE] Make sure to declare your `ColumnConfig[]` with `as const` to ensure it's immutable and type-safe.
+
+Now that we've covered the basics of creating a column configuration, let's put it all together.
+
+We create an array of column configurations, making sure to label it `as const` to ensure it's **(1)** immutable and **(2)** type-safe for later on.
+
+```ts
+const columnsConfig = [
+  dtf
+    .text()
+    .id('title')
+    .accessor((row) => row.title)
+    .displayName('Title')
+    .icon(Heading1Icon)
+    .build(),
+  dtf
+    .number()
+    .accessor((row) => row.estimatedHours)
+    .id('estimatedHours')
+    .displayName('Estimated hours')
+    .icon(ClockIcon)
+    .min(0)
+    .max(100)
+    .build(),
+  /* ...rest of the columns... */
+] as const
+```
+
+### Instance
+
+With your column configurations in hand, we can move onto creating our data table filters instance.
+
+This hooks handles the logic for filtering the data (if using the `client` strategy) and updating the filters state.
+
+Think of it as the "brain" of the filters.
+
+You can use it completely independent of the `<DataTableFilter />` component, if you wish... but come on, we did all that work for you - might as well use it.
+
+#### Creating the instance
+
+To create the instance, we use the `useDataTableFilters()` hook.
+
+```tsx
+import { useDataTableFilters } from '@/components/data-table-filter'
+
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  strategy: 'client',
+  data: issues.data ?? [],
+  columnsConfig,
+})
+```
+
+Let's go through each input:
+
+- `strategy`: The strategy used for filtering (`client` or `server` side filtering).
+- `data`: The data to be filtered. When using the `server` strategy, this data is not directly used, but it should still be supplied to ensure type safety.
+- `columnsConfig`: The column configurations (`ColumnConfig[]`) we created earlier.
+
+The hook returns our table filters instance, of which the most important properties are:
+
+- `columns`: The `Column[]` for your data table filters. A `Column` is a superset of a `ColumnConfig`, with additional properties & methods.
+- `filters`: The filters state, represented as a `FilterState` object.
+- `actions`: A collection of mutators for the filters state.
+- `strategy`: The strategy used for filtering (`client` or `server` side filtering).
+
+The real magic is in the `filters` state, which is exposed to you. You can pass this around your application as you wish...
+
+- To your table library
+- To your state management library
+- To your data fetching library
+- _and so on..._
+
+We can take this a step further by using a controlled (external) state, covered in the next section.
+
+#### Using uncontrolled state
+
+By default, the `filters` state is uncontrolled; it is managed internally by the instance.
+
+You can specify a default (or _initial_) value using the `defaultFilters` property:
+
+```tsx {5-12}
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  strategy: 'client',
+  data: issues.data ?? [],
+  columnsConfig,
+  defaultFilters: [
+    {
+      columnId: 'status',
+      type: 'option',
+      operator: 'is',
+      values: ['backlog'],
+    },
+  ],
+})
+```
+
+#### Using controlled state
+
+If you want to use controlled _(external)_ state for your filters, you can use the `filters` and `onFiltersChange` properties. You can hook in your state management solution of choice.
+
+> [!NOTE] The **`defaultFilters`** property is not used when using controlled state.
+> If you use controlled state and wish to specify a default value, use the mechanism provided by your state management solution.
+
+```tsx
+import { useState } from 'react'
+import { FilterState } from '@/components/data-table-filter/core/types'
+
+const [filters, setFilters] = useState<FiltersState>([]) // [!code ++]
+
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  strategy: 'client',
+  data: issues.data ?? [],
+  columnsConfig,
+  filters: filters, // [!code ++]
+  onFiltersChange: setFilters, // [!code ++]
+})
+```
+
+#### Passing remote options to the instance
+
+If you're using the **declared options** approach for any of your option-based columns, you can pass your column options to the instance directly!
+
+We expose an `options` property on the instance, where we pass in the `ColumnOption[]` for relevant columns.
+
+Let's take a look at how we can use this in practice:
+
+```tsx
+/* Step 1: Fetch data from the server */
+const labels = useQuery(queries.labels.all())
+const statuses = useQuery(queries.statuses.all())
+const users = useQuery(queries.users.all())
+
+const issues = useQuery(queries.issues.all())
+
+/* Step 2: Create ColumnOption[] for each option-based column */
+const labelOptions = createLabelOptions(labels.data)
+const statusOptions = createStatusOptions(statuses.data)
+const userOptions = createUserOptions(users.data)
+
+/*
+  * Step 3: Create our data table filters instance
+  *
+  * This instance will handle the logic for filtering the data and updating the filters state.
+  * We expose an `options` prop to provide the options for each column dynamically, after fetching them above.
+  * It exposes our filters state, for you to pass on as you wish - e.g. to a TanStack Table instance.
+  */
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  strategy: 'client',
+  data: issues.data ?? [],
+  columnsConfig,
+  options: {
+    status: statusOptions,
+    assignee: userOptions,
+    labels: labelOptions,
+  },
+})
+```
+
+#### Passing faceted values to the instance
+
+We can also pass in faceted column values to the instance for the relevant columns.
+
+- **Faceted unique values:** For `option` and `multiOption` columns, we pass in a `Map<string, number>` which maps each column option ID to the number of times it appears in the dataset.
+- **Faceted min/max values:** For `number` columns, we pass in a tuple `[number, number]` representing the minimum and maximum values for the column data.
+
+```tsx {6-9, 35-40}
+/* Step 1: Fetch data from the server */
+const labels = useQuery(queries.labels.all())
+const statuses = useQuery(queries.statuses.all())
+const users = useQuery(queries.users.all())
+
+const facetedLabels = useQuery(queries.labels.faceted())
+const facetedStatuses = useQuery(queries.statuses.faceted())
+const facetedUsers = useQuery(queries.users.faceted())
+const facetedEstimatedHours = useQuery(queries.estimatedHours.faceted())
+
+const issues = useQuery(queries.issues.all())
+
+/* Step 2: Create ColumnOption[] for each option-based column */
+const labelOptions = createLabelOptions(labels.data)
+const statusOptions = createStatusOptions(statuses.data)
+const userOptions = createUserOptions(users.data)
+
+/*
+  * Step 3: Create our data table filters instance
+  *
+  * This instance will handle the logic for filtering the data and updating the filters state.
+  * We expose an `options` prop to provide the options for each column dynamically, after fetching them above.
+  * Same goes for `faceted` unique values and min/max values.
+  * It exposes our filters state, for you to pass on as you wish - e.g. to a TanStack Table instance.
+  */
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  strategy: 'client',
+  data: issues.data ?? [],
+  columnsConfig,
+  options: {
+    status: statusOptions,
+    assignee: userOptions,
+    labels: labelOptions,
+  },
+  faceted: {
+    status: facetedStatuses.data,
+    assignee: facetedUsers.data,
+    labels: facetedLabels.data,
+    estimatedHours: facetedEstimatedHours.data,
+  },
+})
+```
+
+### Internationalization
+
+The standard installation for the component provides English (`en`) localization via the `lib/i18n.ts` and `locales/en.json` files.
+
+We provide an add-on to add support for additional locales:
+
+- `en` (English) - **default**
+- `fr` (French)
+- `zh_CN` (Simplified Chinese)
+- `zh_TW` (Traditional Chinese)
+- `nl` (Dutch)
+- `de` (German)
+
+#### Installation
+
+> [!IMPORTANT] When prompted (`y/N`), explicitly overwrite the `lib/i18n.ts` file.
+
+> [!NOTE] Feel free to remove any unused locales after the installation.
+
+> [!WARNING] JavaScript projects should add JSON locales manually after installation.
+> There is a known issue with shadcn CLI that prevents the JSON locale files from being installed correctly in JavaScript projects.
+> The cause is unknown and being investigated.
+>
+> The temporary workaround is to run the installation command _(it will throw an error)_, then **copy the [missing locale files](https://github.com/kianbazza/ui/blob/main/apps/web/registry/data-table-filter/locales)** into the directory.
+
+```bash
+npx shadcn@latest add https://ui.bazza.dev/r/filters/i18n
+```
+
+This add-on:
+
+- Overwrites the `lib/i18n.ts` file to add all supported locales.
+- Adds all supported locales to your project, under `locales/[locale].json`.
+
+#### Usage
+
+You can specify the chosen `locale` for the `<DataTableFilter />` component and `useDataTableFilters()` hook:
+
+```tsx
+<DataTableFilter
+  filters={filters}
+  columns={columns}
+  actions={actions}
+  strategy={strategy}
+  locale="fr"
+/>
+```
+
+```ts
+useDataTableFilters({
+  /* ... */
+  locale: 'fr',
+})
+```
+
+If no `locale` is provided, the component defaults to `en` (English).
+
+#### Adding a custom locale
+
+> [!NOTE] If you spend the time to add a locale, please consider contributing it back to the project!
+
+You can add a new locale by create a new file in the `locales/` directory. The filename should match the locale code (e.g. `fr.json`).
+
+Use the existing `locales/en.json` file as a reference for the required keys. Add your translations as values for the keys.
+
+Then, extend the `Locale` type in `lib/i18n.ts` to include your new locale:
+
+```ts title="lib/i18n.ts"
+import en from '../locales/en.json'
+import fr from '../locales/fr.json'
+import xx from '../locales/xx.json' // [!code ++]
+
+export type Locale = 'en' | 'fr' // [!code --]
+export type Locale = 'en' | 'fr' | 'xx' // [!code ++]
+
+type Translations = Record<string, string>
+
+const translations: Record<Locale, Translations> = {
+  en,
+  fr,
+  xx, // [!code ++]
+}
+
+export function t(key: string, locale: Locale): string {
+  return translations[locale][key] ?? key
+}
+```
+
+## Integrations
+
+### TanStack Table
+
+This is how to integrate data table filters with the TanStack Table (TST) library.
+
+#### When should I use this?
+
+If you're using TanStack Table and client-side filtering, you should use this integration.
+
+If you're using server-side filtering, **you don't need this integration.** _Feed your data into your TST table instance and you're good to go._
+
+#### How it works
+
+##### `createTSTColumns`
+
+TanStack Table allows you to define custom filter functions for each column. This is useful if you want to implement custom filtering logic.
+
+We have our own filter functions for each column type, which you can use to filter your data via TST.
+
+The `createTSTColumns` function handles this for you. It overrides the `filterFn` property for each filterable TST column with the appropriate filter function.
+
+##### `createTSTFilters`
+
+You also need to provide the filter state to TST. TST represents the filter state slightly differently than the filters state provided by this component.
+
+The `createTSTFilters` function takes in the filters state from `useDataTableFilters()` and returns a TST-compatible filter state (`ColumnFiltersState`).
+
+#### Installation
+
+```bash
+npx shadcn@latest add https://ui.bazza.dev/r/filters/tst
+```
+
+#### Usage
+
+> [!IMPORTANT] You must specify an `id` for each TST column definition, matching the `id` of the corresponding column filter configuration.
+
+```tsx
+const { columns, filters, actions, strategy } = useDataTableFilters({ /* ... */ })
+
+const tstColumns = useMemo( // [!code ++]
+  () => // [!code ++]
+    createTSTColumns({  // [!code ++]
+      columns: tstColumnDefs, // your TanStack Table column definitions // [!code ++]
+      configs: columns, // Your column configurations // [!code ++]
+    }), // [!code ++]
+  [columns], // [!code ++]
+) // [!code ++]
+
+const tstFilters = useMemo(() => createTSTFilters(filters), [filters]) // [!code ++]
+
+const table = useReactTable({
+  data: issues.data ?? [],
+  columns: tstColumns, // [!code ++]
+  getRowId: (row) => row.id,
+  getCoreRowModel: getCoreRowModel(),
+  getFilteredRowModel: getFilteredRowModel(), // [!code ++]
+  state: {
+    columnFilters: tstFilters // [!code ++]
+  }
+})
+```
+
+### `nuqs`
+
+> [!WARNING] This section is under development.
+
+You can use [`nuqs`](https://nuqs.47ng.com/) to persist the filter state in the URL.
+
+1. Install the `nuqs` and `zod` packages:
+
+```bash
+npm install nuqs zod
+```
+
+2. Use the appropriate `nuqs` adapter for your framework from the [nuqs docs](https://nuqs.47ng.com/docs/adapters).
+
+3. Create your Zod schema for the query filter state:
+
+```ts
+import { z } from 'zod'
+import type { FiltersState } from '@/components/data-table-filter/core/types'
+
+const filtersSchema = z.custom<FiltersState>()
+```
+
+4. Create your query state:
+
+```ts
+const [filters, setFilters] = useQueryState<FiltersState>(
+  'filters',
+  parseAsJson(filtersSchema.parse).withDefault([]),
+)
+```
+
+5. Pass it to your table filters instance:
+
+```ts {3-4}
+const { columns, filters, actions, strategy } = useDataTableFilters({
+  /* ... */
+  filters,
+  onFiltersChange: setFilters,
+})
+```
+
+{/_ NOTE: This section is outdated and has been commented out for now. _/}
+{/\* ## Overview
+
+> [!WARNING] This section is outdated. We're working on updating it.
+
+Let's take a high-level look at how we've created the data table filter component.
+
+This will help you understand what each file contains and the general component composition. \*/}
+
+{/\* ### File structure
+
+The data table filter component is composed of several files.
+
+Components are placed in the `@/components` directory - all components are placed in a single file for ease of distribution:
+
+- `data-table-filter.tsx`: The main component file.
+
+Types, interfaces, and utilities are placed in the `@/lib` directory:
+
+- `array.ts`: Utility functions for working with arrays.
+- `filters.ts`: All TypeScript types, interfaces, and constants related to the data table filter component. Also includes the filter functions `filterFn()` for each column type.
+- `table.ts`: Utility functions for working with the TanStack Table library. \*/}
+
+{/\* ### Component structure
+
+A `PropertyFilterItem` component is composed of the following parts:
+
+- `PropertyFilterSubject` shows the name and _(optionally)_ icon of the property being filtered on.
+- `PropertyFilterOperator` shows the operator used to filter on the property.
+- `PropertyFilterValue` shows the actual filter value.
+
+<ResponsiveImage
+	lightSrc="/docs/data-table-filter/property-filter-item-composition-light.png"
+	darkSrc="/docs/data-table-filter/property-filter-item-composition-dark.png"
+	caption="The composition of a property filter item."
+/>
+
+The `PropertyFilterOperator` and `PropertyFilterValue` components are represented by a `Controller` which is essentially a `Popover` with an associated trigger and content.
+
+We can break down the `PropertyFilterValueController` as an example:
+
+- `PropertyFilterValueDisplay` is the popover **trigger**. This displays the filter value for the associated property.
+- `PropertyFilterValueMenu` is the popover **content**. This renders the menu for modifying the filter value.
+
+<ResponsiveImage
+	lightSrc="/docs/data-table-filter/property-filter-value-composition-light.png"
+	darkSrc="/docs/data-table-filter/property-filter-value-composition-dark.png"
+	caption="The composition of a property filter value controller."
+/>
+
+The `PropertyFilterOperatorController` has a similar composition and can be inferred from the above description and image. \*/}
+
+## Changelog
+
+### 2025.04.12
+
+We've squashed a pesky bug where inferred column options would show duplicate entries in the filter menu.
+
+We've updated the implementation of `uniq()` to use deep equality checks, instead of the previous referencial equality checks via `new Set()`.
+
+- Issue: https://github.com/kianbazza/ui/issues/49
+- PR: https://github.com/kianbazza/ui/pull/51
+
+### 2025.04.01
+
+> [!DANGER] This is a breaking change.
+
+This adds support for filtering columns where the column value is not strictly a property of the original data. This was not possible before, due to the limitation of `defineMeta`'s first argument, which only accepted a direct property on the initial data type.
+
+You can now filter columns where the value is:
+
+- a deeply nested property (i.e. `user.name`)
+- accessed using a function (i.e. `row => row.user.name.split(' ')[0]`)
+
+To accomplish this, we've decided to change the interface for the `defineMeta` helper function. The first property is now an **accessor function**, instead of an accessor key.
+
+See the example below for how to migrate:
+
+```ts
+type Issue = {
+  status: string
+  user: {
+    name: string
+  }
+}
+```
+
+```ts {15-22}
+const columns = [
+  /* ... */
+  columnHelper.accessor('status', {
+    meta: defineMeta(
+      'status', // [!code --]
+      row => row.status, // [!code ++]
+      {
+        type: 'option',
+        icon: CircleDotDashedIcon,
+        options: ISSUE_STATUSES,
+      }
+    ),
+  }),
+  columnHelper.accessor(row => row.user.name, {
+    meta: defineMeta(
+      row => row.user.name,
+      {
+        type: 'option',
+        icon: AvatarIcon,
+        /* ... */
+      }
+    ),
+  }),
+]
+```

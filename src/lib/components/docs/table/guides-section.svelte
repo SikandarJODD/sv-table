@@ -1,150 +1,218 @@
 <script lang="ts">
-	import { Badge } from "$lib/components/ui/spell/badge";
 	import { SingleFile } from "$lib/components/ui/code";
 	import { PreviewComponent } from "$lib/components/ui/preview-component";
-	import { CodeSpan, H2, H3, Paragraph, Step, Steps } from "$markdown";
+	import { CodeSpan, H2, H3, Paragraph } from "$markdown";
 	import FiltersPreview from "./filters-preview.svelte";
-	import SectionCallout from "./section-callout.svelte";
 	import {
-		columnShowcases,
 		columnsConfigCode,
-		controllerCode,
-		filterBarCode,
+		columnsHelperCode,
+		componentCode,
+		declaredOptionsCode,
+		defaultFiltersCode,
 		fullExampleCode,
+		guideFileStructureCode,
+		inferredOptionsCode,
 		issueTypesCode,
 		localeUsageCode,
-		supportedLocales,
-		tableRenderCode
+		numberBoundariesCode,
+		remoteOptionsCode,
+		textColumnCode,
+		controllerCode
 	} from "./filters-doc-content";
+	import SectionCallout from "./section-callout.svelte";
 </script>
 
-<section class="space-y-6">
+<section class="space-y-8">
 	<H2 id="guides">Guides</H2>
 
-	<div class="space-y-4">
-		<H3 id="columns" class="mt-0">Columns</H3>
-
-		<div class="max-w-3xl space-y-3">
-			<Paragraph>
-				Start by defining your row model and then build a filter configuration for every field
-				you want to expose in the toolbar. This keeps the UI labels, value accessors, and
-				operator behavior tied to a single typed source of truth.
-			</Paragraph>
-		</div>
-
-		<Steps>
-			<Step title="Define the row shape">
-				<p class="mb-4 text-sm leading-6 text-muted-foreground">
-					Model the same data your table is going to render. Your column accessors should read
-					from this type directly.
-				</p>
-				<SingleFile code={issueTypesCode} />
-			</Step>
-
-			<Step title="Create the helper and column config">
-				<p class="mb-4 text-sm leading-6 text-muted-foreground">
-					Build each filterable column with <CodeSpan>createColumnConfigHelper</CodeSpan>. Use
-					static <CodeSpan>options</CodeSpan> for categorical columns when you already know the
-					available values.
-				</p>
-				<SingleFile code={columnsConfigCode} />
-			</Step>
-		</Steps>
-
-		<div class="grid gap-4 xl:grid-cols-2">
-			{#each columnShowcases as column (column.id)}
-				<article class="rounded-2xl border border-border/70 bg-card/70 p-5">
-					<div class="flex flex-wrap items-center gap-2">
-						<h4 class="text-base font-semibold tracking-tight">{column.title}</h4>
-						<Badge variant="secondary">{column.accessorType}</Badge>
-					</div>
-
-					<p class="mt-3 text-sm leading-6 text-muted-foreground">{column.note}</p>
-
-					<div class="mt-4 flex flex-wrap gap-2">
-						{#each column.operators as operator (operator)}
-							<Badge variant="outline">{operator}</Badge>
-						{/each}
-					</div>
-
-					<div class="mt-4 grid gap-3 sm:grid-cols-2">
-						<div>
-							<p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-								Required
-							</p>
-							<ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-muted-foreground">
-								{#each column.required as item (item)}
-									<li><CodeSpan>{item}</CodeSpan></li>
-								{/each}
-							</ul>
-						</div>
-
-						<div>
-							<p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-								Optional
-							</p>
-							<ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-muted-foreground">
-								{#each column.optional as item (item)}
-									<li><CodeSpan>{item}</CodeSpan></li>
-								{/each}
-							</ul>
-						</div>
-					</div>
-
-					<div class="mt-4">
-						<SingleFile code={column.code} />
-					</div>
-				</article>
-			{/each}
-		</div>
+	<div class="max-w-3xl space-y-3">
+		<Paragraph>
+			Build in this order: <CodeSpan>types.ts</CodeSpan>, then
+			<CodeSpan>columns.ts</CodeSpan>, then a filter controller module,
+			and finally a <CodeSpan>.svelte</CodeSpan> component that renders the
+			UI and applies the filters.
+		</Paragraph>
 	</div>
 
 	<div class="space-y-4">
+		<H3 id="guide-structure" class="mt-0">Suggested structure</H3>
+		<SingleFile code={guideFileStructureCode} />
+	</div>
+
+	<div class="space-y-4">
+		<H3 id="guide-scenario">Reference scenario</H3>
+
+		<div class="max-w-2xl">
+			<Paragraph>
+				We will use a small issue tracker model for the rest of the
+				guide so each column example builds on the same row shape.
+			</Paragraph>
+		</div>
+
+		<SingleFile code={issueTypesCode} />
+	</div>
+
+	<div class="space-y-5">
+		<H3 id="columns">Columns</H3>
+
+		<div class="max-w-3xl space-y-3">
+			<Paragraph>
+				The filter component needs its own column configuration because
+				it does more than render cells. It needs a stable ID, a typed
+				accessor, a display label, an icon, and enough metadata to
+				decide how each filter should behave.
+			</Paragraph>
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				1. Start with the helper
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				Pass your row type into
+				<CodeSpan>createColumnConfigHelper&lt;TData&gt;()</CodeSpan> once,
+				then build every column from that helper.
+			</p>
+			<SingleFile code={columnsHelperCode} />
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				2. Build each column in order
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				The safest order is:
+				<CodeSpan
+					>type -&gt; id -&gt; accessor -&gt; displayName -&gt; icon
+					-&gt; build()</CodeSpan
+				>.
+			</p>
+			<SingleFile code={textColumnCode} />
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				3. Use declared options for known values
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				For <CodeSpan>option</CodeSpan> and
+				<CodeSpan>multiOption</CodeSpan> columns with a fixed set of values,
+				pass <CodeSpan>options()</CodeSpan> directly on the builder.
+			</p>
+			<SingleFile code={declaredOptionsCode} />
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				4. Use <CodeSpan>transformOptionFn()</CodeSpan> when values are richer
+				than strings
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				If your accessor returns objects instead of string IDs,
+				transform each distinct value into a <CodeSpan
+					>ColumnOption</CodeSpan
+				>.
+			</p>
+			<SingleFile code={inferredOptionsCode} />
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				5. Add boundaries to number columns when you know them
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				<CodeSpan>min()</CodeSpan> and <CodeSpan>max()</CodeSpan> control
+				the visual range for number filters. They are especially important
+				when you use the <CodeSpan>server</CodeSpan> strategy.
+			</p>
+			<SingleFile code={numberBoundariesCode} />
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				6. Export the final config as <CodeSpan>as const</CodeSpan>
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				This preserves literal column IDs and keeps the rest of the API
+				fully typed.
+			</p>
+			<SingleFile code={columnsConfigCode} />
+		</div>
+	</div>
+
+	<div class="space-y-5">
 		<H3 id="instance">Instance</H3>
 
 		<div class="max-w-3xl space-y-3">
 			<Paragraph>
-				Once your config exists, create a filter controller, hand its state to
-				<CodeSpan>DataTableFilter</CodeSpan>, and render the matching rows with
-				<CodeSpan>ui/table</CodeSpan>.
+				<CodeSpan>createFilters()</CodeSpan> creates the controller. It gives
+				you the resolved columns, the current filters state, the mutating
+				actions, and the active strategy.
 			</Paragraph>
 		</div>
 
-		<Steps>
-			<Step title="Create the filters controller">
-				<p class="mb-4 text-sm leading-6 text-muted-foreground">
-					<CodeSpan>createFilters</CodeSpan> returns the columns, live filters state, actions,
-					and the active strategy for your table.
-				</p>
-				<SingleFile code={controllerCode} />
-			</Step>
-
-			<Step title="Mount the DataTableFilter component">
-				<p class="mb-4 text-sm leading-6 text-muted-foreground">
-					Pass the controller output straight into the filter bar. The UI is fully controlled by
-					the live <CodeSpan>filters</CodeSpan> array and the action methods.
-				</p>
-				<SingleFile code={filterBarCode} />
-			</Step>
-
-			<Step title="Render your rows with ui/table">
-				<p class="mb-4 text-sm leading-6 text-muted-foreground">
-					The preview below uses the current filter state to derive <CodeSpan>filteredIssues</CodeSpan>
-					and then renders those rows through the shared table primitives.
-				</p>
-				<SingleFile code={tableRenderCode} />
-			</Step>
-		</Steps>
-
-		<SectionCallout title="Preview" badge="Live example" tone="emerald">
-			<p>
-				The live preview keeps everything on one page: column config, the filters controller,
-				locale switching, and <CodeSpan>ui/table</CodeSpan> rendering. Use the filter bar to
-				confirm the rows below react immediately.
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				1. Create the controller
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				For local filtering, pass the current rows and your column
+				config.
 			</p>
-		</SectionCallout>
+			<SingleFile code={controllerCode} />
+		</div>
 
-		<PreviewComponent code={fullExampleCode} showRetry={false} isCentered={false} class="min-h-0 p-5">
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				2. Seed initial filters with <CodeSpan>defaultFilters</CodeSpan>
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				Use this when the table should open with a predefined filter
+				applied.
+			</p>
+			<SingleFile code={defaultFiltersCode} />
+		</div>
+
+		<div class="space-y-3" data-toc-ignore="false">
+			<h4 class="text-base font-semibold tracking-tight">
+				3. Pass remote options and faceted values for server mode
+			</h4>
+			<p class="text-sm leading-6 text-muted-foreground">
+				When the server owns filtering, send declared options and counts
+				into the controller so the menus still know what to render.
+			</p>
+			<SingleFile code={remoteOptionsCode} />
+		</div>
+
+		<SectionCallout title="State ownership" badge="Current API" tone="blue">
+			The Svelte controller owns its filters state. Use
+			<CodeSpan>defaultFilters</CodeSpan> for initial state, or pass
+			<CodeSpan>filters</CodeSpan> when you want to seed the controller at creation
+			time. There is no <CodeSpan>onFiltersChange</CodeSpan> controlled mode
+			exposed here.
+		</SectionCallout>
+	</div>
+
+	<div class="space-y-5">
+		<H3 id="component">Component</H3>
+
+		<div class="max-w-3xl space-y-3">
+			<Paragraph>
+				<CodeSpan>DataTableFilter</CodeSpan> renders the filter UI. Pair it
+				with a derived list of rows for client-side filtering, or forward
+				<CodeSpan>filterController.filters</CodeSpan> into your data-fetching
+				layer for server-side filtering.
+			</Paragraph>
+		</div>
+
+		<SingleFile code={componentCode} />
+
+		<PreviewComponent
+			code={fullExampleCode}
+			showRetry={false}
+			isCentered={false}
+			class="min-h-0 p-5"
+		>
 			<FiltersPreview />
 		</PreviewComponent>
 	</div>
@@ -152,33 +220,13 @@
 	<div class="space-y-4">
 		<H3 id="internationalization">Internationalization</H3>
 
-		<div class="max-w-3xl space-y-3">
+		<div class="max-w-2xl">
 			<Paragraph>
-				This repo already ships locale files and the expanded
-				<CodeSpan>$lib/components/data-table/utils/i18n.ts</CodeSpan> helper. Pass a
-				<CodeSpan>locale</CodeSpan> prop to <CodeSpan>DataTableFilter</CodeSpan> to swap operator
-				labels, placeholders, and control text.
+				Pass a <CodeSpan>locale</CodeSpan> prop to switch the built-in text
+				for search, operators, buttons, and placeholders.
 			</Paragraph>
 		</div>
 
-		<div class="flex flex-wrap gap-2">
-			{#each supportedLocales as locale (locale)}
-				<Badge variant={locale === "zh_CN" || locale === "zh_TW" ? "sky" : "secondary"}>
-					{locale}
-				</Badge>
-			{/each}
-		</div>
-
-		<div class="grid gap-4 xl:grid-cols-[minmax(0,1fr),22rem]">
-			<SingleFile code={localeUsageCode} />
-
-			<SectionCallout title="Locale notes" badge="Included" tone="amber">
-				<ul class="list-disc space-y-1 pl-5">
-					<li><CodeSpan>en</CodeSpan> is the default installation.</li>
-					<li><CodeSpan>zh_CN</CodeSpan> and <CodeSpan>zh_TW</CodeSpan> are both shipped.</li>
-					<li>The live preview above includes an <CodeSpan>en</CodeSpan> / <CodeSpan>zh_CN</CodeSpan> toggle.</li>
-				</ul>
-			</SectionCallout>
-		</div>
+		<SingleFile code={localeUsageCode} />
 	</div>
 </section>

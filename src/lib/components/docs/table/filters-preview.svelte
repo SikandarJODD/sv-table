@@ -144,26 +144,30 @@
 			.build()
 	] as const;
 
-	const filtersController = createFilters({
+	const filterController = createFilters({
 		strategy: "client",
 		data: issues,
 		columnsConfig
 	});
 
 	const columnsById = new Map(
-		filtersController.columns.map((column) => [column.id, column] as const)
+		filterController.columns.map((column) => [column.id, column] as const)
 	);
 
 	let locale = $state<Locale>("en");
 
 	const filteredIssues = $derived.by(() =>
 		issues.filter((issue) =>
-			filtersController.filters.every((filter) => matchesFilter(issue, filter))
+			filterController.filters.every((filter) =>
+				matchesFilter(issue, filter)
+			)
 		)
 	);
 
 	function matchesFilter(issue: Issue, filter: FilterModel) {
-		const column = columnsById.get(filter.columnId) as Column<Issue> | undefined;
+		const column = columnsById.get(filter.columnId) as
+			| Column<Issue>
+			| undefined;
 
 		if (!column) return true;
 
@@ -171,13 +175,25 @@
 
 		switch (filter.type) {
 			case "text":
-				return textFilterFn(String(value ?? ""), filter as FilterModel<"text">);
+				return textFilterFn(
+					String(value ?? ""),
+					filter as FilterModel<"text">
+				);
 			case "number":
-				return numberFilterFn(Number(value ?? 0), filter as FilterModel<"number">);
+				return numberFilterFn(
+					Number(value ?? 0),
+					filter as FilterModel<"number">
+				);
 			case "date":
-				return dateFilterFn(value as Date, filter as FilterModel<"date">);
+				return dateFilterFn(
+					value as Date,
+					filter as FilterModel<"date">
+				);
 			case "option":
-				return optionFilterFn(String(value ?? ""), filter as FilterModel<"option">);
+				return optionFilterFn(
+					String(value ?? ""),
+					filter as FilterModel<"option">
+				);
 			case "multiOption":
 				return multiOptionFilterFn(
 					Array.isArray(value) ? (value as string[]) : [],
@@ -202,87 +218,76 @@
 	}
 </script>
 
-<div class="flex w-full flex-col gap-5">
-	<div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-		<div class="space-y-2">
-			<p class="text-sm font-medium text-foreground">Client-side preview</p>
-			<p class="max-w-2xl text-sm leading-6 text-muted-foreground">
-				This demo wires the real <code class="rounded bg-muted px-1.5 py-0.5 text-xs">createFilters</code>
-				controller into <code class="rounded bg-muted px-1.5 py-0.5 text-xs">DataTableFilter</code>
-				and renders the filtered rows with <code class="rounded bg-muted px-1.5 py-0.5 text-xs">ui/table</code>.
-			</p>
-		</div>
+<div class="flex w-full flex-col gap-2">
+	<DataTableFilter
+		columns={filterController.columns}
+		filters={filterController.filters}
+		actions={filterController.actions}
+		strategy={filterController.strategy}
+		{locale}
+	/>
 
-		<div class="flex flex-wrap gap-2">
-			{#each localeOptions as option (option.value)}
-				<Button
-					variant={locale === option.value ? "secondary" : "outline"}
-					size="xs"
-					aria-pressed={locale === option.value}
-					onclick={() => (locale = option.value)}
-				>
-					{option.label}
-				</Button>
-			{/each}
-		</div>
-	</div>
-
-	<div class="flex flex-wrap items-center gap-2">
-		<Badge variant="blue">{filtersController.strategy}</Badge>
-		<Badge variant="secondary">{filtersController.filters.length} active filter(s)</Badge>
-		<Badge variant="secondary">{filteredIssues.length} matching row(s)</Badge>
-	</div>
-
-	<div class="rounded-2xl border border-border/70 bg-background p-4">
-		<DataTableFilter
-			columns={filtersController.columns}
-			filters={filtersController.filters}
-			actions={filtersController.actions}
-			strategy={filtersController.strategy}
-			{locale}
-		/>
-	</div>
-
-	<Table.Root>
-		<Table.Header>
-			<Table.Row>
-				<Table.Head>Title</Table.Head>
-				<Table.Head>Status</Table.Head>
-				<Table.Head>Estimate</Table.Head>
-				<Table.Head>Due date</Table.Head>
-				<Table.Head>Labels</Table.Head>
-			</Table.Row>
-		</Table.Header>
-		<Table.Body>
-			{#if filteredIssues.length === 0}
+	<div class="rounded-lg border">
+		<Table.Root>
+			<Table.Header>
 				<Table.Row>
-					<Table.Cell colspan={5} class="py-10 text-center text-sm text-muted-foreground">
-						No matching issues. Change or clear the filters to see rows again.
-					</Table.Cell>
+					<Table.Head>Title</Table.Head>
+					<Table.Head>Status</Table.Head>
+					<Table.Head>Estimate</Table.Head>
+					<Table.Head>Due date</Table.Head>
+					<Table.Head>Labels</Table.Head>
 				</Table.Row>
-			{:else}
-				{#each filteredIssues as issue (issue.id)}
+			</Table.Header>
+			<Table.Body>
+				{#if filteredIssues.length === 0}
 					<Table.Row>
-						<Table.Cell class="font-medium">{issue.title}</Table.Cell>
-						<Table.Cell>
-							<Badge variant={getStatusVariant(issue.status)}>
-								{statusOptions.find((option) => option.value === issue.status)?.label}
-							</Badge>
-						</Table.Cell>
-						<Table.Cell class="tabular-nums">{issue.estimate}h</Table.Cell>
-						<Table.Cell>{format(issue.dueDate, "MMM d, yyyy")}</Table.Cell>
-						<Table.Cell>
-							<div class="flex flex-wrap gap-1.5">
-								{#each issue.labels as label (label)}
-									<Badge variant="secondary">
-										{labelOptions.find((option) => option.value === label)?.label}
-									</Badge>
-								{/each}
-							</div>
+						<Table.Cell
+							colspan={5}
+							class="py-10 text-center text-sm text-muted-foreground"
+						>
+							No matching issues. Change or clear the filters to
+							see rows again.
 						</Table.Cell>
 					</Table.Row>
-				{/each}
-			{/if}
-		</Table.Body>
-	</Table.Root>
+				{:else}
+					{#each filteredIssues as issue (issue.id)}
+						<Table.Row>
+							<Table.Cell class="font-medium"
+								>{issue.title}</Table.Cell
+							>
+							<Table.Cell>
+								<Badge variant={getStatusVariant(issue.status)}>
+									{statusOptions.find(
+										(option) =>
+											option.value === issue.status
+									)?.label}
+								</Badge>
+							</Table.Cell>
+							<Table.Cell class="tabular-nums"
+								>{issue.estimate}h</Table.Cell
+							>
+							<Table.Cell
+								>{format(
+									issue.dueDate,
+									"MMM d, yyyy"
+								)}</Table.Cell
+							>
+							<Table.Cell>
+								<div class="flex flex-wrap gap-1.5">
+									{#each issue.labels as label (label)}
+										<Badge variant="secondary">
+											{labelOptions.find(
+												(option) =>
+													option.value === label
+											)?.label}
+										</Badge>
+									{/each}
+								</div>
+							</Table.Cell>
+						</Table.Row>
+					{/each}
+				{/if}
+			</Table.Body>
+		</Table.Root>
+	</div>
 </div>
