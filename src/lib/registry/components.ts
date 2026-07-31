@@ -21,6 +21,7 @@ let components: Component[] = [
     name: "Filters",
     href: "/components/filters",
     desc: "Composable table filters with text, number, option, and date operators for Svelte apps.",
+    badge: 'New'
   },
 ];
 

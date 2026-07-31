@@ -9,13 +9,13 @@ let navs: NavType[] = [
     name: "Components",
     href: "/docs/introduction",
   },
-  {
-    name: "Docs",
-    href: "/docs",
-  },
-  {
-    name: "Changelog",
-    href: "/changelog",
-  },
+  // {
+  //   name: "Docs",
+  //   href: "/docs",
+  // },
+  // {
+  //   name: "Changelog",
+  //   href: "/changelog",
+  // },
 ];
 export { navs };

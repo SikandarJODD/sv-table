@@ -17,21 +17,6 @@
 		{ label: "Blocks", href: "/blocks" },
 		{ label: "Changelog", href: "/changelog" }
 	];
-
-	const resourceLinks: FooterLink[] = [
-		{ label: "Docs", href: "/docs" },
-		{
-			label: "GitHub",
-			href: "https://github.com/SikandarJODD/sv-efferd",
-			external: true
-		},
-		{
-			label: "X / Twitter",
-			href: "https://x.com/Sikandar_Bhide",
-			external: true
-		}
-	];
-
 	const socialLinks = [
 		{
 			id: "x",
@@ -127,7 +112,7 @@
 					{seo_config.title}. Built by
 					<a
 						class="ml-2 inline-flex items-center gap-1.5 font-medium text-foreground transition-colors hover:text-muted-foreground"
-						href={github_repo.url}
+						href="https://bhide.dev"
 						rel="noreferrer"
 						target="_blank"
 					>

@@ -18,10 +18,10 @@
 		let path = page.url.pathname;
 		return path.startsWith("/components") || path.startsWith("/docs");
 	});
-	let stars = $state(200);
+	let stars = $state(0);
 	const repo = { owner: github_repo.owner, repo: github_repo.name };
 	onMount(async () => {
-		stars = await getStars({ ...repo, fallback: 200 });
+		stars = await getStars({ ...repo, fallback: 0 });
 	});
 </script>
 

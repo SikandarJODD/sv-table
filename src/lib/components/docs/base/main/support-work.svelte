@@ -18,6 +18,7 @@
 			class="w-full"
 			size="sm"
 			variant="secondary"
+			target="_blank"
 			href="https://github.com/sponsors/{github_repo.owner}"
 		>
 			GitHub Sponsors
