@@ -19,7 +19,12 @@
 	let IconComponent: Component | LucideIcon | null = $derived(icon || null);
 </script>
 
-<a class={cn("flex items-center gap-x-2.5", className)} {href} {...props}>
+<a
+	class={cn("flex items-center gap-x-2.5", className)}
+	target="_blank"
+	{href}
+	{...props}
+>
 	{#if typeof IconComponent !== null}
 		<div
 			class={cn(

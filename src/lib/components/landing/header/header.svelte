@@ -39,10 +39,10 @@
 	>
 		<div class="flex items-center gap-5">
 			<a
-				class="rounded-lg px-3 py-2.5 hover:bg-muted dark:hover:bg-muted/50"
+				class="rounded-sm bg-muted/50 p-1.5 hover:bg-muted dark:hover:bg-muted/50"
 				href="/"
 			>
-				<Logo class="h-4" />
+				<Logo />
 			</a>
 			<DesktopNav />
 		</div>
