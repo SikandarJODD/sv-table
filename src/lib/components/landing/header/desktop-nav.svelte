@@ -12,42 +12,41 @@
 	const otherProjects = [
 		{
 			name: "Svelte Animation",
-			href: "",
+			href: "https://sv-animations.vercel.app",
 			description:
-				"Animation-focused components and motion patterns for Svelte.",
+				"Include 50+ Animation components like Magic UI, Spell UI.",
 			icon: SparklesIcon
 		},
 		{
 			name: "Svelte Marketing Components",
-			href: "",
-			description: "Reusable sections and UI blocks for marketing pages.",
+			href: "https://sv-blocks.vercel.app",
+			description:
+				"150+ Reusable sections and UI blocks for marketing pages.",
 			icon: LayoutTemplateIcon
 		},
 		{
 			name: "Svelte Premium Marketing Components",
-			href: "",
+			href: "https://sv-efferd.pages.dev",
 			description:
-				"A premium set of polished marketing components for Svelte.",
+				"50+ Premium set of polished marketing components for Svelte.",
 			icon: SwatchBookIcon
 		},
 		{
 			name: "Svelte AI Elements",
-			href: "",
-			description:
-				"Interface elements tailored for AI-first product experiences.",
+			href: "https://svelte-ai-elements.vercel.app",
+			description: "Pre-built AI Components, Guide & Examples.",
 			icon: BotIcon
 		},
 		{
 			name: "Svelte Dot Matrix Loaders",
-			href: "",
-			description: "Dot matrix loading indicators and related UI states.",
+			href: "https://sv-matrix.vercel.app",
+			description: "50+ Dot Matrix loaders",
 			icon: LoaderCircleIcon
 		},
 		{
 			name: "Svelte Agentation",
-			href: "",
-			description:
-				"A Svelte library for building agent-driven application flows.",
+			href: "https://sv-agentation.com",
+			description: "Provides right context to AI Agent.",
 			icon: Grid2x2Icon
 		}
 	];

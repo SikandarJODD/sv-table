@@ -227,7 +227,7 @@
 		{locale}
 	/>
 
-	<div class="rounded-lg border">
+	<div class="overflow-hidden rounded-lg border">
 		<Table.Root>
 			<Table.Header>
 				<Table.Row>

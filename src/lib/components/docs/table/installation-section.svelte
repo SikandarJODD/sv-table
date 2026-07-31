@@ -55,13 +55,21 @@
 				>
 			</Item.Media>
 			<Item.Content>
-				<Item.Title>Visit Bazza UI Docs</Item.Title>
-				<Item.Description>
-					for more information visit Bazza UI Docs
-				</Item.Description>
+				<Item.Title>Original Docs</Item.Title>
+				<Item.Description
+					>Visit the Bazza UI docs for a well-written guide.</Item.Description
+				>
 			</Item.Content>
 			<Item.Actions>
-				<Button size="sm" variant="outline">Visit Docs</Button>
+				<Button
+					size="sm"
+					variant="secondary"
+					href="https://ui.bazza.dev/docs/data-table-filter"
+					target="_blank"
+					rel="noreferrer"
+				>
+					Visit Docs
+				</Button>
 			</Item.Actions>
 		</Item.Root>
 	</div>

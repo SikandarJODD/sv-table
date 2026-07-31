@@ -33,6 +33,24 @@
 					badge: c.badge
 				})) as NavItem[]
 			}
+			// {
+			// 	title: "Filter Examples",
+			// 	url: "#",
+			// 	items: [
+			// 		{
+			// 			title: "Basic Example",
+			// 			url: "#"
+			// 		},
+			// 		{
+			// 			title: "Sorting & Filtering",
+			// 			url: "#"
+			// 		},
+			// 		{
+			// 			title: "Pagination",
+			// 			url: "#"
+			// 		}
+			// 	] as NavItem[]
+			// }
 		]
 	};
 </script>
@@ -78,24 +96,25 @@
 	<Sidebar.Content bind:ref={contentRef}>
 		<!-- <ScrollFadeEffect class="max-h-[calc(100vh-6rem)] py-4 pr-1"> -->
 		<!-- We create a Sidebar.Group for each parent. -->
-		{#each data.navMain as group}
+		{#each data.navMain as group (group.title)}
 			<Sidebar.Group>
 				<Sidebar.GroupLabel>{group.title}</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
 					<Sidebar.Menu>
-						{#each group.items as item}
+						{#each group.items as item (`${group.title}-${item.title}`)}
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton
 									isActive={page.url.pathname === item.url}
 									class={cn(
 										"flex w-full scroll-mt-10 scroll-mb-40 justify-between",
-										item.title === "Filters" && "pr-1"
+										item.url === "/components/filters" &&
+											"pr-1"
 									)}
 								>
 									{#snippet child({ props })}
 										<a href={item.url} {...props}>
 											{item.title}
-											{#if item.title === "Filters"}
+											{#if item.url === "/components/filters"}
 												<Badge
 													size="sm"
 													variant="amber"

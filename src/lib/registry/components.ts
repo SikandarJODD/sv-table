@@ -18,7 +18,7 @@ export interface DocPage {
 let components: Component[] = [
   {
     id: "filters",
-    name: "Filters",
+    name: "Data Table Filters",
     href: "/components/filters",
     desc: "Composable table filters with text, number, option, and date operators for Svelte apps.",
     badge: 'New'

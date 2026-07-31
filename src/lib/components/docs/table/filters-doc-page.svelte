@@ -8,6 +8,7 @@
 	import ConceptsSection from "./concepts-section.svelte";
 	import { filterPackages } from "./filters-doc-content";
 	import PackageBadges from "../base/main/package-badges.svelte";
+	import FiltersPreview from "./filters-preview.svelte";
 
 	const getURLPath = (url: string) => url.split("?")[0].split("#")[0];
 
@@ -16,9 +17,26 @@
 </script>
 
 <Seo
-	title="Filters"
+	title="Data Table Filters"
 	description="Composable table filters with text, number, option, and date operators for Svelte apps."
-	keywords={["filters", "data table", "svelte", "date-fns", "runed"]}
+	keywords={[
+		"data table filters",
+		"svelte data table",
+		"svelte table filters",
+		"tanstack table svelte",
+		"table filtering",
+		"column filters",
+		"faceted filters",
+		"server-side filtering",
+		"client-side filtering",
+		"date filters",
+		"filter operators",
+		"filters",
+		"data table",
+		"svelte",
+		"date-fns",
+		"runed"
+	]}
 />
 
 <div class="space-y-8 md:space-y-10">
@@ -42,6 +60,9 @@
 			<PackageBadges packages={filterPackages} />
 		</div>
 	</section>
+	<div class="min-h-80! rounded-lg border border-dashed p-4">
+		<FiltersPreview />
+	</div>
 
 	<InstallationSection {componentURL} />
 	<ConceptsSection />
