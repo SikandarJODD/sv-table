@@ -49,9 +49,11 @@
 	] as const;
 
 	const departmentOptions = createOptions(
+		"department",
 		people.map((person) => person.department)
 	);
 	const countryOptions = createOptions(
+		"country",
 		people.map((person) => person.country)
 	);
 
@@ -249,7 +251,7 @@
 		}
 	}
 
-	function createOptions(values: string[]) {
+	function createOptions(_scope: string, values: string[]) {
 		return [...new Set(values)]
 			.sort((left, right) => left.localeCompare(right))
 			.map((value) => ({ label: value, value }));

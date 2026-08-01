@@ -80,10 +80,16 @@
   )
 
   function prefetchColumn(column: Column<any, ColumnDataType>) {
-    void column.prefetchOptions()
     void column.prefetchValues()
-    void column.prefetchFacetedUniqueValues()
-    void column.prefetchFacetedMinMaxValues()
+
+    if (column.type === 'option' || column.type === 'multiOption') {
+      void column.prefetchOptions()
+      void column.prefetchFacetedUniqueValues()
+    }
+
+    if (column.type === 'number') {
+      void column.prefetchFacetedMinMaxValues()
+    }
   }
 
   function selectColumn(columnId: string) {

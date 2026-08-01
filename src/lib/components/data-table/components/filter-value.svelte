@@ -131,6 +131,14 @@
     return column.getFacetedMinMaxValues()
   })
 
+  const numberSliderStep = $derived.by(() => {
+    if (!numberMinMax) {
+      return 1
+    }
+
+    return getSliderStep(numberMinMax[0], numberMinMax[1])
+  })
+
   const isNumberRange = $derived.by(() => {
     if (column.type !== 'number' || !filter) {
       return false
@@ -322,6 +330,23 @@
     actions.setFilterOperator(column.id, 'is between')
     actions.setFilterValue(column as Column<any, 'number'>, nextValues)
   }
+
+  function getSliderStep(min: number, max: number) {
+    const range = Math.abs(max - min)
+
+    if (!Number.isFinite(range) || range <= 0) {
+      return 1
+    }
+
+    const roughStep = Math.max(1, Math.ceil(range / 200))
+    const magnitude = 10 ** Math.max(0, Math.floor(Math.log10(roughStep)))
+    const normalizedStep = roughStep / magnitude
+
+    if (normalizedStep <= 1) return magnitude
+    if (normalizedStep <= 2) return magnitude * 2
+    if (normalizedStep <= 5) return magnitude * 5
+    return magnitude * 10
+  }
 </script>
 
 {#snippet ValueDisplay()}
@@ -389,7 +414,7 @@
   {#if column.type === 'option' || column.type === 'multiOption'}
     <Command loop shouldFilter={false}>
       <CommandInput bind:value={optionSearch} placeholder={t('search', locale)} />
-      <CommandEmpty>{t('noresults', locale)}</CommandEmpty>
+        <CommandEmpty>{t('noresults', locale)}</CommandEmpty>
       <CommandList class="max-h-64">
         <CommandGroup>
           {#each filteredOptions as option (option.value)}
@@ -475,15 +500,14 @@
         </p>
       {/if}
 
-      {#if isNumberRange}
-        <div class="grid grid-cols-2 gap-3">
+      <div hidden={!isNumberRange} aria-hidden={!isNumberRange} class="grid grid-cols-2 gap-3">
           {#if numberMinMax}
             <div class="col-span-2">
               <Slider
                 type="multiple"
                 min={numberMinMax[0]}
                 max={numberMinMax[1]}
-                step={1}
+                step={numberSliderStep}
                 bind:value={numberRangeSliderValue}
                 onValueCommit={changeRangeSlider}
               />
@@ -509,15 +533,15 @@
                 changeRangeNumber(numberMin, String(value ?? ''))}
             />
           </div>
-        </div>
-      {:else}
-        <div class="grid gap-1.5">
+      </div>
+
+      <div hidden={isNumberRange} aria-hidden={isNumberRange} class="grid gap-1.5">
           {#if numberMinMax}
             <Slider
               type="single"
               min={numberMinMax[0]}
               max={numberMinMax[1]}
-              step={1}
+              step={numberSliderStep}
               bind:value={numberSliderValue}
               onValueCommit={changeSingleSlider}
             />
@@ -529,8 +553,7 @@
             value={numberSingle}
             onChange={changeSingleNumber}
           />
-        </div>
-      {/if}
+      </div>
     </div>
   {/if}
 {/snippet}
