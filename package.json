@@ -33,7 +33,7 @@
     "@fontsource-variable/figtree": "latest",
     "@fontsource-variable/inter": "^5.3.0",
     "@internationalized/date": "^3.12.1",
-    "@lucide/svelte": "^1.27.0",
+    "@lucide/svelte": "^1.28.0",
     "@shikijs/langs": "^4.0.2",
     "@shikijs/themes": "^4.0.2",
     "@sveltejs/adapter-auto": "^7.0.1",

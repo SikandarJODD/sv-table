@@ -28,7 +28,7 @@
 		<PreviewComponent
 			code={previewCode}
 			isCentered={false}
-			class="min-h-80! p-4"
+			class="min-h-80! px-4 pt-10 pb-4"
 			frame
 		>
 			<Pagination />

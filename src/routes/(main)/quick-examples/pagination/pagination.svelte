@@ -8,18 +8,18 @@
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import GlobeIcon from "@lucide/svelte/icons/globe";
 	import UserRoundIcon from "@lucide/svelte/icons/user-round";
+	import PaginationControls from "./pagination-controls.svelte";
 
 	import {
 		type ColumnDef,
-		createCoreRowModel,
+		createPaginatedRowModel,
 		createSortedRowModel,
 		createTable,
-		createTableState,
+		rowPaginationFeature,
 		rowSortingFeature,
 		sortFn_alphanumeric,
 		sortFn_basic,
-		tableFeatures,
-		type SortingState
+		tableFeatures
 	} from "@tanstack/svelte-table";
 
 	import { DataTableFilter } from "$lib/components/data-table/components";
@@ -40,7 +40,7 @@
 	import { Button } from "$lib/components/ui/button";
 	import * as Table from "$lib/components/ui/table";
 
-	const people = makePeople(16, 9);
+	const people = makePeople(300, 9);
 
 	const statusOptions = [
 		{ label: "Active", value: "active" },
@@ -95,8 +95,8 @@
 			.accessor((row) => row.salary)
 			.displayName("Salary")
 			.icon(BanknoteIcon)
-			.min(35_000)
-			.max(200_000)
+			.min(35000)
+			.max(200000)
 			.build(),
 		dtf
 			.date()
@@ -136,12 +136,10 @@
 		maximumFractionDigits: 0
 	});
 
-	const [sorting, setSorting] = createTableState<SortingState>([
-		{ id: "salary", desc: true }
-	]);
-
 	const features = tableFeatures({
+		rowPaginationFeature,
 		rowSortingFeature,
+		paginatedRowModel: createPaginatedRowModel(),
 		sortedRowModel: createSortedRowModel(),
 		sortFns: {
 			alphanumeric: sortFn_alphanumeric,
@@ -210,16 +208,11 @@
 		get data() {
 			return filteredPeople;
 		},
-		state: {
-			get sorting() {
-				return sorting();
-			}
-		},
-		onSortingChange: setSorting
+		pageCount: 10
 	});
 
-	const activeSorting = $derived(table.atoms.sorting.get());
-	const sortedRows = $derived(table.getRowModel().rows);
+	const paginatedRows = $derived(table.getRowModel().rows);
+	const totalMatchingRows = $derived(table.getRowCount());
 
 	function matchesFilter(person: Person, filter: FilterModel) {
 		const column = columnsById.get(filter.columnId) as
@@ -319,31 +312,6 @@
 		strategy={filterController.strategy}
 	/>
 
-	<div
-		class="flex flex-col gap-2 rounded-lg border border-border/70 bg-muted/20 p-3 text-sm sm:flex-row sm:items-center sm:justify-between"
-	>
-		<p class="text-muted-foreground">
-			Showing <span class="font-medium text-foreground"
-				>{sortedRows.length}</span
-			>
-			of {people.length} seeded people
-		</p>
-
-		{#if activeSorting[0]}
-			<p class="text-muted-foreground">
-				Sorted by
-				<span class="font-medium text-foreground">
-					{getHeaderLabel(activeSorting[0].id)}
-				</span>
-				<span class="font-medium text-foreground">
-					({activeSorting[0].desc ? "descending" : "ascending"})
-				</span>
-			</p>
-		{:else}
-			<p class="text-muted-foreground">No active sorting</p>
-		{/if}
-	</div>
-
 	<div class="overflow-hidden rounded-lg border">
 		<Table.Root>
 			<Table.Header>
@@ -394,7 +362,7 @@
 			</Table.Header>
 
 			<Table.Body>
-				{#if sortedRows.length === 0}
+				{#if totalMatchingRows === 0}
 					<Table.Row>
 						<Table.Cell
 							colspan={columns.length}
@@ -405,7 +373,7 @@
 						</Table.Cell>
 					</Table.Row>
 				{:else}
-					{#each sortedRows as row (row.id)}
+					{#each paginatedRows as row (row.id)}
 						<Table.Row>
 							{#each row.getAllCells() as cell (cell.id)}
 								<Table.Cell
@@ -441,4 +409,6 @@
 			</Table.Body>
 		</Table.Root>
 	</div>
+
+	<PaginationControls {table} />
 </div>
