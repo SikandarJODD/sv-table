@@ -15,6 +15,13 @@ export interface DocPage {
   desc?: string;
 }
 
+export interface QuickExample {
+  id: string;
+  name: string;
+  href: string;
+  desc?: string;
+}
+
 let components: Component[] = [
   {
     id: "filters",
@@ -26,6 +33,29 @@ let components: Component[] = [
 ];
 
 export { components };
+
+let quickExamples: QuickExample[] = [
+  {
+    id: "basic",
+    name: "Basic Example",
+    href: "/quick-examples/basic",
+    desc: "A complete quick example that mirrors the table filters preview.",
+  },
+  {
+    id: "sorting",
+    name: "Sorting",
+    href: "/quick-examples/sorting",
+    desc: "Sorting-focused quick example route.",
+  },
+  {
+    id: "pagination",
+    name: "Pagination",
+    href: "/quick-examples/pagination",
+    desc: "Pagination-focused quick example route.",
+  },
+];
+
+export { quickExamples };
 
 let docsPages: DocPage[] = [
   {
@@ -44,10 +74,10 @@ let docsPages: DocPage[] = [
 
 export { docsPages };
 
-type NavigationItem = DocPage | Component;
+type NavigationItem = DocPage | Component | QuickExample;
 
 function getNavigationItems(): NavigationItem[] {
-  return [...docsPages, ...components];
+  return [...docsPages, ...components, ...quickExamples];
 }
 
 export function getPrevNext(id: string): {

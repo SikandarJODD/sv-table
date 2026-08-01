@@ -1,5 +1,9 @@
 <script lang="ts" module>
-	import { components, type BadgeType } from "$lib/registry/components";
+	import {
+		components,
+		quickExamples,
+		type BadgeType
+	} from "$lib/registry/components";
 
 	type NavItem = {
 		title: string;
@@ -32,25 +36,15 @@
 					url: c.href,
 					badge: c.badge
 				})) as NavItem[]
+			},
+			{
+				title: "Quick Examples",
+				url: "#",
+				items: quickExamples.map((example) => ({
+					title: example.name,
+					url: example.href
+				})) as NavItem[]
 			}
-			// {
-			// 	title: "Filter Examples",
-			// 	url: "#",
-			// 	items: [
-			// 		{
-			// 			title: "Basic Example",
-			// 			url: "#"
-			// 		},
-			// 		{
-			// 			title: "Sorting & Filtering",
-			// 			url: "#"
-			// 		},
-			// 		{
-			// 			title: "Pagination",
-			// 			url: "#"
-			// 		}
-			// 	] as NavItem[]
-			// }
 		]
 	};
 </script>
