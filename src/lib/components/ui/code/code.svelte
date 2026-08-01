@@ -54,6 +54,20 @@
 
 	:global(pre.shiki) {
 		@apply overflow-x-auto rounded-lg bg-inherit py-2 text-sm dark:bg-inherit;
+		--code-selection-bg: rgb(253 230 138);
+		--code-selection-color: rgb(146 64 14);
+	}
+
+	:global(html.dark pre.shiki) {
+		--code-selection-bg: rgb(120 53 15 / 0.45);
+		--code-selection-color: rgb(252 211 77);
+	}
+
+	:global(pre.shiki::selection),
+	:global(pre.shiki *::selection) {
+		background-color: var(--code-selection-bg);
+		color: var(--code-selection-color);
+		text-shadow: none;
 	}
 
 	:global(pre.shiki:not([data-code-overflow] *):not([data-code-overflow])) {
