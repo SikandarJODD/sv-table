@@ -4,7 +4,6 @@
 	import * as Code from "$lib/components/ui/code";
 	import type { CodeBlock } from "$lib/types/code";
 	import CopyButton from "../copy-button/copy-button.svelte";
-	import * as ButtonGroup from "$lib/components/ui/button-group/index.js";
 	import Button from "../button/button.svelte";
 	import { untrack } from "svelte";
 
@@ -21,7 +20,7 @@
 <div class="w-full">
 	<div class="overflow-hidden rounded-lg border">
 		<div
-			class="flex items-center justify-between border-b border-border/70 py-1 pr-1 pl-4"
+			class="flex items-center justify-between border-b border-border/70 py-0.5 pr-1 pl-3"
 		>
 			<div class="flex items-center gap-1.5">
 				{#if code.lang === "svelte"}
@@ -53,11 +52,14 @@
 						{/if}
 					</Button>
 				{/if}
-				<CopyButton text={code.code} />
+				<CopyButton size="icon-sm" text={code.code} />
 			</div>
 		</div>
 		{#if isExpanded}
-			<Code.Overflow bind:collapsed={isExpanded}>
+			<Code.Overflow
+				bind:collapsed={isExpanded}
+				class="max-h-[500px] overflow-auto data-[collapsed=true]:overflow-y-hidden"
+			>
 				<Code.Root
 					lang={code.lang || "svelte"}
 					class="w-full rounded-none border-none bg-secondary"
@@ -71,7 +73,7 @@
 		{:else}
 			<Code.Root
 				lang={code.lang || "svelte"}
-				class="w-full rounded-none border-none bg-background"
+				class="max-h-[500px] w-full overflow-auto rounded-none border-none bg-background"
 				code={code.code}
 				highlight={code.highlight}
 				hideLines={code.hideLines ?? false}

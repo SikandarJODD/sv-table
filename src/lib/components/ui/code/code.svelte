@@ -53,7 +53,7 @@
 	}
 
 	:global(pre.shiki) {
-		@apply overflow-x-auto rounded-lg bg-inherit py-4 text-sm dark:bg-inherit;
+		@apply overflow-x-auto rounded-lg bg-inherit py-2 text-sm dark:bg-inherit;
 	}
 
 	:global(pre.shiki:not([data-code-overflow] *):not([data-code-overflow])) {
@@ -66,7 +66,6 @@
 		counter-reset: line;
 		box-decoration-break: clone;
 	}
-
 	:global(pre.line-numbers) {
 		counter-reset: step;
 		counter-increment: step 0;
@@ -76,7 +75,7 @@
 		content: counter(step);
 		counter-increment: step;
 		display: inline-block;
-		width: 1.8rem;
+		width: 1.6rem;
 		margin-right: 1.4rem;
 		text-align: right;
 	}
