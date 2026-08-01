@@ -8,7 +8,11 @@
 	const previewCode: CodeBlock = {
 		name: "basic.svelte",
 		lang: "svelte",
-		code: basicCode
+		code: basicCode,
+		highlight: [
+			[147, 151],
+			[222, 228]
+		]
 	};
 </script>
 
@@ -17,8 +21,8 @@
 		<H1 id="basic-example">Basic Example</H1>
 		<div class="max-w-2xl">
 			<Paragraph>
-				A quick example route that mirrors the full filter preview so you
-				can inspect the basic setup and source in one place.
+				A quick example route that mirrors the full filter preview so
+				you can inspect the basic setup and source in one place.
 			</Paragraph>
 		</div>
 	</section>
@@ -28,6 +32,7 @@
 			code={previewCode}
 			isCentered={false}
 			class="min-h-80! p-4"
+			frame
 		>
 			<Basic />
 		</PreviewComponent>

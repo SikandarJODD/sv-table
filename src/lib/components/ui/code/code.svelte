@@ -53,7 +53,7 @@
 	}
 
 	:global(pre.shiki) {
-		@apply overflow-x-auto rounded-lg bg-inherit py-2 text-sm dark:bg-inherit;
+		@apply overflow-x-auto rounded-lg bg-inherit py-2 text-[13px] dark:bg-inherit;
 		--code-selection-bg: rgb(253 230 138);
 		--code-selection-color: rgb(146 64 14);
 	}

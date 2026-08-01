@@ -73,7 +73,7 @@
 >
 	{#if clipboard.status === "success"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<CheckIcon tabindex={-1} />
+			<CheckIcon tabindex={-1} class="size-3.5 text-emerald-600" />
 			<span class="sr-only">Copied</span>
 		</div>
 	{:else if clipboard.status === "failure"}

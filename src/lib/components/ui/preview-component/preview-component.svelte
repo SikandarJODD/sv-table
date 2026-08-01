@@ -4,7 +4,11 @@
 	import { Button } from "$lib/components/ui/button";
 	import { cn } from "$lib/utils";
 	import type { CodeBlock } from "$lib/types/code";
-	import { MultipleFiles, SingleFile } from "$lib/components/ui/code";
+	import {
+		FrameSingle,
+		MultipleFiles,
+		SingleFile
+	} from "$lib/components/ui/code";
 
 	interface PreviewComponentProps {
 		children: Snippet;
@@ -12,6 +16,7 @@
 		showRetry?: boolean;
 		isCentered?: boolean;
 		class?: string;
+		frame?: boolean;
 	}
 
 	let {
@@ -19,7 +24,8 @@
 		children,
 		showRetry = true,
 		isCentered = true,
-		class: className = ""
+		class: className = "",
+		frame = false
 	}: PreviewComponentProps = $props();
 
 	type TabValue = "preview" | "code";
@@ -97,6 +103,8 @@
 			<div>
 				{#if Array.isArray(code)}
 					<MultipleFiles {code} />
+				{:else if code && frame}
+					<FrameSingle {code} />
 				{:else if code}
 					<SingleFile {code} />
 				{/if}

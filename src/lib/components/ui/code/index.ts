@@ -5,6 +5,7 @@ import CopyButton from "./code-copy-button.svelte";
 import type { CodeCopyButtonProps, CodeRootProps } from "./types";
 import SingleFile from "./single-file.svelte";
 import MultipleFiles from "./multiple-files.svelte";
+import FrameSingle from "./frame-single.svelte";
 
 export const codeVariants = tv({
   base: "not-prose relative h-full overflow-auto rounded-lg border",
@@ -24,6 +25,7 @@ export {
   Overflow,
   SingleFile,
   MultipleFiles,
+  FrameSingle,
   type CodeRootProps as RootProps,
   type CodeCopyButtonProps as CopyButtonProps,
 };
