@@ -7,4 +7,5 @@ export type Example = {
   preview: Component;
   code: CodeBlock | CodeBlock[];
   previewClass?: string;
+  frame?: boolean;
 };

@@ -1,5 +1,6 @@
 <!-- Main File --><script lang="ts" module>
 	import type { Component } from "svelte";
+	import type { CodeBlock } from "$lib/types/code";
 	import type { SEO } from "$lib/types/seo";
 	import type { Example } from "$lib/types/example";
 	import type { PropsTable } from "$lib/types/structure";
@@ -19,13 +20,13 @@
 		examples?: Example[];
 		propsTables?: PropsTable[];
 		descriptionClass?: string;
+		previewFrame?: boolean;
 	};
 </script>
 
 <script lang="ts">
 	import { page } from "$app/state";
 	import { H1, H2, Paragraph, H3 } from "$markdown";
-	import type { CodeBlock } from "$lib/types/code";
 	import PackageBadges from "./package-badges.svelte";
 	import InstallComponent from "./install-component.svelte";
 	import ApiTable from "../api-table/api-table.svelte";
@@ -48,6 +49,7 @@
 		examples = [],
 		propsTables = [],
 		descriptionClass = "",
+		previewFrame = false,
 	}: ComponentDocPageProps = $props();
 
 	let PreviewComp = $derived(preview);
@@ -81,7 +83,7 @@
 	</section>
 
 	<section>
-		<PreviewComponent code={previewCode}>
+		<PreviewComponent code={previewCode} frame={previewFrame}>
 			{#if PreviewComp}
 				<PreviewComp />
 			{/if}
@@ -114,7 +116,11 @@
 								{example.description}
 							</Paragraph>
 						{/if}
-						<PreviewComponent code={example.code} class={example.previewClass}>
+						<PreviewComponent
+							code={example.code}
+							class={example.previewClass}
+							frame={example.frame}
+						>
 							<example.preview />
 						</PreviewComponent>
 					</div>
@@ -128,7 +134,7 @@
 			<H2 id="props">Props</H2>
 			<div class="mt-3 space-y-6">
 				<div>
-					{#each propsTables as prop}
+					{#each propsTables as prop, index (prop.name ?? prop.desc ?? index)}
 						<ApiTable data={prop} />
 					{/each}
 				</div>
