@@ -42,7 +42,7 @@
 		jsrepoID = ""
 	}: InstallComponentProps = $props();
 
-	let activeTab = $state("jsrepo");
+	let activeTab = $state("cli");
 	let agent = new PersistedState<Agent>("user-package-manager", "pnpm");
 
 	let layout = createLayoutMotion();

@@ -37,6 +37,10 @@
 
 		<div class="max-w-2xl">
 			<Paragraph>
+				Pagination allows you to divide large amounts of content into
+				smaller chunks across multiple pages.
+			</Paragraph>
+			<Paragraph>
 				Use <CodeSpan>pagination</CodeSpan> for numbered links and
 				<CodeSpan>pagination-arrow</CodeSpan> for compact arrow controls.
 			</Paragraph>

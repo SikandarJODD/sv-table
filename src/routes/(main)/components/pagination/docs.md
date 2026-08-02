@@ -1,6 +1,6 @@
 # Pagination
 
-Two table pagination components: `pagination` for numbered links and `pagination-arrow` for compact arrow controls.
+Two table pagination components: `pagination` for numbered links and `pagination-arrow` for compact arrow controls. Pagination allows you to divide large amounts of content into smaller chunks across multiple pages.
 
 ## Number pagination
 
