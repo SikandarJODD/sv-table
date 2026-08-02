@@ -1,17 +1,17 @@
 <script lang="ts">
 	import "./layout.css";
-	import { asset } from "$app/paths";
+	import { page } from "$app/state";
 	import favicon from "$lib/assets/favicon.svg";
 	import { activeElement, PressedKeys } from "runed";
 	import { ModeWatcher, toggleMode } from "mode-watcher";
 	import { Header } from "$lib/components/landing/header";
-	import { seo_config } from "$lib/config/seo";
-	import { MetaTags } from "svelte-meta-tags";
+	import { MetaTags, deepMerge } from "svelte-meta-tags";
 
 	import { browser, dev } from "$app/environment";
 	import { Agentation } from "sv-agentation";
+	import type { LayoutProps } from "./$types";
 
-	let { children } = $props();
+	let { data, children }: LayoutProps = $props();
 	let keys = new PressedKeys();
 	keys.onKeys(["d"], () => {
 		if (
@@ -21,29 +21,16 @@
 			return;
 		toggleMode();
 	});
-	const ogImage = {
-		url: `${seo_config.url}${asset("/og.png")}`,
-		alt: seo_config.site_name,
-		width: 1672,
-		height: 941,
-		type: "image/png"
-	};
+	let workSpaceRootPath = "S:\\sv\\comp-setup";
+	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
 </script>
 
 {#if browser && dev}
-	<Agentation  />
+	<Agentation workspaceRoot={workSpaceRootPath} />
 {/if}
 
 <ModeWatcher defaultMode="dark" />
-<MetaTags
-	openGraph={{
-		images: [ogImage]
-	}}
-	twitter={{
-		image: ogImage.url,
-		imageAlt: ogImage.alt
-	}}
-/>
+<MetaTags {...metaTags} />
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
