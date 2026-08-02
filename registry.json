@@ -1,180 +1,219 @@
 {
-  "$schema": "https://shadcn-svelte.com/schema/registry.json",
-  "name": "sv-table",
-  "homepage": "https://sv-table.vercel.app",
-  "items": [
-    {
-      "name": "filters",
-      "type": "registry:block",
-      "title": "Data Table Filters",
-      "dependencies": [
-        "@lucide/svelte",
-        "runed",
-        "date-fns",
-        "@internationalized/date"
-      ],
-      "registryDependencies": [
-        "button",
-        "command",
-        "popover",
-        "separator",
-        "checkbox",
-        "range-calendar",
-        "slider"
-      ],
-      "files": [
-        {
-          "path": "./src/lib/components/data-table/components/active-filters.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/active-filters.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/data-table-filter.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/data-table-filter.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/filter-actions.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/filter-actions.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/filter-operator.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/filter-operator.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/filter-selector.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/filter-selector.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/filter-subject.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/filter-subject.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/filter-value.svelte",
-          "type": "registry:component",
-          "target": "data-table/components/filter-value.svelte"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/helpers.ts",
-          "type": "registry:file",
-          "target": "data-table/components/helpers.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/components/index.ts",
-          "type": "registry:file",
-          "target": "data-table/components/index.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/core/filters.ts",
-          "type": "registry:file",
-          "target": "data-table/core/filters.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/core/operator.ts",
-          "type": "registry:file",
-          "target": "data-table/core/operator.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/core/types.ts",
-          "type": "registry:file",
-          "target": "data-table/core/types.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/array.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/array.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/debounce.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/debounce.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/filter-fns.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/filter-fns.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/helphers.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/helphers.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/i18n.default.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/i18n.default.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/i18n.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/i18n.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/utils/memo.ts",
-          "type": "registry:file",
-          "target": "data-table/utils/memo.ts"
-        },
-        {
-          "path": "./src/lib/components/data-table/locales/de.json",
-          "type": "registry:file",
-          "target": "data-table/locales/de.json"
-        },
-        {
-          "path": "./src/lib/components/data-table/locales/en.json",
-          "type": "registry:file",
-          "target": "data-table/locales/en.json"
-        },
-        {
-          "path": "./src/lib/components/data-table/locales/fr.json",
-          "type": "registry:file",
-          "target": "data-table/locales/fr.json"
-        },
-        {
-          "path": "./src/lib/components/data-table/locales/nl.json",
-          "type": "registry:file",
-          "target": "data-table/locales/nl.json"
-        },
-        {
-          "path": "./src/lib/components/data-table/locales/zh-CN.json",
-          "type": "registry:file",
-          "target": "data-table/locales/zh-CN.json"
-        },
-        {
-          "path": "./src/lib/components/data-table/locales/zh-TW.json",
-          "type": "registry:file",
-          "target": "data-table/locales/zh-TW.json"
-        },
-        {
-          "path": "./src/lib/components/ui/debounced-input/debounced-input.svelte",
-          "type": "registry:component",
-          "target": "ui/debounced-input/debounced-input.svelte"
-        },
-        {
-          "path": "./src/lib/components/ui/debounced-input/index.ts",
-          "type": "registry:file",
-          "target": "ui/debounced-input/index.ts"
-        },
-        {
-          "path": "./src/lib/hooks/index.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "./src/lib/hooks/use-data-table-filters.svelte.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "./src/lib/hooks/use-debounce-callback.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "./src/lib/hooks/use-unmount.ts",
-          "type": "registry:hook"
-        }
-      ]
-    }
-  ]
+	"$schema": "https://shadcn-svelte.com/schema/registry.json",
+	"name": "sv-table",
+	"homepage": "https://sv-table.vercel.app",
+	"items": [
+		{
+			"name": "filters",
+			"type": "registry:block",
+			"title": "Data Table Filters",
+			"dependencies": [
+				"@lucide/svelte",
+				"runed",
+				"date-fns",
+				"@internationalized/date"
+			],
+			"registryDependencies": [
+				"button",
+				"command",
+				"popover",
+				"separator",
+				"checkbox",
+				"range-calendar",
+				"slider"
+			],
+			"files": [
+				{
+					"path": "./src/lib/components/data-table/components/active-filters.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/active-filters.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/data-table-filter.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/data-table-filter.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/filter-actions.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/filter-actions.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/filter-operator.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/filter-operator.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/filter-selector.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/filter-selector.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/filter-subject.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/filter-subject.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/filter-value.svelte",
+					"type": "registry:component",
+					"target": "data-table/components/filter-value.svelte"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/helpers.ts",
+					"type": "registry:file",
+					"target": "data-table/components/helpers.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/components/index.ts",
+					"type": "registry:file",
+					"target": "data-table/components/index.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/core/filters.ts",
+					"type": "registry:file",
+					"target": "data-table/core/filters.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/core/operator.ts",
+					"type": "registry:file",
+					"target": "data-table/core/operator.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/core/types.ts",
+					"type": "registry:file",
+					"target": "data-table/core/types.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/array.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/array.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/debounce.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/debounce.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/filter-fns.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/filter-fns.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/helphers.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/helphers.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/i18n.default.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/i18n.default.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/i18n.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/i18n.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/utils/memo.ts",
+					"type": "registry:file",
+					"target": "data-table/utils/memo.ts"
+				},
+				{
+					"path": "./src/lib/components/data-table/locales/de.json",
+					"type": "registry:file",
+					"target": "data-table/locales/de.json"
+				},
+				{
+					"path": "./src/lib/components/data-table/locales/en.json",
+					"type": "registry:file",
+					"target": "data-table/locales/en.json"
+				},
+				{
+					"path": "./src/lib/components/data-table/locales/fr.json",
+					"type": "registry:file",
+					"target": "data-table/locales/fr.json"
+				},
+				{
+					"path": "./src/lib/components/data-table/locales/nl.json",
+					"type": "registry:file",
+					"target": "data-table/locales/nl.json"
+				},
+				{
+					"path": "./src/lib/components/data-table/locales/zh-CN.json",
+					"type": "registry:file",
+					"target": "data-table/locales/zh-CN.json"
+				},
+				{
+					"path": "./src/lib/components/data-table/locales/zh-TW.json",
+					"type": "registry:file",
+					"target": "data-table/locales/zh-TW.json"
+				},
+				{
+					"path": "./src/lib/components/ui/debounced-input/debounced-input.svelte",
+					"type": "registry:component",
+					"target": "ui/debounced-input/debounced-input.svelte"
+				},
+				{
+					"path": "./src/lib/components/ui/debounced-input/index.ts",
+					"type": "registry:file",
+					"target": "ui/debounced-input/index.ts"
+				},
+				{
+					"path": "./src/lib/hooks/index.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "./src/lib/hooks/use-data-table-filters.svelte.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "./src/lib/hooks/use-debounce-callback.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "./src/lib/hooks/use-unmount.ts",
+					"type": "registry:hook"
+				}
+			]
+		},
+		{
+			"name": "pagination",
+			"type": "registry:component",
+			"title": "Pagination",
+			"description": "Number pagination for table views.",
+			"registryDependencies": ["pagination"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/pagination/pagination.svelte",
+					"type": "registry:component",
+					"target": "table/pagination/pagination.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/pagination/index.ts",
+					"type": "registry:file",
+					"target": "table/pagination/index.ts"
+				}
+			]
+		},
+		{
+			"name": "pagination-arrow",
+			"type": "registry:component",
+			"title": "Pagination Arrow",
+			"description": "Compact arrow pagination for table footers.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/pagination-arrow/pagination-arrow.svelte",
+					"type": "registry:component",
+					"target": "table/pagination-arrow/pagination-arrow.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/pagination-arrow/index.ts",
+					"type": "registry:file",
+					"target": "table/pagination-arrow/index.ts"
+				}
+			]
+		}
+	]
 }

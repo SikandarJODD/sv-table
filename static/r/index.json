@@ -19,5 +19,28 @@
 			"slider"
 		],
 		"relativeUrl": "filters.json"
+	},
+	{
+		"name": "pagination",
+		"title": "Pagination",
+		"type": "registry:component",
+		"description": "Number pagination for table views.",
+		"registryDependencies": [
+			"pagination"
+		],
+		"relativeUrl": "pagination.json"
+	},
+	{
+		"name": "pagination-arrow",
+		"title": "Pagination Arrow",
+		"type": "registry:component",
+		"description": "Compact arrow pagination for table footers.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "pagination-arrow.json"
 	}
 ]

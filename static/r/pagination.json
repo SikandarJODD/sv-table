@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "pagination",
+	"title": "Pagination",
+	"type": "registry:component",
+	"description": "Number pagination for table views.",
+	"registryDependencies": [
+		"pagination"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Pagination from \"$lib/components/ui/pagination\";\n\n\tlet {\n\t\tcurrentPage, // 1-based current page number\n\t\tpageCount, // total number of pages\n\t\tcanPreviousPage, // whether \"Prev\" should be enabled\n\t\tcanNextPage, // whether \"Next\" should be enabled\n\t\tonPrevious, // called when \"Prev\" is clicked\n\t\tonNext, // called when \"Next\" is clicked\n\t\tonGoToPage, // called with a 1-based page number when a number is clicked\n\t\tsiblingCount = 1 // how many page numbers to show beside the current page\n\t}: {\n\t\tcurrentPage: number;\n\t\tpageCount: number;\n\t\tcanPreviousPage: boolean;\n\t\tcanNextPage: boolean;\n\t\tonPrevious: () => void;\n\t\tonNext: () => void;\n\t\tonGoToPage: (page: number) => void;\n\t\tsiblingCount?: number;\n\t} = $props();\n\n\tfunction handlePageChange(page: number) {\n\t\tif (page === currentPage) return;\n\n\t\tif (page === currentPage - 1 && canPreviousPage) {\n\t\t\tonPrevious();\n\t\t\treturn;\n\t\t}\n\n\t\tif (page === currentPage + 1 && canNextPage) {\n\t\t\tonNext();\n\t\t\treturn;\n\t\t}\n\n\t\tonGoToPage(page);\n\t}\n</script>\n\n{#if pageCount > 1}\n\t<Pagination.Root\n\t\tcount={pageCount}\n\t\tperPage={1}\n\t\tpage={currentPage}\n\t\t{siblingCount}\n\t\tonPageChange={handlePageChange}\n\t\taria-label=\"Table pagination\"\n\t\tclass=\"mx-0 w-auto\"\n\t>\n\t\t{#snippet children({ pages, currentPage: activePage })}\n\t\t\t<Pagination.Content>\n\t\t\t\t<Pagination.Item>\n\t\t\t\t\t<Pagination.Previous disabled={!canPreviousPage} />\n\t\t\t\t</Pagination.Item>\n\n\t\t\t\t{#each pages as page}\n\t\t\t\t\t{#if page.type === \"ellipsis\"}\n\t\t\t\t\t\t<Pagination.Item>\n\t\t\t\t\t\t\t<Pagination.Ellipsis />\n\t\t\t\t\t\t</Pagination.Item>\n\t\t\t\t\t{:else}\n\t\t\t\t\t\t<Pagination.Item>\n\t\t\t\t\t\t\t<Pagination.Link\n\t\t\t\t\t\t\t\t{page}\n\t\t\t\t\t\t\t\tisActive={activePage === page.value}\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</Pagination.Item>\n\t\t\t\t\t{/if}\n\t\t\t\t{/each}\n\n\t\t\t\t<Pagination.Item>\n\t\t\t\t\t<Pagination.Next disabled={!canNextPage} />\n\t\t\t\t</Pagination.Item>\n\t\t\t</Pagination.Content>\n\t\t{/snippet}\n\t</Pagination.Root>\n{/if}\n",
+			"type": "registry:component",
+			"target": "table/pagination/pagination.svelte"
+		},
+		{
+			"content": "import Pagination from \"./pagination.svelte\";\r\nexport default Pagination;",
+			"type": "registry:file",
+			"target": "table/pagination/index.ts"
+		}
+	]
+}

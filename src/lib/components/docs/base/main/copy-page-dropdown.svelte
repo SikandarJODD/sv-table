@@ -44,11 +44,9 @@
 	);
 
 	let nav = $derived.by(() => {
-		const pathname = page.url.pathname;
-		const currentId = pathname.split("/").filter(Boolean).at(-1) ?? "";
 		return {
 			isSupported: true,
-			...getPrevNext(currentId || "docs")
+			...getPrevNext(page.url.pathname || "docs")
 		};
 	});
 

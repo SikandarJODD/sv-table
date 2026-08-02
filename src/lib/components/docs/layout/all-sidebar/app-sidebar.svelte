@@ -101,8 +101,7 @@
 									isActive={page.url.pathname === item.url}
 									class={cn(
 										"flex w-full scroll-mt-10 scroll-mb-40 justify-between",
-										item.url === "/components/filters" &&
-											"pr-1"
+										item.badge && "pr-1"
 									)}
 								>
 									{#snippet child({ props })}
