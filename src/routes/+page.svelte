@@ -9,12 +9,6 @@
 	const title = seo_config.title;
 	const description = seo_config.description;
 	const canonical = $derived(page.url.origin);
-	const images = [
-		{
-			url: `${seo_config.url}/og.png`,
-			alt: seo_config.site_name
-		}
-	];
 </script>
 
 <MetaTags
@@ -26,7 +20,6 @@
 		url: canonical,
 		title,
 		description,
-		images,
 		siteName: seo_config.site_name
 	}}
 	twitter={{
@@ -34,8 +27,7 @@
 		site: "@Sikandar_Bhide",
 		cardType: "summary_large_image",
 		title,
-		description,
-		imageAlt: images[0]?.alt ?? seo_config.site_name
+		description
 	}}
 />
 

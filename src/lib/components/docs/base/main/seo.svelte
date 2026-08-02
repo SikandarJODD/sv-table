@@ -17,12 +17,7 @@
 		title,
 		description,
 		keywords,
-		images = [
-			{
-				url: seo_config.url + "/og.png",
-				alt: seo_config.site_name,
-			},
-		],
+		images,
 	}: Props = $props();
 
 	let canonical = $derived(page.url.origin);
@@ -57,7 +52,7 @@
 		url: canonical,
 		title: title,
 		description: description,
-		images: images,
+		...(images?.length ? { images } : {}),
 		siteName: seo_config.site_name,
 	}}
 	twitter={{
@@ -66,7 +61,11 @@
 		cardType: "summary_large_image",
 		title: title,
 		description: description,
-		// image: images && images[0] ? images[0].url : "https://sv-animations.vercel.app/svelte.svg",
-		imageAlt: images && images[0] ? images[0].alt : seo_config.site_name,
+		...(images?.[0]
+			? {
+					image: images[0].url,
+					imageAlt: images[0].alt ?? seo_config.site_name,
+				}
+			: {}),
 	}}
 />
