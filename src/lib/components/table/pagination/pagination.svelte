@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as Pagination from "$lib/components/ui/pagination";
+
 	let {
 		currentPage, // 1-based current page number
 		pageCount, // total number of pages
@@ -19,98 +21,58 @@
 		siblingCount?: number;
 	} = $props();
 
-	// ----------------------------------------------------------
-	// Build the visible page-number list with ellipsis
-	// Returns e.g. [1, 2, 3, '...', 7, 8, 9]
-	// ----------------------------------------------------------
-	function getPageNumbers(
-		current: number,
-		total: number,
-		siblings: number
-	): (number | "...")[] {
-		const totalNumbersVisible = siblings * 2 + 5;
+	function handlePageChange(page: number) {
+		if (page === currentPage) return;
 
-		// Small enough to show every page — no collapsing needed
-		if (total <= totalNumbersVisible) {
-			return Array.from({ length: total }, (_, i) => i + 1);
+		if (page === currentPage - 1 && canPreviousPage) {
+			onPrevious();
+			return;
 		}
 
-		const leftSibling = Math.max(current - siblings, 1);
-		const rightSibling = Math.min(current + siblings, total);
-
-		const showLeftEllipsis = leftSibling > 2;
-		const showRightEllipsis = rightSibling < total - 1;
-
-		// Near the start: "1 2 3 4 ... 10"
-		if (!showLeftEllipsis && showRightEllipsis) {
-			const leftRange = Array.from(
-				{ length: 3 + siblings * 2 },
-				(_, i) => i + 1
-			);
-			return [...leftRange, "...", total];
+		if (page === currentPage + 1 && canNextPage) {
+			onNext();
+			return;
 		}
 
-		// Near the end: "1 ... 7 8 9 10"
-		if (showLeftEllipsis && !showRightEllipsis) {
-			const rightCount = 3 + siblings * 2;
-			const rightRange = Array.from(
-				{ length: rightCount },
-				(_, i) => total - rightCount + i + 1
-			);
-			return [1, "...", ...rightRange];
-		}
-
-		// Somewhere in the middle: "1 ... 4 5 6 ... 10"
-		const middleRange = Array.from(
-			{ length: rightSibling - leftSibling + 1 },
-			(_, i) => leftSibling + i
-		);
-		return [1, "...", ...middleRange, "...", total];
+		onGoToPage(page);
 	}
-
-	let pageNumbers = $derived(
-		getPageNumbers(currentPage, pageCount, siblingCount)
-	);
 </script>
 
 {#if pageCount > 1}
-	<nav class="flex items-center gap-1" aria-label="Table pagination">
-		<button
-			type="button"
-			class="rounded border px-2 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-40"
-			disabled={!canPreviousPage}
-			onclick={onPrevious}
-		>
-			Prev
-		</button>
+	<Pagination.Root
+		count={pageCount}
+		perPage={1}
+		page={currentPage}
+		{siblingCount}
+		onPageChange={handlePageChange}
+		aria-label="Table pagination"
+		class="mx-0 w-auto"
+	>
+		{#snippet children({ pages, currentPage: activePage })}
+			<Pagination.Content>
+				<Pagination.Item>
+					<Pagination.Previous disabled={!canPreviousPage} />
+				</Pagination.Item>
 
-		{#each pageNumbers as page, i (page === "..." ? `dots-${i}` : page)}
-			{#if page === "..."}
-				<span class="px-2 text-sm text-muted-foreground select-none"
-					>...</span
-				>
-			{:else}
-				<button
-					type="button"
-					class="rounded border px-2.5 py-1 text-sm
-                 {page === currentPage
-						? 'border-primary bg-primary text-primary-foreground'
-						: 'hover:bg-muted'}"
-					aria-current={page === currentPage ? "page" : undefined}
-					onclick={() => onGoToPage(page)}
-				>
-					{page}
-				</button>
-			{/if}
-		{/each}
+				{#each pages as page}
+					{#if page.type === "ellipsis"}
+						<Pagination.Item>
+							<Pagination.Ellipsis />
+						</Pagination.Item>
+					{:else}
+						<Pagination.Item>
+							<Pagination.Link
+								{page}
+								isActive={activePage === page.value}
+							/>
+						</Pagination.Item>
+					{/if}
+				{/each}
 
-		<button
-			type="button"
-			class="rounded border px-2 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-40"
-			disabled={!canNextPage}
-			onclick={onNext}
-		>
-			Next
-		</button>
-	</nav>
+				<Pagination.Item>
+					<Pagination.Next disabled={!canNextPage} />
+				</Pagination.Item>
+			</Pagination.Content>
+		{/snippet}
+	</Pagination.Root>
 {/if}

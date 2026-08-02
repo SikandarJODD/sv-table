@@ -166,11 +166,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lucide/svelte@1.27.0':
-    resolution: {integrity: sha512-qzNBHdqy/MKp2qxuy/DcYELuep6h19fjo+4ech8fZsS4GtZeBtg5jgCTRQvLvwhppt0mhRN6qt8Nt8rPb/J4Ag==}
-    peerDependencies:
-      svelte: ^5
-
   '@lucide/svelte@1.28.0':
     resolution: {integrity: sha512-C1Ge84KW2z4q44/WDIEo/2KC2jby5u6mSlta7q+p6g7u0ld8sC/w1fMBiSswF+4bxAl9jlzzaVTpp79qqkiy5g==}
     peerDependencies:
@@ -1194,10 +1189,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/svelte@1.27.0(svelte@5.55.5)':
-    dependencies:
-      svelte: 5.55.5
-
   '@lucide/svelte@1.28.0(svelte@5.55.5)':
     dependencies:
       svelte: 5.55.5
@@ -1860,7 +1851,7 @@ snapshots:
 
   sv-agentation@0.4.0(react@19.2.6)(svelte@5.55.5):
     dependencies:
-      '@lucide/svelte': 1.27.0(svelte@5.55.5)
+      '@lucide/svelte': 1.28.0(svelte@5.55.5)
       element-source: 0.0.5(react@19.2.6)
       svelte: 5.55.5
     transitivePeerDependencies:

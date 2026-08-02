@@ -4,18 +4,14 @@
 		createTable,
 		tableFeatures,
 		rowPaginationFeature,
-		createPaginatedRowModel,
-		FlexRender
+		createPaginatedRowModel
 	} from "@tanstack/svelte-table";
 	import type { ColumnDef } from "@tanstack/svelte-table";
+	import * as Table from "$lib/components/ui/table";
 	import Pagination from "$table/pagination";
+	import { makePeople, type Person } from "$lib/seed/seed";
 
-	type Person = { firstName: string; age: number };
-
-	const data: Person[] = Array.from({ length: 87 }, (_, i) => ({
-		firstName: `Person ${i + 1}`,
-		age: 20 + (i % 40)
-	}));
+	const data: Person[] = makePeople(300);
 
 	// Register the pagination feature + its client-side row model
 	const features = tableFeatures({
@@ -24,7 +20,11 @@
 	});
 
 	const columns: ColumnDef<typeof features, Person>[] = [
-		{ accessorKey: "firstName", header: "Name" },
+		{ accessorKey: "firstName", header: "First Name" },
+		{ accessorKey: "lastName", header: "Last Name" },
+		{ accessorKey: "email", header: "Email" },
+		{ accessorKey: "department", header: "Department" },
+		{ accessorKey: "country", header: "Country" },
 		{ accessorKey: "age", header: "Age" }
 	];
 
@@ -39,19 +39,48 @@
 		}
 	});
 
-	// Derived reads from the table — this is the ONLY place in the
-	// page that talks to TanStack Table's pagination API. Everything
-	// below just receives plain values/callbacks.
 	let pagination = $derived(table.atoms.pagination.get());
 </script>
 
-<div></div>
-<Pagination
-	currentPage={pagination.pageIndex + 1}
-	pageCount={table.getPageCount()}
-	canPreviousPage={table.getCanPreviousPage()}
-	canNextPage={table.getCanNextPage()}
-	onPrevious={() => table.previousPage()}
-	onNext={() => table.nextPage()}
-	onGoToPage={(page) => table.setPageIndex(page - 1)}
-/>
+<div class="space-y-4 p-6">
+	<div class="overflow-hidden rounded-sm border">
+		<Table.Root>
+			<Table.Header>
+				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+					<Table.Row>
+						{#each headerGroup.headers as header (header.id)}
+							<Table.Head>
+								{#if header.isPlaceholder}
+									&nbsp;
+								{:else}
+									{header.column.columnDef.header ??
+										header.column.id}
+								{/if}
+							</Table.Head>
+						{/each}
+					</Table.Row>
+				{/each}
+			</Table.Header>
+
+			<Table.Body>
+				{#each table.getRowModel().rows as row (row.id)}
+					<Table.Row>
+						{#each row.getAllCells() as cell (cell.id)}
+							<Table.Cell>{cell.getValue()}</Table.Cell>
+						{/each}
+					</Table.Row>
+				{/each}
+			</Table.Body>
+		</Table.Root>
+	</div>
+
+	<Pagination
+		currentPage={pagination.pageIndex + 1}
+		pageCount={table.getPageCount()}
+		canPreviousPage={table.getCanPreviousPage()}
+		canNextPage={table.getCanNextPage()}
+		onPrevious={() => table.previousPage()}
+		onNext={() => table.nextPage()}
+		onGoToPage={(page) => table.setPageIndex(page - 1)}
+	/>
+</div>
