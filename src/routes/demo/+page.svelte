@@ -9,6 +9,7 @@
 	import type { ColumnDef } from "@tanstack/svelte-table";
 	import * as Table from "$lib/components/ui/table";
 	import Pagination from "$table/pagination";
+	import PaginationArrow from "$table/pagination-arrow";
 	import { makePeople, type Person } from "$lib/seed/seed";
 
 	const data: Person[] = makePeople(300);
@@ -73,14 +74,26 @@
 			</Table.Body>
 		</Table.Root>
 	</div>
-
-	<Pagination
-		currentPage={pagination.pageIndex + 1}
-		pageCount={table.getPageCount()}
-		canPreviousPage={table.getCanPreviousPage()}
-		canNextPage={table.getCanNextPage()}
-		onPrevious={() => table.previousPage()}
-		onNext={() => table.nextPage()}
-		onGoToPage={(page) => table.setPageIndex(page - 1)}
-	/>
+	<div class="flex items-center justify-between">
+		<PaginationArrow
+			currentPage={pagination.pageIndex + 1}
+			pageCount={table.getPageCount()}
+			canPreviousPage={table.getCanPreviousPage()}
+			canNextPage={table.getCanNextPage()}
+			onPrevious={() => table.previousPage()}
+			onNext={() => table.nextPage()}
+			onGoToPage={(page) => table.setPageIndex(page - 1)}
+			pageSize={pagination.pageSize}
+			totalItems={data.length}
+		/>
+		<Pagination
+			currentPage={pagination.pageIndex + 1}
+			pageCount={table.getPageCount()}
+			canPreviousPage={table.getCanPreviousPage()}
+			canNextPage={table.getCanNextPage()}
+			onPrevious={() => table.previousPage()}
+			onNext={() => table.nextPage()}
+			onGoToPage={(page) => table.setPageIndex(page - 1)}
+		/>
+	</div>
 </div>
