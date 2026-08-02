@@ -4,7 +4,7 @@
 </script>
 
 <section
-	class="mx-auto flex min-h-[calc(100vh-3.5rem)] w-full max-w-6xl items-center overflow-hidden px-4 py-20 md:px-6 md:py-24"
+	class="mx-auto flex min-h-[calc(100vh-6.5rem)] w-full max-w-6xl items-center overflow-hidden px-4 py-20 md:px-6 md:py-24"
 >
 	<div aria-hidden="true" class="absolute inset-0 size-full overflow-hidden">
 		<div

@@ -10,7 +10,7 @@
 		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
 	"[svelte]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "svelte.svelte-vscode"
 	},
 	"[tailwindcss]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
