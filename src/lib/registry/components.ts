@@ -24,6 +24,13 @@ export interface QuickExample {
 
 let components: Component[] = [
 	{
+		id: "debounce-input",
+		name: "Debounce Input",
+		href: "/components/debounce-input",
+		desc: "A search input that delays value changes until typing pauses.",
+		badge: "New"
+	},
+	{
 		id: "filters",
 		name: "Data Table Filters",
 		href: "/components/filters",

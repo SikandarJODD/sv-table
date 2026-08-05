@@ -1,0 +1,29 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "debounce-input",
+	"title": "Debounce Input",
+	"type": "registry:component",
+	"description": "A search input that delays value changes until typing pauses.",
+	"dependencies": [
+		"@lucide/svelte",
+		"runed"
+	],
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0"
+	],
+	"registryDependencies": [
+		"input-group"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport SearchIcon from \"@lucide/svelte/icons/search\";\n\timport XIcon from \"@lucide/svelte/icons/x\";\n\timport { Debounced, watch } from \"runed\";\n\n\timport * as InputGroup from \"$lib/components/ui/input-group/index.js\";\n\n\ttype Props = {\n\t\tvalue?: string;\n\t\tonChange?: (value: string) => void;\n\t\tclass?: string;\n\t\tplaceholder?: string;\n\t\tdebounce?: number;\n\t};\n\n\tlet {\n\t\tvalue = $bindable(\"\"),\n\t\tonChange,\n\t\tclass: className,\n\t\tplaceholder = \"Search...\",\n\t\tdebounce = 500\n\t}: Props = $props();\n\n\tlet inputValue = $state(value);\n\tconst debouncedValue = new Debounced(\n\t\t() => inputValue,\n\t\t() => debounce\n\t);\n\n\twatch(\n\t\t() => value,\n\t\t(nextValue) => {\n\t\t\tif (nextValue === inputValue) return;\n\n\t\t\tinputValue = nextValue;\n\t\t\tdebouncedValue.setImmediately(nextValue);\n\t\t},\n\t\t{ lazy: true }\n\t);\n\n\twatch(\n\t\t() => debouncedValue.current,\n\t\t(nextValue) => {\n\t\t\tif (nextValue === value) return;\n\n\t\t\tvalue = nextValue;\n\t\t\tonChange?.(nextValue);\n\t\t},\n\t\t{ lazy: true }\n\t);\n\n\tfunction clearValue() {\n\t\tinputValue = \"\";\n\t}\n</script>\n\n<InputGroup.Root class={className}>\n\t<InputGroup.Addon align=\"inline-start\">\n\t\t<SearchIcon aria-hidden=\"true\" />\n\t</InputGroup.Addon>\n\n\t<InputGroup.Input bind:value={inputValue} {placeholder} />\n\n\t{#if inputValue}\n\t\t<InputGroup.Addon align=\"inline-end\">\n\t\t\t<InputGroup.Button aria-label=\"Clear search\" onclick={clearValue}>\n\t\t\t\t<XIcon aria-hidden=\"true\" />\n\t\t\t</InputGroup.Button>\n\t\t</InputGroup.Addon>\n\t{/if}\n</InputGroup.Root>\n",
+			"type": "registry:component",
+			"target": "table/debounce-input/debounce-input.svelte"
+		},
+		{
+			"content": "import DebounceInput from \"./debounce-input.svelte\";\n\nexport default DebounceInput;\n",
+			"type": "registry:file",
+			"target": "table/debounce-input/index.ts"
+		}
+	]
+}

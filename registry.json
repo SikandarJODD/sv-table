@@ -4,6 +4,26 @@
 	"homepage": "https://sv-table.vercel.app",
 	"items": [
 		{
+			"name": "debounce-input",
+			"type": "registry:component",
+			"title": "Debounce Input",
+			"description": "A search input that delays value changes until typing pauses.",
+			"dependencies": ["@lucide/svelte", "runed"],
+			"registryDependencies": ["input-group"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/debounce-input/debounce-input.svelte",
+					"type": "registry:component",
+					"target": "table/debounce-input/debounce-input.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/debounce-input/index.ts",
+					"type": "registry:file",
+					"target": "table/debounce-input/index.ts"
+				}
+			]
+		},
+		{
 			"name": "filters",
 			"type": "registry:block",
 			"title": "Data Table Filters",

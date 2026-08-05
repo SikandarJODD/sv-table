@@ -1,5 +1,19 @@
 [
 	{
+		"name": "debounce-input",
+		"title": "Debounce Input",
+		"type": "registry:component",
+		"description": "A search input that delays value changes until typing pauses.",
+		"dependencies": [
+			"@lucide/svelte",
+			"runed"
+		],
+		"registryDependencies": [
+			"input-group"
+		],
+		"relativeUrl": "debounce-input.json"
+	},
+	{
 		"name": "filters",
 		"title": "Data Table Filters",
 		"type": "registry:block",
