@@ -21,7 +21,8 @@
 	const previewCode: CodeBlock = {
 		name: "row-checkbox-preview.svelte",
 		lang: "svelte",
-		code: RowCheckboxPreviewCode
+		code: RowCheckboxPreviewCode,
+		highlight: [27, [29, 39], 99]
 	};
 
 	const usageCode: CodeBlock = {
@@ -51,7 +52,8 @@ export const columns: ColumnDef<typeof features, Project>[] = [
       })
   },
   { accessorKey: "name", header: "Project" }
-];`
+];`,
+		highlight: [11, [13, 23]]
 	};
 
 	const renderCode: CodeBlock = {
@@ -67,7 +69,8 @@ ${"</" + "script>"}
       <Table.Cell><FlexRender {cell} /></Table.Cell>
     {/each}
   </Table.Row>
-{/each}`
+{/each}`,
+		highlight: [8]
 	};
 
 	const folderStructure = [

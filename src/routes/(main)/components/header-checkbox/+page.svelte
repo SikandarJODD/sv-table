@@ -21,7 +21,8 @@
 	const previewCode: CodeBlock = {
 		name: "header-checkbox-preview.svelte",
 		lang: "svelte",
-		code: HeaderCheckboxPreviewCode
+		code: HeaderCheckboxPreviewCode,
+		highlight: [28, [30, 43], 91]
 	};
 
 	const usageCode: CodeBlock = {
@@ -55,7 +56,8 @@ export const columns: ColumnDef<typeof features, Project>[] = [
     }
   },
   { accessorKey: "name", header: "Project" }
-];`
+];`,
+		highlight: [11, [13, 27]]
 	};
 
 	const renderCode: CodeBlock = {
@@ -69,7 +71,8 @@ ${"</" + "script>"}
   {#each table.getLeafHeaders() as header (header.id)}
     <Table.Head><FlexRender {header} /></Table.Head>
   {/each}
-</Table.Header>`
+</Table.Header>`,
+		highlight: [7]
 	};
 
 	const folderStructure = [
