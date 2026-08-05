@@ -8,6 +8,7 @@
 	} from "@tanstack/svelte-table";
 	import type { ColumnDef } from "@tanstack/svelte-table";
 	import * as Table from "$lib/components/ui/table";
+	import PageSizeSelector from "$table/page-size-selector";
 	import Pagination from "$table/pagination";
 	import PaginationArrow from "$table/pagination-arrow";
 	import { makePeople, type Person } from "$lib/seed/seed";
@@ -74,26 +75,30 @@
 			</Table.Body>
 		</Table.Root>
 	</div>
-	<div class="flex items-center justify-between">
-		<PaginationArrow
-			currentPage={pagination.pageIndex + 1}
-			pageCount={table.getPageCount()}
-			canPreviousPage={table.getCanPreviousPage()}
-			canNextPage={table.getCanNextPage()}
-			onPrevious={() => table.previousPage()}
-			onNext={() => table.nextPage()}
-			onGoToPage={(page) => table.setPageIndex(page - 1)}
-			pageSize={pagination.pageSize}
-			totalItems={data.length}
-		/>
-		<Pagination
-			currentPage={pagination.pageIndex + 1}
-			pageCount={table.getPageCount()}
-			canPreviousPage={table.getCanPreviousPage()}
-			canNextPage={table.getCanNextPage()}
-			onPrevious={() => table.previousPage()}
-			onNext={() => table.nextPage()}
-			onGoToPage={(page) => table.setPageIndex(page - 1)}
-		/>
+	<div class="flex flex-wrap items-center justify-between gap-4">
+		<PageSizeSelector {table} />
+
+		<div class="flex flex-wrap items-center gap-4">
+			<PaginationArrow
+				currentPage={pagination.pageIndex + 1}
+				pageCount={table.getPageCount()}
+				canPreviousPage={table.getCanPreviousPage()}
+				canNextPage={table.getCanNextPage()}
+				onPrevious={() => table.previousPage()}
+				onNext={() => table.nextPage()}
+				onGoToPage={(page) => table.setPageIndex(page - 1)}
+				pageSize={pagination.pageSize}
+				totalItems={data.length}
+			/>
+			<Pagination
+				currentPage={pagination.pageIndex + 1}
+				pageCount={table.getPageCount()}
+				canPreviousPage={table.getCanPreviousPage()}
+				canNextPage={table.getCanNextPage()}
+				onPrevious={() => table.previousPage()}
+				onNext={() => table.nextPage()}
+				onGoToPage={(page) => table.setPageIndex(page - 1)}
+			/>
+		</div>
 	</div>
 </div>

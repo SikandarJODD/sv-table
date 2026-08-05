@@ -11,7 +11,15 @@
 		badge?: BadgeType;
 	};
 
-	// Build navigation from registry
+	const componentNavItems: NavItem[] = components.map(
+		({ name, href, badge }) => ({
+			title: name,
+			url: href,
+			badge
+		})
+	);
+
+	// Build navigation from the shared registry.
 	const data = {
 		navMain: [
 			{
@@ -31,11 +39,7 @@
 			{
 				title: "Components",
 				url: "#",
-				items: components.map((c) => ({
-					title: c.name,
-					url: c.href,
-					badge: c.badge
-				})) as NavItem[]
+				items: componentNavItems
 			},
 			{
 				title: "Quick Examples",

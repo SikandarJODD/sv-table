@@ -36,6 +36,13 @@ let components: Component[] = [
 		href: "/components/pagination",
 		desc: "Minimal docs for number pagination and arrow pagination table components.",
 		badge: "New"
+	},
+	{
+		id: "page-size-selector",
+		name: "Page Size Selector",
+		href: "/components/page-size-selector",
+		desc: "Change the number of rows displayed on each table page.",
+		badge: "New"
 	}
 ];
 
