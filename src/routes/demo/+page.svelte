@@ -76,7 +76,10 @@
 		</Table.Root>
 	</div>
 	<div class="flex flex-wrap items-center justify-between gap-4">
-		<PageSizeSelector {table} />
+		<PageSizeSelector
+			pageSize={pagination.pageSize}
+			setPageSize={(pageSize) => table.setPageSize(pageSize)}
+		/>
 
 		<div class="flex flex-wrap items-center gap-4">
 			<PaginationArrow
