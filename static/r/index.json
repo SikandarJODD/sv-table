@@ -20,6 +20,19 @@
 		"relativeUrl": "header-checkbox.json"
 	},
 	{
+		"name": "bulk-actions-bar",
+		"title": "Bulk Actions Bar",
+		"type": "registry:component",
+		"description": "A floating action bar for performing custom actions on selected rows.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "bulk-actions-bar.json"
+	},
+	{
 		"name": "debounce-input",
 		"title": "Debounce Input",
 		"type": "registry:component",

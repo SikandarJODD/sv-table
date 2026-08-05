@@ -44,7 +44,7 @@
 - [ ] Single row select (radio-style)
 - [ ] Multi-row select with checkboxes
 - [ ] Select-all header checkbox (indeterminate state)
-- [ ] Bulk action bar for selected rows (delete/export/tag)
+- [+] Bulk action bar for selected rows (delete/export/tag)
 - [ ] Row selection persisted across pagination
 
 ## 5. Column Features

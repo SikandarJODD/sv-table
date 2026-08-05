@@ -42,6 +42,26 @@
 			]
 		},
 		{
+			"name": "bulk-actions-bar",
+			"type": "registry:component",
+			"title": "Bulk Actions Bar",
+			"description": "A floating action bar for performing custom actions on selected rows.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/bulk-actions-bar/bulk-actions-bar.svelte",
+					"type": "registry:component",
+					"target": "table/bulk-actions-bar/bulk-actions-bar.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/bulk-actions-bar/index.ts",
+					"type": "registry:file",
+					"target": "table/bulk-actions-bar/index.ts"
+				}
+			]
+		},
+		{
 			"name": "debounce-input",
 			"type": "registry:component",
 			"title": "Debounce Input",

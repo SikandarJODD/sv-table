@@ -38,6 +38,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "bulk-actions-bar",
+		name: "Bulk Actions Bar",
+		href: "/components/bulk-actions-bar",
+		desc: "A floating action bar for performing custom actions on selected rows.",
+		badge: "New"
+	},
+	{
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",

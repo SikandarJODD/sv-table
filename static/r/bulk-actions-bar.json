@@ -1,0 +1,28 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "bulk-actions-bar",
+	"title": "Bulk Actions Bar",
+	"type": "registry:component",
+	"description": "A floating action bar for performing custom actions on selected rows.",
+	"dependencies": [
+		"@lucide/svelte"
+	],
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport XIcon from \"@lucide/svelte/icons/x\";\n\timport { prefersReducedMotion } from \"svelte/motion\";\n\timport { fly } from \"svelte/transition\";\n\timport type { Snippet } from \"svelte\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\timport { Button } from \"$lib/components/ui/button\";\n\timport { cn } from \"$UTILS$.js\";\n\n\ttype Props = Omit<HTMLAttributes<HTMLDivElement>, \"children\"> & {\n\t\tselectedCount: number;\n\t\tonClear: () => void;\n\t\tchildren: Snippet;\n\t\tsummary?: Snippet<[selectedCount: number]>;\n\t\tclearLabel?: string;\n\t};\n\n\tlet {\n\t\tselectedCount,\n\t\tonClear,\n\t\tchildren,\n\t\tsummary,\n\t\tclearLabel = \"Clear selection\",\n\t\t\"aria-label\": ariaLabel = \"Bulk actions\",\n\t\tclass: className,\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#if selectedCount > 0}\n\t<div\n\t\tclass=\"pointer-events-none fixed inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex justify-center px-4\"\n\t\ttransition:fly={{\n\t\t\ty: prefersReducedMotion.current ? 0 : 24,\n\t\t\tduration: prefersReducedMotion.current ? 0 : 200\n\t\t}}\n\t>\n\t\t<div\n\t\t\t{...restProps}\n\t\t\tdata-slot=\"bulk-actions-bar\"\n\t\t\trole=\"region\"\n\t\t\taria-label={ariaLabel}\n\t\t\tclass={cn(\n\t\t\t\t\"pointer-events-auto flex max-w-full items-center gap-2 rounded-xl border bg-background/95 p-2 text-foreground shadow-lg ring-1 ring-foreground/5 backdrop-blur supports-[backdrop-filter]:bg-background/85\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div\n\t\t\t\trole=\"status\"\n\t\t\t\taria-live=\"polite\"\n\t\t\t\tclass=\"shrink-0 px-1 text-sm font-medium whitespace-nowrap\"\n\t\t\t>\n\t\t\t\t{#if summary}\n\t\t\t\t\t{@render summary(selectedCount)}\n\t\t\t\t{:else}\n\t\t\t\t\t{selectedCount}\n\t\t\t\t\t{selectedCount === 1 ? \"item\" : \"items\"} selected\n\t\t\t\t{/if}\n\t\t\t</div>\n\n\t\t\t<div aria-hidden=\"true\" class=\"h-5 w-px shrink-0 bg-border\"></div>\n\n\t\t\t<div class=\"flex min-w-0 items-center gap-1 overflow-x-auto\">\n\t\t\t\t{@render children()}\n\t\t\t</div>\n\n\t\t\t<Button\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tsize=\"icon-sm\"\n\t\t\t\tonclick={onClear}\n\t\t\t\taria-label={clearLabel}\n\t\t\t\ttitle={clearLabel}\n\t\t\t\tclass=\"shrink-0\"\n\t\t\t>\n\t\t\t\t<XIcon />\n\t\t\t</Button>\n\t\t</div>\n\t</div>\n{/if}\n",
+			"type": "registry:component",
+			"target": "table/bulk-actions-bar/bulk-actions-bar.svelte"
+		},
+		{
+			"content": "import BulkActionsBar from \"./bulk-actions-bar.svelte\";\n\nexport default BulkActionsBar;\n",
+			"type": "registry:file",
+			"target": "table/bulk-actions-bar/index.ts"
+		}
+	]
+}
