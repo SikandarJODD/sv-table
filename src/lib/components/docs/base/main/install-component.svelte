@@ -42,12 +42,19 @@
 		jsrepoID = ""
 	}: InstallComponentProps = $props();
 
-	let activeTab = $state("cli");
+	type ActiveTab = "cli" | "manual";
+	// | "jsrepo";
+
+	function isActiveTab(value: string): value is ActiveTab {
+		return value === "cli" || value === "manual";
+	}
+
+	let activeTab = $state<ActiveTab>("cli");
 	let agent = new PersistedState<Agent>("user-package-manager", "pnpm");
 
 	let layout = createLayoutMotion();
 	let updateActiveTab = layout.update.with((tab: string) => {
-		if (tab === activeTab) return STOP_UPDATE;
+		if (!isActiveTab(tab) || tab === activeTab) return STOP_UPDATE;
 		activeTab = tab;
 	});
 
@@ -99,7 +106,7 @@
 					</Tabs.Trigger>
 				</layout.div>
 				<layout.div>
-					<Tabs.Trigger
+					<!-- <Tabs.Trigger
 						value="jsrepo"
 						class="relative border-none bg-transparent! px-4 py-1.5 shadow-none! after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 hover:text-amber-600 dark:hover:text-amber-300 data-active:text-amber-600 dark:data-active:text-amber-300"
 					>
@@ -111,7 +118,7 @@
 								transition={{ duration: 0.2, type: "tween" }}
 							></layout.span>
 						{/if}
-					</Tabs.Trigger>
+					</Tabs.Trigger> -->
 				</layout.div>
 			</Tabs.List>
 		</MotionConfig>
@@ -154,7 +161,7 @@
 						</p>
 						<div class="space-y-4">
 							{#if Array.isArray(codeBlocks)}
-								{#each codeBlocks as codeBlock}
+								{#each codeBlocks as codeBlock (codeBlock.name)}
 									<SingleFile code={codeBlock} />
 								{/each}
 							{:else}
