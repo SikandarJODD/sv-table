@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
 	import Toc from "$lib/components/docs/base/toc/toc.svelte";
 	import DocsNavigation from "$lib/components/docs/layout/navigation/docs-navigation.svelte";
@@ -12,15 +13,8 @@
 
 	let toc = new UseToc();
 
-	let pageId = $derived.by(() => {
-		const path = page.url.pathname;
-		const parts = path.split("/");
-		return parts[parts.length - 1] || "";
-	});
-
 	let navigation = $derived.by(() => {
-		let id = pageId || "docs";
-		let { prev, next } = getPrevNext(id);
+		let { prev, next } = getPrevNext(page.url.pathname || "/docs");
 		return {
 			previous: prev
 				? { title: prev.name, href: prev.href, desc: prev.desc }
@@ -30,7 +24,40 @@
 				: null
 		};
 	});
+
+	function isTypingTarget(target: EventTarget | null) {
+		if (!(target instanceof HTMLElement)) return false;
+		if (target.isContentEditable) return true;
+
+		const interactiveSelector =
+			"input, textarea, select, [contenteditable='true']";
+		return target.closest(interactiveSelector) !== null;
+	}
+
+	function navigateTo(link: { href: string } | null) {
+		if (!link) return;
+		void goto(link.href);
+	}
+
+	function handleArrowNavigation(event: KeyboardEvent) {
+		if (event.defaultPrevented) return;
+		if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey)
+			return;
+		if (isTypingTarget(event.target)) return;
+
+		if (event.key === "ArrowLeft" && navigation.previous) {
+			event.preventDefault();
+			navigateTo(navigation.previous);
+		}
+
+		if (event.key === "ArrowRight" && navigation.next) {
+			event.preventDefault();
+			navigateTo(navigation.next);
+		}
+	}
 </script>
+
+<svelte:window onkeydown={handleArrowNavigation} />
 
 <Sidebar.Provider>
 	<AppSidebar />

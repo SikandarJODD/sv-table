@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
 	import { getPrevNext } from "$lib/registry/components";
 	import { Button } from "$lib/components/ui/button";
@@ -25,11 +24,6 @@
 		ExternalLink
 	} from "@lucide/svelte";
 
-	type NavLink = {
-		name: string;
-		href: string;
-	} | null;
-
 	interface Props {
 		componentName: string;
 		llmsTxtUrl: string;
@@ -49,40 +43,7 @@
 			...getPrevNext(page.url.pathname || "docs")
 		};
 	});
-
-	function isTypingTarget(target: EventTarget | null) {
-		if (!(target instanceof HTMLElement)) return false;
-		if (target.isContentEditable) return true;
-
-		const interactiveSelector =
-			"input, textarea, select, [contenteditable='true']";
-		return target.closest(interactiveSelector) !== null;
-	}
-
-	function navigateTo(link: NavLink) {
-		if (!link) return;
-		void goto(link.href);
-	}
-
-	function handleArrowNavigation(event: KeyboardEvent) {
-		if (!nav.isSupported || event.defaultPrevented) return;
-		if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey)
-			return;
-		if (isTypingTarget(event.target)) return;
-
-		if (event.key === "ArrowLeft" && nav.prev) {
-			event.preventDefault();
-			navigateTo(nav.prev);
-		}
-
-		if (event.key === "ArrowRight" && nav.next) {
-			event.preventDefault();
-			navigateTo(nav.next);
-		}
-	}
 </script>
-
-<svelte:window onkeydown={handleArrowNavigation} />
 
 <div class={["flex items-center gap-2", className].filter(Boolean).join(" ")}>
 	<ButtonGroup.Root>
