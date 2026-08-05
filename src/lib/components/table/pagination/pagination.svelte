@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Pagination from "$lib/components/ui/pagination";
+	import { cn } from "$lib/utils";
 
 	let {
 		currentPage, // 1-based current page number
@@ -9,7 +10,8 @@
 		onPrevious, // called when "Prev" is clicked
 		onNext, // called when "Next" is clicked
 		onGoToPage, // called with a 1-based page number when a number is clicked
-		siblingCount = 1 // how many page numbers to show beside the current page
+		siblingCount = 1, // how many page numbers to show beside the current page
+		class: className
 	}: {
 		currentPage: number;
 		pageCount: number;
@@ -19,6 +21,7 @@
 		onNext: () => void;
 		onGoToPage: (page: number) => void;
 		siblingCount?: number;
+		class?: string;
 	} = $props();
 
 	function handlePageChange(page: number) {
@@ -46,7 +49,7 @@
 		{siblingCount}
 		onPageChange={handlePageChange}
 		aria-label="Table pagination"
-		class="mx-0 w-auto"
+		class={cn("mx-0 w-auto", className)}
 	>
 		{#snippet children({ pages, currentPage: activePage })}
 			<Pagination.Content>

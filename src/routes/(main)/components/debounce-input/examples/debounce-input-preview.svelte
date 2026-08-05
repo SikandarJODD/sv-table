@@ -125,7 +125,7 @@
 			bind:value={search}
 			onChange={searchPeople}
 			placeholder="Search 1,000 people..."
-			class="w-full sm:max-w-sm"
+			class="w-full sm:max-w-60"
 		/>
 
 		<p class="text-sm whitespace-nowrap text-muted-foreground">

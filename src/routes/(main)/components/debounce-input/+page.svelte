@@ -110,11 +110,11 @@ ${"</" + "script>"}
 
 		<div class="max-w-2xl">
 			<Paragraph>{description}</Paragraph>
-			<Paragraph>
+			<!-- <Paragraph>
 				The <CodeSpan>value</CodeSpan> binding and
 				<CodeSpan>onChange</CodeSpan> callback update after the configured
 				delay.
-			</Paragraph>
+			</Paragraph> -->
 		</div>
 	</section>
 
@@ -153,6 +153,27 @@ ${"</" + "script>"}
 			debounced value with <CodeSpan>onChange</CodeSpan>.
 		</Paragraph>
 		<SingleFile code={usageCode} />
+	</section>
+
+	<section class="space-y-3">
+		<H2 id="notes">Notes</H2>
+		<Paragraph>
+			Set <CodeSpan>{"debounce={0}"}</CodeSpan> for instant updates.
+		</Paragraph>
+
+		<ul
+			class="ml-5 max-w-2xl list-disc space-y-2 text-sm leading-7 text-muted-foreground"
+		>
+			<li>
+				The visible input responds immediately while
+				<CodeSpan>value</CodeSpan> and <CodeSpan>onChange</CodeSpan> wait
+				for the debounce delay.
+			</li>
+			<li>
+				The clear button uses the same delay as typing, keeping search
+				and filter updates consistent.
+			</li>
+		</ul>
 	</section>
 
 	<section>

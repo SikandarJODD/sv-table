@@ -26,6 +26,14 @@ pnpm: pnpm dlx shadcn-svelte@latest add https://sv-table.vercel.app/r/debounce-i
 />
 ```
 
+## Notes
+
+> **Instant updates:** Set `debounce={0}` when you want effectively immediate updates without changing components.
+
+- The visible input responds immediately. Only `value` and `onChange` wait for the debounce delay.
+- The clear button uses the same delay as typing, keeping search and filter updates consistent.
+- External changes to `value` sync into the input immediately and do not call `onChange` again.
+
 ## Props
 
 ### `value`
