@@ -197,6 +197,26 @@
 			]
 		},
 		{
+			"name": "data-table-column-header",
+			"type": "registry:component",
+			"title": "Data Table Column Header",
+			"description": "A sortable table heading with explicit sort controls and column actions.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button", "dropdown-menu"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/data-table-column-header/data-table-column-header.svelte",
+					"type": "registry:component",
+					"target": "table/data-table-column-header/data-table-column-header.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/data-table-column-header/index.ts",
+					"type": "registry:file",
+					"target": "table/data-table-column-header/index.ts"
+				}
+			]
+		},
+		{
 			"name": "pagination",
 			"type": "registry:component",
 			"title": "Pagination",

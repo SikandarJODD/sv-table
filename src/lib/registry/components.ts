@@ -38,6 +38,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "data-table-column-header",
+		name: "Data Table Column Header",
+		href: "/components/data-table-column-header",
+		desc: "A sortable table heading with explicit sort controls and column actions.",
+		badge: "New"
+	},
+	{
 		id: "pagination",
 		name: "Pagination",
 		href: "/components/pagination",

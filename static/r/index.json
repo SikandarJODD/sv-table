@@ -35,6 +35,20 @@
 		"relativeUrl": "filters.json"
 	},
 	{
+		"name": "data-table-column-header",
+		"title": "Data Table Column Header",
+		"type": "registry:component",
+		"description": "A sortable table heading with explicit sort controls and column actions.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button",
+			"dropdown-menu"
+		],
+		"relativeUrl": "data-table-column-header.json"
+	},
+	{
 		"name": "pagination",
 		"title": "Pagination",
 		"type": "registry:component",
