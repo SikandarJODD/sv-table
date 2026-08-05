@@ -6,6 +6,7 @@
 	import type { CodeBlock } from "$lib/types/code";
 	import CopyButton from "../copy-button/copy-button.svelte";
 	import Button from "../button/button.svelte";
+	import ScrollFadeEffect from "../scroll-area/scroll-fade-effect.svelte";
 	import { untrack } from "svelte";
 
 	type Props = {
@@ -72,13 +73,15 @@
 				</Code.Root>
 			</Code.Overflow>
 		{:else}
-			<Code.Root
-				lang={code.lang || "svelte"}
-				class="max-h-[500px] w-full overflow-auto rounded-none border-none bg-background"
-				code={code.code}
-				highlight={code.highlight}
-				hideLines={code.hideLines ?? false}
-			></Code.Root>
+			<ScrollFadeEffect class="max-h-[600px]">
+				<Code.Root
+					lang={code.lang || "svelte"}
+					class="h-auto w-full overflow-visible rounded-none border-none bg-background"
+					code={code.code}
+					highlight={code.highlight}
+					hideLines={code.hideLines ?? false}
+				></Code.Root>
+			</ScrollFadeEffect>
 		{/if}
 	</Frame.Panel>
 </Frame.Root>

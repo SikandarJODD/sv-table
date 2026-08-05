@@ -62,7 +62,7 @@
 			>
 				<Code.Root
 					lang={code.lang || "svelte"}
-					class="w-full rounded-none border-none bg-secondary"
+					class="w-full rounded-none border-none "
 					code={code.code}
 					highlight={code.highlight}
 					hideLines={code.hideLines ?? false}
@@ -73,7 +73,7 @@
 		{:else}
 			<Code.Root
 				lang={code.lang || "svelte"}
-				class="max-h-[500px] w-full overflow-auto rounded-none border-none bg-background"
+				class="max-h-[500px] w-full overflow-auto rounded-none border-none"
 				code={code.code}
 				highlight={code.highlight}
 				hideLines={code.hideLines ?? false}
