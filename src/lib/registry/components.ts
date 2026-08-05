@@ -24,6 +24,20 @@ export interface QuickExample {
 
 let components: Component[] = [
 	{
+		id: "row-checkbox",
+		name: "Row Checkbox",
+		href: "/components/row-checkbox",
+		desc: "A controlled checkbox for selecting an individual table row.",
+		badge: "New"
+	},
+	{
+		id: "header-checkbox",
+		name: "Header Checkbox",
+		href: "/components/header-checkbox",
+		desc: "A select-all checkbox with support for an indeterminate state.",
+		badge: "New"
+	},
+	{
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",

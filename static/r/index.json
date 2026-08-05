@@ -1,5 +1,25 @@
 [
 	{
+		"name": "row-checkbox",
+		"title": "Row Checkbox",
+		"type": "registry:component",
+		"description": "A controlled checkbox for selecting an individual table row.",
+		"registryDependencies": [
+			"checkbox"
+		],
+		"relativeUrl": "row-checkbox.json"
+	},
+	{
+		"name": "header-checkbox",
+		"title": "Header Checkbox",
+		"type": "registry:component",
+		"description": "A select-all checkbox with support for an indeterminate state.",
+		"registryDependencies": [
+			"checkbox"
+		],
+		"relativeUrl": "header-checkbox.json"
+	},
+	{
 		"name": "debounce-input",
 		"title": "Debounce Input",
 		"type": "registry:component",

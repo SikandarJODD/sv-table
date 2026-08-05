@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "row-checkbox",
+	"title": "Row Checkbox",
+	"type": "registry:component",
+	"description": "A controlled checkbox for selecting an individual table row.",
+	"registryDependencies": [
+		"checkbox"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Checkbox } from \"$lib/components/ui/checkbox\";\n\timport type { ComponentProps } from \"svelte\";\n\n\ttype Props = Omit<\n\t\tComponentProps<typeof Checkbox>,\n\t\t\"checked\" | \"onCheckedChange\"\n\t> & {\n\t\tchecked: boolean;\n\t\tonCheckedChange: (checked: boolean) => void;\n\t};\n\n\tlet {\n\t\tchecked,\n\t\tonCheckedChange,\n\t\t\"aria-label\": ariaLabel = \"Select row\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n<Checkbox {checked} {onCheckedChange} aria-label={ariaLabel} {...restProps} />\n",
+			"type": "registry:component",
+			"target": "table/row-checkbox/row-checkbox.svelte"
+		},
+		{
+			"content": "import RowCheckbox from \"./row-checkbox.svelte\";\n\nexport default RowCheckbox;\n",
+			"type": "registry:file",
+			"target": "table/row-checkbox/index.ts"
+		}
+	]
+}

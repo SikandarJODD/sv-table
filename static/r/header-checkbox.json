@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "header-checkbox",
+	"title": "Header Checkbox",
+	"type": "registry:component",
+	"description": "A select-all checkbox with support for an indeterminate state.",
+	"registryDependencies": [
+		"checkbox"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Checkbox } from \"$lib/components/ui/checkbox\";\n\timport type { ComponentProps } from \"svelte\";\n\n\ttype Props = Omit<\n\t\tComponentProps<typeof Checkbox>,\n\t\t\"checked\" | \"indeterminate\" | \"onCheckedChange\"\n\t> & {\n\t\tchecked: boolean;\n\t\tindeterminate?: boolean;\n\t\tonCheckedChange: (checked: boolean) => void;\n\t};\n\n\tlet {\n\t\tchecked,\n\t\tindeterminate = false,\n\t\tonCheckedChange,\n\t\t\"aria-label\": ariaLabel = \"Select all rows\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n<Checkbox\n\t{checked}\n\t{indeterminate}\n\t{onCheckedChange}\n\taria-label={ariaLabel}\n\t{...restProps}\n/>\n",
+			"type": "registry:component",
+			"target": "table/header-checkbox/header-checkbox.svelte"
+		},
+		{
+			"content": "import HeaderCheckbox from \"./header-checkbox.svelte\";\n\nexport default HeaderCheckbox;\n",
+			"type": "registry:file",
+			"target": "table/header-checkbox/index.ts"
+		}
+	]
+}

@@ -4,6 +4,44 @@
 	"homepage": "https://sv-table.vercel.app",
 	"items": [
 		{
+			"name": "row-checkbox",
+			"type": "registry:component",
+			"title": "Row Checkbox",
+			"description": "A controlled checkbox for selecting an individual table row.",
+			"registryDependencies": ["checkbox"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/row-checkbox/row-checkbox.svelte",
+					"type": "registry:component",
+					"target": "table/row-checkbox/row-checkbox.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/row-checkbox/index.ts",
+					"type": "registry:file",
+					"target": "table/row-checkbox/index.ts"
+				}
+			]
+		},
+		{
+			"name": "header-checkbox",
+			"type": "registry:component",
+			"title": "Header Checkbox",
+			"description": "A select-all checkbox with support for an indeterminate state.",
+			"registryDependencies": ["checkbox"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/header-checkbox/header-checkbox.svelte",
+					"type": "registry:component",
+					"target": "table/header-checkbox/header-checkbox.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/header-checkbox/index.ts",
+					"type": "registry:file",
+					"target": "table/header-checkbox/index.ts"
+				}
+			]
+		},
+		{
 			"name": "debounce-input",
 			"type": "registry:component",
 			"title": "Debounce Input",
