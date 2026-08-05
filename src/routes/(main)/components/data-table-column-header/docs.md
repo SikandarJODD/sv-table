@@ -1,6 +1,6 @@
 # Data Table Column Header
 
-A sortable TanStack Table column heading with a direct sort toggle and an action menu for ascending, descending, reset, and hide commands.
+A TanStack Table column heading with sorting, pinning, ordering, and visibility actions.
 
 ## Installation
 
@@ -12,11 +12,13 @@ pnpm: pnpm dlx shadcn-svelte@latest add https://sv-table.vercel.app/r/data-table
 
 ## Usage
 
-Configure TanStack Table with `rowSortingFeature`. Add `columnVisibilityFeature` when the Hide action should be available.
+The menu detects the features configured on the table. Add only the actions your table needs.
 
 ```svelte
 <script lang="ts">
   import {
+    columnOrderingFeature,
+    columnPinningFeature,
     columnVisibilityFeature,
     createSortedRowModel,
     rowSortingFeature,
@@ -25,6 +27,8 @@ Configure TanStack Table with `rowSortingFeature`. Add `columnVisibilityFeature`
   import DataTableColumnHeader from "$lib/components/table/data-table-column-header";
 
   const features = tableFeatures({
+    columnOrderingFeature,
+    columnPinningFeature,
     columnVisibilityFeature,
     rowSortingFeature,
     sortedRowModel: createSortedRowModel()
@@ -42,7 +46,16 @@ Configure TanStack Table with `rowSortingFeature`. Add `columnVisibilityFeature`
 </Table.Head>
 ```
 
-Click the title to cycle from ascending to descending to unsorted. The menu provides exact Asc and Desc actions, Reset sort removes the column from the sorting state, and Hide toggles its visibility off.
+Click the title to cycle from ascending to descending to unsorted. The action menu provides:
+
+- Asc, Desc, and Reset sort with `rowSortingFeature`
+- Pin left, Pin right, and Unpin with `columnPinningFeature`
+- Move left and Move right with `columnOrderingFeature`
+- Hide with `columnVisibilityFeature`
+
+Move actions reorder the column within its current start, center, or end pinning region. TanStack v9 uses logical `start` and `end` pinning internally; the menu presents these as left and right for the default left-to-right layout.
+
+Pinning updates TanStack's column regions. Sticky positioning and offsets remain the responsibility of the table renderer.
 
 Shift-clicking the title supports multi-column sorting when multi-sort is enabled.
 
@@ -50,9 +63,9 @@ Shift-clicking the title supports multi-column sorting when multi-sort is enable
 
 ### `column`
 
-- Type: TanStack column with `rowSortingFeature`
+- Type: TanStack column
 - Required: yes
-- Add `columnVisibilityFeature` to make the Hide action available.
+- Available actions are inferred from the features configured on the column's table.
 
 ### `title`
 

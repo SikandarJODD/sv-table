@@ -1,5 +1,7 @@
 <script lang="ts">
 	import {
+		columnOrderingFeature,
+		columnPinningFeature,
 		columnVisibilityFeature,
 		type ColumnDef,
 		createSortedRowModel,
@@ -81,6 +83,8 @@
 	});
 
 	const features = tableFeatures({
+		columnOrderingFeature,
+		columnPinningFeature,
 		columnVisibilityFeature,
 		rowSortingFeature,
 		sortedRowModel: createSortedRowModel(),
@@ -132,16 +136,22 @@
 	});
 
 	const rows = $derived(table.getRowModel().rows);
+	const headers = $derived([
+		...table.getStartLeafHeaders(),
+		...table.getCenterLeafHeaders(),
+		...table.getEndLeafHeaders()
+	]);
 	const visibility = $derived(table.atoms.columnVisibility.get());
-	const hasHiddenColumns = $derived(
-		Object.values(visibility).some((visible) => visible === false)
+	const sorting = $derived(table.atoms.sorting.get());
+	const pinning = $derived(table.atoms.columnPinning.get());
+	const columnOrder = $derived(table.atoms.columnOrder.get());
+	const hasCustomizedTable = $derived(
+		sorting.length > 0 ||
+			columnOrder.length > 0 ||
+			pinning.start.length > 0 ||
+			pinning.end.length > 0 ||
+			Object.values(visibility).some((visible) => visible === false)
 	);
-
-	function getHeaderLabel(columnId: string) {
-		return String(
-			columns.find((column) => column.id === columnId)?.header ?? columnId
-		);
-	}
 
 	function getAriaSort(columnId: string) {
 		const direction = table.getColumn(columnId)?.getIsSorted();
@@ -171,6 +181,8 @@
 	function resetPreview() {
 		table.resetSorting(true);
 		table.resetColumnVisibility(true);
+		table.resetColumnPinning(true);
+		table.resetColumnOrder(true);
 	}
 </script>
 
@@ -180,7 +192,7 @@
 			Click a heading to cycle its sort direction.
 		</p>
 
-		{#if hasHiddenColumns}
+		{#if hasCustomizedTable}
 			<Button variant="outline" size="sm" onclick={resetPreview}>
 				Reset preview
 			</Button>
@@ -190,32 +202,30 @@
 	<div class="overflow-x-auto rounded-lg border">
 		<Table.Root>
 			<Table.Header>
-				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
-					<Table.Row>
-						{#each headerGroup.headers as header (header.id)}
-							<Table.Head
-								aria-sort={getAriaSort(header.column.id)}
+				<Table.Row>
+					{#each headers as header (header.id)}
+						<Table.Head
+							aria-sort={getAriaSort(header.column.id)}
+							class={header.column.id === "budget"
+								? "text-right"
+								: undefined}
+						>
+							<DataTableColumnHeader
+								column={header.column}
+								title={header.column.columnDef.header as string}
 								class={header.column.id === "budget"
-									? "text-right"
+									? "justify-end"
 									: undefined}
-							>
-								<DataTableColumnHeader
-									column={header.column}
-									title={getHeaderLabel(header.column.id)}
-									class={header.column.id === "budget"
-										? "justify-end"
-										: undefined}
-								/>
-							</Table.Head>
-						{/each}
-					</Table.Row>
-				{/each}
+							/>
+						</Table.Head>
+					{/each}
+				</Table.Row>
 			</Table.Header>
 
 			<Table.Body>
 				{#each rows as row (row.id)}
 					<Table.Row>
-						{#each row.getVisibleCells() as cell (cell.id)}
+						{#each [...row.getStartVisibleCells(), ...row.getCenterVisibleCells(), ...row.getEndVisibleCells()] as cell (cell.id)}
 							<Table.Cell
 								class={cell.column.id === "budget"
 									? "text-right font-medium tabular-nums"

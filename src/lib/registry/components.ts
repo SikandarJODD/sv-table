@@ -41,7 +41,7 @@ let components: Component[] = [
 		id: "data-table-column-header",
 		name: "Data Table Column Header",
 		href: "/components/data-table-column-header",
-		desc: "A sortable table heading with explicit sort controls and column actions.",
+		desc: "A table heading with sorting, pinning, ordering, and visibility actions.",
 		badge: "New"
 	},
 	{

@@ -200,7 +200,7 @@
 			"name": "data-table-column-header",
 			"type": "registry:component",
 			"title": "Data Table Column Header",
-			"description": "A sortable table heading with explicit sort controls and column actions.",
+			"description": "A table heading with sorting, pinning, ordering, and visibility actions.",
 			"dependencies": ["@lucide/svelte"],
 			"registryDependencies": ["button", "dropdown-menu"],
 			"files": [

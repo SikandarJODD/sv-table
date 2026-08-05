@@ -16,12 +16,13 @@
 
 	const title = "Data Table Column Header";
 	const description =
-		"A sortable table heading with explicit sort controls and column actions.";
+		"A table heading with sorting, pinning, ordering, and visibility actions.";
 
 	const previewCode: CodeBlock = {
 		name: "data-table-column-header-preview.svelte",
 		lang: "svelte",
-		code: DataTableColumnHeaderPreviewCode
+		code: DataTableColumnHeaderPreviewCode,
+		highlight: [3, 4, 86, 87]
 	};
 
 	const usageCode: CodeBlock = {
@@ -29,6 +30,8 @@
 		lang: "svelte",
 		code: `<script lang="ts">
   import {
+    columnOrderingFeature,
+    columnPinningFeature,
     columnVisibilityFeature,
     createSortedRowModel,
     createTable,
@@ -38,6 +41,8 @@
   import DataTableColumnHeader from "$lib/components/table/data-table-column-header";
 
   const features = tableFeatures({
+    columnOrderingFeature,
+    columnPinningFeature,
     columnVisibilityFeature,
     rowSortingFeature,
     sortedRowModel: createSortedRowModel()
@@ -57,7 +62,8 @@ ${"</" + "script>"}
     column={header.column}
     title="Project"
   />
-</Table.Head>`
+</Table.Head>`,
+		highlight: [3, 4, 14, 15]
 	};
 
 	const folderStructure = [
@@ -79,7 +85,7 @@ ${"</" + "script>"}
 				default: "required",
 				required: true,
 				description:
-					"A column configured with rowSortingFeature. Hide is shown when columnVisibilityFeature is also available."
+					"A TanStack column. Menu actions appear for the sorting, visibility, pinning, and ordering features configured on its table."
 			},
 			{
 				name: "title",
@@ -126,11 +132,6 @@ ${"</" + "script>"}
 
 		<div class="max-w-2xl">
 			<Paragraph>{description}</Paragraph>
-			<Paragraph>
-				Click the title to cycle through ascending, descending, and
-				unsorted states. Open the action menu to choose a direction,
-				reset sorting, or hide the column.
-			</Paragraph>
 		</div>
 	</section>
 
@@ -170,29 +171,11 @@ ${"</" + "script>"}
 	<section class="space-y-3">
 		<H2 id="usage">Usage</H2>
 		<Paragraph>
-			Configure the table with <CodeSpan>rowSortingFeature</CodeSpan> and pass
-			the header column directly to the component. Add
-			<CodeSpan>columnVisibilityFeature</CodeSpan> to enable Hide.
+			Pass the header column directly to the component. The highlighted
+			features enable pinning and ordering; sorting and visibility remain
+			independently optional.
 		</Paragraph>
 		<SingleFile code={usageCode} />
-	</section>
-
-	<section class="space-y-3">
-		<H2 id="behavior">Behavior</H2>
-		<ul
-			class="ml-5 max-w-2xl list-disc space-y-2 text-sm leading-7 text-muted-foreground"
-		>
-			<li>The title button cycles from Asc to Desc to unsorted.</li>
-			<li>Asc and Desc select an exact direction.</li>
-			<li>Reset sort removes only this column from the sorting state.</li>
-			<li>
-				Shift-click supports multi-sort when it is enabled on the table.
-			</li>
-			<li>
-				Place <CodeSpan>aria-sort</CodeSpan> on the surrounding table header,
-				as shown in the example.
-			</li>
-		</ul>
 	</section>
 
 	<section>
