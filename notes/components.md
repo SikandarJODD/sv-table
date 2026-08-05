@@ -2,7 +2,7 @@
 
 ## Tier 1 — used in almost every example (build first)
 
-- [ ] TablePagination — prev / next / page numbers
+- [+] TablePagination — prev / next / page numbers
 - [ ] PageSizeSelector — "rows per page: 10/20/50" dropdown
 - [ ] DataTableColumnHeader — sortable header (asc/desc/none icon + hide-column dropdown)
 - [ ] DebouncedSearchInput — global search box, debounced

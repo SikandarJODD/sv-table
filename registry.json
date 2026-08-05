@@ -214,6 +214,25 @@
 					"target": "table/pagination-arrow/index.ts"
 				}
 			]
+		},
+		{
+			"name": "page-size-selector",
+			"type": "registry:component",
+			"title": "Page Size Selector",
+			"description": "Select the number of rows shown on each table page.",
+			"registryDependencies": ["select"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/page-size-selector/page-size-selector.svelte",
+					"type": "registry:component",
+					"target": "table/page-size-selector/page-size-selector.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/page-size-selector/index.ts",
+					"type": "registry:file",
+					"target": "table/page-size-selector/index.ts"
+				}
+			]
 		}
 	]
 }
