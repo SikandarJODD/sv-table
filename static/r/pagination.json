@@ -14,7 +14,7 @@
 			"target": "table/pagination/pagination.svelte"
 		},
 		{
-			"content": "import Pagination from \"./pagination.svelte\";\r\nexport default Pagination;",
+			"content": "import Pagination from \"./pagination.svelte\";\nexport default Pagination;",
 			"type": "registry:file",
 			"target": "table/pagination/index.ts"
 		}

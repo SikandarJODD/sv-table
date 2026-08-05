@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "page-size-selector",
+	"title": "Page Size Selector",
+	"type": "registry:component",
+	"description": "Select the number of rows shown on each table page.",
+	"registryDependencies": [
+		"select"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport * as Select from \"$lib/components/ui/select\";\n\timport { cn } from \"$UTILS$.js\";\n\n\tlet {\n\t\tpageSize,\n\t\toptions = [5, 10, 25, 50],\n\t\tsetPageSize,\n\t\tclass: className\n\t}: {\n\t\tpageSize: number;\n\t\toptions?: number[];\n\t\tsetPageSize: (pageSize: number) => void;\n\t\tclass?: string;\n\t} = $props();\n</script>\n\n<div class={cn(\"flex items-center gap-2\", className)}>\n\t<span class=\"text-sm font-medium whitespace-nowrap\">Rows per page</span>\n\n\t<Select.Root\n\t\ttype=\"single\"\n\t\tvalue={String(pageSize)}\n\t\tonValueChange={(value) => setPageSize(Number(value))}\n\t>\n\t\t<Select.Trigger aria-label=\"Rows per page\" class=\"h-9 w-18\">\n\t\t\t{pageSize}\n\t\t</Select.Trigger>\n\t\t<Select.Content class=\"min-w-18\">\n\t\t\t{#each options as size (size)}\n\t\t\t\t<Select.Item value={String(size)} label={String(size)} />\n\t\t\t{/each}\n\t\t</Select.Content>\n\t</Select.Root>\n</div>\n",
+			"type": "registry:component",
+			"target": "table/page-size-selector/page-size-selector.svelte"
+		},
+		{
+			"content": "import PageSizeSelector from \"./page-size-selector.svelte\";\n\nexport default PageSizeSelector;\n",
+			"type": "registry:file",
+			"target": "table/page-size-selector/index.ts"
+		}
+	]
+}

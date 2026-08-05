@@ -42,5 +42,15 @@
 			"button"
 		],
 		"relativeUrl": "pagination-arrow.json"
+	},
+	{
+		"name": "page-size-selector",
+		"title": "Page Size Selector",
+		"type": "registry:component",
+		"description": "Select the number of rows shown on each table page.",
+		"registryDependencies": [
+			"select"
+		],
+		"relativeUrl": "page-size-selector.json"
 	}
 ]
