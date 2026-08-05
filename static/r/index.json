@@ -59,6 +59,20 @@
 		"relativeUrl": "pagination.json"
 	},
 	{
+		"name": "data-table-view",
+		"title": "Data Table View",
+		"type": "registry:component",
+		"description": "A checkbox dropdown for toggling table column visibility.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button",
+			"dropdown-menu"
+		],
+		"relativeUrl": "data-table-view.json"
+	},
+	{
 		"name": "pagination-arrow",
 		"title": "Pagination Arrow",
 		"type": "registry:component",

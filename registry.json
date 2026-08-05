@@ -236,6 +236,26 @@
 			]
 		},
 		{
+			"name": "data-table-view",
+			"type": "registry:component",
+			"title": "Data Table View",
+			"description": "A checkbox dropdown for toggling table column visibility.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button", "dropdown-menu"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/data-table-view/data-table-view.svelte",
+					"type": "registry:component",
+					"target": "table/data-table-view/data-table-view.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/data-table-view/index.ts",
+					"type": "registry:file",
+					"target": "table/data-table-view/index.ts"
+				}
+			]
+		},
+		{
 			"name": "pagination-arrow",
 			"type": "registry:component",
 			"title": "Pagination Arrow",

@@ -45,6 +45,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "data-table-view",
+		name: "Data Table View",
+		href: "/components/data-table-view",
+		desc: "A checkbox dropdown for toggling table column visibility.",
+		badge: "New"
+	},
+	{
 		id: "pagination",
 		name: "Pagination",
 		href: "/components/pagination",

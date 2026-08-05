@@ -1,0 +1,29 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "data-table-view",
+	"title": "Data Table View",
+	"type": "registry:component",
+	"description": "A checkbox dropdown for toggling table column visibility.",
+	"dependencies": [
+		"@lucide/svelte"
+	],
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0"
+	],
+	"registryDependencies": [
+		"button",
+		"dropdown-menu"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport SlidersHorizontalIcon from \"@lucide/svelte/icons/sliders-horizontal\";\n\n\timport { Button } from \"$lib/components/ui/button\";\n\timport * as DropdownMenu from \"$lib/components/ui/dropdown-menu\";\n\timport { cn } from \"$UTILS$.js\";\n\n\ttype DataTableViewColumn = {\n\t\tid: string;\n\t\tcolumnDef?: { header?: unknown };\n\t\tgetCanHide?: () => boolean;\n\t\tgetIsVisible?: () => boolean;\n\t\ttoggleVisibility?: (visible?: boolean) => void;\n\t};\n\n\ttype DataTableViewTable = {\n\t\tgetAllLeafColumns: () => DataTableViewColumn[];\n\t};\n\n\tlet {\n\t\ttable,\n\t\tlabel = \"View\",\n\t\tclass: className\n\t}: {\n\t\ttable: DataTableViewTable;\n\t\tlabel?: string;\n\t\tclass?: string;\n\t} = $props();\n\n\tlet hideableColumns = $derived(\n\t\ttable\n\t\t\t.getAllLeafColumns()\n\t\t\t.filter(\n\t\t\t\t(column) =>\n\t\t\t\t\t(column.getCanHide?.() ?? false) &&\n\t\t\t\t\tcolumn.getIsVisible !== undefined &&\n\t\t\t\t\tcolumn.toggleVisibility !== undefined\n\t\t\t)\n\t);\n\n\tfunction getColumnLabel(column: DataTableViewColumn) {\n\t\tconst header = column.columnDef?.header;\n\n\t\tif (typeof header === \"string\") return header;\n\n\t\treturn column.id\n\t\t\t.replace(/([a-z0-9])([A-Z])/g, \"$1 $2\")\n\t\t\t.replace(/[-_]+/g, \" \")\n\t\t\t.replace(/^\\w/, (character) => character.toUpperCase());\n\t}\n</script>\n\n<DropdownMenu.Root>\n\t<DropdownMenu.Trigger>\n\t\t{#snippet child({ props })}\n\t\t\t<Button\n\t\t\t\t{...props}\n\t\t\t\tvariant=\"outline\"\n\t\t\t\tsize=\"sm\"\n\t\t\t\tclass={cn(\"ml-auto\", className)}\n\t\t\t\tdisabled={hideableColumns.length === 0}\n\t\t\t\taria-label={`${label}: choose visible columns`}\n\t\t\t>\n\t\t\t\t<SlidersHorizontalIcon />\n\t\t\t\t{label}\n\t\t\t</Button>\n\t\t{/snippet}\n\t</DropdownMenu.Trigger>\n\n\t<DropdownMenu.Content align=\"end\" class=\"w-44\">\n\t\t<DropdownMenu.Label>Toggle columns</DropdownMenu.Label>\n\t\t<DropdownMenu.Separator />\n\n\t\t{#each hideableColumns as column (column.id)}\n\t\t\t<DropdownMenu.CheckboxItem\n\t\t\t\tchecked={column.getIsVisible?.() ?? true}\n\t\t\t\tonCheckedChange={(checked) =>\n\t\t\t\t\tcolumn.toggleVisibility?.(checked)}\n\t\t\t\tcloseOnSelect={false}\n\t\t\t\tclass=\"capitalize\"\n\t\t\t>\n\t\t\t\t{getColumnLabel(column)}\n\t\t\t</DropdownMenu.CheckboxItem>\n\t\t{/each}\n\t</DropdownMenu.Content>\n</DropdownMenu.Root>\n",
+			"type": "registry:component",
+			"target": "table/data-table-view/data-table-view.svelte"
+		},
+		{
+			"content": "import DataTableView from \"./data-table-view.svelte\";\n\nexport default DataTableView;\n",
+			"type": "registry:file",
+			"target": "table/data-table-view/index.ts"
+		}
+	]
+}
