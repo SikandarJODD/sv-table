@@ -87,6 +87,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "number-range-filter",
+		name: "Number Range Filter",
+		href: "/components/number-range-filter",
+		desc: "A number range picker with exact inputs, an optional slider, and explicit apply behavior.",
+		badge: "New"
+	},
+	{
 		id: "data-table-column-header",
 		name: "Data Table Column Header",
 		href: "/components/data-table-column-header",

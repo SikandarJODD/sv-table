@@ -168,6 +168,24 @@
 		"relativeUrl": "date-range-filter.json"
 	},
 	{
+		"name": "number-range-filter",
+		"title": "Number Range Filter",
+		"type": "registry:component",
+		"description": "A number range picker with exact inputs, an optional slider, and explicit apply behavior.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button",
+			"input",
+			"label",
+			"popover",
+			"separator",
+			"slider"
+		],
+		"relativeUrl": "number-range-filter.json"
+	},
+	{
 		"name": "pagination-arrow",
 		"title": "Pagination Arrow",
 		"type": "registry:component",

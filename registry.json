@@ -406,6 +406,33 @@
 			]
 		},
 		{
+			"name": "number-range-filter",
+			"type": "registry:component",
+			"title": "Number Range Filter",
+			"description": "A number range picker with exact inputs, an optional slider, and explicit apply behavior.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": [
+				"button",
+				"input",
+				"label",
+				"popover",
+				"separator",
+				"slider"
+			],
+			"files": [
+				{
+					"path": "./src/lib/components/table/number-range-filter/number-range-filter.svelte",
+					"type": "registry:component",
+					"target": "table/number-range-filter/number-range-filter.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/number-range-filter/index.ts",
+					"type": "registry:file",
+					"target": "table/number-range-filter/index.ts"
+				}
+			]
+		},
+		{
 			"name": "pagination-arrow",
 			"type": "registry:component",
 			"title": "Pagination Arrow",
