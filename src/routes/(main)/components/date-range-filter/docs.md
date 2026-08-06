@@ -70,11 +70,29 @@ Register `filterFn_inDateRange`, then store `[start, end]` in the column filter:
 
 Set `presets={false}` to display only the calendar.
 
+## Calendar only and date limits
+
+```svelte
+<DateRangeFilter
+  bind:value={range}
+  title="Delivery"
+  presets={false}
+  min={new Date(2026, 0, 1)}
+  max={new Date(2026, 11, 31)}
+  numberOfMonths={1}
+  weekStartsOn={1}
+  locale="en-GB"
+/>
+```
+
+This creates a single-month calendar without presets, limits selection to 2026, and starts weeks on Monday.
+
 ## Behavior
 
 - The default presets are Today, Last 7 days, Last 30 days, and This month.
 - Preset and calendar choices remain drafts until Apply is selected.
 - Clear immediately removes the applied value and closes the popover.
+- An active range can also be removed from the clear button beside the trigger.
 - Dates are returned at local midnight and both range endpoints are inclusive.
 - Two months are shown on desktop by default and one month on mobile.
 - `min` and `max` constrain calendar dates and disable presets outside those limits.

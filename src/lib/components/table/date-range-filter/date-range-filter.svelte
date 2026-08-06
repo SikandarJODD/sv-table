@@ -54,6 +54,7 @@
 <script lang="ts">
 	import { CalendarDate, type DateValue } from "@internationalized/date";
 	import CalendarDaysIcon from "@lucide/svelte/icons/calendar-days";
+	import XIcon from "@lucide/svelte/icons/x";
 	import { MediaQuery } from "svelte/reactivity";
 
 	import { Button } from "$lib/components/ui/button";
@@ -224,32 +225,51 @@
 </script>
 
 <Popover.Root {open} onOpenChange={changeOpen}>
-	<Popover.Trigger>
-		{#snippet child({ props })}
-			<Button
-				{...props}
-				variant="outline"
-				size="sm"
-				class={cn("h-8 border-dashed", className)}
-				{disabled}
-				aria-label={`${title} filter${selectedLabel ? `, ${selectedLabel}` : ""}`}
-			>
-				<CalendarDaysIcon />
-				{title}
+	<div class="inline-flex items-center">
+		<Popover.Trigger>
+			{#snippet child({ props })}
+				<Button
+					{...props}
+					variant="outline"
+					size="sm"
+					class={cn(
+						"h-8 border-dashed",
+						selectedLabel && "rounded-r-none",
+						className
+					)}
+					{disabled}
+					aria-label={`${title} filter${selectedLabel ? `, ${selectedLabel}` : ""}`}
+				>
+					<CalendarDaysIcon />
+					{title}
 
-				{#if selectedLabel}
-					<Separator orientation="vertical" class="mx-1 h-4" />
-					<span class="font-normal text-muted-foreground">
-						{selectedLabel}
-					</span>
-				{:else}
-					<span class="font-normal text-muted-foreground">
-						{placeholder}
-					</span>
-				{/if}
+					{#if selectedLabel}
+						<Separator orientation="vertical" class="mx-1 h-4" />
+						<span class="font-normal text-muted-foreground">
+							{selectedLabel}
+						</span>
+					{:else}
+						<span class="font-normal text-muted-foreground">
+							{placeholder}
+						</span>
+					{/if}
+				</Button>
+			{/snippet}
+		</Popover.Trigger>
+
+		{#if selectedLabel}
+			<Button
+				variant="outline"
+				size="icon-sm"
+				class="-ml-px h-8 rounded-l-none border-dashed"
+				{disabled}
+				onclick={clearValue}
+				aria-label={`${clearText} ${title} filter`}
+			>
+				<XIcon />
 			</Button>
-		{/snippet}
-	</Popover.Trigger>
+		{/if}
+	</div>
 
 	<Popover.Content
 		align="start"
@@ -261,7 +281,7 @@
 		<div class="flex flex-col md:flex-row">
 			{#if visiblePresets.length > 0}
 				<div
-					class="grid min-w-36 grid-cols-2 gap-1 border-b p-3 md:grid-cols-1 md:border-r md:border-b-0"
+					class="flex min-w-40 flex-col items-stretch gap-1 border-b p-3 md:border-r md:border-b-0"
 				>
 					{#each visiblePresets as preset (preset.label)}
 						<Button

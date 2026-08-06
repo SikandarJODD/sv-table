@@ -11,6 +11,10 @@
 	import { CodeSpan, H1, H2, Paragraph, Step, Steps } from "$markdown";
 	import DateRangeFilterCode from "$table/date-range-filter/date-range-filter.svelte?raw";
 	import DateRangeFilterIndexCode from "$table/date-range-filter/index.ts?raw";
+	import CalendarOnlyPreview from "./examples/calendar-only-preview.svelte";
+	import CalendarOnlyPreviewCode from "./examples/calendar-only-preview.svelte?raw";
+	import CustomPresetsPreview from "./examples/custom-presets-preview.svelte";
+	import CustomPresetsPreviewCode from "./examples/custom-presets-preview.svelte?raw";
 	import DateRangeFilterPreview from "./examples/date-range-filter-preview.svelte";
 	import DateRangeFilterPreviewCode from "./examples/date-range-filter-preview.svelte?raw";
 
@@ -111,28 +115,25 @@ ${"</" + "script>"}
 		]
 	};
 
-	const presetsCode: CodeBlock = {
-		name: "custom-presets.svelte",
+	const customPresetsCode: CodeBlock = {
+		name: "custom-presets-preview.svelte",
 		lang: "svelte",
-		code: `<script lang="ts">
-  import type { DateRangeFilterPreset } from "$lib/components/table/date-range-filter";
-
-  const presets: DateRangeFilterPreset[] = [
-    {
-      label: "Year to date",
-      getValue: (today) => ({
-        start: new Date(today.getFullYear(), 0, 1),
-        end: today
-      })
-    }
-  ];
-${"</" + "script>"}
-
-<DateRangeFilter bind:value={range} {presets} />`,
+		code: CustomPresetsPreviewCode,
 		highlight: [
-			[2, 2],
-			[4, 12],
-			[15, 15]
+			[2, 5],
+			[11, 36],
+			[54, 59]
+		]
+	};
+
+	const calendarOnlyCode: CodeBlock = {
+		name: "calendar-only-preview.svelte",
+		lang: "svelte",
+		code: CalendarOnlyPreviewCode,
+		highlight: [
+			[2, 4],
+			[6, 9],
+			[13, 22]
 		]
 	};
 
@@ -419,30 +420,56 @@ ${"</" + "script>"}
 		<Paragraph>
 			Replace the built-in choices with domain-specific ranges. Each
 			preset receives the current local date when selected, so relative
-			ranges do not become stale. Pass <CodeSpan
-				>{"presets={false}"}</CodeSpan
-			> to hide the preset panel.
+			ranges do not become stale.
 		</Paragraph>
-		<SingleFile code={presetsCode} />
+		<PreviewComponent
+			code={customPresetsCode}
+			frame
+			isCentered={false}
+			class="min-h-48 p-4 md:p-6"
+		>
+			<CustomPresetsPreview />
+		</PreviewComponent>
+	</section>
+
+	<section class="space-y-3">
+		<H2 id="calendar-only">Calendar only and date limits</H2>
+		<Paragraph>
+			Pass <CodeSpan>{"presets={false}"}</CodeSpan> for a focused calendar.
+			This example also limits the selectable dates, starts weeks on Monday,
+			and uses British English date formatting.
+		</Paragraph>
+		<PreviewComponent
+			code={calendarOnlyCode}
+			frame
+			isCentered={false}
+			class="min-h-48 p-4 md:p-6"
+		>
+			<CalendarOnlyPreview />
+		</PreviewComponent>
 	</section>
 
 	<section class="space-y-3">
 		<H2 id="behavior">Behavior</H2>
 		<Paragraph>
 			The default presets are Today, Last 7 days, Last 30 days, and This
-			month. Dates are returned at local midnight. Two months appear on
-			desktop and the component switches to one month below the mobile
-			breakpoint. <CodeSpan>min</CodeSpan> and <CodeSpan>max</CodeSpan>
-			constrain the calendar and disable presets outside those boundaries.
+			month. An applied range can be removed directly from the clear
+			button beside the trigger. Dates are returned at local midnight. Two
+			months appear on desktop and the component switches to one month
+			below the mobile breakpoint. <CodeSpan>min</CodeSpan> and
+			<CodeSpan>max</CodeSpan> constrain the calendar and disable presets outside
+			those boundaries.
 		</Paragraph>
 	</section>
 
 	<section class="space-y-3">
 		<H2 id="accessibility">Accessibility</H2>
 		<Paragraph>
-			The trigger announces the applied range. The popover restores focus
-			on close, while the range calendar provides keyboard day navigation,
-			month controls, selected-range semantics, and localized labels.
+			The trigger announces the applied range and the adjacent clear
+			control has a filter-specific accessible label. The popover restores
+			focus on close, while the range calendar provides keyboard day
+			navigation, month controls, selected-range semantics, and localized
+			labels.
 		</Paragraph>
 	</section>
 
