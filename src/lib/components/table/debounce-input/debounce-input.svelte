@@ -18,7 +18,7 @@
 		onChange,
 		class: className,
 		placeholder = "Search...",
-		debounce = 500
+		debounce = 0
 	}: Props = $props();
 
 	let inputValue = $state(value);

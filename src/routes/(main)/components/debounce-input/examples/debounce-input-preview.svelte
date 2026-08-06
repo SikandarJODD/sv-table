@@ -124,7 +124,7 @@
 		<DebounceInput
 			bind:value={search}
 			onChange={searchPeople}
-			placeholder="Search 1,000 people..."
+			placeholder="Global Search 1,000 people..."
 			class="w-full sm:max-w-60"
 		/>
 

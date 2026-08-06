@@ -1,6 +1,6 @@
 # Debounce Input
 
-A search input with a search icon, a clear button, and a debounced value powered by Runed's `Debounced` utility.
+A search input with a search icon, a clear button, and an optional debounce delay powered by Runed's `Debounced` utility.
 
 ## Installation
 
@@ -28,10 +28,10 @@ pnpm: pnpm dlx shadcn-svelte@latest add https://sv-table.vercel.app/r/debounce-i
 
 ## Notes
 
-> **Instant updates:** Set `debounce={0}` when you want effectively immediate updates without changing components.
+> **Immediate by default:** `debounce` defaults to `0`, so value updates are effectively immediate. Set a positive delay, such as `debounce={300}`, to debounce updates.
 
-- The visible input responds immediately. Only `value` and `onChange` wait for the debounce delay.
-- The clear button uses the same delay as typing, keeping search and filter updates consistent.
+- The visible input always responds immediately. With a positive delay, only `value` and `onChange` wait.
+- The clear button uses the same configured delay as typed input, keeping search and filter updates consistent.
 - External changes to `value` sync into the input immediately and do not call `onChange` again.
 
 ## Props
@@ -61,5 +61,5 @@ pnpm: pnpm dlx shadcn-svelte@latest add https://sv-table.vercel.app/r/debounce-i
 ### `debounce`
 
 - Type: `number`
-- Default: `500`
-- Delay in milliseconds before updating `value` and calling `onChange`.
+- Default: `0`
+- Delay in milliseconds before updating `value` and calling `onChange`. Use a positive value to debounce updates.

@@ -105,7 +105,7 @@
 			"name": "debounce-input",
 			"type": "registry:component",
 			"title": "Debounce Input",
-			"description": "A search input that delays value changes until typing pauses.",
+			"description": "A search input with an optional delay for value changes.",
 			"dependencies": ["@lucide/svelte", "runed"],
 			"registryDependencies": ["input-group"],
 			"files": [

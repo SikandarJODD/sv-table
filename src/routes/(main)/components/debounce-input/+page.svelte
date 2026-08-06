@@ -16,7 +16,7 @@
 
 	const title = "Debounce Input";
 	const description =
-		"A search input that delays value changes until typing pauses.";
+		"A search input with an optional delay for value changes.";
 
 	const previewCode: CodeBlock = {
 		name: "debounce-input-preview.svelte",
@@ -81,9 +81,9 @@ ${"</" + "script>"}
 			{
 				name: "debounce",
 				type: "number",
-				default: "500",
+				default: "0",
 				description:
-					"Delay in milliseconds before updating value and calling onChange."
+					"Delay in milliseconds before updating value and calling onChange. Use a positive value to debounce updates."
 			}
 		]
 	};
@@ -158,20 +158,21 @@ ${"</" + "script>"}
 	<section class="space-y-3">
 		<H2 id="notes">Notes</H2>
 		<Paragraph>
-			Set <CodeSpan>{"debounce={0}"}</CodeSpan> for instant updates.
+			Updates are immediate by default. Set a positive delay, such as
+			<CodeSpan>{"debounce={300}"}</CodeSpan>, to debounce them.
 		</Paragraph>
 
 		<ul
 			class="ml-5 max-w-2xl list-disc space-y-2 text-sm leading-7 text-muted-foreground"
 		>
 			<li>
-				The visible input responds immediately while
-				<CodeSpan>value</CodeSpan> and <CodeSpan>onChange</CodeSpan> wait
-				for the debounce delay.
+				The visible input always responds immediately. With a positive
+				delay, only <CodeSpan>value</CodeSpan> and
+				<CodeSpan>onChange</CodeSpan> wait.
 			</li>
 			<li>
-				The clear button uses the same delay as typing, keeping search
-				and filter updates consistent.
+				The clear button uses the same configured delay as typed input,
+				keeping search and filter updates consistent.
 			</li>
 		</ul>
 	</section>

@@ -62,7 +62,7 @@ let components: Component[] = [
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",
-		desc: "A search input that delays value changes until typing pauses.",
+		desc: "A search input with an optional delay for value changes.",
 		badge: "New"
 	},
 	{
