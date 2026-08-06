@@ -120,6 +120,24 @@
 		"relativeUrl": "data-table-view.json"
 	},
 	{
+		"name": "data-table-faceted-filter",
+		"title": "Data Table Faceted Filter",
+		"type": "registry:component",
+		"description": "A searchable multi-select filter with live counts for categorical table columns.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"badge",
+			"button",
+			"checkbox",
+			"command",
+			"popover",
+			"separator"
+		],
+		"relativeUrl": "data-table-faceted-filter.json"
+	},
+	{
 		"name": "pagination-arrow",
 		"title": "Pagination Arrow",
 		"type": "registry:component",

@@ -11,13 +11,13 @@
 
 ## Tier 2 — used across a whole category (build next)
 
-- [ ] DataTableFacetedFilter — multi-select dropdown filter with counts
+- [+] DataTableFacetedFilter — multi-select dropdown filter with counts
 - [+] DataTableViewOptions — column visibility toggle dropdown
 - [+] RowCheckbox — individual row selection checkbox
 - [+] SelectAllCheckbox — header checkbox with indeterminate state
 - [+] BulkActionsBar — toolbar shown when rows are selected
 - [+] DataTableToolbar — wraps search + faceted filters + view options + reset button
-- [ ] RowActionsMenu — "⋮" dropdown (Edit / Delete / View / Duplicate)
+- [+] RowActionsMenu — "⋮" dropdown (Edit / Delete / View / Duplicate)
 - [ ] StatusBadge — colored badge for status/category cell values
 
 ## Tier 3 — situational (build when you reach that category)

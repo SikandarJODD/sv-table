@@ -66,6 +66,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "data-table-faceted-filter",
+		name: "Data Table Faceted Filter",
+		href: "/components/data-table-faceted-filter",
+		desc: "A searchable multi-select filter with live counts for categorical table columns.",
+		badge: "New"
+	},
+	{
 		id: "data-table-column-header",
 		name: "Data Table Column Header",
 		href: "/components/data-table-column-header",
@@ -103,6 +110,12 @@ let quickExamples: QuickExample[] = [
 		name: "Basic Example",
 		href: "/quick-examples/basic",
 		desc: "A complete quick example that mirrors the table filters preview."
+	},
+	{
+		id: "faceted-filter-example",
+		name: "Faceted Filter",
+		href: "/quick-examples/faceted-filter",
+		desc: "Filter 400 seeded rows with multiple facets and live counts."
 	},
 	{
 		id: "sorting",

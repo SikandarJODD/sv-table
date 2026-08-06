@@ -334,6 +334,33 @@
 			]
 		},
 		{
+			"name": "data-table-faceted-filter",
+			"type": "registry:component",
+			"title": "Data Table Faceted Filter",
+			"description": "A searchable multi-select filter with live counts for categorical table columns.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": [
+				"badge",
+				"button",
+				"checkbox",
+				"command",
+				"popover",
+				"separator"
+			],
+			"files": [
+				{
+					"path": "./src/lib/components/table/data-table-faceted-filter/data-table-faceted-filter.svelte",
+					"type": "registry:component",
+					"target": "table/data-table-faceted-filter/data-table-faceted-filter.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/data-table-faceted-filter/index.ts",
+					"type": "registry:file",
+					"target": "table/data-table-faceted-filter/index.ts"
+				}
+			]
+		},
+		{
 			"name": "pagination-arrow",
 			"type": "registry:component",
 			"title": "Pagination Arrow",
