@@ -218,11 +218,11 @@
 							<span>{option.label}</span>
 
 							{#if showCounts && facetCounts.size > 0}
-								<span
-									class="ml-auto font-mono text-xs text-muted-foreground tabular-nums"
+								<Command.Shortcut
+									class="font-mono tracking-normal tabular-nums"
 								>
 									{facetCounts.get(option.value) ?? 0}
-								</span>
+								</Command.Shortcut>
 							{/if}
 						</Command.Item>
 					{/each}

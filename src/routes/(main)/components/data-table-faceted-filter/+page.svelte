@@ -11,6 +11,8 @@
 	import { CodeSpan, H1, H2, Paragraph } from "$markdown";
 	import DataTableFacetedFilterCode from "$table/data-table-faceted-filter/data-table-faceted-filter.svelte?raw";
 	import DataTableFacetedFilterIndexCode from "$table/data-table-faceted-filter/index.ts?raw";
+	import CountDisplayPreview from "./examples/count-display-preview.svelte";
+	import CountDisplayPreviewCode from "./examples/count-display-preview.svelte?raw";
 	import DataTableFacetedFilterPreview from "./examples/data-table-faceted-filter-preview.svelte";
 	import DataTableFacetedFilterPreviewCode from "./examples/data-table-faceted-filter-preview.svelte?raw";
 
@@ -27,6 +29,12 @@
 			[31, 38],
 			[81, 85]
 		]
+	};
+
+	const countDisplayCode: CodeBlock = {
+		name: "count-display-preview.svelte",
+		lang: "svelte",
+		code: CountDisplayPreviewCode
 	};
 
 	const setupCode: CodeBlock = {
@@ -330,6 +338,22 @@ ${"</" + "script>"}
 			stores selected values as a string array.
 		</Paragraph>
 		<SingleFile code={usageCode} />
+	</section>
+
+	<section class="space-y-3">
+		<H2 id="examples">Examples</H2>
+		<Paragraph>
+			Counts are shown by default. Pass
+			<CodeSpan>{"showCounts={false}"}</CodeSpan> to hide both the option counts
+			and selected result total.
+		</Paragraph>
+		<PreviewComponent
+			code={countDisplayCode}
+			frame
+			class="min-h-48 p-4 md:p-6"
+		>
+			<CountDisplayPreview />
+		</PreviewComponent>
 	</section>
 
 	<section class="space-y-3">
