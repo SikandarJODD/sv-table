@@ -26,6 +26,8 @@ pnpm: pnpm dlx shadcn-svelte@latest add https://sv-table.vercel.app/r/date-range
 
 The component keeps calendar edits in a draft. The bound value changes only when Apply or Clear is selected.
 
+> In `range-calendar-day.svelte`, if selected dates lose contrast on hover, update both endpoint classes: ~~`hover:text-foreground`~~ → `hover:text-primary-foreground`.
+
 ## Connect a TanStack Table column
 
 Register `filterFn_inDateRange`, then store `[start, end]` in the column filter:

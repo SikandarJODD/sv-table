@@ -8,7 +8,16 @@
 	import { PreviewComponent } from "$lib/components/ui/preview-component";
 	import type { CodeBlock } from "$lib/types/code";
 	import type { PropsTable } from "$lib/types/structure";
-	import { CodeSpan, H1, H2, Paragraph, Step, Steps } from "$markdown";
+	import FileCodeIcon from "@lucide/svelte/icons/file-code";
+	import {
+		Blockquote,
+		CodeSpan,
+		H1,
+		H2,
+		Paragraph,
+		Step,
+		Steps
+	} from "$markdown";
 	import DateRangeFilterCode from "$table/date-range-filter/date-range-filter.svelte?raw";
 	import DateRangeFilterIndexCode from "$table/date-range-filter/index.ts?raw";
 	import CalendarOnlyPreview from "./examples/calendar-only-preview.svelte";
@@ -338,6 +347,32 @@ ${"</" + "script>"}
 		>
 			<DateRangeFilterPreview />
 		</PreviewComponent>
+
+		<Blockquote
+			class="mt-4 rounded-sm border-dashed border-amber-400/70 bg-amber-50/50 text-amber-950/80 not-italic shadow-none dark:border-amber-500/40 dark:bg-amber-950/20 dark:text-amber-100/80"
+		>
+			<div
+				class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between"
+			>
+				<p>
+					If selected dates lose contrast on hover, update both
+					endpoint classes:
+				</p>
+				<span
+					class="inline-flex shrink-0 items-center gap-1 self-start rounded-sm border border-amber-400/40 bg-amber-100/60 px-1.5 py-1 font-mono text-[11px] leading-none sm:self-auto dark:border-amber-500/30 dark:bg-amber-900/30"
+				>
+					<FileCodeIcon class="size-3" />
+					range-calendar-day.svelte
+				</span>
+			</div>
+			<span class="mt-2 flex flex-wrap items-center gap-2">
+				<s class="decoration-amber-700/70 decoration-2">
+					<CodeSpan>hover:text-foreground</CodeSpan>
+				</s>
+				<span aria-hidden="true">→</span>
+				<CodeSpan>hover:text-primary-foreground</CodeSpan>
+			</span>
+		</Blockquote>
 	</section>
 
 	<section>
