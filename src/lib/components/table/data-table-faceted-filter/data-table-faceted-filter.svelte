@@ -16,6 +16,7 @@
 
 <script lang="ts">
 	import CirclePlusIcon from "@lucide/svelte/icons/circle-plus";
+	import XIcon from "@lucide/svelte/icons/x";
 
 	import { Badge } from "$lib/components/ui/badge";
 	import { Button } from "$lib/components/ui/button";
@@ -100,51 +101,70 @@
 </script>
 
 <Popover.Root bind:open>
-	<Popover.Trigger>
-		{#snippet child({ props })}
-			<Button
-				{...props}
-				variant="outline"
-				size="sm"
-				class={cn("h-8 border-dashed", className)}
-				{disabled}
-				aria-label={`${title} filter${selectedValues.size ? `, ${selectedValues.size} selected` : ""}`}
-			>
-				<CirclePlusIcon />
-				{title}
+	<div class="inline-flex items-center">
+		<Popover.Trigger>
+			{#snippet child({ props })}
+				<Button
+					{...props}
+					variant="outline"
+					size="sm"
+					class={cn(
+						"h-8 border-dashed",
+						selectedValues.size > 0 && "rounded-r-none",
+						className
+					)}
+					{disabled}
+					aria-label={`${title} filter${selectedValues.size ? `, ${selectedValues.size} selected` : ""}`}
+				>
+					<CirclePlusIcon />
+					{title}
 
-				{#if selectedValues.size > 0}
-					<Separator orientation="vertical" class="mx-1 h-4" />
-					<Badge
-						variant="secondary"
-						class="rounded-sm px-1 font-normal lg:hidden"
-					>
-						{selectedValues.size}
-					</Badge>
+					{#if selectedValues.size > 0}
+						<Separator orientation="vertical" class="mx-1 h-4" />
+						<Badge
+							variant="secondary"
+							class="rounded-sm px-1 font-normal lg:hidden"
+						>
+							{selectedValues.size}
+						</Badge>
 
-					<div class="hidden gap-1 lg:flex">
-						{#if selectedOptions.length > 2}
-							<Badge
-								variant="secondary"
-								class="rounded-sm px-1 font-normal"
-							>
-								{selectedOptions.length} selected
-							</Badge>
-						{:else}
-							{#each selectedOptions as option (option.value)}
+						<div class="hidden gap-1 lg:flex">
+							{#if selectedOptions.length > 2}
 								<Badge
 									variant="secondary"
 									class="rounded-sm px-1 font-normal"
 								>
-									{option.label}
+									{selectedOptions.length} selected
 								</Badge>
-							{/each}
-						{/if}
-					</div>
-				{/if}
+							{:else}
+								{#each selectedOptions as option (option.value)}
+									<Badge
+										variant="secondary"
+										class="rounded-sm px-1 font-normal"
+									>
+										{option.label}
+									</Badge>
+								{/each}
+							{/if}
+						</div>
+					{/if}
+				</Button>
+			{/snippet}
+		</Popover.Trigger>
+
+		{#if selectedValues.size > 0}
+			<Button
+				variant="outline"
+				size="icon-sm"
+				class="-ml-px h-8 rounded-l-none border-dashed"
+				{disabled}
+				onclick={clearFilters}
+				aria-label={`${clearText} ${title} filter`}
+			>
+				<XIcon />
 			</Button>
-		{/snippet}
-	</Popover.Trigger>
+		{/if}
+	</div>
 
 	<Popover.Content align="start" class={cn("w-56 p-0", contentClass)}>
 		<Command.Root loop>
