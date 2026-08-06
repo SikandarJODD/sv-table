@@ -30,6 +30,8 @@ pnpm: pnpm dlx shadcn-svelte@latest add https://sv-table.vercel.app/r/number-ran
 />
 ```
 
+Typed values move the slider on blur or Enter. A committed slider change updates both inputs.
+
 ## Connect a table column
 
 ```svelte

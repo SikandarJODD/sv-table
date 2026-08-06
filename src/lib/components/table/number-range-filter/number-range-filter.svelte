@@ -59,9 +59,6 @@
 		contentClass
 	}: Props = $props();
 
-	let draftMin = $state("");
-	let draftMax = $state("");
-
 	let resolvedStep = $derived(Number.isFinite(step) && step > 0 ? step : 1);
 	let canShowSlider = $derived(
 		showSlider &&
@@ -69,8 +66,19 @@
 			Number.isFinite(max) &&
 			(min as number) < (max as number)
 	);
+
+	// Keep raw strings so temporary values such as "", "1", and "50" are
+	// never replaced while the user is still typing a larger number.
+	let draftMin = $state(value?.min?.toString() ?? "");
+	let draftMax = $state(value?.max?.toString() ?? "");
+
+	// The slider owns a separate numeric draft. Bits UI may snap this value to
+	// `step`, but that normalization must not write into the text inputs.
+	let sliderDraft = $state(
+		getSliderValue(value ?? { min: undefined, max: undefined })
+	);
+
 	let draft = $derived(resolveDraft(draftMin, draftMax));
-	let sliderValue = $derived(getSliderValue(draft.value));
 	let selectedLabel = $derived(formatRange(value));
 
 	function parseNumber(input: string) {
@@ -160,12 +168,27 @@
 		if (nextOpen) {
 			draftMin = value?.min?.toString() ?? "";
 			draftMax = value?.max?.toString() ?? "";
+			sliderDraft = getSliderValue(
+				value ?? { min: undefined, max: undefined }
+			);
 		}
 
 		open = nextOpen;
 	}
 
-	function changeSlider(nextValue: number[]) {
+	// Input drafts update the slider only after typing is complete. Empty
+	// endpoints stay empty even though the slider displays their boundary.
+	function syncInputsToSlider() {
+		if (draft.error) return;
+		sliderDraft = getSliderValue(draft.value);
+	}
+
+	function handleInputKeydown(event: KeyboardEvent) {
+		if (event.key === "Enter") syncInputsToSlider();
+	}
+
+	// Only a committed slider interaction is allowed to replace input text.
+	function commitSlider(nextValue: number[]) {
 		if (nextValue.length < 2) return;
 		draftMin = nextValue[0].toString();
 		draftMax = nextValue[1].toString();
@@ -242,6 +265,8 @@
 					placeholder="No minimum"
 					aria-invalid={Boolean(draft.error)}
 					oninput={(event) => (draftMin = event.currentTarget.value)}
+					onblur={syncInputsToSlider}
+					onkeydown={handleInputKeydown}
 				/>
 			</Label>
 
@@ -256,6 +281,8 @@
 					placeholder="No maximum"
 					aria-invalid={Boolean(draft.error)}
 					oninput={(event) => (draftMax = event.currentTarget.value)}
+					onblur={syncInputsToSlider}
+					onkeydown={handleInputKeydown}
 				/>
 			</Label>
 
@@ -263,11 +290,11 @@
 				<div class="col-span-2 space-y-2 pt-2">
 					<Slider
 						type="multiple"
-						value={sliderValue}
+						bind:value={sliderDraft}
 						min={min as number}
 						max={max as number}
 						step={resolvedStep}
-						onValueChange={changeSlider}
+						onValueCommit={commitSlider}
 					/>
 					<div
 						class="flex justify-between text-xs text-muted-foreground tabular-nums"

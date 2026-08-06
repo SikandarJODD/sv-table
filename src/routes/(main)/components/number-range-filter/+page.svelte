@@ -345,8 +345,9 @@ ${"</" + "script>"}
 	<section class="space-y-3">
 		<H2 id="behavior">Behavior</H2>
 		<Paragraph>
-			Inputs and slider stay synchronized. Invalid or reversed ranges
-			cannot be applied. Clear removes the filter immediately.
+			Typed values move the slider on blur or Enter. A committed slider
+			change updates the inputs. Invalid or reversed ranges cannot be
+			applied.
 		</Paragraph>
 	</section>
 
