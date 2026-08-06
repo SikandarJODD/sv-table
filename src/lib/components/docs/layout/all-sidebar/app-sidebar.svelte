@@ -11,6 +11,13 @@
 		badge?: BadgeType;
 	};
 
+	type NavGroup = {
+		title: string;
+		url: string;
+		items: NavItem[];
+		count?: number;
+	};
+
 	const componentNavItems: NavItem[] = components.map(
 		({ name, href, badge }) => ({
 			title: name,
@@ -20,7 +27,7 @@
 	);
 
 	// Build navigation from the shared registry.
-	const data = {
+	const data: { navMain: NavGroup[] } = {
 		navMain: [
 			{
 				title: "Getting Started",
@@ -39,7 +46,8 @@
 			{
 				title: "Components",
 				url: "#",
-				items: componentNavItems
+				items: componentNavItems,
+				count: components.length
 			},
 			{
 				title: "Quick Examples",
@@ -47,7 +55,8 @@
 				items: quickExamples.map((example) => ({
 					title: example.name,
 					url: example.href
-				})) as NavItem[]
+				})) as NavItem[],
+				count: quickExamples.length
 			}
 		]
 	};
@@ -66,6 +75,7 @@
 	import { watch } from "runed";
 	import SupportWork from "../../base/main/support-work.svelte";
 	import { cn } from "$lib/utils";
+	import SidebarCount from "./sidebar-count.svelte";
 
 	let {
 		ref = $bindable(null),
@@ -96,7 +106,12 @@
 		<!-- We create a Sidebar.Group for each parent. -->
 		{#each data.navMain as group (group.title)}
 			<Sidebar.Group>
-				<Sidebar.GroupLabel>{group.title}</Sidebar.GroupLabel>
+				<Sidebar.GroupLabel class="gap-1.5">
+					{group.title}
+					{#if group.count !== undefined}
+						<SidebarCount count={group.count} />
+					{/if}
+				</Sidebar.GroupLabel>
 				<Sidebar.GroupContent>
 					<Sidebar.Menu>
 						{#each group.items as item (`${group.title}-${item.title}`)}
