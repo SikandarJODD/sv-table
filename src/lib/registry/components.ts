@@ -45,6 +45,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "row-actions-menu",
+		name: "Row Actions Menu",
+		href: "/components/row-actions-menu",
+		desc: "An accessible dropdown menu for actions on an individual table row.",
+		badge: "New"
+	},
+	{
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",

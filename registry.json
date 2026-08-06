@@ -62,6 +62,26 @@
 			]
 		},
 		{
+			"name": "row-actions-menu",
+			"type": "registry:component",
+			"title": "Row Actions Menu",
+			"description": "An accessible dropdown menu for actions on an individual table row.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button", "dropdown-menu"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/row-actions-menu/row-actions-menu.svelte",
+					"type": "registry:component",
+					"target": "table/row-actions-menu/row-actions-menu.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/row-actions-menu/index.ts",
+					"type": "registry:file",
+					"target": "table/row-actions-menu/index.ts"
+				}
+			]
+		},
+		{
 			"name": "debounce-input",
 			"type": "registry:component",
 			"title": "Debounce Input",

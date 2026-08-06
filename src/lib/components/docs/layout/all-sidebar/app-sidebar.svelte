@@ -105,13 +105,24 @@
 									isActive={page.url.pathname === item.url}
 									class={cn(
 										"flex w-full scroll-mt-10 scroll-mb-40 justify-between",
-										item.badge && "pr-1"
+										(item.url === "/components/filters" ||
+											item.url ===
+												"/components/row-actions-menu") &&
+											"pr-1"
 									)}
 								>
 									{#snippet child({ props })}
 										<a href={item.url} {...props}>
 											{item.title}
-											{#if item.url === "/components/filters"}
+											{#if item.url === "/components/row-actions-menu" && item.badge}
+												<Badge
+													size="sm"
+													variant="amber"
+													class="px-1.5 py-0.5"
+												>
+													{item.badge}
+												</Badge>
+											{:else if item.url === "/components/filters"}
 												<Badge
 													size="sm"
 													variant="amber"

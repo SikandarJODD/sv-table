@@ -16,7 +16,7 @@
 - [+] RowCheckbox — individual row selection checkbox
 - [+] SelectAllCheckbox — header checkbox with indeterminate state
 - [+] BulkActionsBar — toolbar shown when rows are selected
-- [ ] DataTableToolbar — wraps search + faceted filters + view options + reset button
+- [+] DataTableToolbar — wraps search + faceted filters + view options + reset button
 - [ ] RowActionsMenu — "⋮" dropdown (Edit / Delete / View / Duplicate)
 - [ ] StatusBadge — colored badge for status/category cell values
 

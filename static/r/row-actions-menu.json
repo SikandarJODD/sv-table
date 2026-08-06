@@ -1,0 +1,31 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "row-actions-menu",
+	"title": "Row Actions Menu",
+	"type": "registry:component",
+	"description": "An accessible dropdown menu for actions on an individual table row.",
+	"dependencies": [
+		"@lucide/svelte"
+	],
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0",
+		"bits-ui@^2.18.1",
+		"@internationalized/date@^3.12.1"
+	],
+	"registryDependencies": [
+		"button",
+		"dropdown-menu"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\n\timport type { Component } from \"svelte\";\n\n\texport type RowActionState<T> = boolean | ((row: T) => boolean);\n\n\texport type RowAction<T> = {\n\t\tid: string;\n\t\tlabel: string;\n\t\tonSelect: (row: T) => void;\n\t\ticon?: Component;\n\t\tshortcut?: string;\n\t\tvariant?: \"default\" | \"destructive\";\n\t\tdisabled?: RowActionState<T>;\n\t\thidden?: RowActionState<T>;\n\t\tseparatorBefore?: boolean;\n\t};\n</script>\n\n<script lang=\"ts\" generics=\"T\">\n\timport EllipsisIcon from \"@lucide/svelte/icons/ellipsis\";\n\n\timport { mergeProps } from \"bits-ui\";\n\n\timport { Button } from \"$lib/components/ui/button\";\n\timport * as DropdownMenu from \"$lib/components/ui/dropdown-menu\";\n\timport { cn } from \"$UTILS$.js\";\n\n\ttype Props = {\n\t\trow: T;\n\t\tactions: RowAction<any>[];\n\t\tlabel?: string;\n\t\tmenuLabel?: string;\n\t\tdisabled?: boolean;\n\t\talign?: \"start\" | \"center\" | \"end\";\n\t\tsideOffset?: number;\n\t\tclass?: string;\n\t\tcontentClass?: string;\n\t\topen?: boolean;\n\t};\n\n\tlet {\n\t\trow,\n\t\tactions,\n\t\tlabel = \"Open row actions\",\n\t\tmenuLabel,\n\t\tdisabled = false,\n\t\talign = \"end\",\n\t\tsideOffset = 4,\n\t\tclass: className,\n\t\tcontentClass,\n\t\topen = $bindable(false)\n\t}: Props = $props();\n\n\tfunction resolveState(state: RowActionState<T> | undefined) {\n\t\treturn typeof state === \"function\" ? state(row) : (state ?? false);\n\t}\n\n\tlet visibleActions = $derived(\n\t\tactions.filter((action) => !resolveState(action.hidden))\n\t);\n</script>\n\n<span data-slot=\"row-actions-menu\" class=\"inline-flex\">\n\t<DropdownMenu.Root bind:open>\n\t\t<DropdownMenu.Trigger>\n\t\t\t{#snippet child({ props })}\n\t\t\t\t{@const triggerProps = mergeProps(props, {\n\t\t\t\t\tonclick: (event: MouseEvent) => event.stopPropagation()\n\t\t\t\t})}\n\t\t\t\t<Button\n\t\t\t\t\t{...triggerProps}\n\t\t\t\t\tvariant=\"ghost\"\n\t\t\t\t\tsize=\"icon-sm\"\n\t\t\t\t\tclass={cn(\"size-8\", className)}\n\t\t\t\t\tdisabled={disabled || visibleActions.length === 0}\n\t\t\t\t\taria-label={label}\n\t\t\t\t\ttitle={label}\n\t\t\t\t>\n\t\t\t\t\t<EllipsisIcon />\n\t\t\t\t</Button>\n\t\t\t{/snippet}\n\t\t</DropdownMenu.Trigger>\n\n\t\t<DropdownMenu.Content\n\t\t\t{align}\n\t\t\t{sideOffset}\n\t\t\tclass={cn(\"w-44\", contentClass)}\n\t\t>\n\t\t\t{#if menuLabel}\n\t\t\t\t<DropdownMenu.Label>{menuLabel}</DropdownMenu.Label>\n\t\t\t\t<DropdownMenu.Separator />\n\t\t\t{/if}\n\n\t\t\t{#each visibleActions as action, index (action.id)}\n\t\t\t\t{#if action.separatorBefore && index > 0}\n\t\t\t\t\t<DropdownMenu.Separator />\n\t\t\t\t{/if}\n\n\t\t\t\t<DropdownMenu.Item\n\t\t\t\t\tvariant={action.variant ?? \"default\"}\n\t\t\t\t\tdisabled={resolveState(action.disabled)}\n\t\t\t\t\tonSelect={() => action.onSelect(row)}\n\t\t\t\t\tclass=\"cursor-pointer\"\n\t\t\t\t>\n\t\t\t\t\t{#if action.icon}\n\t\t\t\t\t\t{@const Icon = action.icon}\n\t\t\t\t\t\t<Icon />\n\t\t\t\t\t{/if}\n\t\t\t\t\t<span>{action.label}</span>\n\t\t\t\t\t{#if action.shortcut}\n\t\t\t\t\t\t<DropdownMenu.Shortcut>\n\t\t\t\t\t\t\t{action.shortcut}\n\t\t\t\t\t\t</DropdownMenu.Shortcut>\n\t\t\t\t\t{/if}\n\t\t\t\t</DropdownMenu.Item>\n\t\t\t{/each}\n\t\t</DropdownMenu.Content>\n\t</DropdownMenu.Root>\n</span>\n",
+			"type": "registry:component",
+			"target": "table/row-actions-menu/row-actions-menu.svelte"
+		},
+		{
+			"content": "import RowActionsMenu from \"./row-actions-menu.svelte\";\n\nexport { RowActionsMenu };\nexport type { RowAction, RowActionState } from \"./row-actions-menu.svelte\";\nexport default RowActionsMenu;\n",
+			"type": "registry:file",
+			"target": "table/row-actions-menu/index.ts"
+		}
+	]
+}

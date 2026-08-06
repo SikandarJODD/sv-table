@@ -33,6 +33,20 @@
 		"relativeUrl": "bulk-actions-bar.json"
 	},
 	{
+		"name": "row-actions-menu",
+		"title": "Row Actions Menu",
+		"type": "registry:component",
+		"description": "An accessible dropdown menu for actions on an individual table row.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button",
+			"dropdown-menu"
+		],
+		"relativeUrl": "row-actions-menu.json"
+	},
+	{
 		"name": "debounce-input",
 		"title": "Debounce Input",
 		"type": "registry:component",
