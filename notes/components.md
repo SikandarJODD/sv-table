@@ -26,7 +26,7 @@
 - [ ] NumberRangeFilter — min/max range filter
 - [ ] ConfirmDialog — generic "are you sure?" for destructive actions
 - [ ] EditableCell — click-to-edit cell with save/cancel
-- [ ] ExportButton — CSV/Excel export trigger
+- [+] DataTableExport — dependency-free CSV export trigger
 - [ ] DragHandle — grip icon for row/column reordering
 - [ ] FilterChips — removable badges for active filters
 - [ ] TableErrorState — "something went wrong" + retry button

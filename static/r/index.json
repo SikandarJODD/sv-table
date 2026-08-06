@@ -47,6 +47,19 @@
 		"relativeUrl": "row-actions-menu.json"
 	},
 	{
+		"name": "data-table-export",
+		"title": "Data Table Export",
+		"type": "registry:component",
+		"description": "Download typed table rows and columns as a safe CSV file.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "data-table-export.json"
+	},
+	{
 		"name": "debounce-input",
 		"title": "Debounce Input",
 		"type": "registry:component",

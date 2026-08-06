@@ -1,0 +1,28 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "data-table-export",
+	"title": "Data Table Export",
+	"type": "registry:component",
+	"description": "Download typed table rows and columns as a safe CSV file.",
+	"dependencies": [
+		"@lucide/svelte"
+	],
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\n\texport type CsvValue = string | number | boolean | Date | null | undefined;\n\n\texport type CsvExportColumn<T> = {\n\t\tid: string;\n\t\theader: string;\n\t\taccessor: keyof T | ((row: T) => CsvValue);\n\t\tformat?: (value: CsvValue, row: T) => CsvValue;\n\t};\n\n\texport type CsvExportResult = {\n\t\tfilename: string;\n\t\trowCount: number;\n\t};\n</script>\n\n<script lang=\"ts\" generics=\"T\">\n\timport DownloadIcon from \"@lucide/svelte/icons/download\";\n\n\timport { Button } from \"$lib/components/ui/button\";\n\timport { cn } from \"$UTILS$.js\";\n\n\ttype Props = {\n\t\trows: T[];\n\t\tcolumns: CsvExportColumn<T>[];\n\t\tfilename?: string;\n\t\tlabel?: string;\n\t\tdelimiter?: string;\n\t\tincludeBom?: boolean;\n\t\tprotectFormulas?: boolean;\n\t\tdisabled?: boolean;\n\t\tclass?: string;\n\t\tonExport?: (result: CsvExportResult) => void;\n\t};\n\n\tlet {\n\t\trows,\n\t\tcolumns,\n\t\tfilename = \"table-export\",\n\t\tlabel = \"Export CSV\",\n\t\tdelimiter = \",\",\n\t\tincludeBom = true,\n\t\tprotectFormulas = true,\n\t\tdisabled = false,\n\t\tclass: className,\n\t\tonExport\n\t}: Props = $props();\n\n\tfunction getValue(row: T, column: CsvExportColumn<T>): CsvValue {\n\t\tconst value =\n\t\t\ttypeof column.accessor === \"function\"\n\t\t\t\t? column.accessor(row)\n\t\t\t\t: (row[column.accessor] as CsvValue);\n\n\t\treturn column.format ? column.format(value, row) : value;\n\t}\n\n\tfunction stringifyValue(value: CsvValue) {\n\t\tif (value === null || value === undefined) return \"\";\n\t\tif (value instanceof Date) return value.toISOString();\n\n\t\tconst text = String(value);\n\n\t\tif (\n\t\t\tprotectFormulas &&\n\t\t\ttypeof value === \"string\" &&\n\t\t\t/^[=+\\-@\\t\\r]/.test(text)\n\t\t) {\n\t\t\treturn `'${text}`;\n\t\t}\n\n\t\treturn text;\n\t}\n\n\tfunction escapeCell(value: CsvValue) {\n\t\tconst text = stringifyValue(value);\n\t\tconst escaped = text.replaceAll('\"', '\"\"');\n\n\t\treturn text.includes(delimiter) || /[\"\\r\\n]/.test(text)\n\t\t\t? `\"${escaped}\"`\n\t\t\t: escaped;\n\t}\n\n\tfunction getFilename() {\n\t\treturn filename.toLowerCase().endsWith(\".csv\")\n\t\t\t? filename\n\t\t\t: `${filename}.csv`;\n\t}\n\n\tfunction exportCsv() {\n\t\tif (\n\t\t\trows.length === 0 ||\n\t\t\tcolumns.length === 0 ||\n\t\t\tdelimiter.length === 0\n\t\t) {\n\t\t\treturn;\n\t\t}\n\n\t\tconst lines = [\n\t\t\tcolumns.map((column) => escapeCell(column.header)).join(delimiter),\n\t\t\t...rows.map((row) =>\n\t\t\t\tcolumns\n\t\t\t\t\t.map((column) => escapeCell(getValue(row, column)))\n\t\t\t\t\t.join(delimiter)\n\t\t\t)\n\t\t];\n\t\tconst csv = `${includeBom ? \"\\uFEFF\" : \"\"}${lines.join(\"\\r\\n\")}`;\n\t\tconst blob = new Blob([csv], { type: \"text/csv;charset=utf-8\" });\n\t\tconst url = URL.createObjectURL(blob);\n\t\tconst anchor = document.createElement(\"a\");\n\t\tconst resolvedFilename = getFilename();\n\n\t\tanchor.href = url;\n\t\tanchor.download = resolvedFilename;\n\t\tanchor.hidden = true;\n\t\tdocument.body.append(anchor);\n\t\tanchor.click();\n\t\tanchor.remove();\n\t\tsetTimeout(() => URL.revokeObjectURL(url), 0);\n\n\t\tonExport?.({ filename: resolvedFilename, rowCount: rows.length });\n\t}\n</script>\n\n<Button\n\ttype=\"button\"\n\tvariant=\"outline\"\n\tsize=\"sm\"\n\tclass={cn(\"shrink-0\", className)}\n\tdisabled={disabled ||\n\t\trows.length === 0 ||\n\t\tcolumns.length === 0 ||\n\t\tdelimiter.length === 0}\n\tonclick={exportCsv}\n>\n\t<DownloadIcon />\n\t{label}\n</Button>\n",
+			"type": "registry:component",
+			"target": "table/data-table-export/data-table-export.svelte"
+		},
+		{
+			"content": "import DataTableExport from \"./data-table-export.svelte\";\n\nexport type {\n\tCsvExportColumn,\n\tCsvExportResult,\n\tCsvValue\n} from \"./data-table-export.svelte\";\n\nexport default DataTableExport;\n",
+			"type": "registry:file",
+			"target": "table/data-table-export/index.ts"
+		}
+	]
+}

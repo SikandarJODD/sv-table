@@ -109,6 +109,8 @@
 											item.url ===
 												"/components/row-actions-menu" ||
 											item.url ===
+												"/components/data-table-export" ||
+											item.url ===
 												"/components/data-table-faceted-filter") &&
 											"pr-1"
 									)}
@@ -116,7 +118,7 @@
 									{#snippet child({ props })}
 										<a href={item.url} {...props}>
 											{item.title}
-											{#if (item.url === "/components/row-actions-menu" || item.url === "/components/data-table-faceted-filter") && item.badge}
+											{#if (item.url === "/components/row-actions-menu" || item.url === "/components/data-table-export" || item.url === "/components/data-table-faceted-filter") && item.badge}
 												<Badge
 													size="sm"
 													variant="amber"

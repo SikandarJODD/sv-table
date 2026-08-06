@@ -82,6 +82,26 @@
 			]
 		},
 		{
+			"name": "data-table-export",
+			"type": "registry:component",
+			"title": "Data Table Export",
+			"description": "Download typed table rows and columns as a safe CSV file.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["button"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/data-table-export/data-table-export.svelte",
+					"type": "registry:component",
+					"target": "table/data-table-export/data-table-export.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/data-table-export/index.ts",
+					"type": "registry:file",
+					"target": "table/data-table-export/index.ts"
+				}
+			]
+		},
+		{
 			"name": "debounce-input",
 			"type": "registry:component",
 			"title": "Debounce Input",

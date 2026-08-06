@@ -52,6 +52,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "data-table-export",
+		name: "Data Table Export",
+		href: "/components/data-table-export",
+		desc: "Download typed table rows and columns as a safe CSV file.",
+		badge: "New"
+	},
+	{
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",
@@ -128,6 +135,12 @@ let quickExamples: QuickExample[] = [
 		name: "Pagination",
 		href: "/quick-examples/pagination",
 		desc: "Pagination-focused quick example route."
+	},
+	{
+		id: "csv-export-example",
+		name: "CSV Export",
+		href: "/quick-examples/csv-export",
+		desc: "Export the currently filtered table rows to a CSV file."
 	}
 ];
 
