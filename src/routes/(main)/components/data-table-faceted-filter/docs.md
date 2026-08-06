@@ -82,7 +82,7 @@ Pass `facets={new Map([...])}` to override counts with backend-provided values.
 - `title`: trigger label.
 - `options`: `{ label, value, icon? }[]`.
 - `facets`: optional `Map<string, number>` count override.
-- `showCounts`: show counts when available; defaults to `true`.
+- `showCounts`: show option counts and the selected result total when available; defaults to `true`.
 - `open`: bindable popover state.
 - `class`: trigger classes.
 - `contentClass`: popover content classes.

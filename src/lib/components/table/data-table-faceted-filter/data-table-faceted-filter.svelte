@@ -79,6 +79,16 @@
 	let selectedOptions = $derived(
 		options.filter((option) => selectedValues.has(option.value))
 	);
+	let selectedTotalCount = $derived(
+		selectedOptions.reduce(
+			(total, option) => total + (facetCounts.get(option.value) ?? 0),
+			0
+		)
+	);
+	let showSelectedTotal = $derived(showCounts && facetCounts.size > 0);
+	let selectedTotalLabel = $derived(
+		`${selectedTotalCount} ${selectedTotalCount === 1 ? "result" : "results"}`
+	);
 
 	function toggleOption(value: string) {
 		const nextValues = new Set(selectedValues);
@@ -114,7 +124,7 @@
 						className
 					)}
 					{disabled}
-					aria-label={`${title} filter${selectedValues.size ? `, ${selectedValues.size} selected` : ""}`}
+					aria-label={`${title} filter${selectedValues.size ? `, ${selectedValues.size} selected${showSelectedTotal ? `, ${selectedTotalLabel}` : ""}` : ""}`}
 				>
 					<CirclePlusIcon />
 					{title}
@@ -125,7 +135,11 @@
 							variant="secondary"
 							class="rounded-sm px-1 font-normal lg:hidden"
 						>
-							{selectedValues.size}
+							{#if showSelectedTotal}
+								{selectedTotalLabel}
+							{:else}
+								{selectedValues.size}
+							{/if}
 						</Badge>
 
 						<div class="hidden gap-1 lg:flex">
@@ -145,6 +159,15 @@
 										{option.label}
 									</Badge>
 								{/each}
+							{/if}
+
+							{#if showSelectedTotal}
+								<Badge
+									variant="secondary"
+									class="rounded-sm px-1 font-normal"
+								>
+									{selectedTotalLabel}
+								</Badge>
 							{/if}
 						</div>
 					{/if}

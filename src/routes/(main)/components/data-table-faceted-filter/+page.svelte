@@ -185,7 +185,7 @@ ${"</" + "script>"}
 				type: "boolean",
 				default: "true",
 				description:
-					"Shows available row counts when facet data exists."
+					"Shows option counts and the selected result total when facet data exists."
 			},
 			{
 				name: "disabled",
