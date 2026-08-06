@@ -381,6 +381,31 @@
 			]
 		},
 		{
+			"name": "date-range-filter",
+			"type": "registry:component",
+			"title": "Date Range Filter",
+			"description": "A responsive date-range picker with presets and explicit apply behavior.",
+			"dependencies": ["@lucide/svelte", "@internationalized/date"],
+			"registryDependencies": [
+				"button",
+				"popover",
+				"range-calendar",
+				"separator"
+			],
+			"files": [
+				{
+					"path": "./src/lib/components/table/date-range-filter/date-range-filter.svelte",
+					"type": "registry:component",
+					"target": "table/date-range-filter/date-range-filter.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/date-range-filter/index.ts",
+					"type": "registry:file",
+					"target": "table/date-range-filter/index.ts"
+				}
+			]
+		},
+		{
 			"name": "pagination-arrow",
 			"type": "registry:component",
 			"title": "Pagination Arrow",

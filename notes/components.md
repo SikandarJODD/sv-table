@@ -22,7 +22,7 @@
 
 ## Tier 3 — situational (build when you reach that category)
 
-- [ ] DateRangeFilter — from/to date picker filter
+- [+] DateRangeFilter — from/to date picker filter
 - [ ] NumberRangeFilter — min/max range filter
 - [ ] ConfirmDialog — generic "are you sure?" for destructive actions
 - [ ] EditableCell — click-to-edit cell with save/cancel

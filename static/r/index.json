@@ -151,6 +151,23 @@
 		"relativeUrl": "data-table-faceted-filter.json"
 	},
 	{
+		"name": "date-range-filter",
+		"title": "Date Range Filter",
+		"type": "registry:component",
+		"description": "A responsive date-range picker with presets and explicit apply behavior.",
+		"dependencies": [
+			"@lucide/svelte",
+			"@internationalized/date"
+		],
+		"registryDependencies": [
+			"button",
+			"popover",
+			"range-calendar",
+			"separator"
+		],
+		"relativeUrl": "date-range-filter.json"
+	},
+	{
 		"name": "pagination-arrow",
 		"title": "Pagination Arrow",
 		"type": "registry:component",

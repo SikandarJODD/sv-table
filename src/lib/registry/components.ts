@@ -80,6 +80,13 @@ let components: Component[] = [
 		badge: "New"
 	},
 	{
+		id: "date-range-filter",
+		name: "Date Range Filter",
+		href: "/components/date-range-filter",
+		desc: "A responsive date-range picker with presets and explicit apply behavior.",
+		badge: "New"
+	},
+	{
 		id: "data-table-column-header",
 		name: "Data Table Column Header",
 		href: "/components/data-table-column-header",
@@ -123,6 +130,12 @@ let quickExamples: QuickExample[] = [
 		name: "Faceted Filter",
 		href: "/quick-examples/faceted-filter",
 		desc: "Filter 400 seeded rows with multiple facets and live counts."
+	},
+	{
+		id: "date-range-filter-example",
+		name: "Date Range Filter",
+		href: "/quick-examples/date-range-filter",
+		desc: "Filter table rows with presets or a custom inclusive date range."
 	},
 	{
 		id: "sorting",
