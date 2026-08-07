@@ -103,8 +103,8 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0
       tailwind-variants:
-        specifier: ^3.2.2
-        version: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.4)
+        specifier: ^3.3.1
+        version: 3.3.1(tailwind-merge@3.5.0)(tailwindcss@4.2.4)
       tailwindcss:
         specifier: ^4.2.2
         version: 4.2.4
@@ -1014,14 +1014,16 @@ packages:
   tailwind-merge@3.5.0:
     resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
 
-  tailwind-variants@3.2.2:
-    resolution: {integrity: sha512-Mi4kHeMTLvKlM98XPnK+7HoBPmf4gygdFmqQPaDivc3DpYS6aIY6KiG/PgThrGvii5YZJqRsPz0aPyhoFzmZgg==}
-    engines: {node: '>=16.x', pnpm: '>=7.x'}
+  tailwind-variants@3.3.1:
+    resolution: {integrity: sha512-4pAvwUtM4HKBiRZftncAbpn6V9Hhwoa5Fl7O2u5zbp7Z5Cvu+/o/6+176WY3WCEES209543quG8zFIcXCsc5Jw==}
+    engines: {node: '>=16.9.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwind-merge: '>=3.0.0'
       tailwindcss: '*'
     peerDependenciesMeta:
       tailwind-merge:
+        optional: true
+      tailwindcss:
         optional: true
 
   tailwindcss@4.2.4:
@@ -1922,11 +1924,10 @@ snapshots:
 
   tailwind-merge@3.5.0: {}
 
-  tailwind-variants@3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.4):
-    dependencies:
-      tailwindcss: 4.2.4
+  tailwind-variants@3.3.1(tailwind-merge@3.5.0)(tailwindcss@4.2.4):
     optionalDependencies:
       tailwind-merge: 3.5.0
+      tailwindcss: 4.2.4
 
   tailwindcss@4.2.4: {}
 
