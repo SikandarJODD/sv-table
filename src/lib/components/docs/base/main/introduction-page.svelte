@@ -1,6 +1,14 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { H1, Link, Paragraph } from "$markdown";
+	import { components, quickExamples } from "$lib/registry/components";
+	import {
+		H1,
+		H2,
+		Link,
+		ListItem,
+		Paragraph,
+		UnorderedList
+	} from "$markdown";
 	import CopyPageDropdown from "./copy-page-dropdown.svelte";
 	import Seo from "./seo.svelte";
 
@@ -11,19 +19,18 @@
 
 <Seo
 	title="Introduction"
-	description="Introduction to the table docs, including the Data Table Filters component and upcoming examples."
+	description="Reusable Svelte 5 table components and examples built on TanStack Table v9."
 	keywords={[
+		"svelte table",
 		"sveltekit",
-		"tailwind css",
-		"shadcn-svelte",
-		"docs",
-		"introduction",
-		"data table filters",
-		"pagination"
+		"svelte 5",
+		"tanstack table v9",
+		"data table components",
+		"table examples"
 	]}
 />
 
-<div class="space-y-3">
+<div class="space-y-8">
 	<section>
 		<div
 			class="flex flex-col justify-between gap-3 md:flex-row md:items-center md:gap-4"
@@ -31,10 +38,68 @@
 			<H1 id="introduction">Introduction</H1>
 			<CopyPageDropdown componentName="Introduction" {llmsTxtUrl} />
 		</div>
+
+		<div class="mt-3 max-w-2xl">
+			<Paragraph>
+				SV Table is a collection of reusable Svelte components and
+				practical examples for building data tables.
+			</Paragraph>
+			<Paragraph>
+				It currently includes {components.length} components and {quickExamples.length}
+				quick examples, built for Svelte 5.
+			</Paragraph>
+		</div>
 	</section>
 
-	<Paragraph
-		>Includes the <Link href="/components/filters">Data Table Filter</Link> component.</Paragraph
-	>
-	<Paragraph>Inspired from Bazza UI.</Paragraph>
+	<section class="max-w-2xl">
+		<H2 id="whats-included">What’s included</H2>
+		<Paragraph>
+			The collection covers the common parts needed around a data table:
+		</Paragraph>
+		<UnorderedList class="mt-4">
+			<ListItem>Filtering and searching</ListItem>
+			<ListItem>Row selection and bulk actions</ListItem>
+			<ListItem>Sorting and column controls</ListItem>
+			<ListItem>Pagination and page size</ListItem>
+			<ListItem>CSV export and row action menus</ListItem>
+		</UnorderedList>
+		<Paragraph>
+			Each component page includes a preview, installation command, usage
+			example, and API reference.
+		</Paragraph>
+	</section>
+
+	<section class="max-w-2xl">
+		<H2 id="built-on-tanstack-table">Built on TanStack Table</H2>
+		<Paragraph>
+			The table-aware components and examples are built on
+			<Link href="https://tanstack.com/table/v9/docs/overview">
+				TanStack Table v9 for Svelte</Link
+			>.
+		</Paragraph>
+		<Paragraph>
+			TanStack Table manages table state and behavior, such as sorting,
+			filtering, pagination, and row selection. This collection provides
+			reusable UI components that connect to that state.
+		</Paragraph>
+	</section>
+
+	<section class="max-w-2xl">
+		<H2 id="using-the-docs">Using the docs</H2>
+		<Paragraph>
+			Choose a component from the sidebar, try its example, and add it to
+			your project. The component code is yours to change and adapt to
+			your app.
+		</Paragraph>
+	</section>
+
+	<section class="max-w-2xl">
+		<H2 id="inspiration">Inspiration</H2>
+		<Paragraph>
+			SV Table is inspired by <Link href="https://bazza-ui.com/"
+				>Bazza UI</Link
+			>
+			and <Link href="https://www.cossui.com/">COSS UI</Link>.
+		</Paragraph>
+	</section>
 </div>
