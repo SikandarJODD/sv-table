@@ -2,9 +2,9 @@
 	import { page } from "$app/state";
 	import { components, quickExamples } from "$lib/registry/components";
 	import {
+		FaviconLink,
 		H1,
 		H2,
-		Link,
 		ListItem,
 		Paragraph,
 		UnorderedList
@@ -73,9 +73,12 @@
 		<H2 id="built-on-tanstack-table">Built on TanStack Table</H2>
 		<Paragraph>
 			The table-aware components and examples are built on
-			<Link href="https://tanstack.com/table/v9/docs/overview">
-				TanStack Table v9 for Svelte</Link
-			>.
+			<FaviconLink
+				href="https://tanstack.com/table/v9/docs/overview"
+				class="mr-0 rounded-sm bg-amber-100/80 px-1 text-amber-500 dark:bg-amber-900/30"
+			>
+				TanStack Table V9 for Svelte</FaviconLink
+			>
 		</Paragraph>
 		<Paragraph>
 			TanStack Table manages table state and behavior, such as sorting,
@@ -96,10 +99,10 @@
 	<section class="max-w-2xl">
 		<H2 id="inspiration">Inspiration</H2>
 		<Paragraph>
-			SV Table is inspired by <Link href="https://bazza-ui.com/"
-				>Bazza UI</Link
+			SV Table is inspired by <FaviconLink href="https://ui.bazza.dev/"
+				>Bazza UI</FaviconLink
 			>
-			and <Link href="https://www.cossui.com/">COSS UI</Link>.
+			and <FaviconLink href="https://coss.com/ui/">COSS UI</FaviconLink>.
 		</Paragraph>
 	</section>
 </div>

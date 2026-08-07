@@ -1,6 +1,7 @@
 import Blockquote from "./blockquote.svelte";
 import CodeSpan from "./code-span.svelte";
 import Divider from "./divider.svelte";
+import FaviconLink from "./favicon-link.svelte";
 import H1 from "./h1.svelte";
 import H2 from "./h2.svelte";
 import H3 from "./h3.svelte";
@@ -20,24 +21,25 @@ import Tr from "./tr.svelte";
 import Table from "./table.svelte";
 
 export {
-  Blockquote,
-  CodeSpan,
-  Divider,
-  H1,
-  H2,
-  H3,
-  Link,
-  ListItem,
-  OrderedList,
-  Paragraph,
-  Step,
-  Steps,
-  Strong,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  UnorderedList,
+	Blockquote,
+	CodeSpan,
+	Divider,
+	FaviconLink,
+	H1,
+	H2,
+	H3,
+	Link,
+	ListItem,
+	OrderedList,
+	Paragraph,
+	Step,
+	Steps,
+	Strong,
+	Table,
+	Tbody,
+	Td,
+	Th,
+	Thead,
+	Tr,
+	UnorderedList
 };
