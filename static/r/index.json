@@ -60,6 +60,31 @@
 		"relativeUrl": "data-table-export.json"
 	},
 	{
+		"name": "data-table-empty",
+		"title": "Data Table Empty",
+		"type": "registry:component",
+		"description": "A table row for displaying a clear empty or filtered-results state.",
+		"dependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"empty",
+			"table"
+		],
+		"relativeUrl": "data-table-empty.json"
+	},
+	{
+		"name": "data-table-loading",
+		"title": "Data Table Loading",
+		"type": "registry:component",
+		"description": "Skeleton rows that preserve a table layout while its data is loading.",
+		"registryDependencies": [
+			"skeleton",
+			"table"
+		],
+		"relativeUrl": "data-table-loading.json"
+	},
+	{
 		"name": "debounce-input",
 		"title": "Debounce Input",
 		"type": "registry:component",

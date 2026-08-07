@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "data-table-loading",
+	"title": "Data Table Loading",
+	"type": "registry:component",
+	"description": "Skeleton rows that preserve a table layout while its data is loading.",
+	"registryDependencies": [
+		"skeleton",
+		"table"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\n\timport { Skeleton } from \"$lib/components/ui/skeleton\";\n\timport * as Table from \"$lib/components/ui/table\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype Props = {\n\t\tcolumnCount: number;\n\t\trowCount?: number;\n\t\tclass?: string;\n\t};\n\n\tconst widths = [\"w-4/5\", \"w-full\", \"w-2/3\", \"w-5/6\"];\n\n\tlet { columnCount, rowCount = 5, class: className }: Props = $props();\n\n\tconst loadingRows = $derived(Array.from({ length: Math.max(0, rowCount) }));\n\tconst loadingColumns = $derived(\n\t\tArray.from({ length: Math.max(0, columnCount) })\n\t);\n</script>\n\n{#each loadingRows as _, rowIndex}\n\t<Table.Row aria-hidden=\"true\" class=\"hover:bg-transparent\">\n\t\t{#each loadingColumns as _, columnIndex}\n\t\t\t<Table.Cell>\n\t\t\t\t<Skeleton\n\t\t\t\t\tclass={cn(\n\t\t\t\t\t\t\"h-4\",\n\t\t\t\t\t\twidths[(rowIndex + columnIndex) % widths.length],\n\t\t\t\t\t\tclassName\n\t\t\t\t\t)}\n\t\t\t\t/>\n\t\t\t</Table.Cell>\n\t\t{/each}\n\t</Table.Row>\n{/each}\n",
+			"type": "registry:component",
+			"target": "table/data-table-loading/data-table-loading.svelte"
+		},
+		{
+			"content": "import DataTableLoading from \"./data-table-loading.svelte\";\n\nexport default DataTableLoading;\n",
+			"type": "registry:file",
+			"target": "table/data-table-loading/index.ts"
+		}
+	]
+}

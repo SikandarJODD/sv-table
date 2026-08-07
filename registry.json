@@ -102,6 +102,45 @@
 			]
 		},
 		{
+			"name": "data-table-empty",
+			"type": "registry:component",
+			"title": "Data Table Empty",
+			"description": "A table row for displaying a clear empty or filtered-results state.",
+			"dependencies": ["@lucide/svelte"],
+			"registryDependencies": ["empty", "table"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/data-table-empty/data-table-empty.svelte",
+					"type": "registry:component",
+					"target": "table/data-table-empty/data-table-empty.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/data-table-empty/index.ts",
+					"type": "registry:file",
+					"target": "table/data-table-empty/index.ts"
+				}
+			]
+		},
+		{
+			"name": "data-table-loading",
+			"type": "registry:component",
+			"title": "Data Table Loading",
+			"description": "Skeleton rows that preserve a table layout while its data is loading.",
+			"registryDependencies": ["skeleton", "table"],
+			"files": [
+				{
+					"path": "./src/lib/components/table/data-table-loading/data-table-loading.svelte",
+					"type": "registry:component",
+					"target": "table/data-table-loading/data-table-loading.svelte"
+				},
+				{
+					"path": "./src/lib/components/table/data-table-loading/index.ts",
+					"type": "registry:file",
+					"target": "table/data-table-loading/index.ts"
+				}
+			]
+		},
+		{
 			"name": "debounce-input",
 			"type": "registry:component",
 			"title": "Debounce Input",

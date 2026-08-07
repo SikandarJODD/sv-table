@@ -7,13 +7,33 @@
 		createPaginatedRowModel
 	} from "@tanstack/svelte-table";
 	import type { ColumnDef } from "@tanstack/svelte-table";
+	import DataTableEmpty from "$table/data-table-empty";
 	import * as Table from "$lib/components/ui/table";
 	import PageSizeSelector from "$table/page-size-selector";
 	import Pagination from "$table/pagination";
 	import PaginationArrow from "$table/pagination-arrow";
+	import { Button } from "$lib/components/ui/button";
+	import { Input } from "$lib/components/ui/input";
 	import { makePeople, type Person } from "$lib/seed/seed";
 
 	const data: Person[] = makePeople(300);
+	let query = $state("");
+
+	const filteredData = $derived.by(() => {
+		const normalizedQuery = query.trim().toLowerCase();
+
+		if (!normalizedQuery) return data;
+
+		return data.filter((person) =>
+			[
+				person.firstName,
+				person.lastName,
+				person.email,
+				person.department,
+				person.country
+			].some((value) => value.toLowerCase().includes(normalizedQuery))
+		);
+	});
 
 	// Register the pagination feature + its client-side row model
 	const features = tableFeatures({
@@ -34,7 +54,7 @@
 		features,
 		columns,
 		get data() {
-			return data;
+			return filteredData;
 		},
 		initialState: {
 			pagination: { pageIndex: 0, pageSize: 10 }
@@ -42,9 +62,24 @@
 	});
 
 	let pagination = $derived(table.atoms.pagination.get());
+	const rows = $derived(table.getRowModel().rows);
+
+	function clearSearch() {
+		query = "";
+		table.setPageIndex(0);
+	}
 </script>
 
 <div class="space-y-4 p-6">
+	<Input
+		bind:value={query}
+		type="search"
+		placeholder="Search people..."
+		aria-label="Search people"
+		class="max-w-sm"
+		oninput={() => table.setPageIndex(0)}
+	/>
+
 	<div class="overflow-hidden rounded-sm border">
 		<Table.Root>
 			<Table.Header>
@@ -65,12 +100,26 @@
 			</Table.Header>
 
 			<Table.Body>
-				{#each table.getRowModel().rows as row (row.id)}
+				{#each rows as row (row.id)}
 					<Table.Row>
 						{#each row.getAllCells() as cell (cell.id)}
 							<Table.Cell>{cell.getValue()}</Table.Cell>
 						{/each}
 					</Table.Row>
+				{:else}
+					<DataTableEmpty
+						colspan={columns.length}
+						title="No people found"
+						description="No rows match your current search."
+					>
+						{#snippet actions()}
+							<Button
+								variant="outline"
+								size="sm"
+								onclick={clearSearch}>Clear search</Button
+							>
+						{/snippet}
+					</DataTableEmpty>
 				{/each}
 			</Table.Body>
 		</Table.Root>
@@ -91,7 +140,7 @@
 				onNext={() => table.nextPage()}
 				onGoToPage={(page) => table.setPageIndex(page - 1)}
 				pageSize={pagination.pageSize}
-				totalItems={data.length}
+				totalItems={filteredData.length}
 			/>
 			<Pagination
 				currentPage={pagination.pageIndex + 1}

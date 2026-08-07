@@ -28,42 +28,48 @@ let components: Component[] = [
 		name: "Row Checkbox",
 		href: "/components/row-checkbox",
 		desc: "A controlled checkbox for selecting an individual table row.",
-		badge: "New"
 	},
 	{
 		id: "header-checkbox",
 		name: "Header Checkbox",
 		href: "/components/header-checkbox",
 		desc: "A select-all checkbox with support for an indeterminate state.",
-		badge: "New"
 	},
 	{
 		id: "bulk-actions-bar",
 		name: "Bulk Actions Bar",
 		href: "/components/bulk-actions-bar",
 		desc: "A floating action bar for performing custom actions on selected rows.",
-		badge: "New"
 	},
 	{
 		id: "row-actions-menu",
 		name: "Row Actions Menu",
 		href: "/components/row-actions-menu",
 		desc: "An accessible dropdown menu for actions on an individual table row.",
-		badge: "New"
 	},
 	{
 		id: "data-table-export",
 		name: "Data Table Export",
 		href: "/components/data-table-export",
 		desc: "Download typed table rows and columns as a safe CSV file.",
-		badge: "New"
+	},
+	{
+		id: "data-table-empty",
+		name: "Data Table Empty",
+		href: "/components/data-table-empty",
+		desc: "A table row for displaying a clear empty or filtered-results state.",
+	},
+	{
+		id: "data-table-loading",
+		name: "Data Table Loading",
+		href: "/components/data-table-loading",
+		desc: "Skeleton rows that preserve a table layout while its data is loading.",
 	},
 	{
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",
 		desc: "A search input with an optional delay for value changes.",
-		badge: "New"
 	},
 	{
 		id: "filters",
@@ -77,49 +83,42 @@ let components: Component[] = [
 		name: "Data Table Faceted Filter",
 		href: "/components/data-table-faceted-filter",
 		desc: "A searchable multi-select filter with live counts for categorical table columns.",
-		badge: "New"
 	},
 	{
 		id: "date-range-filter",
 		name: "Date Range Filter",
 		href: "/components/date-range-filter",
 		desc: "A responsive date-range picker with presets and explicit apply behavior.",
-		badge: "New"
 	},
 	{
 		id: "number-range-filter",
 		name: "Number Range Filter",
 		href: "/components/number-range-filter",
 		desc: "A number range picker with exact inputs, an optional slider, and explicit apply behavior.",
-		badge: "New"
 	},
 	{
 		id: "data-table-column-header",
 		name: "Data Table Column Header",
 		href: "/components/data-table-column-header",
 		desc: "A table heading with sorting, pinning, ordering, and visibility actions.",
-		badge: "New"
 	},
 	{
 		id: "data-table-view",
 		name: "Data Table View",
 		href: "/components/data-table-view",
 		desc: "A checkbox dropdown for toggling table column visibility.",
-		badge: "New"
 	},
 	{
 		id: "pagination",
 		name: "Pagination",
 		href: "/components/pagination",
 		desc: "Minimal docs for number pagination and arrow pagination table components.",
-		badge: "New"
 	},
 	{
 		id: "page-size-selector",
 		name: "Page Size Selector",
 		href: "/components/page-size-selector",
 		desc: "Change the number of rows displayed on each table page.",
-		badge: "New"
 	}
 ];
 
