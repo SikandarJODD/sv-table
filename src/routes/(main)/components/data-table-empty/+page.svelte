@@ -8,7 +8,7 @@
 	import { PreviewComponent } from "$lib/components/ui/preview-component";
 	import type { CodeBlock } from "$lib/types/code";
 	import type { PropsTable } from "$lib/types/structure";
-	import { H1, H2, Paragraph } from "$markdown";
+	import { H1, H2, H3, Paragraph } from "$markdown";
 	import DataTableEmptyCode from "$table/data-table-empty/data-table-empty.svelte?raw";
 	import DataTableEmptyIndexCode from "$table/data-table-empty/index.ts?raw";
 	import ActionEmptyPreview from "./examples/action-empty-preview.svelte";
@@ -17,6 +17,8 @@
 	import BasicEmptyPreviewCode from "./examples/basic-empty-preview.svelte?raw";
 	import CustomIconEmptyPreview from "./examples/custom-icon-empty-preview.svelte";
 	import CustomIconEmptyPreviewCode from "./examples/custom-icon-empty-preview.svelte?raw";
+	import SearchEmptyPreview from "./examples/search-empty-preview.svelte";
+	import SearchEmptyPreviewCode from "./examples/search-empty-preview.svelte?raw";
 
 	const title = "Data Table Empty";
 	const description =
@@ -38,6 +40,12 @@
 		name: "custom-icon-empty-preview.svelte",
 		lang: "svelte",
 		code: CustomIconEmptyPreviewCode
+	};
+
+	const searchCode: CodeBlock = {
+		name: "search-empty-preview.svelte",
+		lang: "svelte",
+		code: SearchEmptyPreviewCode
 	};
 
 	const usageCode: CodeBlock = {
@@ -152,39 +160,14 @@ ${"</" + "script>"}
 		</div>
 	</section>
 
-	<section class="space-y-3">
-		<H2 id="basic">Basic</H2>
+	<section>
 		<PreviewComponent
-			code={basicCode}
+			code={searchCode}
 			frame
 			isCentered={false}
 			class="p-4 md:p-6"
 		>
-			<BasicEmptyPreview />
-		</PreviewComponent>
-	</section>
-
-	<section class="space-y-3">
-		<H2 id="with-an-action">With an action</H2>
-		<PreviewComponent
-			code={actionCode}
-			frame
-			isCentered={false}
-			class="p-4 md:p-6"
-		>
-			<ActionEmptyPreview />
-		</PreviewComponent>
-	</section>
-
-	<section class="space-y-3">
-		<H2 id="custom-icon">Custom icon</H2>
-		<PreviewComponent
-			code={customIconCode}
-			frame
-			isCentered={false}
-			class="p-4 md:p-6"
-		>
-			<CustomIconEmptyPreview />
+			<SearchEmptyPreview />
 		</PreviewComponent>
 	</section>
 
@@ -213,6 +196,46 @@ ${"</" + "script>"}
 	<section class="space-y-3">
 		<H2 id="usage">Usage</H2>
 		<SingleFile code={usageCode} />
+	</section>
+
+	<section class="space-y-6">
+		<H2 id="examples">Examples</H2>
+
+		<div class="space-y-3">
+			<H3 id="basic" class="mt-0">Basic</H3>
+			<PreviewComponent
+				code={basicCode}
+				frame
+				isCentered={false}
+				class="p-4 md:p-6"
+			>
+				<BasicEmptyPreview />
+			</PreviewComponent>
+		</div>
+
+		<div class="space-y-3">
+			<H3 id="with-an-action" class="mt-0">With an action</H3>
+			<PreviewComponent
+				code={actionCode}
+				frame
+				isCentered={false}
+				class="p-4 md:p-6"
+			>
+				<ActionEmptyPreview />
+			</PreviewComponent>
+		</div>
+
+		<div class="space-y-3">
+			<H3 id="custom-icon" class="mt-0">Custom icon</H3>
+			<PreviewComponent
+				code={customIconCode}
+				frame
+				isCentered={false}
+				class="p-4 md:p-6"
+			>
+				<CustomIconEmptyPreview />
+			</PreviewComponent>
+		</div>
 	</section>
 
 	<section>
