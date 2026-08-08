@@ -274,16 +274,6 @@
 		/>
 
 		<div class="flex flex-wrap items-center justify-end gap-4">
-			<p
-				aria-live="polite"
-				class="text-sm whitespace-nowrap text-muted-foreground"
-			>
-				<span class="text-foreground"
-					>{firstVisibleRow}-{lastVisibleRow}</span
-				>
-				of <span class="text-foreground">{totalRows}</span>
-			</p>
-
 			<PaginationArrow
 				currentPage={pagination.pageIndex + 1}
 				pageCount={table.getPageCount()}
@@ -292,6 +282,9 @@
 				onPrevious={() => table.previousPage()}
 				onNext={() => table.nextPage()}
 				onGoToPage={(page) => table.setPageIndex(page - 1)}
+				{firstVisibleRow}
+				{lastVisibleRow}
+				{totalRows}
 			/>
 		</div>
 	</div>

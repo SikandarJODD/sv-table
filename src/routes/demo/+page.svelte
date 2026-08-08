@@ -63,6 +63,13 @@
 
 	let pagination = $derived(table.atoms.pagination.get());
 	const rows = $derived(table.getRowModel().rows);
+	const totalRows = $derived(filteredData.length);
+	const firstVisibleRow = $derived(
+		totalRows === 0 ? 0 : pagination.pageIndex * pagination.pageSize + 1
+	);
+	const lastVisibleRow = $derived(
+		Math.min((pagination.pageIndex + 1) * pagination.pageSize, totalRows)
+	);
 
 	function clearSearch() {
 		query = "";
@@ -139,8 +146,9 @@
 				onPrevious={() => table.previousPage()}
 				onNext={() => table.nextPage()}
 				onGoToPage={(page) => table.setPageIndex(page - 1)}
-				pageSize={pagination.pageSize}
-				totalItems={filteredData.length}
+				{firstVisibleRow}
+				{lastVisibleRow}
+				{totalRows}
 			/>
 			<Pagination
 				currentPage={pagination.pageIndex + 1}

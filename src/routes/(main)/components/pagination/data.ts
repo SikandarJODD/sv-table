@@ -144,10 +144,16 @@ const arrowUsageCode = `<script lang="ts">
   let currentPage = $state(2);
   const pageCount = 8;
   const pageSize = 10;
-  const totalItems = 73;
+  const totalRows: number = 73;
 
   const canPreviousPage = $derived(currentPage > 1);
   const canNextPage = $derived(currentPage < pageCount);
+  const firstVisibleRow = $derived(
+    totalRows === 0 ? 0 : (currentPage - 1) * pageSize + 1
+  );
+  const lastVisibleRow = $derived(
+    Math.min(currentPage * pageSize, totalRows)
+  );
 
   function onPrevious() {
     if (!canPreviousPage) return;
@@ -172,8 +178,9 @@ const arrowUsageCode = `<script lang="ts">
   {onPrevious}
   {onNext}
   {onGoToPage}
-  {pageSize}
-  {totalItems}
+  {firstVisibleRow}
+  {lastVisibleRow}
+  {totalRows}
 />`;
 
 export const variants: PaginationVariant[] = [
@@ -262,17 +269,25 @@ export const variants: PaginationVariant[] = [
 			props: [
 				...sharedProps,
 				{
-					name: "pageSize",
+					name: "firstVisibleRow",
 					type: "number",
-					default: "1",
-					description:
-						"Items shown per page. Used to render the visible item range."
+					default: "required",
+					required: true,
+					description: "One-based index of the first visible row."
 				},
 				{
-					name: "totalItems",
+					name: "lastVisibleRow",
 					type: "number",
-					default: "pageCount * pageSize",
-					description: "Total items across all pages."
+					default: "required",
+					required: true,
+					description: "One-based index of the last visible row."
+				},
+				{
+					name: "totalRows",
+					type: "number",
+					default: "required",
+					required: true,
+					description: "Total rows across all pages."
 				},
 				{
 					name: "class",
