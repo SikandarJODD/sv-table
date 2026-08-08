@@ -2,16 +2,18 @@
 	import {
 		createTable,
 		createTableState,
+		FlexRender,
 		renderSnippet,
 		type ColumnDef,
 		type SortingState
 	} from "@tanstack/svelte-table";
 	import { onMount } from "svelte";
+	import { flip } from "svelte/animate";
+	import { cubicOut } from "svelte/easing";
 	import { dragHandleZone, type DndEvent } from "svelte-dnd-action";
 
 	import * as Table from "$lib/components/ui/table";
 
-	import DragAlongCell from "./drag-along-cell.svelte";
 	import DraggableTableHeader from "./draggable-table-header.svelte";
 	import {
 		draggableTableFeatures,
@@ -19,7 +21,7 @@
 	} from "./table-features";
 	import type { DraggableColumn, Item } from "./types";
 
-	const flipDurationMs = 150;
+	const flipDurationMs = 300;
 
 	let data = $state<Item[]>([]);
 	let draggedColumnId = $state<string | null>(null);
@@ -125,7 +127,7 @@
 	<div class="w-full overflow-hidden rounded-lg border">
 		<Table.Root
 			class="table-fixed"
-			style={`width: ${table.getTotalSize()}px;`}
+			style={`min-width: ${table.getTotalSize()}px;`}
 		>
 			<Table.Header>
 				<tr
@@ -160,18 +162,17 @@
 			<Table.Body>
 				{#each table.getRowModel().rows as row (row.id)}
 					<Table.Row>
-						{#each columnItems as columnItem (columnItem.columnId)}
-							{@const cell =
-								row.getAllCellsByColumnId()[
-									columnItem.columnId
-								]}
-							{#if cell}
-								<DragAlongCell
-									{cell}
-									isDragging={draggedColumnId ===
-										columnItem.columnId}
-								/>
-							{/if}
+						{#each row.getAllCells() as cell (cell.column.id)}
+							<td
+								animate:flip={{
+									duration: flipDurationMs
+								}}
+								data-slot="table-cell"
+								class="truncate p-2 align-middle whitespace-nowrap transition-opacity has-[[role=checkbox]]:pr-0"
+								style={`width: ${cell.column.getSize()}px; opacity: ${draggedColumnId === cell.column.id ? 0.8 : 1};`}
+							>
+								<FlexRender {cell} />
+							</td>
 						{/each}
 					</Table.Row>
 				{/each}
@@ -211,3 +212,11 @@
 		</a>
 	</p>
 </div>
+
+<style>
+	:global(#dnd-action-dragged-el) {
+		border: 0 !important;
+		outline: none !important;
+		box-shadow: none !important;
+	}
+</style>

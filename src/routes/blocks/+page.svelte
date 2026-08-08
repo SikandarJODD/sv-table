@@ -123,7 +123,7 @@
 		<DraggableExample />
 	</section>
 
-	<section class="space-y-4">
+	<!-- <section class="space-y-4">
 		<h2
 			id="dnd-kit-draggable-columns"
 			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
@@ -131,5 +131,5 @@
 			dnd kit Draggable Columns
 		</h2>
 		<DndKitExample />
-	</section>
+	</section> -->
 </div>
