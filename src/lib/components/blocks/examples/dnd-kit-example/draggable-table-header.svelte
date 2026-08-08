@@ -5,6 +5,8 @@
 	import GripVerticalIcon from "@lucide/svelte/icons/grip-vertical";
 	import { FlexRender, type Header } from "@tanstack/svelte-table";
 
+	import * as Table from "$lib/components/ui/table";
+
 	import type { DraggableTableFeatures } from "./table-features";
 	import type { Item } from "./types";
 
@@ -31,7 +33,7 @@
 	});
 </script>
 
-<th
+<Table.Head
 	{@attach sortable.attach}
 	aria-label={title}
 	aria-sort={header.column.getIsSorted() === "asc"
@@ -39,12 +41,12 @@
 		: header.column.getIsSorted() === "desc"
 			? "descending"
 			: "none"}
-	class="relative h-10 border-t px-2 text-left align-middle font-medium whitespace-nowrap text-foreground before:absolute before:inset-y-0 before:start-0 before:w-px before:bg-border first:before:bg-transparent data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
+	class="relative before:absolute before:inset-y-0 before:start-0 before:w-px before:bg-border first:before:bg-transparent data-[dragging=true]:z-10 data-[dragging=true]:bg-muted/50 data-[dragging=true]:opacity-80"
 	colspan={header.colSpan}
 	data-dragging={sortable.isDragging || undefined}
-	style:width={`${header.getSize()}px`}
+	style={`width: ${header.getSize()}px;`}
 >
-	<div class="flex items-center justify-start gap-0.5">
+	<div class="flex h-full items-center justify-start gap-0.5">
 		<button
 			{@attach sortable.attachHandle}
 			type="button"
@@ -86,4 +88,4 @@
 			</button>
 		{/if}
 	</div>
-</th>
+</Table.Head>

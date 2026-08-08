@@ -2,6 +2,8 @@
 	import { createSortable } from "@dnd-kit/svelte/sortable";
 	import { FlexRender, type Cell } from "@tanstack/svelte-table";
 
+	import * as Table from "$lib/components/ui/table";
+
 	import type { DraggableTableFeatures } from "./table-features";
 	import type { Item } from "./types";
 
@@ -32,12 +34,10 @@
 	});
 </script>
 
-<td
+<Table.Cell
 	{@attach sortable.attach}
-	data-slot="table-cell"
-	class="truncate p-2 align-middle whitespace-nowrap transition-opacity [&:has([role=checkbox])]:pr-0"
-	style:opacity={isDragging ? 0.8 : 1}
-	style:width={`${cell.column.getSize()}px`}
+	class="truncate transition-opacity"
+	style={`width: ${cell.column.getSize()}px; opacity: ${isDragging ? 0.8 : 1};`}
 >
 	<FlexRender {cell} />
-</td>
+</Table.Cell>
