@@ -1,20 +1,6 @@
-<script lang="ts" module>
-	const blocks = [
-		"Basic Data table",
-		"Datatable with Filters",
-		"With Data Filters",
-		"Resizable & Sortable Columns",
-		"Pinnable Columns",
-		"Draggable Columns",
-		"Expand Sub Rows",
-		"Paginated Table",
-		"Numeric Pagination",
-		"Complex Table"
-	].map((title) => ({ title, url: "#" }));
-</script>
-
 <script lang="ts">
-	import BlocksIcon from "$lib/components/icons/blocks.svelte";
+	import { blocks } from "$lib/components/blocks/blocks";
+	import BlocksIcon from "$lib/components/icons/blocks-icon.svelte";
 	import SupportWork from "$lib/components/docs/base/main/support-work.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
@@ -26,7 +12,7 @@
 	}: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<Sidebar.Root class="bg-background pt-14" {...restProps} bind:ref>
+<Sidebar.Root class="bg-background pt-16" {...restProps} bind:ref>
 	<Sidebar.Content>
 		<Sidebar.Group>
 			<Sidebar.GroupLabel>
@@ -38,11 +24,13 @@
 			</Sidebar.GroupLabel>
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
-					{#each blocks as block (block.title)}
+					{#each blocks as block (block.name)}
 						<Sidebar.MenuItem>
 							<Sidebar.MenuButton>
 								{#snippet child({ props })}
-									<a href={block.url} {...props}>{block.title}</a>
+									<a href={block.url} {...props}
+										>{block.name}</a
+									>
 								{/snippet}
 							</Sidebar.MenuButton>
 						</Sidebar.MenuItem>

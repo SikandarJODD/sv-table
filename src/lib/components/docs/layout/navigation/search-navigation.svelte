@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { blocks } from "$lib/components/blocks/blocks";
+	import BlocksIcon from "$lib/components/icons/blocks-icon.svelte";
 	import Badge from "$lib/components/ui/spell/badge/badge.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import * as Command from "$lib/components/ui/command/index.js";
@@ -20,11 +22,11 @@
 
 <svelte:document onkeydown={handleKeydown} />
 
-<div class="text-muted-foreground text-sm mr-2">
+<div class="mr-2 text-sm text-muted-foreground">
 	<Button
 		variant="ghost"
 		size="sm"
-		class="bg-secondary dark:bg-muted/60 flex justify-between px-1.5 md:min-w-46  md:pr-1"
+		class="flex justify-between bg-secondary px-1.5 md:min-w-46 md:pr-1  dark:bg-muted/60"
 		onclick={() => (open = true)}
 	>
 		<span class="hidden pl-1 md:block"> Search... </span>
@@ -70,7 +72,11 @@
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Documentation">
 			{#each docs as doc (doc.id)}
-				<Command.LinkItem value={doc.id} onclick={() => (open = false)} href={doc.href}>
+				<Command.LinkItem
+					value={doc.id}
+					onclick={() => (open = false)}
+					href={doc.href}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
@@ -122,7 +128,13 @@
 						role="img"
 						color="currentColor"
 					>
-						<circle opacity="0.2" cx="12" cy="12" r="10" fill="currentColor"></circle>
+						<circle
+							opacity="0.2"
+							cx="12"
+							cy="12"
+							r="10"
+							fill="currentColor"
+						></circle>
 						<circle
 							cx="12"
 							cy="12"
@@ -133,6 +145,18 @@
 						></circle>
 					</svg>
 					{component.name}
+				</Command.LinkItem>
+			{/each}
+		</Command.Group>
+		<Command.Group heading="Blocks">
+			{#each blocks as block (block.name)}
+				<Command.LinkItem
+					value={block.name}
+					onclick={() => (open = false)}
+					href={block.url}
+				>
+					<BlocksIcon />
+					{block.name}
 				</Command.LinkItem>
 			{/each}
 		</Command.Group>
