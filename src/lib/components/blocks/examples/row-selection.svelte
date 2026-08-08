@@ -16,6 +16,7 @@
 		id: number;
 		name: string;
 		email: string;
+		age: number;
 		location: string;
 		flag: string;
 		status: "Active" | "Inactive" | "Pending";
@@ -57,6 +58,11 @@
 		{
 			accessorKey: "email",
 			header: "Email",
+			cell: (info) => info.getValue()
+		},
+		{
+			accessorKey: "age",
+			header: "Age",
 			cell: (info) => info.getValue()
 		},
 		{

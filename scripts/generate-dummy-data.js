@@ -35,6 +35,7 @@ function createItem(id) {
 		id,
 		name: faker.person.fullName({ firstName, lastName }),
 		email: faker.internet.email({ firstName, lastName }).toLowerCase(),
+		age: faker.number.int({ min: 18, max: 80 }),
 		location: regionNames.of(countryCode) ?? countryCode,
 		flag: countryCodeToFlag(countryCode),
 		status: faker.helpers.arrayElement(statuses),
