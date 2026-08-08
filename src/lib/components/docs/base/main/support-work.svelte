@@ -5,7 +5,7 @@
 	import { github_repo } from "$lib/config/repo";
 </script>
 
-<Card.Root class="gap-2 py-4 ring-0">
+<Card.Root class="gap-2 py-4">
 	<Card.Header class="px-4">
 		<Card.Title class="text-sm">Support My Work</Card.Title>
 		<Card.Description class="text-xs">

@@ -8,6 +8,7 @@ import Terminal from "./terminal.svelte";
 import Code from "./code.svelte";
 import MCP from "./mcp.svelte";
 import Markdown from "./markdown.svelte";
+import Blocks from "./blocks.svelte";
 
 export interface Props extends HTMLAttributes<SVGElement> {
   class?: string;
@@ -25,4 +26,5 @@ export {
   Code as CodeIcon,
   MCP,
   Markdown,
+  Blocks,
 };
