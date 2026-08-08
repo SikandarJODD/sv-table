@@ -103,15 +103,13 @@
 
 	function filterByAge(value: NumberRangeFilterValue | undefined) {
 		ageRange = value;
-		ageColumn.setFilterValue(
-			value ? [value.min, value.max] : undefined
-		);
+		ageColumn.setFilterValue(value ? [value.min, value.max] : undefined);
 	}
 
 	onMount(async () => {
 		const response = await fetch("/dummy-data/data.json");
 		const items = (await response.json()) as Item[];
-		data = items.slice(0, 50);
+		data = items.slice(0, 200);
 	});
 </script>
 
@@ -145,9 +143,13 @@
 		</span>
 	</div>
 
-	<div class="w-full overflow-x-auto rounded-lg border">
-		<Table.Root>
-			<Table.Header>
+	<div class="w-full overflow-auto rounded-lg border [&>div]:max-h-128">
+		<Table.Root
+			class="border-separate border-spacing-0 [&_td]:border-border [&_th]:border-b [&_th]:border-border [&_tr]:border-none [&_tr:not(:last-child)_td]:border-b"
+		>
+			<Table.Header
+				class="sticky top-0 z-10 bg-background/90 backdrop-blur-xs"
+			>
 				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 					<Table.Row class="hover:bg-transparent">
 						{#each headerGroup.headers as header (header.id)}
