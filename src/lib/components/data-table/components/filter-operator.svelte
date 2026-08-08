@@ -39,6 +39,7 @@
   let { column, filter, actions, locale = 'en' }: Props = $props()
 
   let open = $state(false)
+  let triggerRef = $state<HTMLButtonElement | null>(null)
 
   const currentOperator = $derived.by(() => {
     const operatorMap = filterTypeOperatorDetails[column.type] as Record<
@@ -64,10 +65,17 @@
     actions.setFilterOperator(filter.columnId, value as never)
     open = false
   }
+
+  function handleCloseAutoFocus(event: Event) {
+    if (!triggerRef) return
+
+    event.preventDefault()
+    triggerRef.focus({ preventScroll: true })
+  }
 </script>
 
 <Popover bind:open={open}>
-  <PopoverTrigger>
+  <PopoverTrigger bind:ref={triggerRef}>
     {#snippet child({ props })}
       <Button
         {...props}
@@ -82,8 +90,12 @@
     {/snippet}
   </PopoverTrigger>
 
-  <PopoverContent align="start" class="w-56 p-0">
-    <Command loop>
+  <PopoverContent
+    align="start"
+    class="w-56 p-0"
+    onCloseAutoFocus={handleCloseAutoFocus}
+  >
+    <Command loop disableInitialScroll>
       <CommandInput placeholder={t('search', locale)} />
       <CommandEmpty>{t('noresults', locale)}</CommandEmpty>
       <CommandList class="max-h-64">
