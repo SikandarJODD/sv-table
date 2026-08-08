@@ -22,7 +22,7 @@
 		name: "row-checkbox-preview.svelte",
 		lang: "svelte",
 		code: RowCheckboxPreviewCode,
-		highlight: [27, [29, 39], 99]
+		highlight: [6, 27, [30, 39], 99]
 	};
 
 	const usageCode: CodeBlock = {

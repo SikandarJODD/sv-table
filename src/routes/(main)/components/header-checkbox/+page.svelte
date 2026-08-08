@@ -22,7 +22,7 @@
 		name: "header-checkbox-preview.svelte",
 		lang: "svelte",
 		code: HeaderCheckboxPreviewCode,
-		highlight: [28, [30, 43], 91]
+		highlight: [6, 28, [33, 43], 91]
 	};
 
 	const usageCode: CodeBlock = {
@@ -75,15 +75,22 @@ ${"</" + "script>"}
 		highlight: [7]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- header-checkbox/",
-		"                |-- header-checkbox.svelte",
-		"                `-- index.ts"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- header-checkbox/",
+	// 	"                |-- header-checkbox.svelte",
+	// 	"                `-- index.ts"
+	// ].join("\n");
+	let folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── header-checkbox/
+                ├── header-checkbox.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Header checkbox props",
