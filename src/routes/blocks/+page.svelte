@@ -5,6 +5,7 @@
 	import DndKitExample from "$blocks/examples/dnd-kit-example/dnd-kit-example.svelte";
 	import DraggableExample from "$blocks/examples/draggable-example/draggable-example.svelte";
 	import ExpandedSubRows from "$blocks/examples/expanded-sub-rows/expanded-sub-rows.svelte";
+	import PaginatedExample from "$blocks/examples/paginated-example.svelte";
 	import PinnableColumn from "$blocks/examples/pinnable-column.svelte";
 	import ResizableSortExample from "$blocks/examples/resizable-sort-example.svelte";
 	import RowSelection from "$blocks/examples/row-selection.svelte";
@@ -132,6 +133,16 @@
 			Expandable Sub Rows
 		</h2>
 		<ExpandedSubRows />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="paginated-table"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Paginated Table
+		</h2>
+		<PaginatedExample />
 	</section>
 
 	<!-- <section class="space-y-4">
