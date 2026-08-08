@@ -22,12 +22,14 @@
 		toggleMode();
 	});
 	let workSpaceRootPath = "S:\\sv\\comp-setup";
-	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
+	let metaTags = $derived(
+		deepMerge(data.baseMetaTags, page.data.pageMetaTags)
+	);
 </script>
 
-{#if browser && dev}
+<!-- {#if browser && dev}
 	<Agentation workspaceRoot={workSpaceRootPath} />
-{/if}
+{/if} -->
 
 <ModeWatcher defaultMode="dark" />
 <MetaTags {...metaTags} />

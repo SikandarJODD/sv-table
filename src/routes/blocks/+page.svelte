@@ -5,15 +5,108 @@
 	import PinnableColumn from "$blocks/examples/pinnable-column.svelte";
 	import ResizableSortExample from "$blocks/examples/resizable-sort-example.svelte";
 	import RowSelection from "$blocks/examples/row-selection.svelte";
+	import Seo from "$lib/components/docs/base/main/seo.svelte";
+
+	const title = "Svelte Data Table Blocks";
+	const description =
+		"Explore reusable Svelte 5 and TanStack Table blocks for selection, filtering, sorting, resizing, and column pinning.";
 </script>
 
-<div class="space-y-12">
-	<PinnableColumn />
-	<ResizableSortExample />
-	<RowSelection />
-	<DataTableFiltersExample />
-	<CustomFiltersExample />
-</div>
+<Seo
+	{title}
+	{description}
+	keywords={[
+		"Svelte data table",
+		"Svelte table",
+		"Svelte 5 table",
+		"Svelte table components",
+		"Svelte data grid",
+		"TanStack Table Svelte",
+		"TanStack Table v9",
+		"data table blocks",
+		"reusable table components",
+		"responsive data table",
+		"accessible data table",
+		"headless data table",
+		"table row selection",
+		"table filtering",
+		"custom table filters",
+		"faceted table filters",
+		"sortable table columns",
+		"resizable table columns",
+		"pinnable table columns",
+		"SvelteKit data table",
+		"TypeScript data table",
+		"Tailwind CSS table",
+		"Svelte UI blocks",
+		"data table examples",
+		"sv table"
+	]}
+/>
 
-<style>
-</style>
+<div class="mb-88 space-y-12">
+	<header class="max-w-3xl space-y-2">
+		<h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
+		<p class="text-base text-muted-foreground sm:text-lg">{description}</p>
+	</header>
+
+	<section class="space-y-4">
+		<h2
+			id="basic-data-table"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Basic Data Table
+		</h2>
+		<BasicDataTable />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="row-selection"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Row Selection
+		</h2>
+		<RowSelection />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="data-table-with-filters"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Data Table with Filters
+		</h2>
+		<DataTableFiltersExample />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="data-table-with-custom-filters"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Data Table with Custom Filters
+		</h2>
+		<CustomFiltersExample />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="resizable-sortable-columns"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Resizable &amp; Sortable Columns
+		</h2>
+		<ResizableSortExample />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="pinnable-columns"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Pinnable Columns
+		</h2>
+		<PinnableColumn />
+	</section>
+</div>

@@ -26,13 +26,23 @@
 				<Sidebar.Menu>
 					{#each blocks as block (block.name)}
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton>
-								{#snippet child({ props })}
-									<a href={block.url} {...props}
-										>{block.name}</a
-									>
-								{/snippet}
-							</Sidebar.MenuButton>
+							{#if block.disabled}
+								<Sidebar.MenuButton
+									disabled
+									class="cursor-not-allowed text-muted-foreground"
+									title="Coming soon"
+								>
+									{block.name}
+								</Sidebar.MenuButton>
+							{:else}
+								<Sidebar.MenuButton>
+									{#snippet child({ props })}
+										<a href={block.url} {...props}>
+											{block.name}
+										</a>
+									{/snippet}
+								</Sidebar.MenuButton>
+							{/if}
 						</Sidebar.MenuItem>
 					{/each}
 				</Sidebar.Menu>

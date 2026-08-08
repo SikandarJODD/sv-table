@@ -1,18 +1,28 @@
 export type Block = {
 	name: string;
 	url: string;
+	disabled?: boolean;
 };
 
 export const blocks: Block[] = [
-	{ name: "Basic Data table", url: "#" },
-	{ name: "Row Selection", url: "#" },
-	{ name: "Datatable with Filters", url: "#" },
-	{ name: "With Data Filters", url: "#" },
-	{ name: "Resizable & Sortable Columns", url: "#" },
-	{ name: "Pinnable Columns", url: "#" },
-	{ name: "Draggable Columns", url: "#" },
-	{ name: "Expand Sub Rows", url: "#" },
-	{ name: "Paginated Table", url: "#" },
-	{ name: "Numeric Pagination", url: "#" },
-	{ name: "Complex Table", url: "#" }
+	{ name: "Basic Data Table", url: "/blocks#basic-data-table" },
+	{ name: "Row Selection", url: "/blocks#row-selection" },
+	{
+		name: "Data Table with Filters",
+		url: "/blocks#data-table-with-filters"
+	},
+	{
+		name: "Data Table with Custom Filters",
+		url: "/blocks#data-table-with-custom-filters"
+	},
+	{
+		name: "Resizable & Sortable Columns",
+		url: "/blocks#resizable-sortable-columns"
+	},
+	{ name: "Pinnable Columns", url: "/blocks#pinnable-columns" },
+	{ name: "Draggable Columns", url: "/blocks", disabled: true },
+	{ name: "Expandable Sub Rows", url: "/blocks", disabled: true },
+	{ name: "Paginated Table", url: "/blocks", disabled: true },
+	{ name: "Numeric Pagination", url: "/blocks", disabled: true },
+	{ name: "Complex Table", url: "/blocks", disabled: true }
 ];
