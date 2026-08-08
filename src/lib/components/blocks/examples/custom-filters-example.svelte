@@ -90,13 +90,19 @@
 	] as const;
 
 	let data = $state<Item[]>([]);
-	const filterController = createFilters({
-		strategy: "client",
-		data,
-		columnsConfig: filterColumns
-	});
-	const filterColumnsById = new Map(
-		filterController.columns.map((column) => [column.id, column] as const)
+	const filterController = $derived(
+		createFilters({
+			strategy: "client",
+			data,
+			columnsConfig: filterColumns
+		})
+	);
+	const filterColumnsById = $derived(
+		new Map(
+			filterController.columns.map(
+				(column) => [column.id, column] as const
+			)
+		)
 	);
 
 	function matchesFilter(item: Item, filter: FilterModel) {

@@ -21,6 +21,8 @@
 		"build:example": "pnpm shadcn-svelte registry build ./example.json -o ./registry.json"
 	},
 	"dependencies": {
+		"@dnd-kit/abstract": "^0.2.3",
+		"@dnd-kit/helpers": "^0.2.3",
 		"@fontsource-variable/geist-mono": "^5.3.0",
 		"@tanstack/svelte-table": "9.0.0",
 		"date-fns": "^4.4.0",
@@ -52,6 +54,7 @@
 		"shiki": "^4.0.2",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
+		"svelte-dnd-action": "^0.9.78",
 		"svelte-sonner": "^1.1.1",
 		"svelte-toolbelt": "^0.10.6",
 		"tailwind-merge": "^3.5.0",

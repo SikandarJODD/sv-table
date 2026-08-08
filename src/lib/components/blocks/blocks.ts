@@ -20,7 +20,7 @@ export const blocks: Block[] = [
 		url: "/blocks#resizable-sortable-columns"
 	},
 	{ name: "Pinnable Columns", url: "/blocks#pinnable-columns" },
-	{ name: "Draggable Columns", url: "/blocks", disabled: true },
+	{ name: "Draggable Columns", url: "/blocks#draggable-columns" },
 	{ name: "Expandable Sub Rows", url: "/blocks", disabled: true },
 	{ name: "Paginated Table", url: "/blocks", disabled: true },
 	{ name: "Numeric Pagination", url: "/blocks", disabled: true },

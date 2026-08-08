@@ -2,6 +2,7 @@
 	import BasicDataTable from "$blocks/examples/basic-data-table.svelte";
 	import CustomFiltersExample from "$blocks/examples/custom-filters-example.svelte";
 	import DataTableFiltersExample from "$blocks/examples/data-table-filters-example.svelte";
+	import DraggableExample from "$blocks/examples/draggable-example/draggable-example.svelte";
 	import PinnableColumn from "$blocks/examples/pinnable-column.svelte";
 	import ResizableSortExample from "$blocks/examples/resizable-sort-example.svelte";
 	import RowSelection from "$blocks/examples/row-selection.svelte";
@@ -9,7 +10,7 @@
 
 	const title = "Svelte Data Table Blocks";
 	const description =
-		"Explore reusable Svelte 5 and TanStack Table blocks for selection, filtering, sorting, resizing, and column pinning.";
+		"Explore reusable Svelte 5 and TanStack Table blocks for selection, filtering, sorting, resizing, dragging, and column pinning.";
 </script>
 
 <Seo
@@ -34,6 +35,7 @@
 		"faceted table filters",
 		"sortable table columns",
 		"resizable table columns",
+		"draggable table columns",
 		"pinnable table columns",
 		"SvelteKit data table",
 		"TypeScript data table",
@@ -108,5 +110,15 @@
 			Pinnable Columns
 		</h2>
 		<PinnableColumn />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="draggable-columns"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Draggable Columns
+		</h2>
+		<DraggableExample />
 	</section>
 </div>

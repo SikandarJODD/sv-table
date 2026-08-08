@@ -50,6 +50,7 @@
 		variant = "default",
 		size = "default",
 		isActive = false,
+		disabled = false,
 		tooltipContent,
 		tooltipContentProps,
 		...restProps
@@ -62,6 +63,7 @@
 			ComponentProps<typeof Tooltip.Content>
 		>;
 		child?: Snippet<[{ props: Record<string, unknown> }]>;
+		disabled?: boolean;
 	} = $props();
 
 	const sidebar = useSidebar();
@@ -72,6 +74,7 @@
 		"data-sidebar": "menu-button",
 		"data-size": size,
 		"data-active": isActive,
+		"data-disabled": disabled,
 		...restProps
 	});
 </script>
