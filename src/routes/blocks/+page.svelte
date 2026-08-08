@@ -3,9 +3,9 @@
 	import ComplexExample from "$blocks/examples/complex-example.svelte";
 	import CustomFiltersExample from "$blocks/examples/custom-filters-example.svelte";
 	import DataTableFiltersExample from "$blocks/examples/data-table-filters-example.svelte";
-	import DndKitExample from "$blocks/examples/dnd-kit-example/dnd-kit-example.svelte";
 	import DraggableExample from "$blocks/examples/draggable-example/draggable-example.svelte";
 	import ExpandedSubRows from "$blocks/examples/expanded-sub-rows/expanded-sub-rows.svelte";
+	import NumericPaginationExample from "$blocks/examples/numeric-pagination-example.svelte";
 	import PaginatedExample from "$blocks/examples/paginated-example.svelte";
 	import PinnableColumn from "$blocks/examples/pinnable-column.svelte";
 	import ResizableSortExample from "$blocks/examples/resizable-sort-example.svelte";
@@ -145,6 +145,15 @@
 		</h2>
 		<PaginatedExample />
 	</section>
+	<section class="space-y-4">
+		<h2
+			id="numeric-pagination"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Numeric Pagination
+		</h2>
+		<NumericPaginationExample />
+	</section>
 
 	<section class="space-y-4">
 		<h2
@@ -155,14 +164,4 @@
 		</h2>
 		<ComplexExample />
 	</section>
-
-	<!-- <section class="space-y-4">
-		<h2
-			id="dnd-kit-draggable-columns"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			dnd kit Draggable Columns
-		</h2>
-		<DndKitExample />
-	</section> -->
 </div>

@@ -26,6 +26,6 @@ export const blocks: Block[] = [
 		url: "/blocks#expandable-sub-rows"
 	},
 	{ name: "Paginated Table", url: "/blocks#paginated-table" },
-	{ name: "Numeric Pagination", url: "/blocks", disabled: true },
+	{ name: "Numeric Pagination", url: "/blocks#numeric-pagination" },
 	{ name: "Complex Table", url: "/blocks#complex-table" }
 ];
