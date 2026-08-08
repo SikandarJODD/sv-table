@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BasicDataTable from "$blocks/examples/basic-data-table.svelte";
+	import ComplexExample from "$blocks/examples/complex-example.svelte";
 	import CustomFiltersExample from "$blocks/examples/custom-filters-example.svelte";
 	import DataTableFiltersExample from "$blocks/examples/data-table-filters-example.svelte";
 	import DndKitExample from "$blocks/examples/dnd-kit-example/dnd-kit-example.svelte";
@@ -143,6 +144,16 @@
 			Paginated Table
 		</h2>
 		<PaginatedExample />
+	</section>
+
+	<section class="space-y-4">
+		<h2
+			id="complex-table"
+			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
+		>
+			Complex Table
+		</h2>
+		<ComplexExample />
 	</section>
 
 	<!-- <section class="space-y-4">
