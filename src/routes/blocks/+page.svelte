@@ -1,8 +1,9 @@
 <script lang="ts">
+	import BasicDataTable from "$blocks/examples/basic-data-table.svelte";
 </script>
 
 <div>
-	<h1>Hello</h1>
+	<BasicDataTable />
 </div>
 
 <style>

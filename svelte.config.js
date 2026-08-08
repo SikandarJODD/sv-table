@@ -11,6 +11,7 @@ const config = {
     alias: {
       $markdown: "src/lib/components/docs/markdown",
       '$table': 'src/lib/components/table',
+      '$blocks': 'src/lib/components/blocks',
     },
     // adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
