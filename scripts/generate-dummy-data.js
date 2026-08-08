@@ -6,6 +6,17 @@ const outputPath = fileURLToPath(
 	new URL("../static/dummy-data/data.json", import.meta.url)
 );
 const statuses = ["Active", "Inactive", "Pending"];
+const departments = [
+	"Engineering",
+	"Finance",
+	"Human Resources",
+	"Marketing",
+	"Operations",
+	"Product",
+	"Sales",
+	"Support"
+];
+const performances = ["Excellent", "Good", "Average", "Poor"];
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
 function parseCount(value) {
@@ -30,6 +41,11 @@ function createItem(id) {
 	const firstName = faker.person.firstName();
 	const lastName = faker.person.lastName();
 	const countryCode = faker.location.countryCode("alpha-2");
+	const joinDate = faker.date.past({ years: 10 });
+	const lastActive = faker.date.between({
+		from: joinDate,
+		to: new Date()
+	});
 
 	return {
 		id,
@@ -39,7 +55,12 @@ function createItem(id) {
 		location: regionNames.of(countryCode) ?? countryCode,
 		flag: countryCodeToFlag(countryCode),
 		status: faker.helpers.arrayElement(statuses),
-		balance: Number(faker.finance.amount({ min: 0, max: 25000, dec: 2 }))
+		balance: Number(faker.finance.amount({ min: 0, max: 25000, dec: 2 })),
+		department: faker.helpers.arrayElement(departments),
+		role: faker.person.jobTitle(),
+		joinDate: joinDate.toISOString().slice(0, 10),
+		lastActive: lastActive.toISOString().slice(0, 10),
+		performance: faker.helpers.arrayElement(performances)
 	};
 }
 
