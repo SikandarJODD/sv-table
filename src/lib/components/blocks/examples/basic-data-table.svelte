@@ -8,9 +8,10 @@
 		tableFeatures
 	} from "@tanstack/svelte-table";
 	import type { ColumnDef } from "@tanstack/svelte-table";
+	import { onMount } from "svelte";
 
 	type Item = {
-		id: string;
+		id: number;
 		name: string;
 		email: string;
 		location: string;
@@ -60,23 +61,35 @@
 	];
 
 	let table = createTable({
-		data,
 		columns,
-		features
+		features,
+		get data() {
+			return data; // a getter keeps the table in sync with the $state rune
+		}
+	});
+
+	let getData = async () => {
+		const res = (await fetch("/dummy-data/data.json")) as Response;
+		const json = (await res.json()) as Item[];
+		console.log(json, "Data fetched");
+		data = json.slice(0, 10);
+	};
+	onMount(async () => {
+		await getData();
 	});
 </script>
 
-<div>
+<div class="w-full rounded-lg border">
 	<Table.Root>
 		<Table.Header>
-			{#each table.getHeaderGroups() as headerGroup}
+			{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 				<Table.Row class="hover:bg-transparent">
-					{#each headerGroup.headers as header}
+					{#each headerGroup.headers as header (header.id)}
 						<Table.Head>
 							{#if !header.isPlaceholder}
 								<FlexRender
 									// renderer={header.column.columnDef.header}
-									context={header.getContext()}
+									{header}
 								/>
 							{/if}
 						</Table.Head>
@@ -85,13 +98,13 @@
 			{/each}
 		</Table.Header>
 		<Table.Body>
-			{#each table.getRowModel().rows as row}
+			{#each table.getRowModel().rows as row (row.id)}
 				<Table.Row>
 					{#each row.getAllCells() as cell}
 						<Table.Cell>
 							<FlexRender
 								// renderer={cell.column.columnDef.cell}
-								context={cell.getContext()}
+								{cell}
 							/>
 						</Table.Cell>
 					{/each}
@@ -122,15 +135,16 @@
 			</Table.Row>
 		</Table.Footer>
 	</Table.Root>
-	<p class="mt-4 text-center text-sm text-muted-foreground">
-		Basic data table made with{" "}
-		<a
-			class="underline hover:text-foreground"
-			href="https://tanstack.com/table"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
-			TanStack Table
-		</a>
-	</p>
 </div>
+
+<p class="mt-4 text-center text-sm text-muted-foreground">
+	Basic data table made with{" "}
+	<a
+		class="underline hover:text-foreground"
+		href="https://tanstack.com/table"
+		rel="noopener noreferrer"
+		target="_blank"
+	>
+		TanStack Table
+	</a>
+</p>
