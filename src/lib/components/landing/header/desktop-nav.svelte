@@ -169,14 +169,18 @@
 					</NavigationMenu.Content>
 				</NavigationMenu.Item>
 			{:else}
-				<NavigationMenu.Item>
-					<NavigationMenu.Link
-						class="rounded-md py-1.5 hover:bg-accent/60!"
-					>
+				<NavigationMenu.Item class="relative">
+					<NavigationMenu.Link class="rounded-md py-1.5">
 						{#snippet child({ props })}
 							<a href={nav.href} {...props}>{nav.name}</a>
 						{/snippet}
 					</NavigationMenu.Link>
+					{#if nav.isNew}
+						<span
+							aria-hidden="true"
+							class="absolute -inset-e-0.5 -top-0.5 size-2 rounded-full bg-muted-foreground outline-2 outline-background"
+						></span>
+					{/if}
 				</NavigationMenu.Item>
 			{/if}
 		{/each}

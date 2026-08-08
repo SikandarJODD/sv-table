@@ -9,6 +9,11 @@ let navs: NavType[] = [
     name: "Components",
     href: "/docs/introduction",
   },
+  {
+    name: "Blocks",
+    href: "/blocks",
+    isNew: true,
+  },
   // {
   //   name: "Docs",
   //   href: "/docs",

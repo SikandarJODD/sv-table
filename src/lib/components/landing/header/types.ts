@@ -14,4 +14,5 @@ export type NavType = {
   icon?: typeof Icon | Component;
   href: string;
   sub?: LinkItemType[];
+  isNew?: boolean;
 };

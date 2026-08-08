@@ -6,11 +6,11 @@
 <section
 	class="mx-auto flex min-h-[calc(100vh-6.5rem)] w-full max-w-6xl items-center overflow-hidden px-4 py-20 md:px-6 md:py-24"
 >
-	<div aria-hidden="true" class="absolute inset-0 size-full overflow-hidden">
+	<!-- <div aria-hidden="true" class="absolute inset-0 size-full overflow-hidden">
 		<div
 			class="absolute inset-0 isolate -z-10 bg-[radial-gradient(20%_80%_at_20%_0%,color-mix(in_oklab,var(--foreground)_10%,transparent),transparent)]"
 		></div>
-	</div>
+	</div> -->
 
 	<div
 		class="relative z-10 flex w-full max-w-3xl flex-col items-start justify-center gap-6"
