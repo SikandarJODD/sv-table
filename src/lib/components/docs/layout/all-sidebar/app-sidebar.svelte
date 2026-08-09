@@ -36,11 +36,11 @@
 					{
 						title: "Introduction",
 						url: "/docs"
+					},
+					{
+						title: "Installation & Setup",
+						url: "/docs/installation"
 					}
-					// {
-					// 	title: "Installation",
-					// 	url: "/docs/installation"
-					// }
 				] as NavItem[]
 			},
 			{
