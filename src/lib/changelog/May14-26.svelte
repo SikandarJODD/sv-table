@@ -14,10 +14,7 @@
 	</div>
 
 	<p class="mb-6 text-sm leading-7 text-foreground sm:text-[15px]">
-		<a
-			href="/magic/docs/components/arc-timeline"
-			class="rounded-sm outline-none focus-visible:ring-3"
-		>
+		<a href="/blocks" class="rounded-sm outline-none focus-visible:ring-3">
 			<Highlight>Arc Timeline component</Highlight>
 		</a>
 		is now available in Svelte Magic UI.
@@ -40,7 +37,7 @@
 					></span>
 					<span class="min-w-0">
 						<a
-							href="/magic/docs/components/arc-timeline"
+							href="/blocks"
 							class="font-medium text-blue-600 underline-offset-4 transition-colors hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
 						>
 							Arc Timeline

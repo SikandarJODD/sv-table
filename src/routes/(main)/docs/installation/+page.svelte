@@ -162,7 +162,7 @@
 		<H2 id="whats-included">What’s included</H2>
 		<Paragraph>
 			SV Table includes <FaviconLink
-				href="/components"
+				href="/components/filters"
 				target="_blank"
 				rel="noreferrer"
 			>
