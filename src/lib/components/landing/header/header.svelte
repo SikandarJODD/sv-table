@@ -33,9 +33,9 @@
 	class={cn(
 		"sticky top-0 z-50 w-full border-b border-transparent",
 		scroll.scrolled &&
-			"border-border bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/50",
+			"border-border bg-background/60 backdrop-blur-sm supports-backdrop-filter:bg-background/50",
 		isComponentorDocsPage &&
-			"border-border bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/50"
+			"border-border bg-background/60 backdrop-blur-sm supports-backdrop-filter:bg-background/50"
 	)}
 >
 	<nav

@@ -56,20 +56,14 @@
 		<Tabs.Root bind:value={mode} class="gap-0">
 			<Tabs.List
 				aria-label="Block view"
-				class="h-9 gap-1 rounded-lg bg-muted/60 p-1"
+				class="gap-1 rounded-lg bg-transparent p-1"
 			>
-				<Tabs.Trigger
-					value="preview"
-					class="h-7 flex-none cursor-pointer gap-2 px-3 text-[13px] font-medium"
-				>
+				<Tabs.Trigger value="preview">
 					<PreviewIcon class="size-[18px]" aria-hidden="true" />
 					<span>Preview</span>
 				</Tabs.Trigger>
 
-				<Tabs.Trigger
-					value="code"
-					class="h-7 flex-none cursor-pointer gap-2 px-3 text-[13px] font-medium"
-				>
+				<Tabs.Trigger value="code">
 					<CodeIcon class="size-[18px]" aria-hidden="true" />
 					<span>Code</span>
 				</Tabs.Trigger>
