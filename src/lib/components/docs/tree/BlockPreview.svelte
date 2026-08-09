@@ -77,7 +77,7 @@
 
 			<Tabs.Content
 				value="preview"
-				class="mt-0 bg-white pt-5 dark:bg-background sm:pt-6"
+				class="mt-0 bg-white pt-5 sm:pt-6 dark:bg-background"
 				style={`--preview-min-height: ${MIN_PREVIEW_HEIGHT}px;`}
 			>
 				<div
@@ -90,7 +90,7 @@
 
 			<Tabs.Content
 				value="code"
-				class="mt-0 bg-white pt-5 dark:bg-transparent sm:pt-6"
+				class="mt-0 bg-white pt-5 sm:pt-6 dark:bg-transparent"
 			>
 				{#if singleFileCode}
 					<SingleFile code={singleFileCode} />
