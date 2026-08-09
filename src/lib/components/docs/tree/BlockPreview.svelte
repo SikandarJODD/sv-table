@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { flattenBlockCodeFiles, type BlockShowcaseItem } from "./types";
-	import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
-	import { cn } from "$lib/utils";
 	import type { CodeBlock } from "$lib/types/code";
 	import { scale } from "svelte/transition";
 	import CodeEditor from "./CodeEditor.svelte";
-	import { Button } from "$lib/components/ui/button";
 	import { SingleFile } from "$lib/components/ui/code";
-
-	const radioItem =
-		"rounded-(--radius) duration-200 flex items-center justify-center h-8 px-2.5 gap-2 transition-[color] data-[state=checked]:bg-muted";
+	import * as Tabs from "$lib/components/ui/tabs/index.js";
+	import {
+		CodeIcon,
+		PreviewIcon
+	} from "$lib/components/icons/block-preview/index.js";
 
 	const MIN_PREVIEW_HEIGHT = 400;
 
@@ -23,7 +22,6 @@
 
 	let mode = $state<"preview" | "code">("preview");
 
-	let isMobile = new IsMobile();
 	let codeFiles = $derived(flattenBlockCodeFiles(codeTree.nodes));
 	let singleFileCode = $derived.by((): CodeBlock | undefined => {
 		const file = codeFiles[0];
@@ -39,9 +37,9 @@
 	});
 </script>
 
-<section {id} class="group scroll-mt-20">
+<section {id} class="group scroll-mt-20 py-10 first:pt-0">
 	<div class="relative mx-auto max-w-7xl">
-		<div class="relative mb-4">
+		<div class="mb-5 space-y-1.5">
 			<h2
 				class="text-xl font-medium tracking-tight text-foreground sm:text-2xl"
 			>
@@ -49,109 +47,57 @@
 			</h2>
 
 			{#if description}
-				<p class="mt-1.5 text-sm text-muted-foreground">
+				<p class="max-w-3xl text-sm leading-6 text-muted-foreground">
 					{description}
 				</p>
 			{/if}
 		</div>
 
-		<div
-			class={cn(
-				"flex min-w-0 flex-wrap items-center gap-2.5",
-				isMobile.current && "gap-2"
-			)}
-		>
-			<div class="flex w-fit items-center gap-0.5">
-				<Button
-					variant={mode === "preview" ? "secondary" : "ghost"}
-					onclick={() => (mode = "preview")}
-					aria-pressed={mode === "preview"}
-					class={radioItem}
-					size="sm"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						class="sm:opacity-80"
-						color="currentColor"
-					>
-						<path
-							d="M21.544 11.045C21.848 11.4713 22 11.6845 22 12C22 12.3155 21.848 12.5287 21.544 12.955C20.1779 14.8706 16.6892 19 12 19C7.31078 19 3.8221 14.8706 2.45604 12.955C2.15201 12.5287 2 12.3155 2 12C2 11.6845 2.15201 11.4713 2.45604 11.045C3.8221 9.12944 7.31078 5 12 5C16.6892 5 20.1779 9.12944 21.544 11.045Z"
-							stroke="currentColor"
-							stroke-width="1.5"
-						></path>
-						<path
-							opacity="0.4"
-							d="M15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12Z"
-							stroke="currentColor"
-							stroke-width="1.5"
-						></path>
-					</svg>
-					<span class="text-[13px]">Preview</span>
-				</Button>
-
-				<Button
-					variant={mode === "code" ? "secondary" : "ghost"}
-					onclick={() => (mode = "code")}
-					aria-pressed={mode === "code"}
-					size="sm"
-					class={radioItem}
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.4"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-						<path class="sm:opacity-50" d="M7 8l-4 4l4 4" />
-						<path class="sm:opacity-50" d="M17 8l4 4l-4 4" />
-						<path d="M14 4l-4 16" />
-					</svg>
-					<span class="text-[13px]">Code</span>
-				</Button>
-			</div>
-		</div>
-	</div>
-
-	<div
-		class="relative mx-auto max-w-7xl"
-		style={`--preview-min-height: ${MIN_PREVIEW_HEIGHT}px;`}
-	>
-		<div
-			class={cn(
-				"z-40 bg-white dark:bg-background",
-				mode === "code" && "hidden"
-			)}
-		>
-			<div
-				in:scale={{ start: 0.85 }}
-				class="min-h-(--preview-min-height) w-full overflow-hidden py-6"
+		<Tabs.Root bind:value={mode} class="gap-0">
+			<Tabs.List
+				aria-label="Block view"
+				class="h-9 gap-1 rounded-lg bg-muted/60 p-1"
 			>
-				<PreviewComponent />
-			</div>
-		</div>
+				<Tabs.Trigger
+					value="preview"
+					class="h-7 flex-none cursor-pointer gap-2 px-3 text-[13px] font-medium"
+				>
+					<PreviewIcon class="size-[18px]" aria-hidden="true" />
+					<span>Preview</span>
+				</Tabs.Trigger>
 
-		<div class="bg-white dark:bg-transparent!">
-			{#if mode === "code"}
+				<Tabs.Trigger
+					value="code"
+					class="h-7 flex-none cursor-pointer gap-2 px-3 text-[13px] font-medium"
+				>
+					<CodeIcon class="size-[18px]" aria-hidden="true" />
+					<span>Code</span>
+				</Tabs.Trigger>
+			</Tabs.List>
+
+			<Tabs.Content
+				value="preview"
+				class="mt-0 bg-white pt-5 dark:bg-background sm:pt-6"
+				style={`--preview-min-height: ${MIN_PREVIEW_HEIGHT}px;`}
+			>
+				<div
+					in:scale={{ start: 0.85 }}
+					class="min-h-(--preview-min-height) w-full overflow-hidden"
+				>
+					<PreviewComponent />
+				</div>
+			</Tabs.Content>
+
+			<Tabs.Content
+				value="code"
+				class="mt-0 bg-white pt-5 dark:bg-transparent sm:pt-6"
+			>
 				{#if singleFileCode}
-					<div class="p-4 sm:px-0 sm:py-6">
-						<SingleFile code={singleFileCode} />
-					</div>
+					<SingleFile code={singleFileCode} />
 				{:else}
-					<div class="p-4 sm:px-0 sm:py-6">
-						<CodeEditor {codeTree} />
-					</div>
+					<CodeEditor {codeTree} />
 				{/if}
-			{/if}
-		</div>
+			</Tabs.Content>
+		</Tabs.Root>
 	</div>
 </section>
