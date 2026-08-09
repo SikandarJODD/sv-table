@@ -29,7 +29,7 @@
 		: header.column.getIsSorted() === "desc"
 			? "descending"
 			: "none"}
-	class="relative h-10 border-t before:absolute before:inset-y-0 before:start-0 before:w-px before:bg-border first:before:bg-transparent"
+	class="bg-muted/50"
 	colspan={header.colSpan}
 	data-is-dnd-shadow-item-hint={isShadow || undefined}
 	style={`width: ${header.getSize()}px; opacity: ${isDragging ? 0.8 : 1};`}

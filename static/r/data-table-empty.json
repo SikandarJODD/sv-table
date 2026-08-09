@@ -7,13 +7,16 @@
 	"dependencies": [
 		"@lucide/svelte"
 	],
+	"devDependencies": [
+		"@lucide/svelte@^1.28.0"
+	],
 	"registryDependencies": [
 		"empty",
 		"table"
 	],
 	"files": [
 		{
-			"content": "<script lang=\"ts\">\n\timport SearchXIcon from \"@lucide/svelte/icons/search-x\";\n\timport type { Snippet } from \"svelte\";\n\n\timport * as Empty from \"$lib/components/ui/empty\";\n\timport * as Table from \"$lib/components/ui/table\";\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype Props = {\n\t\tcolspan: number;\n\t\ttitle?: string;\n\t\tdescription?: string;\n\t\ticon?: Snippet;\n\t\tactions?: Snippet;\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tcolspan,\n\t\ttitle = \"No results found\",\n\t\tdescription = \"There are no rows to display.\",\n\t\ticon,\n\t\tactions,\n\t\tclass: className\n\t}: Props = $props();\n</script>\n\n<Table.Row class=\"hover:bg-transparent\">\n\t<Table.Cell {colspan} class=\"p-0\">\n\t\t<Empty.Root class={cn(\"min-h-52 rounded-none p-6\", className)}>\n\t\t\t<Empty.Header>\n\t\t\t\t<Empty.Media variant=\"icon\">\n\t\t\t\t\t{#if icon}\n\t\t\t\t\t\t{@render icon()}\n\t\t\t\t\t{:else}\n\t\t\t\t\t\t<SearchXIcon strokeWidth={1.4} />\n\t\t\t\t\t{/if}\n\t\t\t\t</Empty.Media>\n\t\t\t\t<Empty.Title>{title}</Empty.Title>\n\t\t\t\t{#if description}\n\t\t\t\t\t<Empty.Description>{description}</Empty.Description>\n\t\t\t\t{/if}\n\t\t\t</Empty.Header>\n\n\t\t\t{#if actions}\n\t\t\t\t<Empty.Content>\n\t\t\t\t\t{@render actions()}\n\t\t\t\t</Empty.Content>\n\t\t\t{/if}\n\t\t</Empty.Root>\n\t</Table.Cell>\n</Table.Row>\n",
+			"content": "<script lang=\"ts\">\n\timport SearchXIcon from \"@lucide/svelte/icons/search-x\";\n\timport type { Snippet } from \"svelte\";\n\n\timport * as Empty from \"$lib/components/ui/empty\";\n\timport * as Table from \"$lib/components/ui/table\";\n\timport { cn } from \"$UTILS$.js\";\n\n\ttype Props = {\n\t\tcolspan: number;\n\t\ttitle?: string;\n\t\tdescription?: string;\n\t\ticon?: Snippet;\n\t\tactions?: Snippet;\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tcolspan,\n\t\ttitle = \"No results found\",\n\t\tdescription = \"There are no rows to display.\",\n\t\ticon,\n\t\tactions,\n\t\tclass: className\n\t}: Props = $props();\n</script>\n\n<Table.Row class=\"hover:bg-transparent\">\n\t<Table.Cell {colspan} class=\"p-0\">\n\t\t<Empty.Root class={cn(\"min-h-52 rounded-none p-6\", className)}>\n\t\t\t<Empty.Header>\n\t\t\t\t<Empty.Media variant=\"icon\">\n\t\t\t\t\t{#if icon}\n\t\t\t\t\t\t{@render icon()}\n\t\t\t\t\t{:else}\n\t\t\t\t\t\t<SearchXIcon strokeWidth={1.4} />\n\t\t\t\t\t{/if}\n\t\t\t\t</Empty.Media>\n\t\t\t\t<Empty.Title>{title}</Empty.Title>\n\t\t\t\t{#if description}\n\t\t\t\t\t<Empty.Description>{description}</Empty.Description>\n\t\t\t\t{/if}\n\t\t\t</Empty.Header>\n\n\t\t\t{#if actions}\n\t\t\t\t<Empty.Content>\n\t\t\t\t\t{@render actions()}\n\t\t\t\t</Empty.Content>\n\t\t\t{/if}\n\t\t</Empty.Root>\n\t</Table.Cell>\n</Table.Row>\n",
 			"type": "registry:component",
 			"target": "table/data-table-empty/data-table-empty.svelte"
 		},

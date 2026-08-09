@@ -107,8 +107,7 @@
 
 	function matchesFilter(item: Item, filter: FilterModel) {
 		const column = filterColumnsById.get(filter.columnId) as
-			| Column<Item>
-			| undefined;
+			Column<Item> | undefined;
 
 		if (!column) return true;
 
@@ -247,15 +246,3 @@
 		</Table.Root>
 	</div>
 </div>
-
-<p class="mt-4 text-center text-sm text-muted-foreground">
-	Custom filters data table made with{" "}
-	<a
-		class="underline hover:text-foreground"
-		href="https://tanstack.com/table"
-		rel="noopener noreferrer"
-		target="_blank"
-	>
-		TanStack Table
-	</a>
-</p>

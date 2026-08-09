@@ -27,49 +27,49 @@ let components: Component[] = [
 		id: "row-checkbox",
 		name: "Row Checkbox",
 		href: "/components/row-checkbox",
-		desc: "A controlled checkbox for selecting an individual table row.",
+		desc: "A controlled checkbox for selecting an individual table row."
 	},
 	{
 		id: "header-checkbox",
 		name: "Header Checkbox",
 		href: "/components/header-checkbox",
-		desc: "A select-all checkbox with support for an indeterminate state.",
+		desc: "A select-all checkbox with support for an indeterminate state."
 	},
 	{
 		id: "bulk-actions-bar",
 		name: "Bulk Actions Bar",
 		href: "/components/bulk-actions-bar",
-		desc: "A floating action bar for performing custom actions on selected rows.",
+		desc: "A floating action bar for performing custom actions on selected rows."
 	},
 	{
 		id: "row-actions-menu",
 		name: "Row Actions Menu",
 		href: "/components/row-actions-menu",
-		desc: "An accessible dropdown menu for actions on an individual table row.",
+		desc: "An accessible dropdown menu for actions on an individual table row."
 	},
 	{
 		id: "data-table-export",
 		name: "Data Table Export",
 		href: "/components/data-table-export",
-		desc: "Download typed table rows and columns as a safe CSV file.",
+		desc: "Download typed table rows and columns as a safe CSV file."
 	},
 	{
 		id: "data-table-empty",
 		name: "Data Table Empty",
 		href: "/components/data-table-empty",
-		desc: "A table row for displaying a clear empty or filtered-results state.",
+		desc: "A table row for displaying a clear empty or filtered-results state."
 	},
 	{
 		id: "data-table-loading",
 		name: "Data Table Loading",
 		href: "/components/data-table-loading",
-		desc: "Skeleton rows that preserve a table layout while its data is loading.",
+		desc: "Skeleton rows that preserve a table layout while its data is loading."
 	},
 	{
 		id: "debounce-input",
 		name: "Debounce Input",
 		href: "/components/debounce-input",
-		desc: "A search input with an optional delay for value changes.",
+		desc: "A search input with an optional delay for value changes."
 	},
 	{
 		id: "filters",
@@ -82,43 +82,43 @@ let components: Component[] = [
 		id: "data-table-faceted-filter",
 		name: "Data Table Faceted Filter",
 		href: "/components/data-table-faceted-filter",
-		desc: "A searchable multi-select filter with live counts for categorical table columns.",
+		desc: "A searchable multi-select filter with live counts for categorical table columns."
 	},
 	{
 		id: "date-range-filter",
 		name: "Date Range Filter",
 		href: "/components/date-range-filter",
-		desc: "A responsive date-range picker with presets and explicit apply behavior.",
+		desc: "A responsive date-range picker with presets and explicit apply behavior."
 	},
 	{
 		id: "number-range-filter",
 		name: "Number Range Filter",
 		href: "/components/number-range-filter",
-		desc: "A number range picker with exact inputs, an optional slider, and explicit apply behavior.",
+		desc: "A number range picker with exact inputs, an optional slider, and explicit apply behavior."
 	},
 	{
 		id: "data-table-column-header",
 		name: "Data Table Column Header",
 		href: "/components/data-table-column-header",
-		desc: "A table heading with sorting, pinning, ordering, and visibility actions.",
+		desc: "A table heading with sorting, pinning, ordering, and visibility actions."
 	},
 	{
 		id: "data-table-view",
 		name: "Data Table View",
 		href: "/components/data-table-view",
-		desc: "A checkbox dropdown for toggling table column visibility.",
+		desc: "A checkbox dropdown for toggling table column visibility."
 	},
 	{
 		id: "pagination",
 		name: "Pagination",
 		href: "/components/pagination",
-		desc: "Minimal docs for number pagination and arrow pagination table components.",
+		desc: "Minimal docs for number pagination and arrow pagination table components."
 	},
 	{
 		id: "page-size-selector",
 		name: "Page Size Selector",
 		href: "/components/page-size-selector",
-		desc: "Change the number of rows displayed on each table page.",
+		desc: "Change the number of rows displayed on each table page."
 	}
 ];
 
@@ -171,13 +171,13 @@ let docsPages: DocPage[] = [
 		name: "Introduction",
 		href: "/docs",
 		desc: "Getting started with the setup."
+	},
+	{
+		id: "installation",
+		name: "Installation & Setup",
+		href: "/docs/installation",
+		desc: "Prepare SvelteKit, TanStack Table, and your first table component."
 	}
-	// {
-	//   id: "installation",
-	//   name: "Installation",
-	//   href: "/docs/installation",
-	//   desc: "Create the app and initialize shadcn-svelte.",
-	// },
 ];
 
 export { docsPages };

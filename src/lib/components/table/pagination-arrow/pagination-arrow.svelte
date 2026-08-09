@@ -15,8 +15,9 @@
 		onNext,
 		onGoToPage,
 		siblingCount = 1,
-		pageSize = 1,
-		totalItems = pageCount * pageSize,
+		firstVisibleRow,
+		lastVisibleRow,
+		totalRows,
 		class: className
 	}: {
 		currentPage: number;
@@ -27,16 +28,11 @@
 		onNext: () => void;
 		onGoToPage: (page: number) => void;
 		siblingCount?: number;
-		pageSize?: number;
-		totalItems?: number;
+		firstVisibleRow: number;
+		lastVisibleRow: number;
+		totalRows: number;
 		class?: string;
 	} = $props();
-
-	const safeTotalItems = $derived(Math.max(totalItems, 0));
-	const rangeStart = $derived(
-		safeTotalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1
-	);
-	const rangeEnd = $derived(Math.min(currentPage * pageSize, safeTotalItems));
 
 	function goToFirstPage() {
 		if (!canPreviousPage) return;
@@ -54,8 +50,14 @@
 		aria-label="Table pagination"
 		class={cn("flex flex-wrap items-center gap-4 sm:gap-6", className)}
 	>
-		<p class="text-sm font-medium whitespace-nowrap text-foreground">
-			{rangeStart}-{rangeEnd} of {safeTotalItems}
+		<p
+			aria-live="polite"
+			class="text-sm whitespace-nowrap text-muted-foreground"
+		>
+			<span class="text-foreground"
+				>{firstVisibleRow}-{lastVisibleRow}</span
+			>
+			of <span class="text-foreground">{totalRows}</span>
 		</p>
 
 		<div class="flex items-center gap-2">

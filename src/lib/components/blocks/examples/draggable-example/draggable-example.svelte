@@ -2,24 +2,27 @@
 	import {
 		createTable,
 		createTableState,
+		FlexRender,
 		renderSnippet,
 		type ColumnDef,
 		type SortingState
 	} from "@tanstack/svelte-table";
 	import { onMount } from "svelte";
+	import { flip } from "svelte/animate";
+	import { cubicOut } from "svelte/easing";
 	import { dragHandleZone, type DndEvent } from "svelte-dnd-action";
 
 	import * as Table from "$lib/components/ui/table";
 
-	import DragAlongCell from "./drag-along-cell.svelte";
 	import DraggableTableHeader from "./draggable-table-header.svelte";
 	import {
 		draggableTableFeatures,
 		type DraggableTableFeatures
 	} from "./table-features";
 	import type { DraggableColumn, Item } from "./types";
+	import { FaviconLink } from "$markdown";
 
-	const flipDurationMs = 150;
+	const flipDurationMs = 300;
 
 	let data = $state<Item[]>([]);
 	let draggedColumnId = $state<string | null>(null);
@@ -97,7 +100,6 @@
 		columnItems = event.detail.items;
 		draggedColumnId = event.detail.info.id;
 	}
-
 	function finishColumnOrder(event: CustomEvent<DndEvent<DraggableColumn>>) {
 		columnItems = event.detail.items;
 		draggedColumnId = null;
@@ -125,7 +127,7 @@
 	<div class="w-full overflow-hidden rounded-lg border">
 		<Table.Root
 			class="table-fixed"
-			style={`width: ${table.getTotalSize()}px;`}
+			style={`min-width: ${table.getTotalSize()}px;`}
 		>
 			<Table.Header>
 				<tr
@@ -160,18 +162,17 @@
 			<Table.Body>
 				{#each table.getRowModel().rows as row (row.id)}
 					<Table.Row>
-						{#each columnItems as columnItem (columnItem.columnId)}
-							{@const cell =
-								row.getAllCellsByColumnId()[
-									columnItem.columnId
-								]}
-							{#if cell}
-								<DragAlongCell
-									{cell}
-									isDragging={draggedColumnId ===
-										columnItem.columnId}
-								/>
-							{/if}
+						{#each row.getAllCells() as cell (cell.column.id)}
+							<td
+								animate:flip={{
+									duration: flipDurationMs
+								}}
+								data-slot="table-cell"
+								class="truncate p-2 align-middle whitespace-nowrap transition-opacity has-[[role=checkbox]]:pr-0"
+								style={`width: ${cell.column.getSize()}px; opacity: ${draggedColumnId === cell.column.id ? 0.8 : 1};`}
+							>
+								<FlexRender {cell} />
+							</td>
 						{/each}
 					</Table.Row>
 				{/each}
@@ -192,22 +193,30 @@
 
 	<p class="mt-4 text-center text-sm text-muted-foreground">
 		Drag columns by their handles. Made with
-		<a
-			class="underline hover:text-foreground"
+		<FaviconLink
 			href="https://tanstack.com/table"
 			rel="noopener noreferrer"
 			target="_blank"
+			class="font-medium"
 		>
 			TanStack Table
-		</a>
+		</FaviconLink>
 		and
-		<a
-			class="underline hover:text-foreground"
+		<FaviconLink
+			class="font-medium"
 			href="https://github.com/isaacHagoel/svelte-dnd-action"
 			rel="noopener noreferrer"
 			target="_blank"
 		>
 			svelte-dnd-action
-		</a>
+		</FaviconLink>
 	</p>
 </div>
+
+<style>
+	:global(#dnd-action-dragged-el) {
+		border: 0 !important;
+		outline: none !important;
+		box-shadow: none !important;
+	}
+</style>

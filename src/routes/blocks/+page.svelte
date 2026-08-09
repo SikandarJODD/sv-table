@@ -1,16 +1,13 @@
 <script lang="ts">
-	import BasicDataTable from "$blocks/examples/basic-data-table.svelte";
-	import CustomFiltersExample from "$blocks/examples/custom-filters-example.svelte";
-	import DataTableFiltersExample from "$blocks/examples/data-table-filters-example.svelte";
-	import DraggableExample from "$blocks/examples/draggable-example/draggable-example.svelte";
-	import PinnableColumn from "$blocks/examples/pinnable-column.svelte";
-	import ResizableSortExample from "$blocks/examples/resizable-sort-example.svelte";
-	import RowSelection from "$blocks/examples/row-selection.svelte";
 	import Seo from "$lib/components/docs/base/main/seo.svelte";
+	import BlockPreview from "$lib/components/docs/tree/BlockPreview.svelte";
+	import type { PageData } from "./$types";
+
+	let { data }: { data: PageData } = $props();
 
 	const title = "Svelte Data Table Blocks";
 	const description =
-		"Explore reusable Svelte 5 and TanStack Table blocks for selection, filtering, sorting, resizing, dragging, and column pinning.";
+		"Explore reusable Svelte 5 and TanStack Table V9 blocks for selection, filtering, sorting, resizing, dragging, and column pinning.";
 </script>
 
 <Seo
@@ -52,73 +49,9 @@
 		<p class="text-base text-muted-foreground sm:text-lg">{description}</p>
 	</header>
 
-	<section class="space-y-4">
-		<h2
-			id="basic-data-table"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Basic Data Table
-		</h2>
-		<BasicDataTable />
-	</section>
-
-	<section class="space-y-4">
-		<h2
-			id="row-selection"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Row Selection
-		</h2>
-		<RowSelection />
-	</section>
-
-	<section class="space-y-4">
-		<h2
-			id="data-table-with-filters"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Data Table with Filters
-		</h2>
-		<DataTableFiltersExample />
-	</section>
-
-	<section class="space-y-4">
-		<h2
-			id="data-table-with-custom-filters"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Data Table with Custom Filters
-		</h2>
-		<CustomFiltersExample />
-	</section>
-
-	<section class="space-y-4">
-		<h2
-			id="resizable-sortable-columns"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Resizable &amp; Sortable Columns
-		</h2>
-		<ResizableSortExample />
-	</section>
-
-	<section class="space-y-4">
-		<h2
-			id="pinnable-columns"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Pinnable Columns
-		</h2>
-		<PinnableColumn />
-	</section>
-
-	<section class="space-y-4">
-		<h2
-			id="draggable-columns"
-			class="scroll-mt-20 text-2xl font-semibold tracking-tight"
-		>
-			Draggable Columns
-		</h2>
-		<DraggableExample />
-	</section>
+	<div>
+		{#each data.blocks as block (block.id)}
+			<BlockPreview {...block} />
+		{/each}
+	</div>
 </div>
