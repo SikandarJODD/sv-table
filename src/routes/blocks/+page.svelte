@@ -7,7 +7,7 @@
 
 	const title = "Svelte Data Table Blocks";
 	const description =
-		"Explore reusable Svelte 5 and TanStack Table blocks for selection, filtering, sorting, resizing, dragging, and column pinning.";
+		"Explore reusable Svelte 5 and TanStack Table V9 blocks for selection, filtering, sorting, resizing, dragging, and column pinning.";
 </script>
 
 <Seo

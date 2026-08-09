@@ -137,109 +137,94 @@
 	</div>
 {/snippet}
 
-<div>
-	<div class="w-full overflow-x-auto rounded-lg border">
-		<Table.Root
-			class="table-fixed"
-			style={`width: ${table.getCenterTotalSize()}px;`}
-		>
-			<Table.Header>
-				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
-					<Table.Row class="bg-muted/50 hover:bg-muted/50">
-						{#each headerGroup.headers as header (header.id)}
-							<Table.Head
-								aria-sort={header.column.getIsSorted() === "asc"
-									? "ascending"
-									: header.column.getIsSorted() === "desc"
-										? "descending"
-										: "none"}
-								class="relative h-10 select-none last:[&>.cursor-col-resize]:opacity-0"
-								colspan={header.colSpan}
-								style={`width: ${header.getSize()}px;`}
-							>
-								{#if !header.isPlaceholder}
-									<button
-										type="button"
-										class={cn(
-											"flex h-full w-full items-center justify-between gap-2 text-left select-none",
-											header.column.getCanSort()
-												? "cursor-pointer"
-												: "cursor-default"
-										)}
-										disabled={!header.column.getCanSort()}
-										onclick={header.column.getToggleSortingHandler()}
-									>
-										<span class="truncate">
-											<FlexRender {header} />
-										</span>
-										{#if header.column.getIsSorted() === "asc"}
-											<ChevronUpIcon
-												aria-hidden="true"
-												class="size-4 shrink-0 opacity-60"
-											/>
-										{:else if header.column.getIsSorted() === "desc"}
-											<ChevronDownIcon
-												aria-hidden="true"
-												class="size-4 shrink-0 opacity-60"
-											/>
-										{/if}
-									</button>
-								{/if}
-
-								{#if header.column.getCanResize()}
-									<button
-										type="button"
-										aria-label={`Resize ${header.column.id} column`}
-										class="user-select-none absolute top-0 -right-2 z-10 flex h-full w-4 cursor-col-resize touch-none justify-center border-0 bg-transparent p-0 before:absolute before:inset-y-0 before:w-px before:translate-x-px before:bg-border"
-										ondblclick={() =>
-											header.column.resetSize()}
-										onmousedown={header.getResizeHandler()}
-										ontouchstart={header.getResizeHandler()}
-									></button>
-								{/if}
-							</Table.Head>
-						{/each}
-					</Table.Row>
-				{/each}
-			</Table.Header>
-
-			<Table.Body>
-				{#each table.getRowModel().rows as row (row.id)}
-					<Table.Row>
-						{#each row.getAllCells() as cell (cell.id)}
-							<Table.Cell
-								class="truncate"
-								style={`width: ${cell.column.getSize()}px;`}
-							>
-								<FlexRender {cell} />
-							</Table.Cell>
-						{/each}
-					</Table.Row>
-				{/each}
-
-				{#if table.getRowModel().rows.length === 0}
-					<Table.Row>
-						<Table.Cell
-							class="h-24 text-center"
-							colspan={columns.length}
+<div class="w-full overflow-x-auto rounded-lg border">
+	<Table.Root
+		class="table-fixed"
+		style={`width: ${table.getCenterTotalSize()}px;`}
+	>
+		<Table.Header>
+			{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+				<Table.Row class="bg-muted/50 hover:bg-muted/50">
+					{#each headerGroup.headers as header (header.id)}
+						<Table.Head
+							aria-sort={header.column.getIsSorted() === "asc"
+								? "ascending"
+								: header.column.getIsSorted() === "desc"
+									? "descending"
+									: "none"}
+							class="relative h-10 select-none last:[&>.cursor-col-resize]:opacity-0"
+							colspan={header.colSpan}
+							style={`width: ${header.getSize()}px;`}
 						>
-							No results.
-						</Table.Cell>
-					</Table.Row>
-				{/if}
-			</Table.Body>
-		</Table.Root>
-	</div>
+							{#if !header.isPlaceholder}
+								<button
+									type="button"
+									class={cn(
+										"flex h-full w-full items-center justify-between gap-2 text-left select-none",
+										header.column.getCanSort()
+											? "cursor-pointer"
+											: "cursor-default"
+									)}
+									disabled={!header.column.getCanSort()}
+									onclick={header.column.getToggleSortingHandler()}
+								>
+									<span class="truncate">
+										<FlexRender {header} />
+									</span>
+									{#if header.column.getIsSorted() === "asc"}
+										<ChevronUpIcon
+											aria-hidden="true"
+											class="size-4 shrink-0 opacity-60"
+										/>
+									{:else if header.column.getIsSorted() === "desc"}
+										<ChevronDownIcon
+											aria-hidden="true"
+											class="size-4 shrink-0 opacity-60"
+										/>
+									{/if}
+								</button>
+							{/if}
 
-	<p class="mt-4 text-center text-sm text-muted-foreground">
-		Resizable and sortable columns made with
-		<a
-			class="underline hover:text-foreground"
-			href="https://tanstack.com/table"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
-			TanStack Table
-		</a>
-	</p>
+							{#if header.column.getCanResize()}
+								<button
+									type="button"
+									aria-label={`Resize ${header.column.id} column`}
+									class="user-select-none absolute top-0 -right-2 z-10 flex h-full w-4 cursor-col-resize touch-none justify-center border-0 bg-transparent p-0 before:absolute before:inset-y-0 before:w-px before:translate-x-px before:bg-border"
+									ondblclick={() => header.column.resetSize()}
+									onmousedown={header.getResizeHandler()}
+									ontouchstart={header.getResizeHandler()}
+								></button>
+							{/if}
+						</Table.Head>
+					{/each}
+				</Table.Row>
+			{/each}
+		</Table.Header>
+
+		<Table.Body>
+			{#each table.getRowModel().rows as row (row.id)}
+				<Table.Row>
+					{#each row.getAllCells() as cell (cell.id)}
+						<Table.Cell
+							class="truncate"
+							style={`width: ${cell.column.getSize()}px;`}
+						>
+							<FlexRender {cell} />
+						</Table.Cell>
+					{/each}
+				</Table.Row>
+			{/each}
+
+			{#if table.getRowModel().rows.length === 0}
+				<Table.Row>
+					<Table.Cell
+						class="h-24 text-center"
+						colspan={columns.length}
+					>
+						No results.
+					</Table.Cell>
+				</Table.Row>
+			{/if}
+		</Table.Body>
+	</Table.Root>
 </div>

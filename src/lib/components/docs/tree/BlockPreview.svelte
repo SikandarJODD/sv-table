@@ -3,8 +3,8 @@
 	import type { CodeBlock } from "$lib/types/code";
 	import { scale } from "svelte/transition";
 	import CodeEditor from "./CodeEditor.svelte";
+	import { Button } from "$lib/components/ui/button/index.js";
 	import { SingleFile } from "$lib/components/ui/code";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import {
 		CodeIcon,
 		PreviewIcon
@@ -37,7 +37,7 @@
 	});
 </script>
 
-<section {id} class="group scroll-mt-20 py-10 first:pt-0">
+<section {id} class="group scroll-mt-12 py-10 first:pt-0">
 	<div class="relative mx-auto max-w-7xl">
 		<div class="mb-5 space-y-1.5">
 			<h2
@@ -53,45 +53,49 @@
 			{/if}
 		</div>
 
-		<Tabs.Root bind:value={mode} class="gap-0">
-			<Tabs.List
-				aria-label="Block view"
-				class="gap-1 rounded-lg bg-transparent p-1"
-			>
-				<Tabs.Trigger value="preview">
-					<PreviewIcon class="size-[18px]" aria-hidden="true" />
+		<div class="flex gap-2" role="group" aria-label="Block view">
+			{#if mode === "code"}
+				<Button
+					variant="secondary"
+					size="sm"
+					class="rounded-full active:not-aria-[haspopup]:translate-y-0"
+					onclick={() => (mode = "preview")}
+				>
+					<PreviewIcon aria-hidden="true" />
 					<span>Preview</span>
-				</Tabs.Trigger>
-
-				<Tabs.Trigger value="code">
-					<CodeIcon class="size-[18px]" aria-hidden="true" />
+				</Button>
+			{:else}
+				<Button
+					variant="secondary"
+					size="sm"
+					class="rounded-full active:not-aria-[haspopup]:translate-y-0"
+					onclick={() => (mode = "code")}
+				>
+					<CodeIcon aria-hidden="true" />
 					<span>Code</span>
-				</Tabs.Trigger>
-			</Tabs.List>
+				</Button>
+			{/if}
+		</div>
 
-			<Tabs.Content
-				value="preview"
-				class="mt-0 bg-white pt-5 sm:pt-6 dark:bg-background"
+		{#if mode === "preview"}
+			<div
+				class="mt-0 bg-white pt-5 sm:pt-4 dark:bg-background"
 				style={`--preview-min-height: ${MIN_PREVIEW_HEIGHT}px;`}
 			>
 				<div
-					in:scale={{ start: 0.85 }}
 					class="min-h-(--preview-min-height) w-full overflow-hidden"
 				>
 					<PreviewComponent />
 				</div>
-			</Tabs.Content>
-
-			<Tabs.Content
-				value="code"
-				class="mt-0 bg-white pt-5 sm:pt-6 dark:bg-transparent"
-			>
+			</div>
+		{:else}
+			<div class="mt-0 bg-white pt-5 sm:pt-4 dark:bg-transparent">
 				{#if singleFileCode}
 					<SingleFile code={singleFileCode} />
 				{:else}
 					<CodeEditor {codeTree} />
 				{/if}
-			</Tabs.Content>
-		</Tabs.Root>
+			</div>
+		{/if}
 	</div>
 </section>

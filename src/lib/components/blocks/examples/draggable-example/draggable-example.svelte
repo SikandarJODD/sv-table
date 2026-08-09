@@ -20,6 +20,7 @@
 		type DraggableTableFeatures
 	} from "./table-features";
 	import type { DraggableColumn, Item } from "./types";
+	import { FaviconLink } from "$markdown";
 
 	const flipDurationMs = 300;
 
@@ -99,7 +100,6 @@
 		columnItems = event.detail.items;
 		draggedColumnId = event.detail.info.id;
 	}
-
 	function finishColumnOrder(event: CustomEvent<DndEvent<DraggableColumn>>) {
 		columnItems = event.detail.items;
 		draggedColumnId = null;
@@ -193,23 +193,23 @@
 
 	<p class="mt-4 text-center text-sm text-muted-foreground">
 		Drag columns by their handles. Made with
-		<a
-			class="underline hover:text-foreground"
+		<FaviconLink
 			href="https://tanstack.com/table"
 			rel="noopener noreferrer"
 			target="_blank"
+			class="font-medium"
 		>
 			TanStack Table
-		</a>
+		</FaviconLink>
 		and
-		<a
-			class="underline hover:text-foreground"
+		<FaviconLink
+			class="font-medium"
 			href="https://github.com/isaacHagoel/svelte-dnd-action"
 			rel="noopener noreferrer"
 			target="_blank"
 		>
 			svelte-dnd-action
-		</a>
+		</FaviconLink>
 	</p>
 </div>
 

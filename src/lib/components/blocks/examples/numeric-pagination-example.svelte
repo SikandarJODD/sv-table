@@ -284,16 +284,4 @@
 			/>
 		</div>
 	</div>
-
-	<p class="text-center text-sm text-muted-foreground">
-		Paginated table made with
-		<a
-			class="underline hover:text-foreground"
-			href="https://tanstack.com/table"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
-			TanStack Table
-		</a>
-	</p>
 </div>

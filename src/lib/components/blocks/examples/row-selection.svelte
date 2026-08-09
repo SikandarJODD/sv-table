@@ -163,15 +163,3 @@
 		</Table.Footer>
 	</Table.Root>
 </div>
-
-<p class="mt-4 text-center text-sm text-muted-foreground">
-	Row Selection Block made with{" "}
-	<a
-		class="underline hover:text-foreground"
-		href="https://tanstack.com/table"
-		rel="noopener noreferrer"
-		target="_blank"
-	>
-		TanStack Table
-	</a>
-</p>
