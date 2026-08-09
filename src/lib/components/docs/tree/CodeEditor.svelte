@@ -13,6 +13,7 @@
 	import CodeTreeNode from "./CodeTreeNode.svelte";
 	import { Button } from "$lib/components/ui/button";
 	import * as Code from "$lib/components/ui/code";
+	import ScrollFadeEffect from "$lib/components/ui/scroll-area/scroll-fade-effect.svelte";
 
 	let { codeTree }: { codeTree: BlockCodeTree } = $props();
 
@@ -23,7 +24,7 @@
 	let fallbackFileId = $derived(getDefaultBlockCodeFile(codeTree)?.id ?? "");
 	let activeFile = $derived(
 		findBlockCodeFile(codeTree, activeFileId) ??
-		getDefaultBlockCodeFile(codeTree)
+			getDefaultBlockCodeFile(codeTree)
 	);
 
 	$effect(() => {
@@ -55,7 +56,9 @@
 </script>
 
 <!-- border-t -->
-<div class="flex flex-col sm:min-h-[32rem] sm:flex-row">
+<div
+	class="flex flex-col overflow-hidden rounded-xl border sm:min-h-128 sm:flex-row"
+>
 	<div
 		class="w-full border-b bg-neutral-50 text-black [--color-background:var(--color-zinc-900)] [--color-foreground:white] [--color-muted:var(--color-zinc-800)] sm:w-72 sm:border-r sm:border-b-0 dark:bg-zinc-900/25 dark:text-white"
 	>
@@ -156,11 +159,14 @@
 
 		<div class="">
 			{#if activeFile?.code}
-				<Code.Root
-					code={activeFile.code}
-					lang={activeFile.lang}
-					highlight={activeFile.highlight}
-				/>
+				<ScrollFadeEffect class="max-h-[600px]">
+					<Code.Root
+						code={activeFile.code}
+						lang={activeFile.lang}
+						highlight={activeFile.highlight}
+						class="h-auto w-full overflow-visible rounded-none border-none"
+					/>
+				</ScrollFadeEffect>
 			{:else if activeFile?.externalUrl}
 				<div
 					class="flex min-h-[20rem] items-center justify-center px-6"
