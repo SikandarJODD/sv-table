@@ -2,7 +2,7 @@
 	import {
 		collectDefaultOpenFolderIds,
 		findBlockCodeFile,
-		flattenBlockCodeFiles,
+		getDefaultBlockCodeFile,
 		type BlockCodeTree
 	} from "./types";
 	import Check from "@lucide/svelte/icons/check";
@@ -20,10 +20,10 @@
 	let openFolderIds = $state(new Set<string>());
 	let activeFileId = $state("");
 
-	let files = $derived(flattenBlockCodeFiles(codeTree.nodes));
-	let fallbackFileId = $derived(codeTree.defaultFileId || files[0]?.id || "");
+	let fallbackFileId = $derived(getDefaultBlockCodeFile(codeTree)?.id ?? "");
 	let activeFile = $derived(
-		findBlockCodeFile(codeTree, activeFileId) ?? files[0]
+		findBlockCodeFile(codeTree, activeFileId) ??
+		getDefaultBlockCodeFile(codeTree)
 	);
 
 	$effect(() => {

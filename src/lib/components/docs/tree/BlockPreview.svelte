@@ -1,24 +1,15 @@
 <script lang="ts">
-	import type { BlockCodeTree } from "./types";
+	import {
+		flattenBlockCodeFiles,
+		type BlockShowcaseItem
+	} from "./types";
 	import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
 	import { cn } from "$lib/utils";
-	import type { Component } from "svelte";
+	import type { CodeBlock } from "$lib/types/code";
 	import { scale } from "svelte/transition";
 	import CodeEditor from "./CodeEditor.svelte";
-	import InstallComponent from "./InstallComponent.svelte";
 	import { Button } from "$lib/components/ui/button";
-
-	interface BlockPreviewProps {
-		id: string;
-		title: string;
-		description?: string;
-		codeTree: BlockCodeTree;
-		previewComponent: Component;
-		previewHref?: string;
-		previewMode: "inline" | "iframe";
-		previewHeight?: number;
-		installId?: string;
-	}
+	import { SingleFile } from "$lib/components/ui/code";
 
 	const radioItem =
 		"rounded-(--radius) duration-200 flex items-center justify-center h-8 px-2.5 gap-2 transition-[color] data-[state=checked]:bg-muted";
@@ -30,15 +21,25 @@
 		title,
 		description = "",
 		codeTree,
-		previewComponent: PreviewComponent,
-		installId
-	}: BlockPreviewProps = $props();
+		previewComponent: PreviewComponent
+	}: BlockShowcaseItem = $props();
 
 	let mode = $state<"preview" | "code">("preview");
 
 	let isMobile = new IsMobile();
+	let codeFiles = $derived(flattenBlockCodeFiles(codeTree.nodes));
+	let singleFileCode = $derived.by((): CodeBlock | undefined => {
+		const file = codeFiles[0];
 
-	let canInstall = $derived(Boolean(installId));
+		if (codeFiles.length !== 1 || !file?.code) return undefined;
+
+		return {
+			name: file.name,
+			code: file.code,
+			lang: file.lang,
+			highlight: file.highlight
+		};
+	});
 </script>
 
 <section {id} class="group">
@@ -77,6 +78,7 @@
 						<Button
 							variant={mode === "preview" ? "secondary" : "ghost"}
 							onclick={() => (mode = "preview")}
+							aria-pressed={mode === "preview"}
 							class={radioItem}
 							size="sm"
 						>
@@ -107,6 +109,7 @@
 						<Button
 							variant={mode === "code" ? "secondary" : "ghost"}
 							onclick={() => (mode = "code")}
+							aria-pressed={mode === "code"}
 							size="sm"
 							class={radioItem}
 						>
@@ -137,20 +140,6 @@
 						</Button>
 					</div>
 				</div>
-
-				<!-- <div
-					class={cn(
-						"flex flex-wrap items-center gap-2",
-						isMobile.current && "w-full gap-1.5"
-					)}
-				>
-					{#if canInstall}
-						<InstallComponent
-							id={installId}
-							class={cn(isMobile.current && "flex-1")}
-						/>
-					{/if}
-				</div> -->
 			</div>
 		</div>
 	</div>
@@ -176,7 +165,13 @@
 
 			<div class="bg-white dark:bg-transparent!">
 				{#if mode === "code"}
-					<CodeEditor {codeTree} />
+					{#if singleFileCode}
+						<div class="p-4 sm:p-6">
+							<SingleFile code={singleFileCode} />
+						</div>
+					{:else}
+						<CodeEditor {codeTree} />
+					{/if}
 				{/if}
 			</div>
 		</div>
