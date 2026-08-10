@@ -150,8 +150,8 @@
 		</Table.Body>
 		<Table.Footer class="bg-transparent">
 			<Table.Row class="hover:bg-transparent">
-				<Table.Cell colspan={5}>Total</Table.Cell>
-				<Table.Cell class="text-right">
+				<Table.Cell colspan={8}>Total</Table.Cell>
+				<Table.Cell class="text-start">
 					{new Intl.NumberFormat("en-US", {
 						currency: "USD",
 						style: "currency"

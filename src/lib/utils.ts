@@ -29,3 +29,11 @@ export function toKebabCaseWithPrefix(str: string, prefix: string) {
   const kebabCaseStr = toKebabCase(str);
   return `${prefix}:${kebabCaseStr}`;
 }
+
+// kebab-case-book -> Kebab Case Book
+export function toCapitalize(str: string) {
+  return str
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}

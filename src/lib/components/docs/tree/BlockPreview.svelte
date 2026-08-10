@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { flattenBlockCodeFiles, type BlockShowcaseItem } from "./types";
 	import type { CodeBlock } from "$lib/types/code";
-	import { scale } from "svelte/transition";
 	import CodeEditor from "./CodeEditor.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { SingleFile } from "$lib/components/ui/code";
@@ -9,6 +8,8 @@
 		CodeIcon,
 		PreviewIcon
 	} from "$lib/components/icons/block-preview/index.js";
+	import Badge from "$lib/components/spell/badge/badge.svelte";
+	import { toCapitalize } from "$lib/utils";
 
 	const MIN_PREVIEW_HEIGHT = 400;
 
@@ -17,7 +18,8 @@
 		title,
 		description = "",
 		codeTree,
-		previewComponent: PreviewComponent
+		previewComponent: PreviewComponent,
+		components = []
 	}: BlockShowcaseItem = $props();
 
 	let mode = $state<"preview" | "code">("preview");
@@ -52,29 +54,39 @@
 				</p>
 			{/if}
 		</div>
-
-		<div class="flex gap-2" role="group" aria-label="Block view">
-			{#if mode === "code"}
-				<Button
-					variant="secondary"
-					size="sm"
-					class="rounded-full active:not-aria-[haspopup]:translate-y-0"
-					onclick={() => (mode = "preview")}
-				>
-					<PreviewIcon aria-hidden="true" />
-					<span>Preview</span>
-				</Button>
-			{:else}
-				<Button
-					variant="secondary"
-					size="sm"
-					class="rounded-full active:not-aria-[haspopup]:translate-y-0"
-					onclick={() => (mode = "code")}
-				>
-					<CodeIcon aria-hidden="true" />
-					<span>Code</span>
-				</Button>
-			{/if}
+		<div class="flex items-center justify-between">
+			<div class="flex gap-2" role="group" aria-label="Block view">
+				{#if mode === "code"}
+					<Button
+						variant="secondary"
+						size="sm"
+						class="rounded-full active:not-aria-[haspopup]:translate-y-0"
+						onclick={() => (mode = "preview")}
+					>
+						<PreviewIcon aria-hidden="true" />
+						<span>Preview</span>
+					</Button>
+				{:else}
+					<Button
+						variant="secondary"
+						size="sm"
+						class="rounded-full active:not-aria-[haspopup]:translate-y-0"
+						onclick={() => (mode = "code")}
+					>
+						<CodeIcon aria-hidden="true" />
+						<span>Code</span>
+					</Button>
+				{/if}
+			</div>
+			<div class="flex gap-2">
+				{#each components.slice(0, 3) as component}
+					<a href={component.url}>
+						<Badge variant="cyan" class="rounded-full">
+							{component.name}
+						</Badge>
+					</a>
+				{/each}
+			</div>
 		</div>
 
 		{#if mode === "preview"}

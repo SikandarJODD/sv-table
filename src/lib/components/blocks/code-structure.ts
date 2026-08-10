@@ -64,13 +64,37 @@ export const blockShowcases = [
 		id: "row-selection",
 		title: "Row Selection",
 		previewComponent: RowSelection,
-		codeTree: createExampleCodeTree("row-selection.svelte")
+		codeTree: createExampleCodeTree("row-selection.svelte"),
+		components: [
+			{
+				name: 'Header Checkbox',
+				url: '/components/header-checkbox'
+			},
+			{
+				name: 'Row Checkbox',
+				url: '/components/row-checkbox'
+			},
+		]
 	},
 	{
 		id: "data-table-with-filters",
 		title: "Data Table with Filters",
 		previewComponent: DataTableFiltersExample,
-		codeTree: createExampleCodeTree("data-table-filters-example.svelte")
+		codeTree: createExampleCodeTree("data-table-filters-example.svelte"),
+		components: [
+			{
+				name: 'Number Range Filter',
+				url: '/components/number-range-filter'
+			},
+			{
+				name: 'Debounce Input',
+				url: '/components/debounce-input'
+			},
+			{
+				name: 'Faceted Filter',
+				url: '/components/data-table-faceted-filter'
+			}
+		]
 	},
 	{
 		id: "data-table-with-custom-filters",

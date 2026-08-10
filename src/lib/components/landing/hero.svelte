@@ -27,7 +27,7 @@
 			<span class="text-xs">11 new blocks</span>
 			<span class="block h-5 border-l"></span>
 
-			<div class="pr-1">
+			<div class="pr-2">
 				<ArrowRight
 					class="size-3 -translate-x-0.5 duration-150 ease-out group-hover:translate-x-0.5"
 				/>
@@ -35,7 +35,7 @@
 		</a>
 
 		<h1
-			class="max-w-2xl animate-in text-4xl leading-tight font-medium text-balance text-foreground delay-100 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in md:text-5xl lg:text-6xl"
+			class="max-w-4xl animate-in text-4xl leading-tight font-medium text-balance text-foreground delay-100 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in md:text-5xl lg:text-6xl"
 		>
 			Svelte Datatables Components & Examples
 		</h1>
@@ -52,7 +52,7 @@
 		>
 			<Button
 				variant="blue"
-				class="rounded-full px-4"
+				class="rounded-full border border-ink px-4"
 				href="/docs"
 				size="lg"
 			>
