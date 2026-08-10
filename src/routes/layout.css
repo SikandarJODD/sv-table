@@ -136,7 +136,7 @@
 		@apply bg-background text-foreground;
 	}
 	html {
-		scroll-behavior: smooth;
+		/* scroll-behavior: smooth; */
 		@apply font-sans;
 	}
 	/* Custom scrollbar styling. Thanks @pranathiperii. */

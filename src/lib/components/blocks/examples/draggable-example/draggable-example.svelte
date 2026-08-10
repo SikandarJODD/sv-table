@@ -108,7 +108,7 @@
 	onMount(async () => {
 		const response = await fetch("/dummy-data/data.json");
 		const items = (await response.json()) as Item[];
-		data = items.slice(0, 5);
+		data = items.slice(0, 10);
 	});
 </script>
 

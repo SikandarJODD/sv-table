@@ -9,7 +9,6 @@
 		PreviewIcon
 	} from "$lib/components/icons/block-preview/index.js";
 	import Badge from "$lib/components/spell/badge/badge.svelte";
-	import { toCapitalize } from "$lib/utils";
 
 	const MIN_PREVIEW_HEIGHT = 400;
 
@@ -79,7 +78,7 @@
 				{/if}
 			</div>
 			<div class="flex gap-2">
-				{#each components.slice(0, 3) as component}
+				{#each components.slice(0, 5) as component}
 					<a href={component.url}>
 						<Badge variant="cyan" class="rounded-full">
 							{component.name}
