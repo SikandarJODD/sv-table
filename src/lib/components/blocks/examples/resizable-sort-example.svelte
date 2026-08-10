@@ -10,6 +10,8 @@
 		FlexRender,
 		renderSnippet,
 		rowSortingFeature,
+		sortFn_alphanumeric,
+		sortFn_text,
 		tableFeatures,
 		type ColumnDef,
 		type SortingState
@@ -43,7 +45,11 @@
 		columnSizingFeature,
 		columnResizingFeature,
 		rowSortingFeature,
-		sortedRowModel: createSortedRowModel()
+		sortedRowModel: createSortedRowModel(),
+		sortFns: {
+			alphanumeric: sortFn_alphanumeric,
+			text: sortFn_text
+		}
 	});
 
 	const columns: ColumnDef<typeof features, Item, any>[] = [
@@ -51,9 +57,7 @@
 			accessorKey: "name",
 			header: "Name",
 			cell: ({ row }) =>
-				renderSnippet(nameCell, { name: row.original.name }),
-			sortDescFirst: false,
-			sortUndefined: "last"
+				renderSnippet(nameCell, { name: row.original.name })
 		},
 		{
 			accessorKey: "email",

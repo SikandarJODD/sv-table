@@ -20,6 +20,8 @@
 		rowPaginationFeature,
 		rowSelectionFeature,
 		rowSortingFeature,
+		sortFn_alphanumeric,
+		sortFn_text,
 		tableFeatures,
 		type ColumnDef,
 		type FilterFn
@@ -85,6 +87,10 @@
 		filteredRowModel: createFilteredRowModel(),
 		paginatedRowModel: createPaginatedRowModel(),
 		sortedRowModel: createSortedRowModel(),
+		sortFns: {
+			alphanumeric: sortFn_alphanumeric,
+			text: sortFn_text
+		},
 		filterFns: {
 			arrHas: filterFn_arrHas,
 			multiColumn: multiColumnFilterFn

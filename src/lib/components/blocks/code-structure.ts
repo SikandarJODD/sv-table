@@ -173,11 +173,11 @@ export const blockShowcases = [
 			},
 			{
 				name: "Pagination",
-				url: "/components/pagination#arrow-pagination"
+				url: "/components/pagination"
 			},
 			{
 				name: "Pagination Arrow",
-				url: "/components/pagination-arrow"
+				url: "/components/pagination#arrow-pagination"
 			},
 			{
 				name: "Row Checkbox",
@@ -237,7 +237,7 @@ export const blockShowcases = [
 			},
 			{
 				name: "Pagination Arrow",
-				url: "/components/pagination-arrow"
+				url: "/components/pagination"
 			},
 			{
 				name: "Row Checkbox",

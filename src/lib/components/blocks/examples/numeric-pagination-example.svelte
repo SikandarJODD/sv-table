@@ -15,6 +15,8 @@
 		rowPaginationFeature,
 		rowSelectionFeature,
 		rowSortingFeature,
+		sortFn_alphanumeric,
+		sortFn_text,
 		tableFeatures,
 		type ColumnDef
 	} from "@tanstack/svelte-table";
@@ -46,6 +48,10 @@
 		rowSelectionFeature,
 		rowSortingFeature,
 		sortedRowModel: createSortedRowModel(),
+		sortFns: {
+			alphanumeric: sortFn_alphanumeric,
+			text: sortFn_text
+		},
 		columnSizingFeature,
 		columnResizingFeature,
 		columnOrderingFeature,
