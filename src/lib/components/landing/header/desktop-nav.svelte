@@ -10,6 +10,7 @@
 	import { navs } from "./nav-links";
 	import { ArrowUpRightIcon, PackageIcon } from "@lucide/svelte";
 	import { cn, toKebabCaseWithPrefix } from "$lib/utils";
+	import { Badge } from "$lib/components/spell/badge";
 
 	const otherProjects = [
 		{
@@ -179,7 +180,7 @@
 					{#if nav.isNew}
 						<span
 							aria-hidden="true"
-							class="absolute -inset-e-0.5 -top-0.5 size-2 rounded-full bg-muted-foreground outline-2 outline-background"
+							class="absolute -inset-e-0.5 -top-0.5 size-2 rounded-full bg-emerald-500 outline-2 outline-background"
 						></span>
 					{/if}
 				</NavigationMenu.Item>

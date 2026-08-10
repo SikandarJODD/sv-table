@@ -122,7 +122,7 @@
 			return data;
 		},
 		initialState: {
-			pagination: { pageIndex: 0, pageSize: 5 },
+			pagination: { pageIndex: 0, pageSize: 10 },
 			sorting: [{ id: "name", desc: false }]
 		}
 	});
