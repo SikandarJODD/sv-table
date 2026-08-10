@@ -2,22 +2,39 @@
 	import MenuIcon from "@lucide/svelte/icons/menu";
 	import XIcon from "@lucide/svelte/icons/x";
 	import { Button } from "$lib/components/ui/button";
+	import Github from "$lib/components/icons/github.svelte";
+	import { LightSwitch } from "$lib/components/ui/light-switch";
 	import { navs } from "./nav-links";
 
 	let open = $state(false);
 </script>
 
-<div class="relative md:hidden">
+<div class="relative flex items-center gap-1 md:hidden">
+	<Button
+		aria-label="View sv-table on GitHub"
+		href="https://github.com/SikandarJODD/sv-table"
+		rel="noopener noreferrer"
+		size="icon-sm"
+		target="_blank"
+		variant="ghost"
+	>
+		<Github />
+	</Button>
+	<LightSwitch size="icon-sm" />
 	<Button
 		aria-controls="mobile-menu"
 		aria-expanded={open}
 		aria-label="Toggle menu"
 		class="md:hidden"
 		onclick={() => (open = !open)}
-		size="icon"
-		variant="outline"
+		size="icon-sm"
+		variant="secondary"
 	>
-		<div class={open ? "scale-100 opacity-100 transition-all" : "scale-0 opacity-0 transition-all"}>
+		<div
+			class={open
+				? "scale-100 opacity-100 transition-all"
+				: "scale-0 opacity-0 transition-all"}
+		>
 			<XIcon />
 		</div>
 		<div

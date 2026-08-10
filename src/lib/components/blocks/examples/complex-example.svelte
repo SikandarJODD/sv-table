@@ -20,6 +20,8 @@
 		rowPaginationFeature,
 		rowSelectionFeature,
 		rowSortingFeature,
+		sortFn_alphanumeric,
+		sortFn_text,
 		tableFeatures,
 		type ColumnDef,
 		type FilterFn
@@ -85,6 +87,10 @@
 		filteredRowModel: createFilteredRowModel(),
 		paginatedRowModel: createPaginatedRowModel(),
 		sortedRowModel: createSortedRowModel(),
+		sortFns: {
+			alphanumeric: sortFn_alphanumeric,
+			text: sortFn_text
+		},
 		filterFns: {
 			arrHas: filterFn_arrHas,
 			multiColumn: multiColumnFilterFn
@@ -238,7 +244,7 @@
 
 <div class="space-y-4">
 	<div class="flex flex-wrap items-center justify-between gap-3">
-		<div class="flex flex-1 flex-wrap items-center gap-2">
+		<div class="flex flex-1 flex-wrap items-center gap-2 p-1">
 			<DebounceInput
 				bind:value={search}
 				onChange={filterUsers}

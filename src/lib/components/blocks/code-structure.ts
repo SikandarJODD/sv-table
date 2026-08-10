@@ -64,19 +64,49 @@ export const blockShowcases = [
 		id: "row-selection",
 		title: "Row Selection",
 		previewComponent: RowSelection,
-		codeTree: createExampleCodeTree("row-selection.svelte")
+		codeTree: createExampleCodeTree("row-selection.svelte"),
+		components: [
+			{
+				name: 'Header Checkbox',
+				url: '/components/header-checkbox'
+			},
+			{
+				name: 'Row Checkbox',
+				url: '/components/row-checkbox'
+			},
+		]
 	},
 	{
 		id: "data-table-with-filters",
 		title: "Data Table with Filters",
 		previewComponent: DataTableFiltersExample,
-		codeTree: createExampleCodeTree("data-table-filters-example.svelte")
+		codeTree: createExampleCodeTree("data-table-filters-example.svelte"),
+		components: [
+			{
+				name: 'Number Range Filter',
+				url: '/components/number-range-filter'
+			},
+			{
+				name: 'Debounce Input',
+				url: '/components/debounce-input'
+			},
+			{
+				name: 'Faceted Filter',
+				url: '/components/data-table-faceted-filter'
+			}
+		]
 	},
 	{
 		id: "data-table-with-custom-filters",
 		title: "Data Table with Custom Filters",
 		previewComponent: CustomFiltersExample,
-		codeTree: createExampleCodeTree("custom-filters-example.svelte")
+		codeTree: createExampleCodeTree("custom-filters-example.svelte"),
+		components: [
+			{
+				name: "Filters",
+				url: "/components/filters"
+			}
+		]
 	},
 	{
 		id: "resizable-sortable-columns",
@@ -115,24 +145,104 @@ export const blockShowcases = [
 				"expanded-sub-rows/expanded-sub-rows.svelte",
 				"expanded-sub-rows/row-expander.svelte"
 			]
-		)
+		),
+		components: [
+			{
+				name: "Header Checkbox",
+				url: "/components/header-checkbox"
+			},
+			{
+				name: "Row Checkbox",
+				url: "/components/row-checkbox"
+			}
+		]
 	},
 	{
 		id: "paginated-table",
 		title: "Paginated Table",
 		previewComponent: PaginatedExample,
-		codeTree: createExampleCodeTree("paginated-example.svelte")
+		codeTree: createExampleCodeTree("paginated-example.svelte"),
+		components: [
+			{
+				name: "Header Checkbox",
+				url: "/components/header-checkbox"
+			},
+			{
+				name: "Page Size Selector",
+				url: "/components/page-size-selector"
+			},
+			{
+				name: "Pagination",
+				url: "/components/pagination"
+			},
+			{
+				name: "Pagination Arrow",
+				url: "/components/pagination#arrow-pagination"
+			},
+			{
+				name: "Row Checkbox",
+				url: "/components/row-checkbox"
+			}
+		]
 	},
 	{
 		id: "numeric-pagination",
 		title: "Numeric Pagination",
 		previewComponent: NumericPaginationExample,
-		codeTree: createExampleCodeTree("numeric-pagination-example.svelte")
+		codeTree: createExampleCodeTree("numeric-pagination-example.svelte"),
+		components: [
+			{
+				name: "Header Checkbox",
+				url: "/components/header-checkbox"
+			},
+			{
+				name: "Page Size Selector",
+				url: "/components/page-size-selector"
+			},
+			{
+				name: "Pagination",
+				url: "/components/pagination"
+			},
+			{
+				name: "Row Checkbox",
+				url: "/components/row-checkbox"
+			}
+		]
 	},
 	{
 		id: "complex-table",
 		title: "Complex Table",
 		previewComponent: ComplexExample,
-		codeTree: createExampleCodeTree("complex-example.svelte")
+		codeTree: createExampleCodeTree("complex-example.svelte"),
+		components: [
+			{
+				name: "Data Table Faceted Filter",
+				url: "/components/data-table-faceted-filter"
+			},
+			{
+				name: "Data Table View",
+				url: "/components/data-table-view"
+			},
+			{
+				name: "Debounce Input",
+				url: "/components/debounce-input"
+			},
+			{
+				name: "Header Checkbox",
+				url: "/components/header-checkbox"
+			},
+			{
+				name: "Page Size Selector",
+				url: "/components/page-size-selector"
+			},
+			{
+				name: "Pagination Arrow",
+				url: "/components/pagination"
+			},
+			{
+				name: "Row Checkbox",
+				url: "/components/row-checkbox"
+			}
+		]
 	}
 ] satisfies BlockShowcaseItem[];

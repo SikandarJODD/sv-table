@@ -123,7 +123,7 @@
 			"https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/users-01_fertyx.json"
 		);
 		const items = (await response.json()) as Item[];
-		data = items.slice(0, 5);
+		data = items.slice(0, 10);
 	});
 </script>
 

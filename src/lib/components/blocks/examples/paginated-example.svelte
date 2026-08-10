@@ -15,6 +15,8 @@
 		rowPaginationFeature,
 		rowSelectionFeature,
 		rowSortingFeature,
+		sortFn_alphanumeric,
+		sortFn_text,
 		tableFeatures,
 		type ColumnDef
 	} from "@tanstack/svelte-table";
@@ -47,6 +49,10 @@
 		rowSelectionFeature,
 		rowSortingFeature,
 		sortedRowModel: createSortedRowModel(),
+		sortFns: {
+			alphanumeric: sortFn_alphanumeric,
+			text: sortFn_text
+		},
 		columnSizingFeature,
 		columnResizingFeature,
 		columnOrderingFeature,
@@ -123,7 +129,7 @@
 			return data;
 		},
 		initialState: {
-			pagination: { pageIndex: 0, pageSize: 5 },
+			pagination: { pageIndex: 0, pageSize: 10 },
 			sorting: [{ id: "name", desc: false }]
 		}
 	});

@@ -66,15 +66,23 @@ ${"</" + "script>"}
 		highlight: [3, 4, 14, 15]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- data-table-column-header/",
-		"                |-- index.ts",
-		"                `-- data-table-column-header.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- data-table-column-header/",
+	// 	"                |-- index.ts",
+	// 	"                `-- data-table-column-header.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── data-table-column-header/
+                ├── data-table-column-header.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Data table column header props",

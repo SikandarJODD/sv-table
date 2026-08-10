@@ -40,15 +40,23 @@ ${"</" + "script>"}
 />`
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- debounce-input/",
-		"                |-- index.ts",
-		"                `-- debounce-input.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- debounce-input/",
+	// 	"                |-- index.ts",
+	// 	"                `-- debounce-input.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── debounce-input/
+                ├── debounce-input.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Debounce input props",

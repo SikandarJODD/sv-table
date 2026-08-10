@@ -43,15 +43,23 @@ ${"</" + "script>"}
 </Table.Body>`
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- data-table-loading/",
-		"                |-- index.ts",
-		"                `-- data-table-loading.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- data-table-loading/",
+	// 	"                |-- index.ts",
+	// 	"                `-- data-table-loading.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── data-table-loading/
+                ├── data-table-loading.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Data table loading props",

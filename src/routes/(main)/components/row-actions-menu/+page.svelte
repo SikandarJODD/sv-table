@@ -94,15 +94,23 @@ ${"</" + "script>"}
 		highlight: [[5, 10]]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- row-actions-menu/",
-		"                |-- index.ts",
-		"                `-- row-actions-menu.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- row-actions-menu/",
+	// 	"                |-- index.ts",
+	// 	"                `-- row-actions-menu.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── row-actions-menu/
+                ├── row-actions-menu.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Row actions menu props",

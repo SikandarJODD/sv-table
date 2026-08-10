@@ -79,15 +79,23 @@ const exportColumns: CsvExportColumn<Project>[] = [
 ];`
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- data-table-export/",
-		"                |-- index.ts",
-		"                `-- data-table-export.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- data-table-export/",
+	// 	"                |-- index.ts",
+	// 	"                `-- data-table-export.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── data-table-export/
+                ├── data-table-export.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Data table export props",

@@ -146,15 +146,23 @@ ${"</" + "script>"}
 		]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- date-range-filter/",
-		"                |-- index.ts",
-		"                `-- date-range-filter.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- date-range-filter/",
+	// 	"                |-- index.ts",
+	// 	"                `-- date-range-filter.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── date-range-filter/
+                ├── date-range-filter.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Date range filter props",

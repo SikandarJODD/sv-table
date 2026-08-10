@@ -113,15 +113,22 @@ const selectedCount = $derived(selectedIds.length);`,
 		]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- bulk-actions-bar/",
-		"                |-- index.ts",
-		"                `-- bulk-actions-bar.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- bulk-actions-bar/",
+	// 	"                |-- index.ts",
+	// 	"                `-- bulk-actions-bar.svelte"
+	// ].join("\n");
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── bulk-actions-bar/
+                ├── bulk-actions-bar.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Bulk actions bar props",

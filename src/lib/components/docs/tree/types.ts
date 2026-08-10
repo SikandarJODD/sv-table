@@ -30,12 +30,18 @@ export type BlockCodeTree = {
 	nodes: BlockCodeNode[];
 };
 
+type ComponentsUsed = {
+	name: string;
+	url: string;
+}
+
 export type BlockShowcaseItem = {
 	id: string;
 	title: string;
 	description?: string;
 	previewComponent: Component;
 	codeTree: BlockCodeTree;
+	components?: ComponentsUsed[];
 };
 
 export type BlockCodeFileInput = Omit<

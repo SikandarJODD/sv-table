@@ -40,6 +40,9 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+
+	--ink: oklch(0.497 0.3041 263.28);
+	--ink-foreground: oklch(0.985 0 0);
 }
 
 .dark {
@@ -74,6 +77,9 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+
+	--ink: oklch(0.55 0.26 263.28);
+	--ink-foreground: oklch(0.985 0 0);
 }
 
 @theme inline {
@@ -117,6 +123,9 @@
 	--radius-2xl: calc(var(--radius) * 1.8);
 	--radius-3xl: calc(var(--radius) * 2.2);
 	--radius-4xl: calc(var(--radius) * 2.6);
+
+	--color-ink: var(--ink);
+	--color-ink-foreground: var(--ink-foreground);
 }
 
 @layer base {
@@ -127,7 +136,7 @@
 		@apply bg-background text-foreground;
 	}
 	html {
-		scroll-behavior: smooth;
+		/* scroll-behavior: smooth; */
 		@apply font-sans;
 	}
 	/* Custom scrollbar styling. Thanks @pranathiperii. */

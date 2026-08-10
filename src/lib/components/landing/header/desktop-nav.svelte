@@ -9,7 +9,8 @@
 	import LinkItem from "./link-item.svelte";
 	import { navs } from "./nav-links";
 	import { ArrowUpRightIcon, PackageIcon } from "@lucide/svelte";
-	import { cn } from "$lib/utils";
+	import { cn, toKebabCaseWithPrefix } from "$lib/utils";
+	import { Badge } from "$lib/components/spell/badge";
 
 	const otherProjects = [
 		{
@@ -72,7 +73,7 @@
 		},
 		{
 			title: "Svelte Marketing Blocks",
-			description: "Reusable marketing sections and landing-page blocks.",
+			description: "150+ Shadcn Svelte Marketing components & pages.",
 			url: "https://sv-blocks.vercel.app/",
 			github: "https://github.com/SikandarJODD/cnblocks",
 			slug: "svelte-marketing-blocks"
@@ -80,7 +81,7 @@
 		{
 			title: "Svelte Quality Marketing Blocks",
 			description:
-				"Polished marketing blocks for high-quality Svelte sites.",
+				"60+ Polished marketing blocks for high-quality sites.",
 			url: "https://sv-efferd.pages.dev/",
 			github: "https://github.com/SikandarJODD/sv-efferd",
 			slug: "svelte-quality-marketing-blocks"
@@ -94,24 +95,25 @@
 			slug: "svelte-ai-elements"
 		},
 		{
-			title: "Svelte Particles",
+			title: "Svelte QBlocks",
 			description:
-				"Interactive particle effects and examples for Svelte.",
+				"Svelte Shadcn Small Blocks. A collection of small, reusable components.",
 			url: "https://sv-particles.vercel.app/",
 			github: "https://github.com/SikandarJODD/sv-particles",
 			slug: "svelte-particles"
 		},
-		{
-			title: "Svelte Data Table Components & Examples",
-			description:
-				"Data table components, patterns, and practical examples.",
-			url: "https://sv-table.vercel.app/",
-			github: "https://github.com/SikandarJODD/sv-table",
-			slug: "svelte-data-table"
-		},
+		// {
+		// 	title: "Svelte Data Table Components & Examples",
+		// 	description:
+		// 		"Data table components, patterns, and practical examples.",
+		// 	url: "https://sv-table.vercel.app/",
+		// 	github: "https://github.com/SikandarJODD/sv-table",
+		// 	slug: "svelte-data-table"
+		// },
 		{
 			title: "Svelte Globe Examples",
-			description: "Interactive globe examples and visual experiments.",
+			description:
+				"10+ Interactive globe examples and visual experiments. Built using cobe",
 			url: "https://sv-globe.vercel.app/",
 			github: "https://github.com/SikandarJODD/sv-globe",
 			slug: "svelte-globe"
@@ -178,7 +180,7 @@
 					{#if nav.isNew}
 						<span
 							aria-hidden="true"
-							class="absolute -inset-e-0.5 -top-0.5 size-2 rounded-full bg-muted-foreground outline-2 outline-background"
+							class="absolute -inset-e-0.5 -top-0.5 size-2 rounded-full bg-emerald-500 outline-2 outline-background"
 						></span>
 					{/if}
 				</NavigationMenu.Item>
@@ -204,6 +206,10 @@
 									)}
 									target="_blank"
 									rel="noopener noreferrer"
+									data-s-event={toKebabCaseWithPrefix(
+										project.title,
+										"projects"
+									)}
 									class="min-w-0 flex-1 rounded-sm outline-none"
 								>
 									<div

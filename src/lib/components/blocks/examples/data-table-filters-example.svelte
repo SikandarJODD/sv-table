@@ -114,7 +114,7 @@
 </script>
 
 <div class="flex w-full flex-col gap-4">
-	<div class="flex flex-wrap items-center gap-2">
+	<div class="flex flex-wrap items-center gap-2 p-1">
 		<DebounceInput
 			bind:value={nameSearch}
 			onChange={filterByName}

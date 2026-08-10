@@ -204,12 +204,12 @@ export const variants: PaginationVariant[] = [
 			}
 		],
 		folderStructure: `src/
-\`-- lib/
-    \`-- components/
-        \`-- table/
-            \`-- pagination/
-                |-- index.ts
-                \`-- pagination.svelte`,
+└── lib/
+    └── components/
+        └── table/
+            └── pagination/
+                ├── pagination.svelte
+                └── index.ts`,
 		preview: NumberPaginationPreview,
 		previewCode: {
 			name: "number-pagination-preview.svelte",
@@ -247,12 +247,12 @@ export const variants: PaginationVariant[] = [
 			}
 		],
 		folderStructure: `src/
-\`-- lib/
-    \`-- components/
-        \`-- table/
-            \`-- pagination-arrow/
-                |-- index.ts
-                \`-- pagination-arrow.svelte`,
+└── lib/
+    └── components/
+        └── table/
+            └── pagination-arrow/
+                ├── pagination-arrow.svelte
+                └── index.ts`,
 		preview: ArrowPaginationPreview,
 		previewCode: {
 			name: "arrow-pagination-preview.svelte",

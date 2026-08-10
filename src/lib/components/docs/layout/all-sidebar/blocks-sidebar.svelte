@@ -5,6 +5,7 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 	import SidebarCount from "./sidebar-count.svelte";
+	import { toKebabCaseWithPrefix } from "$lib/utils";
 
 	let {
 		ref = $bindable(null),
@@ -37,7 +38,14 @@
 							{:else}
 								<Sidebar.MenuButton>
 									{#snippet child({ props })}
-										<a href={block.url} {...props}>
+										<a
+											href={block.url}
+											data-s-event={toKebabCaseWithPrefix(
+												block.name,
+												"blocks"
+											)}
+											{...props}
+										>
 											{block.name}
 										</a>
 									{/snippet}
