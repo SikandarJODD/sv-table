@@ -76,15 +76,23 @@ ${"</" + "script>"}
 </Table.Body>`
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- data-table-empty/",
-		"                |-- index.ts",
-		"                `-- data-table-empty.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- data-table-empty/",
+	// 	"                |-- index.ts",
+	// 	"                `-- data-table-empty.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── data-table-empty/
+                ├── data-table-empty.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Data table empty props",

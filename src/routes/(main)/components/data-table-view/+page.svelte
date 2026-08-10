@@ -51,15 +51,23 @@ ${"</" + "script>"}
 		highlight: [3, 9, 20]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- data-table-view/",
-		"                |-- index.ts",
-		"                `-- data-table-view.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- data-table-view/",
+	// 	"                |-- index.ts",
+	// 	"                `-- data-table-view.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── data-table-view/
+                ├── data-table-view.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Data table view props",

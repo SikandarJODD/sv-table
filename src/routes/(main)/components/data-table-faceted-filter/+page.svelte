@@ -126,15 +126,23 @@ ${"</" + "script>"}
 />`
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- data-table-faceted-filter/",
-		"                |-- index.ts",
-		"                `-- data-table-faceted-filter.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- data-table-faceted-filter/",
+	// 	"                |-- index.ts",
+	// 	"                `-- data-table-faceted-filter.svelte"
+	// ].join("\n");
+
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── data-table-faceted-filter/
+                ├── data-table-faceted-filter.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Data table faceted filter props",

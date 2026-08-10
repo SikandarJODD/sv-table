@@ -100,15 +100,22 @@ ${"</" + "script>"}
 />`
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- number-range-filter/",
-		"                |-- index.ts",
-		"                `-- number-range-filter.svelte"
-	].join("\n");
+	// const folderStructure = [
+	// 	"src/",
+	// 	"`-- lib/",
+	// 	"    `-- components/",
+	// 	"        `-- table/",
+	// 	"            `-- number-range-filter/",
+	// 	"                |-- index.ts",
+	// 	"                `-- number-range-filter.svelte"
+	// ].join("\n");
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── number-range-filter/
+                ├── number-range-filter.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Number range filter props",

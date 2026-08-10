@@ -73,15 +73,13 @@ ${"</" + "script>"}
 		highlight: [8]
 	};
 
-	const folderStructure = [
-		"src/",
-		"`-- lib/",
-		"    `-- components/",
-		"        `-- table/",
-		"            `-- row-checkbox/",
-		"                |-- index.ts",
-		"                `-- row-checkbox.svelte"
-	].join("\n");
+	const folderStructure = `src/
+└── lib/
+    └── components/
+        └── table/
+            └── row-checkbox/
+                ├── row-checkbox.svelte
+                └── index.ts`;
 
 	const propsTable: PropsTable = {
 		name: "Row checkbox props",

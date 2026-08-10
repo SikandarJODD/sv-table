@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import ApiTable from "$lib/components/docs/base/api-table/api-table.svelte";
 	import CopyPageDropdown from "$lib/components/docs/base/main/copy-page-dropdown.svelte";
-	import InstallComponent from "$lib/components/docs/base/main/install-component.svelte";
 	import Seo from "$lib/components/docs/base/main/seo.svelte";
 	import { H1, Paragraph, CodeSpan } from "$markdown";
-	import { SingleFile } from "$lib/components/ui/code";
 	import { seo, variants } from "../data";
 	import ExamplesPlaceholder from "./examples-placeholder.svelte";
 	import GuidesLinks from "./guides-links.svelte";
