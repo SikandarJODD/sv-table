@@ -41,12 +41,18 @@
 
 		<div class="mt-3 max-w-2xl">
 			<Paragraph>
-				SV Table is a collection of reusable Svelte components and
-				practical examples for building data tables.
+				Svelte Datatables is a collection of reusable Svelte components
+				and practical examples for building data tables.
 			</Paragraph>
 			<Paragraph>
-				It currently includes {components.length} components and {quickExamples.length}
-				quick examples, built for Svelte 5.
+				It currently includes <span class="text-primary"
+					>{components.length} components</span
+				>
+				and
+				<span class="text-primary"
+					>{quickExamples.length}
+					quick examples</span
+				>, built for Svelte 5.
 			</Paragraph>
 		</div>
 	</section>
@@ -74,27 +80,28 @@
 		<Paragraph>
 			The table-aware components and examples are built on
 			<FaviconLink
+				target="_blank"
+				rel="noopener noreferrer"
 				href="https://tanstack.com/table/v9/docs/overview"
-				class="mr-0 rounded-sm bg-amber-100/80 px-1 text-amber-500 dark:bg-amber-900/30"
+				class="mr-0 rounded-sm bg-amber-100/80 px-1 text-amber-500 hover:text-amber-600 dark:bg-amber-900/30"
 			>
 				TanStack Table V9 for Svelte</FaviconLink
 			>
 		</Paragraph>
 		<Paragraph>
 			TanStack Table manages table state and behavior, such as sorting,
-			filtering, pagination, and row selection. This collection provides
-			reusable UI components that connect to that state.
+			filtering, pagination, and row selection.
 		</Paragraph>
 	</section>
 
-	<section class="max-w-2xl">
+	<!-- <section class="max-w-2xl">
 		<H2 id="using-the-docs">Using the docs</H2>
 		<Paragraph>
 			Choose a component from the sidebar, try its example, and add it to
 			your project. The component code is yours to change and adapt to
 			your app.
 		</Paragraph>
-	</section>
+	</section> -->
 
 	<section class="max-w-2xl">
 		<H2 id="inspiration">Inspiration</H2>
