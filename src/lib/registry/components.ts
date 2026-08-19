@@ -24,46 +24,11 @@ export interface QuickExample {
 
 let components: Component[] = [
 	{
-		id: "row-checkbox",
-		name: "Row Checkbox",
-		href: "/components/row-checkbox",
-		desc: "A controlled checkbox for selecting an individual table row."
-	},
-	{
-		id: "header-checkbox",
-		name: "Header Checkbox",
-		href: "/components/header-checkbox",
-		desc: "A select-all checkbox with support for an indeterminate state."
-	},
-	{
-		id: "bulk-actions-bar",
-		name: "Bulk Actions Bar",
-		href: "/components/bulk-actions-bar",
-		desc: "A floating action bar for performing custom actions on selected rows."
-	},
-	{
-		id: "row-actions-menu",
-		name: "Row Actions Menu",
-		href: "/components/row-actions-menu",
-		desc: "An accessible dropdown menu for actions on an individual table row."
-	},
-	{
-		id: "data-table-export",
-		name: "Data Table Export",
-		href: "/components/data-table-export",
-		desc: "Download typed table rows and columns as a safe CSV file."
-	},
-	{
-		id: "data-table-empty",
-		name: "Data Table Empty",
-		href: "/components/data-table-empty",
-		desc: "A table row for displaying a clear empty or filtered-results state."
-	},
-	{
-		id: "data-table-loading",
-		name: "Data Table Loading",
-		href: "/components/data-table-loading",
-		desc: "Skeleton rows that preserve a table layout while its data is loading."
+		id: "filters",
+		name: "Data Table Filters",
+		href: "/components/filters",
+		desc: "Composable table filters with text, number, option, and date operators for Svelte apps.",
+		badge: "New"
 	},
 	{
 		id: "debounce-input",
@@ -72,41 +37,10 @@ let components: Component[] = [
 		desc: "A search input with an optional delay for value changes."
 	},
 	{
-		id: "filters",
-		name: "Data Table Filters",
-		href: "/components/filters",
-		desc: "Composable table filters with text, number, option, and date operators for Svelte apps.",
-		badge: "New"
-	},
-	{
-		id: "data-table-faceted-filter",
-		name: "Data Table Faceted Filter",
-		href: "/components/data-table-faceted-filter",
-		desc: "A searchable multi-select filter with live counts for categorical table columns."
-	},
-	{
-		id: "date-range-filter",
-		name: "Date Range Filter",
-		href: "/components/date-range-filter",
-		desc: "A responsive date-range picker with presets and explicit apply behavior."
-	},
-	{
-		id: "number-range-filter",
-		name: "Number Range Filter",
-		href: "/components/number-range-filter",
-		desc: "A number range picker with exact inputs, an optional slider, and explicit apply behavior."
-	},
-	{
 		id: "data-table-column-header",
-		name: "Data Table Column Header",
+		name: "Column Header",
 		href: "/components/data-table-column-header",
 		desc: "A table heading with sorting, pinning, ordering, and visibility actions."
-	},
-	{
-		id: "data-table-view",
-		name: "Data Table View",
-		href: "/components/data-table-view",
-		desc: "A checkbox dropdown for toggling table column visibility."
 	},
 	{
 		id: "pagination",
@@ -119,6 +53,72 @@ let components: Component[] = [
 		name: "Page Size Selector",
 		href: "/components/page-size-selector",
 		desc: "Change the number of rows displayed on each table page."
+	},
+	{
+		id: "data-table-faceted-filter",
+		name: "Faceted Filter",
+		href: "/components/data-table-faceted-filter",
+		desc: "A searchable multi-select filter with live counts for categorical table columns."
+	},
+	{
+		id: "data-table-view",
+		name: "Column Visibility",
+		href: "/components/data-table-view",
+		desc: "A checkbox dropdown for toggling table column visibility."
+	},
+	{
+		id: "header-checkbox",
+		name: "Header Checkbox",
+		href: "/components/header-checkbox",
+		desc: "A select-all checkbox with support for an indeterminate state."
+	},
+	{
+		id: "row-checkbox",
+		name: "Row Checkbox",
+		href: "/components/row-checkbox",
+		desc: "A controlled checkbox for selecting an individual table row."
+	},
+	{
+		id: "row-actions-menu",
+		name: "Row Actions Menu",
+		href: "/components/row-actions-menu",
+		desc: "An accessible dropdown menu for actions on an individual table row."
+	},
+	{
+		id: "bulk-actions-bar",
+		name: "Bulk Actions Bar",
+		href: "/components/bulk-actions-bar",
+		desc: "A floating action bar for performing custom actions on selected rows."
+	},
+	{
+		id: "data-table-loading",
+		name: "Loading State",
+		href: "/components/data-table-loading",
+		desc: "Skeleton rows that preserve a table layout while its data is loading."
+	},
+	{
+		id: "data-table-empty",
+		name: "Empty State",
+		href: "/components/data-table-empty",
+		desc: "A table row for displaying a clear empty or filtered-results state."
+	},
+	{
+		id: "data-table-export",
+		name: "CSV Export",
+		href: "/components/data-table-export",
+		desc: "Download typed table rows and columns as a safe CSV file."
+	},
+	{
+		id: "date-range-filter",
+		name: "Date Range Filter",
+		href: "/components/date-range-filter",
+		desc: "A responsive date-range picker with presets and explicit apply behavior."
+	},
+	{
+		id: "number-range-filter",
+		name: "Number Range Filter",
+		href: "/components/number-range-filter",
+		desc: "A number range picker with exact inputs, an optional slider, and explicit apply behavior."
 	}
 ];
 

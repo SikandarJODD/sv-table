@@ -1,4 +1,4 @@
-# Data Table Column Header
+# Column Header
 
 A TanStack Table column heading with sorting, pinning, ordering, and visibility actions.
 

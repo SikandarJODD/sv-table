@@ -16,7 +16,7 @@
 	import DataTableFacetedFilterPreview from "./examples/data-table-faceted-filter-preview.svelte";
 	import DataTableFacetedFilterPreviewCode from "./examples/data-table-faceted-filter-preview.svelte?raw";
 
-	const title = "Data Table Faceted Filter";
+	const title = "Faceted Filter";
 	const description =
 		"A searchable multi-select filter with live facet counts for categorical table columns.";
 

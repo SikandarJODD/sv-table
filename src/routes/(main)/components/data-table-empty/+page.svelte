@@ -20,7 +20,7 @@
 	import SearchEmptyPreview from "./examples/search-empty-preview.svelte";
 	import SearchEmptyPreviewCode from "./examples/search-empty-preview.svelte?raw";
 
-	const title = "Data Table Empty";
+	const title = "Empty State";
 	const description =
 		"A table row for displaying a clear empty or filtered-results state.";
 

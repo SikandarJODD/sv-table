@@ -14,7 +14,7 @@
 	import DataTableViewPreview from "./examples/data-table-view-preview.svelte";
 	import DataTableViewPreviewCode from "./examples/data-table-view-preview.svelte?raw";
 
-	const title = "Data Table View";
+	const title = "Column Visibility";
 	const description =
 		"A compact column visibility dropdown that lets users check or uncheck every hideable table column.";
 

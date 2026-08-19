@@ -1,4 +1,4 @@
-# Data Table Empty
+# Empty State
 
 A table row for displaying a clear empty or filtered-results state.
 
