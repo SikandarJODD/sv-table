@@ -15,8 +15,9 @@ let navs: NavType[] = [
     isNew: true,
   },
   // {
-  //   name: "Docs",
-  //   href: "/docs",
+  //   name: "Guides",
+  //   href: "/guides",
+  //   isNew: true,
   // },
   // {
   //   name: "Changelog",

@@ -221,7 +221,7 @@
 @property --bottom-mask-height {
 	syntax: "<length>";
 	inherits: true;
-	initial-value: 64px;
+	initial-value: 40px;
 }
 
 @property --left-mask-width {
@@ -233,7 +233,7 @@
 @property --right-mask-width {
 	syntax: "<length>";
 	inherits: true;
-	initial-value: 64px;
+	initial-value: 40px;
 }
 
 @utility scroll-fade-effect-y {
