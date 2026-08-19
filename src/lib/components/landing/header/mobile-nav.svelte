@@ -3,6 +3,7 @@
 	import XIcon from "@lucide/svelte/icons/x";
 	import { Button } from "$lib/components/ui/button";
 	import Github from "$lib/components/icons/github.svelte";
+	import SearchNavigation from "$lib/components/docs/layout/navigation/search-navigation.svelte";
 	import { LightSwitch } from "$lib/components/ui/light-switch";
 	import { navs } from "./nav-links";
 
@@ -10,6 +11,7 @@
 </script>
 
 <div class="relative flex items-center gap-1 md:hidden">
+	<SearchNavigation iconOnly enableShortcut={false} />
 	<Button
 		aria-label="View sv-table on GitHub"
 		href="https://github.com/SikandarJODD/sv-table"
