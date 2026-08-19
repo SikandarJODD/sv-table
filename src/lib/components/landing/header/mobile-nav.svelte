@@ -1,11 +1,49 @@
 <script lang="ts">
+	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 	import MenuIcon from "@lucide/svelte/icons/menu";
 	import XIcon from "@lucide/svelte/icons/x";
+	import { blocks } from "$lib/components/blocks/blocks";
 	import { Button } from "$lib/components/ui/button";
 	import Github from "$lib/components/icons/github.svelte";
 	import SearchNavigation from "$lib/components/docs/layout/navigation/search-navigation.svelte";
 	import { LightSwitch } from "$lib/components/ui/light-switch";
-	import { navs } from "./nav-links";
+	import { Badge } from "$lib/components/ui/spell/badge";
+	import { components } from "$lib/registry/components";
+
+	const otherProjects = [
+		{
+			name: "Svelte Animations",
+			href: "https://sv-animations.vercel.app/"
+		},
+		{
+			name: "Svelte Marketing Blocks",
+			href: "https://sv-blocks.vercel.app/"
+		},
+		{
+			name: "Svelte Quality Marketing Blocks",
+			href: "https://sv-efferd.pages.dev/"
+		},
+		{
+			name: "Svelte AI Elements",
+			href: "https://svelte-ai-elements.vercel.app/"
+		},
+		{
+			name: "Svelte QBlocks",
+			href: "https://sv-particles.vercel.app/"
+		},
+		{
+			name: "Svelte Globe Examples",
+			href: "https://sv-globe.vercel.app/"
+		},
+		{
+			name: "Svelte Dot Matrix Loaders",
+			href: "https://sv-matrix.vercel.app/"
+		},
+		{
+			name: "Svelte Agentation",
+			href: "https://sv-agentation.com/"
+		}
+	];
 
 	let open = $state(false);
 </script>
@@ -51,17 +89,84 @@
 	{#if open}
 		<div
 			id="mobile-menu"
-			class="absolute top-full right-0 z-50 mt-2 flex w-56 flex-col rounded-xl border bg-background p-2 shadow-lg"
+			class="absolute top-full right-0 z-50 mt-2 max-h-[calc(100dvh-4.5rem)] w-[calc(100vw-2rem)] max-w-sm overflow-y-auto overscroll-contain rounded-xl border bg-background p-2 shadow-lg"
 		>
-			{#each navs as nav (nav.name)}
+			<a
+				class="block rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+				href="/"
+				onclick={() => (open = false)}
+			>
+				Home
+			</a>
+
+			<section class="mt-2">
 				<a
-					class="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-					href={nav.href}
+					class="block rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-muted"
+					href="/docs/introduction"
 					onclick={() => (open = false)}
 				>
-					{nav.name}
+					Components
 				</a>
-			{/each}
+				<ul class="space-y-0.5 px-1">
+					{#each components as component (component.id)}
+						<li>
+							<a
+								class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+								href={component.href}
+								onclick={() => (open = false)}
+							>
+								{component.name}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</section>
+
+			<section class="mt-2">
+				<a
+					class="block rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-muted"
+					href="/blocks"
+					onclick={() => (open = false)}
+				>
+					Blocks
+				</a>
+				<ul class="space-y-0.5 px-1">
+					{#each blocks as block (block.name)}
+						<li>
+							<a
+								class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+								href={block.url}
+								onclick={() => (open = false)}
+							>
+								{block.name}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</section>
+
+			<section class="mt-2 border-t border-dashed pt-2">
+				<div class="flex items-center justify-between gap-3 px-3 py-2">
+					<p class="text-sm font-semibold">Other Projects</p>
+					<Badge variant="emerald" class="rounded-full">Open Source</Badge>
+				</div>
+				<ul class="space-y-0.5 px-1">
+					{#each otherProjects as project (project.href)}
+						<li>
+							<a
+								class="flex items-center justify-between gap-3 rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+								href={project.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								onclick={() => (open = false)}
+							>
+								<span>{project.name}</span>
+								<ArrowUpRightIcon class="size-3.5 shrink-0" />
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</section>
 		</div>
 	{/if}
 </div>
