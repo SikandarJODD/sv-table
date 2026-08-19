@@ -46,7 +46,7 @@
 		}
 	];
 
-	let open = $state(true);
+	let open = $state(false);
 </script>
 
 <div class="relative flex items-center gap-1 md:hidden">
