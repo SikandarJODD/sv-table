@@ -14,7 +14,7 @@
 	import DataTableExportPreview from "./examples/data-table-export-preview.svelte";
 	import DataTableExportPreviewCode from "./examples/data-table-export-preview.svelte?raw";
 
-	const title = "Data Table Export";
+	const title = "CSV Export";
 	const description =
 		"A dependency-free CSV download button with typed columns, value formatting, escaping, and formula protection.";
 

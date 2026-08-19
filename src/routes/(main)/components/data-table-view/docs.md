@@ -1,4 +1,4 @@
-# Data Table View
+# Column Visibility
 
 A compact column visibility dropdown for TanStack Table that lets users check or uncheck every hideable column without leaving the table view.
 

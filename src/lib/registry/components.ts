@@ -38,7 +38,7 @@ let components: Component[] = [
 	},
 	{
 		id: "data-table-column-header",
-		name: "Data Table Column Header",
+		name: "Column Header",
 		href: "/components/data-table-column-header",
 		desc: "A table heading with sorting, pinning, ordering, and visibility actions."
 	},
@@ -56,13 +56,13 @@ let components: Component[] = [
 	},
 	{
 		id: "data-table-faceted-filter",
-		name: "Data Table Faceted Filter",
+		name: "Faceted Filter",
 		href: "/components/data-table-faceted-filter",
 		desc: "A searchable multi-select filter with live counts for categorical table columns."
 	},
 	{
 		id: "data-table-view",
-		name: "Data Table View",
+		name: "Column Visibility",
 		href: "/components/data-table-view",
 		desc: "A checkbox dropdown for toggling table column visibility."
 	},
@@ -92,19 +92,19 @@ let components: Component[] = [
 	},
 	{
 		id: "data-table-loading",
-		name: "Data Table Loading",
+		name: "Loading State",
 		href: "/components/data-table-loading",
 		desc: "Skeleton rows that preserve a table layout while its data is loading."
 	},
 	{
 		id: "data-table-empty",
-		name: "Data Table Empty",
+		name: "Empty State",
 		href: "/components/data-table-empty",
 		desc: "A table row for displaying a clear empty or filtered-results state."
 	},
 	{
 		id: "data-table-export",
-		name: "Data Table Export",
+		name: "CSV Export",
 		href: "/components/data-table-export",
 		desc: "Download typed table rows and columns as a safe CSV file."
 	},

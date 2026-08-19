@@ -14,7 +14,7 @@
 	import DataTableColumnHeaderPreview from "./examples/data-table-column-header-preview.svelte";
 	import DataTableColumnHeaderPreviewCode from "./examples/data-table-column-header-preview.svelte?raw";
 
-	const title = "Data Table Column Header";
+	const title = "Column Header";
 	const description =
 		"A table heading with sorting, pinning, ordering, and visibility actions.";
 

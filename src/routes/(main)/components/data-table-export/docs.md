@@ -1,4 +1,4 @@
-# Data Table Export
+# CSV Export
 
 A dependency-free CSV download button for Svelte tables. You provide the rows to export and an explicit list of export columns, so the same component works with plain arrays and TanStack Table row models.
 

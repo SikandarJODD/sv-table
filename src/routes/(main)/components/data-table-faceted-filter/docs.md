@@ -1,4 +1,4 @@
-# Data Table Faceted Filter
+# Faceted Filter
 
 A searchable multi-select filter with live facet counts for categorical TanStack Table columns.
 

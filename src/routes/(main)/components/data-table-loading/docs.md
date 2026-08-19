@@ -1,4 +1,4 @@
-# Data Table Loading
+# Loading State
 
 Skeleton rows that preserve a table layout while its data is loading.
 

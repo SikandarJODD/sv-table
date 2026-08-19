@@ -14,7 +14,7 @@
 	import DataTableLoadingPreview from "./examples/data-table-loading-preview.svelte";
 	import DataTableLoadingPreviewCode from "./examples/data-table-loading-preview.svelte?raw";
 
-	const title = "Data Table Loading";
+	const title = "Loading State";
 	const description =
 		"Skeleton rows that preserve a table layout while its data is loading.";
 
