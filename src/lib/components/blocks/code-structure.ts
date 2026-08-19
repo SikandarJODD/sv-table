@@ -1,5 +1,5 @@
 import BasicDataTable from "./examples/basic-data-table.svelte";
-import ComplexExample from "./examples/complex-example.svelte";
+import ComplexExample from "./examples/complex-example/complex-example.svelte";
 import CustomFiltersExample from "./examples/custom-filters-example.svelte";
 import DataTableFiltersExample from "./examples/data-table-filters-example.svelte";
 import DraggableExample from "./examples/draggable-example/draggable-example.svelte";
@@ -18,6 +18,7 @@ import {
 const exampleSources = import.meta.glob<string>(
 	[
 		"./examples/*.svelte",
+		"./examples/complex-example/*.{svelte,ts}",
 		"./examples/draggable-example/*.{svelte,ts}",
 		"./examples/expanded-sub-rows/*.svelte"
 	],
@@ -213,7 +214,16 @@ export const blockShowcases = [
 		id: "complex-table",
 		title: "Complex Table",
 		previewComponent: ComplexExample,
-		codeTree: createExampleCodeTree("complex-example.svelte"),
+		codeTree: createExampleCodeTree(
+			"complex-example/complex-example.svelte",
+			[
+				"complex-example/complex-example.svelte",
+				"complex-example/table.svelte",
+				"complex-example/table-snippets.svelte",
+				"complex-example/table-features.ts",
+				"complex-example/fetch-data.ts"
+			]
+		),
 		components: [
 			{
 				name: "Data Table Faceted Filter",

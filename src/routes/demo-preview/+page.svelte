@@ -6,7 +6,7 @@
 	import FaviconLink from "$lib/components/docs/markdown/favicon-link.svelte";
 	import BlocksIcon from "$lib/components/icons/blocks-icon.svelte";
 	import BasicDataTable from "$lib/components/blocks/examples/basic-data-table.svelte";
-	import ComplexExample from "$lib/components/blocks/examples/complex-example.svelte";
+	import ComplexExample from "$lib/components/blocks/examples/complex-example/complex-example.svelte";
 	import CustomFiltersExample from "$lib/components/blocks/examples/custom-filters-example.svelte";
 	import DataTableFiltersExample from "$lib/components/blocks/examples/data-table-filters-example.svelte";
 	import DndKitExample from "$lib/components/blocks/examples/dnd-kit-example/dnd-kit-example.svelte";
