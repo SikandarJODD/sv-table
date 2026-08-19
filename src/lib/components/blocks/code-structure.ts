@@ -219,8 +219,8 @@ export const blockShowcases = [
 			[
 				"complex-example/complex-example.svelte",
 				"complex-example/table.svelte",
+				"complex-example/table-config.ts",
 				"complex-example/table-snippets.svelte",
-				"complex-example/table-features.ts",
 				"complex-example/fetch-data.ts"
 			]
 		),

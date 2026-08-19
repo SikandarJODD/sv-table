@@ -7,7 +7,7 @@
 	import { cn } from "$lib/utils";
 
 	import type { Person } from "./fetch-data";
-	import { features } from "./table-features";
+	import { features } from "./table-config";
 
 	let { table }: { table: SvelteTable<typeof features, Person> } = $props();
 

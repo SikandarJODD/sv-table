@@ -19,6 +19,8 @@
 		ReiconFileIcon,
 		ReiconFolderIcon
 	} from "$lib/components/icons/block-preview";
+	import ScrollArea from "$lib/components/ui/scroll-area/scroll-area.svelte";
+	import { ScrollAreaFadeEffect } from "$lib/components/ui/scroll-area";
 
 	let { codeTree }: { codeTree: BlockCodeTree } = $props();
 
@@ -135,14 +137,14 @@
 
 		<div class="">
 			{#if activeFile?.code}
-				<ScrollFadeEffect class="max-h-[600px]">
+				<ScrollAreaFadeEffect class="max-h-[600px]">
 					<Code.Root
 						code={activeFile.code}
 						lang={activeFile.lang}
 						highlight={activeFile.highlight}
 						class="h-auto w-full overflow-visible rounded-none border-none"
 					/>
-				</ScrollFadeEffect>
+				</ScrollAreaFadeEffect>
 			{:else if activeFile?.externalUrl}
 				<div
 					class="flex min-h-[20rem] items-center justify-center px-6"

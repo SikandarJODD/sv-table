@@ -20,7 +20,7 @@
 <div class="w-full">
 	<div class="overflow-hidden rounded-lg border">
 		<div
-			class="flex items-center justify-between border-b border-border/70 py-0.5 pr-1 pl-3"
+			class="flex items-center justify-between border-b border-border/70 py-1 pr-1 pl-3"
 		>
 			<div class="flex items-center gap-1.5">
 				{#if code.lang === "svelte"}

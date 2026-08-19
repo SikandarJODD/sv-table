@@ -15,7 +15,10 @@
 
 	import HeaderCheckbox from "$table/header-checkbox";
 	import RowCheckbox from "$table/row-checkbox";
-	import { Badge } from "$lib/components/ui/badge";
+	import {
+		Badge,
+		type BadgeVariant
+	} from "$lib/components/ui/spell/badge";
 	import * as Table from "$lib/components/ui/table";
 	import { cn } from "$lib/utils";
 
@@ -31,6 +34,14 @@
 		balance: number;
 		note?: string;
 	};
+
+	// Change these variants to quickly customize the status colors:
+	// https://sv-animations.vercel.app/spell/badge
+	const statusVariants = {
+		Active: "green",
+		Pending: "yellow",
+		Inactive: "slate"
+	} as const satisfies Record<Item["status"], BadgeVariant>;
 
 	let data = $state<Item[]>([]);
 
@@ -139,14 +150,7 @@
 {/snippet}
 
 {#snippet statusCell({ status }: { status: Item["status"] })}
-	<Badge
-		class={cn(
-			status === "Inactive" &&
-				"bg-muted-foreground/60 text-primary-foreground"
-		)}
-	>
-		{status}
-	</Badge>
+	<Badge variant={statusVariants[status]}>{status}</Badge>
 {/snippet}
 
 <div class="w-full overflow-x-auto rounded-lg border">
