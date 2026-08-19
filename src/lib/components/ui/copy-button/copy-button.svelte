@@ -79,8 +79,8 @@
 	class={cn("", className)}
 	type="button"
 	name="copy"
-	data-s-event={componentEvent}
 	{...merged as /* eslint-disable-line @typescript-eslint/no-explicit-any */ any}
+	data-s-event={componentEvent}
 >
 	{#if clipboard.status === "success"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
