@@ -21,7 +21,7 @@
 <script lang="ts">
 	import Button from "$lib/components/ui/extra/button.svelte";
 	import { UseClipboard } from "$lib/hooks/use-clipboard.svelte";
-	import { cn } from "$lib/utils.js";
+	import { cn, toKebabCaseWithPrefix } from "$lib/utils.js";
 	import { mergeProps } from "bits-ui";
 	import CheckIcon from "@lucide/svelte/icons/check";
 	import CopyIcon from "@lucide/svelte/icons/copy";
@@ -49,6 +49,16 @@
 	}
 
 	const clipboard = new UseClipboard();
+	let componentName = $derived.by(() => {
+		// Get "row-checkbox" from a command ending in "/row-checkbox.json".
+		const fileName = text.split("/").at(-1);
+		return fileName?.endsWith(".json") ? fileName.slice(0, -5) : undefined;
+	});
+	let componentEvent = $derived(
+		componentName
+			? toKebabCaseWithPrefix(componentName, "component")
+			: undefined
+	);
 
 	const merged = $derived(
 		mergeProps(rest, {
@@ -66,14 +76,15 @@
 	{variant}
 	{size}
 	{tabindex}
-	class={cn("flex cursor-pointer items-center gap-2", className)}
+	class={cn("", className)}
 	type="button"
 	name="copy"
+	data-s-event={componentEvent}
 	{...merged as /* eslint-disable-line @typescript-eslint/no-explicit-any */ any}
 >
 	{#if clipboard.status === "success"}
 		<div in:scale={{ duration: animationDuration, start: 0.85 }}>
-			<CheckIcon tabindex={-1} class="size-3.5 text-emerald-600" />
+			<CheckIcon tabindex={-1} class="size-3.5! text-emerald-600" />
 			<span class="sr-only">Copied</span>
 		</div>
 	{:else if clipboard.status === "failure"}
@@ -86,7 +97,7 @@
 			{#if icon}
 				{@render icon()}
 			{:else}
-				<CopyIcon class="size-3.5!" tabindex={-1} />
+				<CopyIcon class="size-4" tabindex={-1} />
 			{/if}
 			<span class="sr-only">Copy</span>
 		</div>
