@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import { cn } from "$lib/utils";
+	import type { ClassValue } from "svelte/elements";
 
 	type ComponentProps = {
 		href: string;
 		faviconSrc?: string;
 		class?: string;
+		imageClass?: ClassValue;
 		children?: Snippet;
 		[prop: string]: unknown;
 	};
@@ -15,6 +17,7 @@
 		href,
 		faviconSrc,
 		class: className = "",
+		imageClass = "",
 		...restProps
 	}: ComponentProps = $props();
 
@@ -53,7 +56,10 @@
 			src={faviconUrl}
 			alt=""
 			aria-hidden="true"
-			class="size-4 shrink-0 rounded-[6px] bg-muted object-cover"
+			class={cn(
+				"size-4 shrink-0 rounded-[6px] bg-muted object-cover",
+				imageClass
+			)}
 			width="16"
 			height="16"
 			loading="lazy"

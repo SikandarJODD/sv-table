@@ -114,10 +114,7 @@
 					{#each headerGroup.headers as header (header.id)}
 						<Table.Head>
 							{#if !header.isPlaceholder}
-								<FlexRender
-									// renderer={header.column.columnDef.header}
-									{header}
-								/>
+								<FlexRender {header} />
 							{/if}
 						</Table.Head>
 					{/each}
@@ -126,13 +123,12 @@
 		</Table.Header>
 		<Table.Body>
 			{#each table.getRowModel().rows as row (row.id)}
-				<Table.Row>
+				<Table.Row
+					data-state={row.getIsSelected() ? "selected" : undefined}
+				>
 					{#each row.getAllCells() as cell}
 						<Table.Cell>
-							<FlexRender
-								// renderer={cell.column.columnDef.cell}
-								{cell}
-							/>
+							<FlexRender {cell} />
 						</Table.Cell>
 					{/each}
 				</Table.Row>

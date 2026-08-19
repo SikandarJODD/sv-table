@@ -43,7 +43,7 @@
 	]}
 />
 
-<div class="mb-88 space-y-12">
+<div class="mb-32 space-y-12">
 	<header class="max-w-3xl space-y-2">
 		<h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
 		<p class="text-base text-muted-foreground sm:text-lg">{description}</p>

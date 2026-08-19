@@ -77,7 +77,7 @@
 						<CopyButton
 							{...props}
 							text={commandText}
-							class="size-6 [&_svg]:size-3"
+							size="icon-sm"
 						>
 							{#snippet icon()}
 								<ClipboardIcon />

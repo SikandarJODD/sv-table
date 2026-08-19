@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Card from "$lib/components/ui/card/index.js";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { github_repo } from "$lib/config/repo";
 </script>
 
@@ -19,6 +18,7 @@
 			size="sm"
 			variant="secondary"
 			target="_blank"
+			data-s-event="sponsor-click"
 			href="https://github.com/sponsors/{github_repo.owner}"
 		>
 			GitHub Sponsors
