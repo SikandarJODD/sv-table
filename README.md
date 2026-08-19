@@ -5,8 +5,8 @@
 Reusable data table components and complete table blocks for Svelte 5, SvelteKit,
 and TanStack Table v9.
 
-[Documentation](https://sv-table.vercel.app/docs/introduction) ·
-[Components](https://sv-table.vercel.app/components) ·
+[Documentation](https://sv-table.vercel.app/docs/introduction)
+[Components](https://sv-table.vercel.app/components)
 [Blocks](https://sv-table.vercel.app/blocks)
 
 ## Components
