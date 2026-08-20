@@ -13,7 +13,7 @@
 	const getURLPath = (url: string) => url.split("?")[0].split("#")[0];
 
 	let llmsTxtUrl = $derived(`${getURLPath(page.url.href)}/llms.txt`);
-	let componentURL = $derived(page.url.origin + "/r/filter.json");
+	let componentURL = $derived(page.url.origin + "/r/filters.json");
 </script>
 
 <Seo
