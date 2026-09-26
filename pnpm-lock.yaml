@@ -70,8 +70,8 @@ importers:
         specifier: ^3.12.1
         version: 3.12.3
       '@lucide/svelte':
-        specifier: ^1.28.0
-        version: 1.30.0(svelte@5.56.8)
+        specifier: ^1.48.0
+        version: 1.48.0(svelte@5.56.8)
       '@shikijs/langs':
         specifier: ^4.0.2
         version: 4.4.2
@@ -96,6 +96,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      cn:
+        specifier: ^0.4.0
+        version: 0.4.0
       package-manager-detector:
         specifier: ^1.6.0
         version: 1.8.0
@@ -109,8 +112,8 @@ importers:
         specifier: ^0.7.2
         version: 0.7.4(prettier-plugin-svelte@3.5.2(prettier@3.9.6)(svelte@5.56.8))(prettier@3.9.6)
       shadcn-svelte:
-        specifier: ^1.4.2
-        version: 1.5.0(svelte@5.56.8)
+        specifier: ^1.7.0
+        version: 1.7.0(svelte@5.56.8)
       shiki:
         specifier: ^4.0.2
         version: 4.4.2
@@ -399,8 +402,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lucide/svelte@1.30.0':
-    resolution: {integrity: sha512-KtVrqWT3BD41kf1CPaP4QTAyofw0xm5hw/JGwd76+wMk1l0ZcXskA2Wi9ANVWCsk7mGrpFo2SqL3Hl29xTkV3w==}
+  '@lucide/svelte@1.48.0':
+    resolution: {integrity: sha512-bLimVDjehxu3fpu9XEUpqEkBk2sJAHAT2sVcLHhlM70EdNsXuj9ZnYENWv5xgw3+05h4i5TirAxTiTgnZZf8gw==}
     peerDependencies:
       svelte: ^5
 
@@ -818,6 +821,16 @@ packages:
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
+
+  cn@0.3.3:
+    resolution: {integrity: sha512-OEiyJkSpYm2kOuNOKQ+c2wmzZRG8orrb9fnObtHTbCGNx/E9KLnGcmcocItOzREKk5KzQN5I2e3BUCj563KEpw==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  cn@0.4.0:
+    resolution: {integrity: sha512-qOAeUhPwPzBxx6jaeQdo646XIKliKHc2j1ZF7Ngb1o0pJZKH5gq8FkA0aVdUdPFUDXNXyUCXpCtoJISo6dhizg==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
@@ -1394,8 +1407,8 @@ packages:
   set-cookie-parser@3.1.2:
     resolution: {integrity: sha512-5/r/lTwbJ3zQ+qwdUFZYeRNqda7P5HD8zQKqlSjdGt1/S0cjLAphHusj4Y58ahDtWn/g32xrIS58/ikOvwl0Lw==}
 
-  shadcn-svelte@1.5.0:
-    resolution: {integrity: sha512-fcxTeUwEIvELkL/h0Vg2i/9Sf6exAmLG5u3GXc0aN8CA+3fNffKQnfrTdMgkjUEmx9XP619I+wcJOvlr5aDWYQ==}
+  shadcn-svelte@1.7.0:
+    resolution: {integrity: sha512-AK3ZsYOL8PN/RxcEBCHGvQj2TrLfaaBsbw0QohyEb3nn/yPNDRC/+9iSjnTp/uKEe+tAi0tBxB/Yhzno0N7EEg==}
     hasBin: true
     peerDependencies:
       svelte: ^5.0.0
@@ -1820,7 +1833,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/svelte@1.30.0(svelte@5.56.8)':
+  '@lucide/svelte@1.48.0(svelte@5.56.8)':
     dependencies:
       svelte: 5.56.8
 
@@ -2173,6 +2186,10 @@ snapshots:
   chownr@3.0.0: {}
 
   clsx@2.1.1: {}
+
+  cn@0.3.3: {}
+
+  cn@0.4.0: {}
 
   comma-separated-tokens@2.0.3: {}
 
@@ -2643,13 +2660,13 @@ snapshots:
 
   set-cookie-parser@3.1.2: {}
 
-  shadcn-svelte@1.5.0(svelte@5.56.8):
+  shadcn-svelte@1.7.0(svelte@5.56.8):
     dependencies:
+      cn: 0.3.3
       commander: 14.0.3
       node-fetch-native: 1.6.7
       postcss: 8.5.26
       svelte: 5.56.8
-      tailwind-merge: 3.6.0
 
   shiki@4.4.2:
     dependencies:
@@ -2683,7 +2700,7 @@ snapshots:
 
   sv-agentation@0.4.0(react@19.2.8)(svelte@5.56.8):
     dependencies:
-      '@lucide/svelte': 1.30.0(svelte@5.56.8)
+      '@lucide/svelte': 1.48.0(svelte@5.56.8)
       element-source: 0.0.5(react@19.2.8)
       svelte: 5.56.8
     transitivePeerDependencies:

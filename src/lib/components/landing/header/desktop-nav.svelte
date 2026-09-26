@@ -11,47 +11,6 @@
 	import { ArrowUpRightIcon, PackageIcon } from "@lucide/svelte";
 	import { cn, toKebabCaseWithPrefix } from "$lib/utils";
 
-	const otherProjects = [
-		{
-			name: "Svelte Animation",
-			href: "https://sv-animations.vercel.app",
-			description:
-				"Include 50+ Animation components like Magic UI, Spell UI.",
-			icon: SparklesIcon
-		},
-		{
-			name: "Svelte Marketing Components",
-			href: "https://sv-blocks.vercel.app",
-			description:
-				"150+ Reusable sections and UI blocks for marketing pages.",
-			icon: LayoutTemplateIcon
-		},
-		{
-			name: "Svelte Premium Marketing Components",
-			href: "https://sv-efferd.pages.dev",
-			description:
-				"50+ Premium set of polished marketing components for Svelte.",
-			icon: SwatchBookIcon
-		},
-		{
-			name: "Svelte AI Elements",
-			href: "https://svelte-ai-elements.vercel.app",
-			description: "Pre-built AI Components, Guide & Examples.",
-			icon: BotIcon
-		},
-		{
-			name: "Svelte Dot Matrix Loaders",
-			href: "https://sv-matrix.vercel.app",
-			description: "50+ Dot Matrix loaders",
-			icon: LoaderCircleIcon
-		},
-		{
-			name: "Svelte Agentation",
-			href: "https://sv-agentation.com",
-			description: "Provides right context to AI Agent.",
-			icon: Grid2x2Icon
-		}
-	];
 	type ProjectItem = {
 		title: string;
 		description: string;
@@ -94,6 +53,14 @@
 			slug: "svelte-ai-elements"
 		},
 		{
+			title: "Svelte Chan Components",
+			description:
+				"20+ Components, like: Slide to Unlock, Elastic Slider, Timescale, Github Contributions and more.",
+			url: "https://sv-chan.vercel.app/",
+			github: "https://github.com/SikandarJODD/sv-chanhdai",
+			slug: "svelte-chan-components"
+		},
+		{
 			title: "Svelte QBlocks",
 			description:
 				"Svelte Shadcn Small Blocks. A collection of small, reusable components.",
@@ -101,14 +68,6 @@
 			github: "https://github.com/SikandarJODD/sv-particles",
 			slug: "svelte-particles"
 		},
-		// {
-		// 	title: "Svelte Data Table Components & Examples",
-		// 	description:
-		// 		"Data table components, patterns, and practical examples.",
-		// 	url: "https://sv-table.vercel.app/",
-		// 	github: "https://github.com/SikandarJODD/sv-table",
-		// 	slug: "svelte-data-table"
-		// },
 		{
 			title: "Svelte Globe Examples",
 			description:
@@ -191,7 +150,7 @@
 			<NavigationMenu.Trigger class={desktopNavItemClass}>
 				Other Projects
 			</NavigationMenu.Trigger>
-			<NavigationMenu.Content class="p-0">
+			<NavigationMenu.Content class="p-0 shadow-none">
 				<div class="w-[42rem]">
 					<ul class="grid grid-cols-2 gap-1 p-2">
 						{#each projectItems as project (project.url)}
@@ -212,7 +171,7 @@
 									class="min-w-0 flex-1 rounded-sm outline-none"
 								>
 									<div
-										class="flex items-center gap-1.5 text-sm leading-none font-medium"
+										class="flex items-center gap-1.5 text-sm font-medium"
 									>
 										<span class="truncate"
 											>{project.title}</span
@@ -264,7 +223,7 @@
 						href={withUtm("https://bhide.dev", "navbar-owner")}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="flex items-center justify-center gap-1.5 border-t border-t-amber-200 bg-amber-100/40 px-3 py-3 text-xs text-muted-foreground dark:border-t-yellow-600/30 dark:bg-amber-900/10"
+						class="flex h-10 items-center justify-center gap-1.5 border-t text-xs font-medium text-muted-foreground dark:bg-popover"
 					>
 						<span>Built by</span>
 						<span
