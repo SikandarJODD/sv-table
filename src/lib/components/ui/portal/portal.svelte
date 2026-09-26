@@ -16,8 +16,11 @@
 	onMount(() => {
 		mounted = true;
 
-		const originalOverflow = window.getComputedStyle(document.body).overflow;
-		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+		const originalOverflow = window.getComputedStyle(
+			document.body
+		).overflow;
+		const scrollbarWidth =
+			window.innerWidth - document.documentElement.clientWidth;
 		const originalPaddingRight = document.body.style.paddingRight;
 
 		document.body.style.overflow = "hidden";

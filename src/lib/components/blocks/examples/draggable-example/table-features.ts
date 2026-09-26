@@ -5,8 +5,7 @@ import {
 	tableFeatures,
 	columnSizingFeature,
 	columnResizingFeature,
-	columnPinningFeature,
-
+	columnPinningFeature
 } from "@tanstack/svelte-table";
 
 export const draggableTableFeatures = tableFeatures({
@@ -15,7 +14,7 @@ export const draggableTableFeatures = tableFeatures({
 	sortedRowModel: createSortedRowModel(),
 	columnSizingFeature,
 	columnResizingFeature,
-	columnPinningFeature,
+	columnPinningFeature
 });
 
 export type DraggableTableFeatures = typeof draggableTableFeatures;

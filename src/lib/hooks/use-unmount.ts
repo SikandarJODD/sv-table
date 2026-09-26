@@ -1,5 +1,5 @@
-import { onDestroy } from 'svelte'
+import { onDestroy } from "svelte";
 
 export function useUnmount(callback: () => void) {
-  onDestroy(callback)
+	onDestroy(callback);
 }

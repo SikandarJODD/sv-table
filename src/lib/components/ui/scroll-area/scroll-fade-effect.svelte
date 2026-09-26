@@ -25,7 +25,7 @@
 	data-slot="scroll-fade-effect"
 	class={cn(
 		"no-scrollbar data-[orientation=horizontal]:overflow-x-auto data-[orientation=vertical]:overflow-y-auto",
-		"data-[orientation=horizontal]:scroll-fade-effect-x data-[orientation=vertical]:scroll-fade-effect-y no-scrollbar",
+		"no-scrollbar data-[orientation=horizontal]:scroll-fade-effect-x data-[orientation=vertical]:scroll-fade-effect-y",
 		className
 	)}
 	{...restProps}

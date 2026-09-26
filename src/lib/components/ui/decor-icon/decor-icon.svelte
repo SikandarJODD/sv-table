@@ -22,11 +22,16 @@
 		}
 	});
 
-	type DecorIconVariant = SVGAttributes<SVGAElement> & VariantProps<typeof decorIconVariants>;
+	type DecorIconVariant = SVGAttributes<SVGAElement> &
+		VariantProps<typeof decorIconVariants>;
 </script>
 
 <script lang="ts">
-	let { position = "top-left", class: className, ...props }: DecorIconVariant = $props();
+	let {
+		position = "top-left",
+		class: className,
+		...props
+	}: DecorIconVariant = $props();
 </script>
 
 <svg

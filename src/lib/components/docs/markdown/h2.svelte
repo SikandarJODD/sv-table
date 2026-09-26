@@ -8,12 +8,19 @@
 		[prop: string]: unknown;
 	};
 
-	const { children, class: className = "", ...restProps }: ComponentProps = $props();
+	const {
+		children,
+		class: className = "",
+		...restProps
+	}: ComponentProps = $props();
 </script>
 
 <h2
 	{...restProps}
-	class={cn("text-foreground font-display mt-4 scroll-m-20 text-2xl font-medium", className)}
+	class={cn(
+		"font-display mt-4 scroll-m-20 text-2xl font-medium text-foreground",
+		className
+	)}
 >
 	{@render children?.()}
 </h2>

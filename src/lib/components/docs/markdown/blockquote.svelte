@@ -8,13 +8,17 @@
 		[prop: string]: unknown;
 	};
 
-	const { children, class: className = "", ...restProps }: ComponentProps = $props();
+	const {
+		children,
+		class: className = "",
+		...restProps
+	}: ComponentProps = $props();
 </script>
 
 <blockquote
 	{...restProps}
 	class={cn(
-		"border-border bg-card text-foreground/70 mt-6 rounded-xl border px-5 py-3 text-sm italic shadow-sm",
+		"mt-6 rounded-xl border border-border bg-card px-5 py-3 text-sm text-foreground/70 italic shadow-sm",
 		className
 	)}
 >

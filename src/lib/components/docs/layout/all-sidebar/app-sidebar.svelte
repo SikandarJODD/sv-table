@@ -106,7 +106,7 @@
 		<!-- We create a Sidebar.Group for each parent. -->
 		{#each data.navMain as group (group.title)}
 			<Sidebar.Group>
-				<Sidebar.GroupLabel class="gap-1.5">
+				<Sidebar.GroupLabel class="justify-between gap-1.5">
 					{group.title}
 					{#if group.count !== undefined}
 						<SidebarCount count={group.count} />
@@ -122,19 +122,7 @@
 										"flex w-full scroll-mt-10 scroll-mb-40 justify-between",
 										(item.url === "/components/filters" ||
 											item.url ===
-												"/components/debounce-input" ||
-											item.url ===
-												"/components/row-actions-menu" ||
-											item.url ===
-												"/components/data-table-export" ||
-											item.url ===
-												"/components/data-table-empty" ||
-											item.url ===
-												"/components/data-table-loading" ||
-											item.url ===
-												"/components/data-table-faceted-filter" ||
-											item.url ===
-												"/components/number-range-filter") &&
+												"/components/debounce-input") &&
 											"pr-1"
 									)}
 								>

@@ -171,7 +171,7 @@ ${"</" + "script>"}
 		</Paragraph>
 
 		<ul
-			class="ml-5 max-w-2xl list-disc space-y-2 text-sm leading-7 text-muted-foreground"
+			class="ml-5 max-w-2xl list-disc space-y-2 text-sm leading-7 text-muted-foreground md:text-base"
 		>
 			<li>
 				The visible input always responds immediately. With a positive

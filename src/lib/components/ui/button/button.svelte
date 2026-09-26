@@ -20,7 +20,7 @@
 				destructive:
 					"bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30",
 				link: "text-primary underline-offset-4 hover:underline",
-				blue: "bg-ink text-ink-foreground hover:bg-ink/90 focus-visible:ring-ink/30 dark:focus-visible:ring-ink/40"
+				blue: "bg-ink dark:bg-primary dark:text-primary-foreground text-ink-foreground hover:bg-ink/90 focus-visible:ring-ink/30 dark:focus-visible:ring-primary/30 dark:hover:bg-primary/90"
 			},
 			size: {
 				default:

@@ -24,7 +24,8 @@
 		...restProps
 	}: WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps> & {
 		buttonVariant?: ButtonVariant;
-		captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
+		captionLayout?:
+			"dropdown" | "dropdown-months" | "dropdown-years" | "label";
 		months?: RangeCalendarPrimitive.MonthSelectProps["months"];
 		years?: RangeCalendarPrimitive.YearSelectProps["years"];
 		monthFormat?: RangeCalendarPrimitive.MonthSelectProps["monthFormat"];
@@ -46,7 +47,7 @@
 	{weekdayFormat}
 	{disableDaysOutsideMonth}
 	class={cn(
-		"p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(8)] bg-background group/calendar p-3 [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+		"group/calendar bg-background p-3 p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
 		className
 	)}
 	{locale}
@@ -90,11 +91,17 @@
 							{#each month.weeks as weekDates (weekDates)}
 								<RangeCalendar.GridRow class="mt-2 w-full">
 									{#each weekDates as date (date)}
-										<RangeCalendar.Cell {date} month={month.value}>
+										<RangeCalendar.Cell
+											{date}
+											month={month.value}
+										>
 											{#if day}
 												{@render day({
 													day: date,
-													outsideMonth: !isEqualMonth(date, month.value),
+													outsideMonth: !isEqualMonth(
+														date,
+														month.value
+													)
 												})}
 											{:else}
 												<RangeCalendar.Day />

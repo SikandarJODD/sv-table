@@ -9,6 +9,10 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
-<div data-slot="frame-panel-footer" class={cn("px-5 py-4", className)} {...restProps}>
+<div
+	data-slot="frame-panel-footer"
+	class={cn("px-5 py-4", className)}
+	{...restProps}
+>
 	{@render children?.()}
 </div>

@@ -8,14 +8,14 @@
 
 	let {
 		previous,
-		next,
+		next
 	}: {
 		previous?: DocNavLink | null;
 		next?: DocNavLink | null;
 	} = $props();
 </script>
 
-<nav class="border-border mt-16 border-t pt-8">
+<nav class="mt-16 border-t border-border pt-8">
 	<div class="grid gap-4 sm:grid-cols-2">
 		{#if previous}
 			<NavButton label={previous.desc || "Previous"} {...previous} />

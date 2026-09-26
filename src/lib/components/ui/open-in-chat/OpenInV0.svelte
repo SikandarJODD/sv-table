@@ -16,7 +16,12 @@
 </script>
 
 <DropdownMenu.Item {...restProps}>
-	<a href={url} rel="noopener" target="_blank" class="flex w-full items-center gap-2">
+	<a
+		href={url}
+		rel="noopener"
+		target="_blank"
+		class="flex w-full items-center gap-2"
+	>
 		<span class="shrink-0">
 			<V0Icon size="1em" />
 		</span>

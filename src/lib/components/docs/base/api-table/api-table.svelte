@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { Table, Thead, Tbody, Tr, Th, Td, H3 } from "$lib/components/docs/markdown";
+	import {
+		Table,
+		Thead,
+		Tbody,
+		Tr,
+		Th,
+		Td,
+		H3
+	} from "$lib/components/docs/markdown";
 	import { cn } from "$lib/utils";
 	import { page } from "$app/state";
 	import { watch } from "runed";
@@ -20,7 +28,7 @@
 	};
 
 	let {
-		data,
+		data
 	}: {
 		data: PropsTable | PropDef[];
 	} = $props();
@@ -61,7 +69,7 @@
 			</H3>
 		{/if}
 		{#if data.desc}
-			<p class="text-muted-foreground m-0 leading-relaxed">
+			<p class="m-0 leading-relaxed text-muted-foreground">
 				{data.desc}
 			</p>
 		{/if}
@@ -84,16 +92,16 @@
 						<span class="inline-flex items-center gap-1">
 							<code
 								class={cn(
-									"dark:bg-muted/50 bg-muted/75 rounded-md px-2 py-0.5 font-mono text-sm text-neutral-600 dark:text-neutral-300"
+									"py-0.5 font-mono text-sm text-muted-foreground"
 								)}
 							>
 								{key === "default" && row.required
 									? "required"
 									: (row as any)[key] || ""}
 							</code>
-							{#if index === 0 && row.description}
+							<!-- {#if index === 0 && row.description}
 								<InfoPopover description={row.description} />
-							{/if}
+							{/if} -->
 						</span>
 					</Td>
 				{/each}

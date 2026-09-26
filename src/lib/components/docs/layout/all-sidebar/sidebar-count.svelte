@@ -6,8 +6,6 @@
 	let { count }: SidebarCountProps = $props();
 </script>
 
-<span
-	class="border-sidebar-border bg-sidebar-accent text-sidebar-foreground/70 inline-flex h-5 min-w-5 items-center justify-center rounded-full border px-1.5 text-[10px] leading-none font-semibold tabular-nums"
->
+<span class="text-[10px] text-ink/80 tabular-nums dark:text-emerald-500">
 	{count}
 </span>

@@ -223,8 +223,7 @@
 
 	function matchesFilter(person: Person, filter: FilterModel) {
 		const column = columnsById.get(filter.columnId) as
-			| Column<Person>
-			| undefined;
+			Column<Person> | undefined;
 
 		if (!column) return true;
 

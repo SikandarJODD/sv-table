@@ -11,20 +11,20 @@ import Markdown from "./markdown.svelte";
 import Blocks from "./blocks-icon.svelte";
 
 export interface Props extends HTMLAttributes<SVGElement> {
-  class?: string;
-  width?: number;
-  height?: number;
+	class?: string;
+	width?: number;
+	height?: number;
 }
 
 export {
-  GitHub,
-  CSS,
-  TypeScript,
-  Twitter,
-  Svelte,
-  Terminal,
-  Code as CodeIcon,
-  MCP,
-  Markdown,
-  Blocks,
+	GitHub,
+	CSS,
+	TypeScript,
+	Twitter,
+	Svelte,
+	Terminal,
+	Code as CodeIcon,
+	MCP,
+	Markdown,
+	Blocks
 };

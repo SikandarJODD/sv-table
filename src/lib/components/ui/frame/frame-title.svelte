@@ -9,6 +9,10 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 </script>
 
-<div data-slot="frame-panel-title" class={cn("text-sm font-semibold", className)} {...restProps}>
+<div
+	data-slot="frame-panel-title"
+	class={cn("text-sm font-semibold", className)}
+	{...restProps}
+>
 	{@render children?.()}
 </div>

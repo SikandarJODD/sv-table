@@ -99,7 +99,7 @@
 	}
 
 	:global(pre .line.line--highlighted) {
-		@apply border-l border-amber-400 bg-amber-100/60 dark:border-l-amber-500/70 dark:bg-yellow-900/20;
+		@apply border-l border-amber-400 bg-amber-100/60 dark:border-l-neutral-500/50 dark:bg-neutral-800/50;
 	}
 
 	:global(pre .line.line--highlighted span) {

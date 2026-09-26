@@ -8,9 +8,16 @@
 		[prop: string]: unknown;
 	};
 
-	const { children, class: className = "", ...restProps }: ComponentProps = $props();
+	const {
+		children,
+		class: className = "",
+		...restProps
+	}: ComponentProps = $props();
 </script>
 
-<thead {...restProps} class={cn("border-border bg-card-muted/60 border-b", className)}>
+<thead
+	{...restProps}
+	class={cn("bg-card-muted/60 border-b border-border", className)}
+>
 	{@render children?.()}
 </thead>

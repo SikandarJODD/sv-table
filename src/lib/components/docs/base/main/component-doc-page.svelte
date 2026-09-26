@@ -1,4 +1,5 @@
-<!-- Main File --><script lang="ts" module>
+<!-- Main File -->
+<script lang="ts" module>
 	import type { Component } from "svelte";
 	import type { CodeBlock } from "$lib/types/code";
 	import type { SEO } from "$lib/types/seo";
@@ -49,13 +50,11 @@
 		examples = [],
 		propsTables = [],
 		descriptionClass = "",
-		previewFrame = false,
+		previewFrame = false
 	}: ComponentDocPageProps = $props();
 
 	let PreviewComp = $derived(preview);
-	let installUrl = $derived(
-		`${page.url.origin}/r/${id}.json`
-	);
+	let installUrl = $derived(`${page.url.origin}/r/${id}.json`);
 
 	let getURLPath = (url: string) => {
 		// clean url by removing query params and hash
@@ -67,78 +66,3 @@
 </script>
 
 <Seo title={seo.title} description={seo.description} keywords={seo.keywords} />
-<div class="space-y-6 md:space-y-8">
-	<section>
-		<div class="flex flex-col justify-between gap-3 md:flex-row md:items-center md:gap-4">
-			<H1 id="introduction">{title}</H1>
-			<CopyPageDropdown componentName={title} {llmsTxtUrl} />
-		</div>
-
-		<div class="mt-3 max-w-2xl">
-			<Paragraph class={descriptionClass}>
-				{description}
-			</Paragraph>
-			<PackageBadges packages={installPackages} />
-		</div>
-	</section>
-
-	<section>
-		<PreviewComponent code={previewCode} frame={previewFrame}>
-			{#if PreviewComp}
-				<PreviewComp />
-			{/if}
-		</PreviewComponent>
-	</section>
-
-	<section>
-		<H2 id="installation">Installation</H2>
-		<InstallComponent
-			{installUrl}
-			tailwindConfig={installTailwindCode ? { code: installTailwindCode } : undefined}
-			codeBlocks={installCodeBlocks}
-			packages={installPackages}
-			folderStructure={installFolderStructure}
-			class="mt-4"
-		/>
-	</section>
-
-	{#if examples.length > 0}
-		<section>
-			<H2 id="examples">Examples</H2>
-			<div class="mt-4 space-y-8">
-				{#each examples as example (example.name)}
-					<div class="space-y-0">
-						<H3 id={example.name.toLowerCase().replace(/\s+/g, "-")} class="mt-0">
-							{example.name}
-						</H3>
-						{#if example.description}
-							<Paragraph>
-								{example.description}
-							</Paragraph>
-						{/if}
-						<PreviewComponent
-							code={example.code}
-							class={example.previewClass}
-							frame={example.frame}
-						>
-							<example.preview />
-						</PreviewComponent>
-					</div>
-				{/each}
-			</div>
-		</section>
-	{/if}
-
-	{#if propsTables.length > 0}
-		<section>
-			<H2 id="props">Props</H2>
-			<div class="mt-3 space-y-6">
-				<div>
-					{#each propsTables as prop, index (prop.name ?? prop.desc ?? index)}
-						<ApiTable data={prop} />
-					{/each}
-				</div>
-			</div>
-		</section>
-	{/if}
-</div>

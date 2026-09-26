@@ -52,7 +52,7 @@
 		>
 			<Button
 				variant="blue"
-				class="rounded-full border border-ink px-4"
+				class="rounded-full border border-ink px-4 dark:border-primary"
 				href="/docs"
 				size="lg"
 			>
@@ -61,7 +61,7 @@
 			</Button>
 			<Button
 				class="rounded-full px-4 shadow-none"
-				href="/docs/introduction"
+				href="/components/filters"
 				variant="outline"
 				size="lg"
 			>

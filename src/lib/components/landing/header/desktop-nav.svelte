@@ -10,7 +10,6 @@
 	import { navs } from "./nav-links";
 	import { ArrowUpRightIcon, PackageIcon } from "@lucide/svelte";
 	import { cn, toKebabCaseWithPrefix } from "$lib/utils";
-	import { Badge } from "$lib/components/spell/badge";
 
 	const otherProjects = [
 		{

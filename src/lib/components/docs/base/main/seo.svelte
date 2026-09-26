@@ -13,12 +13,7 @@
 			alt?: string;
 		}[];
 	};
-	let {
-		title,
-		description,
-		keywords,
-		images,
-	}: Props = $props();
+	let { title, description, keywords, images }: Props = $props();
 
 	let canonical = $derived(page.url.origin);
 	// $inspect("Canonical URL:", canonical);
@@ -53,7 +48,7 @@
 		title: title,
 		description: description,
 		...(images?.length ? { images } : {}),
-		siteName: seo_config.site_name,
+		siteName: seo_config.site_name
 	}}
 	twitter={{
 		creator: "@Sikandar_Bhide",
@@ -64,8 +59,8 @@
 		...(images?.[0]
 			? {
 					image: images[0].url,
-					imageAlt: images[0].alt ?? seo_config.site_name,
+					imageAlt: images[0].alt ?? seo_config.site_name
 				}
-			: {}),
+			: {})
 	}}
 />

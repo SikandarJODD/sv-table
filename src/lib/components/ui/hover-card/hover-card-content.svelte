@@ -12,7 +12,9 @@
 		portalProps,
 		...restProps
 	}: HoverCardPrimitive.ContentProps & {
-		portalProps?: WithoutChildrenOrChild<ComponentProps<typeof HoverCardPortal>>;
+		portalProps?: WithoutChildrenOrChild<
+			ComponentProps<typeof HoverCardPortal>
+		>;
 	} = $props();
 </script>
 
