@@ -15,10 +15,7 @@
 
 	import HeaderCheckbox from "$table/header-checkbox";
 	import RowCheckbox from "$table/row-checkbox";
-	import {
-		Badge,
-		type BadgeVariant
-	} from "$lib/components/ui/spell/badge";
+	import { Badge, type BadgeVariant } from "$lib/components/ui/spell/badge";
 	import * as Table from "$lib/components/ui/table";
 	import { cn } from "$lib/utils";
 

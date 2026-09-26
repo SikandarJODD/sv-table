@@ -18,12 +18,12 @@
 <ul class={cn("m-0 list-none text-sm font-normal", { "pl-4": isChild })}>
 	{#each toc as heading, i (i)}
 		<li
-			class={cn("text-muted-foreground mt-0 pt-2 transition-all", {
-				"text-foreground": heading.active,
+			class={cn("mt-0 pt-2 text-muted-foreground transition-all", {
+				"text-foreground": heading.active
 			})}
 		>
 			{#if heading.id}
-				<a href="#{heading.id}" class="hover:text-foreground block">
+				<a href="#{heading.id}" class="block hover:text-foreground">
 					{heading.label}
 				</a>
 			{:else}

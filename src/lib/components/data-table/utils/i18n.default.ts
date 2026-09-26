@@ -1,13 +1,13 @@
-import en from '../locales/en.json'
+import en from "../locales/en.json";
 
-export type Locale = 'en'
+export type Locale = "en";
 
-type Translations = Record<string, string>
+type Translations = Record<string, string>;
 
 const translations: Record<Locale, Translations> = {
-    en,
-}
+	en
+};
 
 export function t(key: string, locale: Locale): string {
-    return translations[locale][key] ?? key
+	return translations[locale][key] ?? key;
 }

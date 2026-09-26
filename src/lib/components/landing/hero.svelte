@@ -17,15 +17,15 @@
 		class="relative z-10 flex w-full max-w-3xl flex-col items-start justify-center gap-5 sm:gap-6"
 	>
 		<a
-			class="group flex w-fit animate-in items-center gap-3 rounded-full border bg-card p-1 shadow-xs transition-all delay-500 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in"
+			class="group flex w-fit animate-in items-center gap-3 rounded-full border bg-card p-1 transition-all delay-500 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in"
 			href="/blocks"
 		>
-			<div class="rounded-full border bg-card px-2 py-0.5 shadow-sm">
+			<div class="rounded-full border bg-card px-2 py-0.5">
 				<p class="font-mono text-xs">New</p>
 			</div>
 
 			<span class="text-xs">11 new blocks</span>
-			<span class="block h-5 border-l"></span>
+			<!-- <span class="block h-5 border-l"></span> -->
 
 			<div class="pr-2">
 				<ArrowRight
@@ -52,7 +52,7 @@
 		>
 			<Button
 				variant="blue"
-				class="rounded-full border border-ink px-4"
+				class="rounded-full border border-ink px-4 dark:border-primary"
 				href="/docs"
 				size="lg"
 			>
@@ -61,7 +61,7 @@
 			</Button>
 			<Button
 				class="rounded-full px-4 shadow-none"
-				href="/docs/introduction"
+				href="/components/filters"
 				variant="outline"
 				size="lg"
 			>

@@ -166,8 +166,7 @@
 
 	function matchesFilter(issue: Issue, filter: FilterModel) {
 		const column = columnsById.get(filter.columnId) as
-			| Column<Issue>
-			| undefined;
+			Column<Issue> | undefined;
 
 		if (!column) return true;
 

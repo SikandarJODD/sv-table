@@ -8,24 +8,24 @@ import MultipleFiles from "./multiple-files.svelte";
 import FrameSingle from "./frame-single.svelte";
 
 export const codeVariants = tv({
-  base: "not-prose relative h-full overflow-auto rounded-lg border",
-  variants: {
-    variant: {
-      default: "border-border",
-      secondary: "bg-secondary/50 border-transparent",
-    },
-  },
+	base: "not-prose relative h-full overflow-auto rounded-lg border",
+	variants: {
+		variant: {
+			default: "border-border",
+			secondary: "bg-secondary/50 border-transparent"
+		}
+	}
 });
 
 export type CodeVariant = VariantProps<typeof codeVariants>["variant"];
 
 export {
-  Root,
-  CopyButton,
-  Overflow,
-  SingleFile,
-  MultipleFiles,
-  FrameSingle,
-  type CodeRootProps as RootProps,
-  type CodeCopyButtonProps as CopyButtonProps,
+	Root,
+	CopyButton,
+	Overflow,
+	SingleFile,
+	MultipleFiles,
+	FrameSingle,
+	type CodeRootProps as RootProps,
+	type CodeCopyButtonProps as CopyButtonProps
 };

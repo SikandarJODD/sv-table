@@ -33,9 +33,7 @@ The table must be a TanStack Table v9 instance configured with `rowPaginationFea
     paginatedRowModel: createPaginatedRowModel()
   });
 
-  const columns: ColumnDef<typeof features, Row>[] = [
-    { accessorKey: "id" }
-  ];
+  const columns: ColumnDef<typeof features, Row>[] = [{ accessorKey: "id" }];
 
   const table = createTable({
     features,

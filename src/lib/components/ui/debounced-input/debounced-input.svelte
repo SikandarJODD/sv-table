@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { ComponentProps } from 'svelte';
-	import { watch } from 'runed';
+	import type { ComponentProps } from "svelte";
+	import { watch } from "runed";
 
-	import { Input } from '$lib/components/ui/input';
-	import { debounce } from '$lib/components/data-table/utils/debounce';
+	import { Input } from "$lib/components/ui/input";
+	import { debounce } from "$lib/components/data-table/utils/debounce";
 
 	type InputProps = ComponentProps<typeof Input>;
 	type DebouncedValue = string | number | undefined;
-	type InputType = Exclude<InputProps['type'], 'file'>;
+	type InputType = Exclude<InputProps["type"], "file">;
 
-	type Props = Omit<InputProps, 'type' | 'value' | 'files'> & {
+	type Props = Omit<InputProps, "type" | "value" | "files"> & {
 		value?: DebouncedValue;
 		type?: InputType;
 		debounce?: number;
@@ -20,7 +20,7 @@
 	let {
 		ref = $bindable(null),
 		value = $bindable(),
-		type = 'text',
+		type = "text",
 		debounce: debounceMs = 500,
 		onChange,
 		...restProps
@@ -47,10 +47,13 @@
 				return;
 			}
 
-			const debouncedChange = debounce((resolvedValue: DebouncedValue) => {
-				value = resolvedValue;
-				onChange?.(resolvedValue);
-			}, nextDebounce);
+			const debouncedChange = debounce(
+				(resolvedValue: DebouncedValue) => {
+					value = resolvedValue;
+					onChange?.(resolvedValue);
+				},
+				nextDebounce
+			);
 
 			debouncedChange(nextValue);
 

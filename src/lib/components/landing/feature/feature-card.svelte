@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
-	import type { Icon } from "@lucide/svelte";
+	import type { LucideIcon } from "@lucide/svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	type Feature = {
 		title: string;
-		icon: typeof Icon;
+		icon: LucideIcon;
 		description: string;
 		iconWrapClass: string;
 		iconClass: string;
@@ -16,7 +16,7 @@
 	};
 
 	let { feature, class: className, ...props }: Props = $props();
-	let FeatureIcon: typeof Icon = $derived(feature.icon);
+	let FeatureIcon: LucideIcon = $derived(feature.icon);
 </script>
 
 <div

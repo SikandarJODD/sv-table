@@ -17,9 +17,9 @@
 		<H1 id="sorting-example">Sorting Example</H1>
 		<div class="max-w-2xl">
 			<Paragraph>
-				A seeded TanStack Table v9 example that keeps the repo's data table filters,
-				renders with the shared `ui/table` primitives, and exposes the full source in
-				a framed code block.
+				A seeded TanStack Table v9 example that keeps the repo's data
+				table filters, renders with the shared `ui/table` primitives,
+				and exposes the full source in a framed code block.
 			</Paragraph>
 		</div>
 	</section>

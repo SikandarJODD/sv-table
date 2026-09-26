@@ -27,7 +27,8 @@
 		// contained
 		"data-[contained=true]:inset-x-0 data-[contained=true]:w-full",
 		// position
-		position && "data-[position=bottom]:-bottom-px data-[position=top]:-top-px",
+		position &&
+			"data-[position=bottom]:-bottom-px data-[position=top]:-top-px",
 		className
 	)}
 	{...rest}

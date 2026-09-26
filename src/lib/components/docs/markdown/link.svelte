@@ -9,14 +9,19 @@
 		[prop: string]: unknown;
 	};
 
-	const { children, href = "#", class: className = "", ...restProps }: ComponentProps = $props();
+	const {
+		children,
+		href = "#",
+		class: className = "",
+		...restProps
+	}: ComponentProps = $props();
 </script>
 
 <a
 	{href}
 	{...restProps}
 	class={cn(
-		"text-foreground hover:text-foreground/70 underline underline-offset-2 transition-[color] duration-150 ease-out",
+		"text-foreground underline underline-offset-2 transition-[color] duration-150 ease-out hover:text-foreground/70",
 		className
 	)}
 >

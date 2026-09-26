@@ -159,7 +159,7 @@
 			"target": "ui/debounced-input/index.ts"
 		},
 		{
-			"content": "export * from './use-data-table-filters.svelte.ts'\nexport * from './use-debounce-callback'\nexport * from './use-unmount'\n",
+			"content": "export * from \"./use-data-table-filters.svelte.ts\";\nexport * from \"./use-debounce-callback\";\nexport * from \"./use-unmount\";\nexport * from \"./use-data-grid.svelte\";\nexport * from \"./use-badge-overflow.svelte\";\n",
 			"type": "registry:hook",
 			"target": "index.ts"
 		},

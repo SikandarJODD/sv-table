@@ -1,23 +1,22 @@
 type GitHubRepo = {
-  owner: string;
-  url: string;
-  name: string;
-  fallback_stars: number;
+	owner: string;
+	url: string;
+	name: string;
+	fallback_stars: number;
 };
 type JsRepo = {
-  name: string;
-  url: string;
-}
+	name: string;
+	url: string;
+};
 
 export let github_repo: GitHubRepo = {
-  owner: "SikandarJODD",
-  url: "https://github.com/SikandarJODD/sv-table",
-  name: "sv-table",
-  fallback_stars: 5,
+	owner: "SikandarJODD",
+	url: "https://github.com/SikandarJODD/sv-table",
+	name: "sv-table",
+	fallback_stars: 5
 };
 
 export let jsrepo: JsRepo = {
-  name: "@sv/project",
-  url: "https://www.jsrepo.com/@sv/loaders",
+	name: "@sv/project",
+	url: "https://www.jsrepo.com/@sv/loaders"
 };
-

@@ -26,10 +26,7 @@
 	import PageSizeSelector from "$table/page-size-selector";
 	import Pagination from "$table/pagination";
 	import RowCheckbox from "$table/row-checkbox";
-	import {
-		Badge,
-		type BadgeVariant
-	} from "$lib/components/ui/spell/badge";
+	import { Badge, type BadgeVariant } from "$lib/components/ui/spell/badge";
 	import * as Table from "$lib/components/ui/table";
 	import { cn } from "$lib/utils";
 	import PaginationArrow from "$table/pagination-arrow";

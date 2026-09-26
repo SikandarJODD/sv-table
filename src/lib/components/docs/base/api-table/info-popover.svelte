@@ -36,7 +36,8 @@
 
 		const gap = 8;
 		const spaceAbove = triggerRect.top - gap - padding;
-		const spaceBelow = window.innerHeight - (triggerRect.bottom + gap + padding);
+		const spaceBelow =
+			window.innerHeight - (triggerRect.bottom + gap + padding);
 
 		let top = triggerRect.top - gap;
 		let trans = "translate(-50%, -100%)";
@@ -86,7 +87,7 @@
 	<button
 		bind:this={triggerRef}
 		onclick={toggle}
-		class="text-foreground/70 hover:text-foreground hover:bg-accent rounded-md p-1 transition-colors duration-150 ease-out"
+		class="rounded-md p-1 text-foreground/70 transition-colors duration-150 ease-out hover:bg-accent hover:text-foreground"
 		aria-label="More info"
 	>
 		<svg
@@ -99,10 +100,10 @@
 			stroke-width="2"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			class="lucide lucide-info text-muted-foreground size-4"
+			class="lucide lucide-info size-4 text-muted-foreground"
 			aria-hidden="true"
-			><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"
-			></path></svg
+			><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"
+			></path><path d="M12 8h.01"></path></svg
 		>
 	</button>
 
@@ -110,7 +111,7 @@
 		<div
 			bind:this={popoverRef}
 			transition:scale={{ duration: 150, start: 0.95 }}
-			class="border-border bg-card text-foreground fixed z-50 w-72 rounded-lg border p-2 text-sm leading-normal shadow-lg"
+			class="fixed z-50 w-72 rounded-lg border border-border bg-card p-2 text-sm leading-normal text-foreground shadow-lg"
 			style="top: {coords.top}px; left: {coords.left}px; transform: {transform};"
 		>
 			{description}

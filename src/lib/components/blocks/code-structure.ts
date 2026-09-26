@@ -48,10 +48,7 @@ function createExampleCodeTree(
 	defaultFilePath: string,
 	filePaths: string[] = [defaultFilePath]
 ) {
-	return createBlockCodeTree(
-		defaultFilePath,
-		filePaths.map(createCodeFile)
-	);
+	return createBlockCodeTree(defaultFilePath, filePaths.map(createCodeFile));
 }
 
 export const blockShowcases = [
@@ -68,13 +65,13 @@ export const blockShowcases = [
 		codeTree: createExampleCodeTree("row-selection.svelte"),
 		components: [
 			{
-				name: 'Header Checkbox',
-				url: '/components/header-checkbox'
+				name: "Header Checkbox",
+				url: "/components/header-checkbox"
 			},
 			{
-				name: 'Row Checkbox',
-				url: '/components/row-checkbox'
-			},
+				name: "Row Checkbox",
+				url: "/components/row-checkbox"
+			}
 		]
 	},
 	{
@@ -84,16 +81,16 @@ export const blockShowcases = [
 		codeTree: createExampleCodeTree("data-table-filters-example.svelte"),
 		components: [
 			{
-				name: 'Number Range Filter',
-				url: '/components/number-range-filter'
+				name: "Number Range Filter",
+				url: "/components/number-range-filter"
 			},
 			{
-				name: 'Debounce Input',
-				url: '/components/debounce-input'
+				name: "Debounce Input",
+				url: "/components/debounce-input"
 			},
 			{
-				name: 'Faceted Filter',
-				url: '/components/data-table-faceted-filter'
+				name: "Faceted Filter",
+				url: "/components/data-table-faceted-filter"
 			}
 		]
 	},

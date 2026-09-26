@@ -121,9 +121,7 @@ ${"</" + "script>"}
 
 	const getURLPath = (url: string) => url.split("?")[0].split("#")[0];
 
-	const installUrl = $derived(
-		`${page.url.origin}/r/page-size-selector.json`
-	);
+	const installUrl = $derived(`${page.url.origin}/r/page-size-selector.json`);
 	const llmsTxtUrl = $derived(`${getURLPath(page.url.href)}/llms.txt`);
 </script>
 
@@ -188,8 +186,8 @@ ${"</" + "script>"}
 	<section class="space-y-3">
 		<H2 id="usage">Usage</H2>
 		<Paragraph>
-			Keep the TanStack-specific pagination logic in the parent and pass only
-			the current value and setter to the selector.
+			Keep the TanStack-specific pagination logic in the parent and pass
+			only the current value and setter to the selector.
 		</Paragraph>
 		<SingleFile code={usageCode} />
 	</section>

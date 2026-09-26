@@ -33,7 +33,7 @@ export type BlockCodeTree = {
 type ComponentsUsed = {
 	name: string;
 	url: string;
-}
+};
 
 export type BlockShowcaseItem = {
 	id: string;
@@ -44,10 +44,7 @@ export type BlockShowcaseItem = {
 	components?: ComponentsUsed[];
 };
 
-export type BlockCodeFileInput = Omit<
-	BlockCodeFile,
-	"type" | "id" | "name"
-> & {
+export type BlockCodeFileInput = Omit<BlockCodeFile, "type" | "id" | "name"> & {
 	name?: string;
 };
 
@@ -55,7 +52,9 @@ export function isBlockCodeFile(node: BlockCodeNode): node is BlockCodeFile {
 	return node.type === "file";
 }
 
-export function isBlockCodeFolder(node: BlockCodeNode): node is BlockCodeFolder {
+export function isBlockCodeFolder(
+	node: BlockCodeNode
+): node is BlockCodeFolder {
 	return node.type === "folder";
 }
 

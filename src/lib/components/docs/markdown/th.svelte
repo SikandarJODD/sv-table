@@ -8,12 +8,19 @@
 		[prop: string]: unknown;
 	};
 
-	const { children, class: className = "", ...restProps }: ComponentProps = $props();
+	const {
+		children,
+		class: className = "",
+		...restProps
+	}: ComponentProps = $props();
 </script>
 
 <th
 	{...restProps}
-	class={cn("text-muted-foreground h-12 px-6 text-left align-middle font-normal", className)}
+	class={cn(
+		"h-12 px-4 text-left align-middle font-normal text-muted-foreground",
+		className
+	)}
 >
 	{@render children?.()}
 </th>

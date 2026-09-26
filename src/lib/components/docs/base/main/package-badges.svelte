@@ -11,11 +11,14 @@
 </script>
 
 {#if packages.length > 0}
-	<div class={cn("mt-4 flex flex-wrap gap-2", className)} data-toc-ignore="true">
+	<div
+		class={cn("mt-4 flex flex-wrap gap-2", className)}
+		data-toc-ignore="true"
+	>
 		{#each packages as pkg (pkg)}
 			<Badge
 				variant="secondary"
-				class="border-border/60 bg-muted/60 text-muted-foreground rounded-full px-2 py-1 font-mono text-xs leading-none"
+				class="rounded-full border-border/60 bg-muted/60 px-2 py-1 font-mono text-xs leading-none text-muted-foreground"
 			>
 				{pkg}
 			</Badge>

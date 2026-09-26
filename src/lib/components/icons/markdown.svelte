@@ -5,7 +5,12 @@
 	let { class: className, ...rest }: Props = $props();
 </script>
 
-<svg viewBox="0 0 208 128" xml:space="preserve" class={cn("size-4", className)} {...rest}>
+<svg
+	viewBox="0 0 208 128"
+	xml:space="preserve"
+	class={cn("size-4", className)}
+	{...rest}
+>
 	<path
 		fill="none"
 		stroke="currentColor"

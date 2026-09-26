@@ -29,17 +29,17 @@
 				sky: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400",
 				slate: "bg-slate-100 text-slate-700 dark:bg-slate-900/30 dark:text-slate-400",
 				fuchsia:
-					"bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900/30 dark:text-fuchsia-400",
+					"bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900/30 dark:text-fuchsia-400"
 			},
 			size: {
 				default: "px-1.5 py-1",
-				sm: "p-1",
-			},
+				sm: "p-1"
+			}
 		},
 		defaultVariants: {
 			variant: "default",
-			size: "default",
-		},
+			size: "default"
+		}
 	});
 
 	export type BadgeVariant = VariantProps<typeof badgeVariants>["variant"];

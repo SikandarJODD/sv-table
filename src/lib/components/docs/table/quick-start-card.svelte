@@ -13,8 +13,12 @@
 <article class="rounded-2xl border border-border/70 bg-card/70 p-5 shadow-xs">
 	<div class="flex items-start justify-between gap-3">
 		<div>
-			<h4 class="text-base font-semibold tracking-tight text-foreground">{title}</h4>
-			<p class="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+			<h4 class="text-base font-semibold tracking-tight text-foreground">
+				{title}
+			</h4>
+			<p class="mt-2 text-sm leading-6 text-muted-foreground">
+				{description}
+			</p>
 		</div>
 		<Badge variant="amber">Soon</Badge>
 	</div>

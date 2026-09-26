@@ -24,12 +24,7 @@ bun: bunx shadcn-svelte@latest add https://sv-table.vercel.app/r/filters.json
 ## Column Types
 
 ```ts
-type ColumnDataType =
-  | "text"
-  | "number"
-  | "date"
-  | "option"
-  | "multiOption";
+type ColumnDataType = "text" | "number" | "date" | "option" | "multiOption";
 ```
 
 ## Columns Config Guide
@@ -276,13 +271,7 @@ columns must come from the same controller instance
 ## Internationalization
 
 ```ts
-type Locale =
-  | "en"
-  | "fr"
-  | "nl"
-  | "de"
-  | "zh_CN"
-  | "zh_TW";
+type Locale = "en" | "fr" | "nl" | "de" | "zh_CN" | "zh_TW";
 ```
 
 ```svelte
@@ -299,10 +288,10 @@ type Locale =
 
 ```md
 src/lib/issues/
-  types.ts
-  columns.ts
-  filters.svelte.ts
-  IssueTable.svelte
+types.ts
+columns.ts
+filters.svelte.ts
+IssueTable.svelte
 ```
 
 ## Build Order

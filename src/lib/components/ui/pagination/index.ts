@@ -27,5 +27,5 @@ export {
 	NextButton as PaginationNextButton, // old
 	Ellipsis as PaginationEllipsis,
 	Previous as PaginationPrevious,
-	Next as PaginationNext,
+	Next as PaginationNext
 };

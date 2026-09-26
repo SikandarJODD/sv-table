@@ -9,9 +9,10 @@
 
 	<div class="max-w-3xl space-y-3">
 		<Paragraph>
-			Quick Start will collect short, direct links into focused examples. For now, the section
-			is laid out as placeholder cards so future demos can drop in without changing the page
-			structure or the table of contents.
+			Quick Start will collect short, direct links into focused examples.
+			For now, the section is laid out as placeholder cards so future
+			demos can drop in without changing the page structure or the table
+			of contents.
 		</Paragraph>
 	</div>
 

@@ -1,46 +1,46 @@
 import type { CodeBlock } from "$lib/types/code";
 
 export const filterPackages = [
-  "date-fns",
-  "runed",
-  "@lucide/svelte",
-  "@internationalized/date"
+	"date-fns",
+	"runed",
+	"@lucide/svelte",
+	"@internationalized/date"
 ];
 
 export const installReceiptPaths = [
-  "data-table/components/*",
-  "data-table/core/*",
-  "data-table/utils/*",
-  "data-table/locales/*",
-  "hooks/use-data-table-filters.svelte.ts"
+	"data-table/components/*",
+	"data-table/core/*",
+	"data-table/utils/*",
+	"data-table/locales/*",
+	"hooks/use-data-table-filters.svelte.ts"
 ];
 
 export const quickStartCards = [
-  {
-    title: "Client-side table",
-    description:
-      "Use local rows, a client strategy, and derived filtered output inside a Svelte component.",
-    tags: ["client", "local data", "derived rows"]
-  },
-  {
-    title: "Server-driven filters",
-    description:
-      "Pass declared options and faceted counts from your backend while keeping the UI responsive.",
-    tags: ["server", "options", "faceted values"]
-  },
-  {
-    title: "Typed column recipes",
-    description:
-      "Build text, number, date, option, and multi-option columns with the fluent helper.",
-    tags: ["TypeScript", "columns", "builder"]
-  }
+	{
+		title: "Client-side table",
+		description:
+			"Use local rows, a client strategy, and derived filtered output inside a Svelte component.",
+		tags: ["client", "local data", "derived rows"]
+	},
+	{
+		title: "Server-driven filters",
+		description:
+			"Pass declared options and faceted counts from your backend while keeping the UI responsive.",
+		tags: ["server", "options", "faceted values"]
+	},
+	{
+		title: "Typed column recipes",
+		description:
+			"Build text, number, date, option, and multi-option columns with the fluent helper.",
+		tags: ["TypeScript", "columns", "builder"]
+	}
 ];
 
 export const columnTypeCode: CodeBlock = {
-  name: "column-data-type.ts",
-  lang: "typescript",
-  hideLines: true,
-  code: `type ColumnDataType =
+	name: "column-data-type.ts",
+	lang: "typescript",
+	hideLines: true,
+	code: `type ColumnDataType =
   | "text"
   | "number"
   | "date"
@@ -49,10 +49,10 @@ export const columnTypeCode: CodeBlock = {
 };
 
 export const filterModelCode: CodeBlock = {
-  name: "filter-model.ts",
-  hideLines: true,
-  lang: "typescript",
-  code: `type FilterModel<TType extends ColumnDataType = any> = {
+	name: "filter-model.ts",
+	hideLines: true,
+	lang: "typescript",
+	code: `type FilterModel<TType extends ColumnDataType = any> = {
   columnId: string;
   type: TType;
   operator: FilterOperators[TType];
@@ -63,10 +63,10 @@ type FiltersState = FilterModel[];`
 };
 
 export const columnOptionCode: CodeBlock = {
-  name: "column-option.ts",
-  hideLines: true,
-  lang: "typescript",
-  code: `interface ColumnOption {
+	name: "column-option.ts",
+	hideLines: true,
+	lang: "typescript",
+	code: `interface ColumnOption {
   label: string;
   value: string;
   icon?: Component | LucideIcon;
@@ -74,10 +74,10 @@ export const columnOptionCode: CodeBlock = {
 };
 
 export const configHelperCode: CodeBlock = {
-  name: "column-config-helper.ts",
-  hideLines: true,
-  lang: "typescript",
-  code: `const dtf = createColumnConfigHelper<Issue>();
+	name: "column-config-helper.ts",
+	hideLines: true,
+	lang: "typescript",
+	code: `const dtf = createColumnConfigHelper<Issue>();
 
 const columnsConfig = [
   dtf
@@ -91,10 +91,10 @@ const columnsConfig = [
 };
 
 export const guideFileStructureCode: CodeBlock = {
-  name: "file-structure",
-  lang: 'markdown',
-  hideLines: true,
-  code: `src/lib/issues/
+	name: "file-structure",
+	lang: "markdown",
+	hideLines: true,
+	code: `src/lib/issues/
   types.ts
   columns.ts
   filters.svelte.ts
@@ -102,9 +102,9 @@ export const guideFileStructureCode: CodeBlock = {
 };
 
 export const issueTypesCode: CodeBlock = {
-  name: "types.ts",
-  lang: "typescript",
-  code: `export type IssueStatus = "backlog" | "todo" | "in-progress" | "done";
+	name: "types.ts",
+	lang: "typescript",
+	code: `export type IssueStatus = "backlog" | "todo" | "in-progress" | "done";
 
 export type IssueLabel =
   | "api"
@@ -131,18 +131,18 @@ export type Issue = {
 };
 
 export const columnsHelperCode: CodeBlock = {
-  name: "columns.ts",
-  lang: "typescript",
-  code: `import { createColumnConfigHelper } from "$lib/components/data-table/core/filters";
+	name: "columns.ts",
+	lang: "typescript",
+	code: `import { createColumnConfigHelper } from "$lib/components/data-table/core/filters";
 import type { Issue } from "./types";
 
 const dtf = createColumnConfigHelper<Issue>();`
 };
 
 export const textColumnCode: CodeBlock = {
-  name: "title-column.ts",
-  lang: "typescript",
-  code: `import Heading1Icon from "@lucide/svelte/icons/heading-1";
+	name: "title-column.ts",
+	lang: "typescript",
+	code: `import Heading1Icon from "@lucide/svelte/icons/heading-1";
 
 const titleColumn = dtf
   .text()
@@ -154,10 +154,10 @@ const titleColumn = dtf
 };
 
 export const declaredOptionsCode: CodeBlock = {
-  name: "status-column.ts",
-  highlight: [16],
-  lang: "typescript",
-  code: `import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
+	name: "status-column.ts",
+	highlight: [16],
+	lang: "typescript",
+	code: `import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
 
 export const statusOptions = [
   { label: "Backlog", value: "backlog" },
@@ -177,10 +177,10 @@ const statusColumn = dtf
 };
 
 export const inferredOptionsCode: CodeBlock = {
-  name: "assignee-column.ts",
-  highlight: [[10, 14]],
-  lang: "typescript",
-  code: `import UserCheckIcon from "@lucide/svelte/icons/user-check";
+	name: "assignee-column.ts",
+	highlight: [[10, 14]],
+	lang: "typescript",
+	code: `import UserCheckIcon from "@lucide/svelte/icons/user-check";
 import UserAvatar from "./UserAvatar.svelte";
 
 const assigneeColumn = dtf
@@ -198,10 +198,10 @@ const assigneeColumn = dtf
 };
 
 export const numberBoundariesCode: CodeBlock = {
-  name: "estimate-column.ts",
-  lang: "typescript",
-  highlight: [9, 10],
-  code: `import HashIcon from "@lucide/svelte/icons/hash";
+	name: "estimate-column.ts",
+	lang: "typescript",
+	highlight: [9, 10],
+	code: `import HashIcon from "@lucide/svelte/icons/hash";
 
 const estimateColumn = dtf
   .number()
@@ -215,9 +215,9 @@ const estimateColumn = dtf
 };
 
 export const columnsConfigCode: CodeBlock = {
-  name: "columns.ts",
-  lang: "typescript",
-  code: `import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
+	name: "columns.ts",
+	lang: "typescript",
+	code: `import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
 import CalendarDaysIcon from "@lucide/svelte/icons/calendar-days";
 import HashIcon from "@lucide/svelte/icons/hash";
 import Heading1Icon from "@lucide/svelte/icons/heading-1";
@@ -287,10 +287,10 @@ export const columnsConfig = [
 };
 
 export const controllerCode: CodeBlock = {
-  name: "filters.svelte.ts",
-  lang: "typescript",
-  highlight: [1, [24, 28]],
-  code: `import { createFilters } from "$lib/hooks";
+	name: "filters.svelte.ts",
+	lang: "typescript",
+	highlight: [1, [24, 28]],
+	code: `import { createFilters } from "$lib/hooks";
 import { columnsConfig } from "./columns";
 import type { Issue } from "./types";
 
@@ -321,9 +321,9 @@ export const filterController = createFilters({
 };
 
 export const defaultFiltersCode: CodeBlock = {
-  name: "filters.svelte.ts",
-  lang: "typescript",
-  code: `export const filterController = createFilters({
+	name: "filters.svelte.ts",
+	lang: "typescript",
+	code: `export const filterController = createFilters({
   strategy: "client",
   data: issues,
   columnsConfig,
@@ -339,9 +339,9 @@ export const defaultFiltersCode: CodeBlock = {
 };
 
 export const remoteOptionsCode: CodeBlock = {
-  name: "server-filters.svelte.ts",
-  lang: "typescript",
-  code: `export const filterController = createFilters({
+	name: "server-filters.svelte.ts",
+	lang: "typescript",
+	code: `export const filterController = createFilters({
   strategy: "server",
   data: issues,
   columnsConfig,
@@ -369,9 +369,9 @@ export const remoteOptionsCode: CodeBlock = {
 };
 
 export const componentCode: CodeBlock = {
-  name: "IssueTable.svelte",
-  lang: "svelte",
-  code: `<script lang="ts">
+	name: "IssueTable.svelte",
+	lang: "svelte",
+	code: `<script lang="ts">
   import { format } from "date-fns";
   import { DataTableFilter } from "$lib/components/data-table/components";
   import * as Table from "$lib/components/ui/table";
@@ -465,9 +465,9 @@ export const componentCode: CodeBlock = {
 };
 
 export const localeUsageCode: CodeBlock = {
-  name: "locale.ts",
-  lang: "typescript",
-  code: `type Locale =
+	name: "locale.ts",
+	lang: "typescript",
+	code: `type Locale =
   | "en"
   | "fr"
   | "nl"
@@ -479,8 +479,8 @@ export const localeUsageCode: CodeBlock = {
 };
 
 export const fullExampleCode: CodeBlock[] = [
-  issueTypesCode,
-  columnsConfigCode,
-  controllerCode,
-  componentCode
+	issueTypesCode,
+	columnsConfigCode,
+	controllerCode,
+	componentCode
 ];
