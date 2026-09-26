@@ -4,7 +4,7 @@
 	import Logo from "$lib/svg/logo.svelte";
 	import { cn } from "$lib/utils";
 	import DesktopNav from "./desktop-nav.svelte";
-	import MobileNav from "./mobile-nav.svelte";
+	import MobileNav from "./mobile-nav-new.svelte";
 	import { GitHubButton, getStars } from "$lib/components/ui/github-button";
 	import { onMount } from "svelte";
 	import { X } from "$lib/svg";

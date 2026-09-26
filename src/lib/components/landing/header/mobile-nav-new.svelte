@@ -1,15 +1,53 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
+	import { Badge } from "$lib/components/ui/spell/badge";
 	import { ScrollFadeEffect } from "$lib/components/ui/scroll-area";
 	import { LightSwitch } from "$lib/components/ui/light-switch";
 	import { Portal, PortalBackdrop } from "$lib/components/ui/portal";
+	import { blocks } from "$lib/components/blocks/blocks";
 	import { github_repo } from "$lib/config/repo";
 	import { components } from "$lib/registry/components";
 	import Github from "$lib/svg/github.svelte";
 	import X from "$lib/svg/x.svelte";
 	import { cn } from "$lib/utils";
+	import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
 	import MenuIcon from "@lucide/svelte/icons/menu";
 	import XIcon from "@lucide/svelte/icons/x";
+
+	const otherProjects = [
+		{
+			name: "Svelte Animations",
+			href: "https://sv-animations.vercel.app/"
+		},
+		{
+			name: "Svelte Marketing Blocks",
+			href: "https://sv-blocks.vercel.app/"
+		},
+		{
+			name: "Svelte Quality Marketing Blocks",
+			href: "https://sv-efferd.pages.dev/"
+		},
+		{
+			name: "Svelte AI Elements",
+			href: "https://svelte-ai-elements.vercel.app/"
+		},
+		{
+			name: "Svelte QBlocks",
+			href: "https://sv-particles.vercel.app/"
+		},
+		{
+			name: "Svelte Globe Examples",
+			href: "https://sv-globe.vercel.app/"
+		},
+		{
+			name: "Svelte Dot Matrix Loaders",
+			href: "https://sv-matrix.vercel.app/"
+		},
+		{
+			name: "Svelte Agentation",
+			href: "https://sv-agentation.com/"
+		}
+	];
 
 	let open = $state(false);
 
@@ -86,6 +124,50 @@
 										onclick={() => (open = false)}
 									>
 										{component.name}
+									</a>
+								{/each}
+							</div>
+						</div>
+
+						<div class="flex flex-col gap-1">
+							<a
+								class={linkClass}
+								href="/blocks"
+								onclick={() => (open = false)}
+							>
+								Blocks
+							</a>
+
+							<div class="flex flex-col pl-4">
+								{#each blocks as block (block.name)}
+									<a
+										class="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+										href={block.url}
+										onclick={() => (open = false)}
+									>
+										{block.name}
+									</a>
+								{/each}
+							</div>
+						</div>
+
+						<div class="mt-2 flex flex-col gap-1 border-t border-dashed pt-2">
+							<div class="flex items-center justify-between gap-3 px-3 py-2">
+								<p class="text-sm font-semibold">Other Projects</p>
+								<Badge variant="emerald" class="rounded-full">Open Source</Badge>
+							</div>
+
+							<div class="flex flex-col pl-4">
+								{#each otherProjects as project (project.href)}
+									<a
+										class="flex items-center justify-between gap-3 rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+										href={project.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										onclick={() => (open = false)}
+									>
+										<span>{project.name}</span>
+										<ArrowUpRightIcon class="size-3.5 shrink-0" />
 									</a>
 								{/each}
 							</div>
