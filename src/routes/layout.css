@@ -5,6 +5,7 @@
 @import "@fontsource-variable/figtree";
 @import "@fontsource-variable/geist-mono";
 @import "@fontsource-variable/jetbrains-mono";
+@import "../lib/styles/neat-annotation.css";
 
 @custom-variant dark (&:is(.dark *));
 

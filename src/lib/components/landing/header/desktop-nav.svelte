@@ -146,6 +146,9 @@
 
 		return `${url}?${params.toString()}`;
 	}
+
+	const desktopNavItemClass =
+		"h-fit rounded-full bg-transparent px-3 py-1.5 text-sm font-medium text-foreground transition-colors duration-150 ease-out hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground data-[active=true]:bg-muted/50 data-open:bg-muted/50 data-popup-open:bg-muted/50";
 </script>
 
 <NavigationMenu.Root class="hidden md:flex">
@@ -153,8 +156,7 @@
 		{#each navs as nav (nav.name)}
 			{#if nav.sub}
 				<NavigationMenu.Item>
-					<NavigationMenu.Trigger
-						class="h-fit py-1.5! hover:bg-accent/60!"
+					<NavigationMenu.Trigger class={desktopNavItemClass}
 						>{nav.name}</NavigationMenu.Trigger
 					>
 					<NavigationMenu.Content class="p-0">
@@ -171,7 +173,7 @@
 				</NavigationMenu.Item>
 			{:else}
 				<NavigationMenu.Item class="relative">
-					<NavigationMenu.Link class="rounded-md py-1.5">
+					<NavigationMenu.Link class={desktopNavItemClass}>
 						{#snippet child({ props })}
 							<a href={nav.href} {...props}>{nav.name}</a>
 						{/snippet}
@@ -186,9 +188,7 @@
 			{/if}
 		{/each}
 		<NavigationMenu.Item id="other-projects">
-			<NavigationMenu.Trigger
-				class="bg-transparent px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-transparent hover:text-primary focus:bg-transparent focus:text-primary data-[state=open]:bg-transparent data-[state=open]:text-primary"
-			>
+			<NavigationMenu.Trigger class={desktopNavItemClass}>
 				Other Projects
 			</NavigationMenu.Trigger>
 			<NavigationMenu.Content class="p-0">
